@@ -23,5 +23,13 @@ module.exports = {
         },
         `gatsby-plugin-offline`,
         `gatsby-plugin-react-helmet`,
+        {
+            resolve: "gatsby-source-graphql",
+            options: {
+                typeName: "RMAPI",
+                fieldName: "rickAndMorty",
+                url: "https://rickandmortyapi-gql.now.sh/",
+            },
+        },
     ],
 }

@@ -1,12 +1,13 @@
 export const isBrowser = () => typeof window !== "undefined"
 export const getUser = () =>
-    isBrowser() && window.localStorage.getItem("gatsbyUser")
-        ? JSON.parse(window.localStorage.getItem("gatsbyUser"))
+    isBrowser() && window.localStorage.getItem("bansheeUser")
+        ? JSON.parse(window.localStorage.getItem("bansheeUser"))
         : {}
 const setUser = user =>
-    window.localStorage.setItem("gatsbyUser", JSON.stringify(user))
+    window.localStorage.setItem("bansheeUser", JSON.stringify(user))
 export const handleLogin = ({ username, password }) => {
     //fire request to endpoint, set token on return
+
     if (username === `john` && password === `pass`) {
         return setUser({
             username: `john`,
