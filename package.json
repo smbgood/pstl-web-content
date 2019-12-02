@@ -1,0 +1,41 @@
+{
+  "name": "banshee-babe-web-content",
+  "private": true,
+  "description": "Front-end web content for Banshee Babe Boutique",
+  "version": "0.1.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"We're runnin' dirty!!\" && exit 1"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.22",
+    "@mdx-js/mdx": "^1.5.1",
+    "@mdx-js/react": "^1.5.1",
+    "gatsby": "^2.18.4",
+    "gatsby-plugin-manifest": "^2.2.20",
+    "gatsby-plugin-mdx": "^1.0.58",
+    "gatsby-plugin-offline": "^3.0.25",
+    "gatsby-plugin-react-helmet": "^3.1.16",
+    "gatsby-plugin-theme-ui": "^0.2.43",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-helmet": "^5.2.1",
+    "theme-ui": "^0.2.49"
+  },
+  "devDependencies": {
+    "prettier": "^1.19.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/smbgood/banshee"
+  },
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  }
+}
