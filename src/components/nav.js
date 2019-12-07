@@ -11,21 +11,17 @@ export default () => {
     }
     return (
         <div
-            style={{
-                display: "flex",
-                flex: "1",
-                justifyContent: "space-between",
-                borderBottom: "1px solid #d1c1e0",
-            }}
+            className="nav-root"
         >
-            <span>{content.message}</span>
-            <nav>
-                <Link to="/">Home</Link>
+            <span className="nav-icon">{content.message}</span>
+            <nav className="nav-container">
+                <Link className="nav-link" to="/">Home</Link>
                 {` `}
-                <Link to="/app/profile">Profile</Link>
+                <Link className="nav-link" to="/app/profile">Profile</Link>
                 {` `}
                 {isLoggedIn() ? (
                     <a
+                        className="nav-link"
                         href="/"
                         onClick={event => {
                             event.preventDefault()

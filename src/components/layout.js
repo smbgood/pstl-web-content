@@ -3,7 +3,9 @@ import NavBar from "./nav"
 const Layout = ({ children }) => (
     <>
         <NavBar />
-        {children}
+        <div className="page-root">
+            {children}
+        </div>
     </>
 )
 export default Layout

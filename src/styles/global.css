@@ -1,0 +1,26 @@
+.nav-root{
+    display:flex;
+    border-bottom: 1px solid #d1c1e0;
+    margin-left:25rem;
+    margin-right:25rem;
+}
+
+.page-root{
+    margin-left:25rem;
+    margin-right:25rem;
+}
+
+.nav-link{
+    font-size:1.75rem;
+    margin-right:1rem;
+}
+
+.nav-container{
+    flex-grow: 8;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-icon{
+    flex-grow:1;
+}

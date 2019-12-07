@@ -14,7 +14,7 @@ export let handleLogin = async ({username, password}) => {
     //fire request to endpoint, set token on return
     return await axios.get("http://localhost:9090/ron/logon", {params: {user: username, pass: password}})
         .then(profile => {
-            //used to parse out shit you can use on the spot, like id would be available in this block? idk
+            //used to parse out stuff to use on the spot
             /*const {
                 data: {
                     userId: id
