@@ -1,6 +1,6 @@
 import React from "react"
 import { navigate } from "gatsby"
-import { handleLogin, isLoggedIn } from "../services/auth"
+import { isLoggedIn , handleLogin, setUser} from "../services/login";
 
 class Login extends React.Component {
     state = {
@@ -16,7 +16,12 @@ class Login extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        handleLogin(this.state)
+        handleLogin(this.state).then(r =>{
+            if(r && r.data){
+                setUser(r);
+                navigate("/app/profile")
+            }
+        });
     }
 
     render() {
@@ -31,7 +36,7 @@ class Login extends React.Component {
                     method="post"
                     onSubmit={event => {
                         this.handleSubmit(event)
-                        navigate(`/app/profile`)
+
                     }}
                 >
                     <label>

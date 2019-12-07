@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import { getUser, isLoggedIn } from "../services/auth"
+import { getUser, isLoggedIn } from "../services/login"
 
 import Layout from "../components/layout"
 

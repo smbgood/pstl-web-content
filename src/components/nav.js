@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, navigate } from "gatsby"
-import { getUser, isLoggedIn, logout } from "../services/auth"
+import { getUser, isLoggedIn, logout } from "../services/login"
 
 export default () => {
     const content = { message: "", login: true }
