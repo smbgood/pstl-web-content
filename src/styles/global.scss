@@ -1,8 +1,56 @@
 @import 'values.scss';
+@import 'materialize/sass/materialize.scss';
+
+@mixin color-1() {
+    color:rgba(66, 0, 57, 1);
+}
+@mixin color-2() {
+    color:rgba(139, 249, 124, 1);
+}
+@mixin color-3() {
+    color:rgba(240, 140, 174, 1);
+}
+@mixin color-4() {
+    color:rgba(112, 205, 255, 1);
+}
+@mixin color-5() {
+    color:rgba(0, 16, 17, 1);
+}
+@mixin bg-color-1() {
+    background-color:rgba(66, 0, 57, 1);
+}
+@mixin bg-color-2() {
+    background-color:rgba(139, 249, 124, 1);
+}
+@mixin bg-color-3() {
+    background-color:rgba(240, 140, 174, 1);
+}
+@mixin bg-color-4() {
+    background-color:rgba(112, 205, 255, 1);
+}
+@mixin bg-color-5() {
+    background-color:rgba(0, 16, 17, 1);
+}
 
 @mixin nav-gutters() {
     margin-left:25rem;
     margin-right:25rem;
+}
+
+/*h1{
+    font-family: 'Arima Madurai', cursive;
+}
+
+h2,a{
+    font-family: 'Bad Script', cursive;
+}
+
+h3,h4,h5,p,div,body{
+    font-family: 'Imprima', sans-serif;
+}*/
+
+body{
+    @include color-1();
 }
 
 .nav-root{
@@ -17,6 +65,10 @@
     @media screen and (min-width:$bp-large){
         margin-left:5%;
         margin-right:5%;
+    }
+    @media screen and (min-width:$bp-mega){
+        margin-left:10%;
+        margin-right:10%;
     }
 }
 
@@ -35,9 +87,14 @@
     flex-grow:1;
 }
 
+.collage-container{
+    text-align:center;
+}
+
 .collage-root{
     display:inline-flex;
     flex-direction:column;
+    vertical-align: top;
     @media screen and (max-width:$bp-small){
         width:100%;
     }

@@ -36,25 +36,24 @@ const Collage = () => {
   const doColumn = function(images, columnIndex) {
 
     return (
-      <>
-      <div className="collage-root">
+      <div className="collage-root" key={"parent-" + columnIndex}>
         {images.map((value, index) =>
           {
-            return doChild(value)
+            return doChild(value, index, columnIndex)
           }
         )
         }
       </div>
-      </>
     )
   }
 
-  const doChild = function(value) {
+  const doChild = function(value, index, columnIndex) {
     return (
-      <div className="collage-child">
+      <div className="collage-child" key={columnIndex + "-" + index}>
         <Img
           fluid={value.node.fluid}
           alt="Gatsby Docs are awesome"
+          key={value.node.fluid.originalName}
         />
       </div>
     )
@@ -77,14 +76,14 @@ const Collage = () => {
   }
 
   return (
-    <>
+    <div className="collage-container">
       {columnContents.map((value, index) =>
           {
             return doColumn(value, index)
           }
         )
       }
-    </>
+    </div>
   )
 }
 
