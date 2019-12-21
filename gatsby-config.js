@@ -4,7 +4,16 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
+require('dotenv').config({
+    path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
+    siteMetadata: {
+        title: `Banshee Babe Boutique`,
+        description: `Welcome to the online gift shop of Banshee Babe Boutique`,
+        author: `@colourmeoutrageous`,
+    },
     plugins: [
         "gatsby-plugin-theme-ui",
         "gatsby-plugin-mdx",{
@@ -45,6 +54,22 @@ module.exports = {
             options: {
                 pathToConfigModule: "src/utils/typography.js"
             }
+        },
+        "gatsby-plugin-stripe",
+        {
+            resolve: `gatsby-source-stripe`,
+            options: {
+                objects: ["Sku"],
+                secretKey: process.env.STRIPE_SECRET_KEY,
+                downloadFiles: true,
+            },
+        },
+        `gatsby-transformer-json`,
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                path: `./src/info/`,
+            },
         },
     ],
 }
