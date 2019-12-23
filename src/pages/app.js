@@ -7,6 +7,7 @@ import Login from "../components/login"
 import Collage from "../components/collage"
 import SEO from "../components/seo";
 import Shop from "../components/shop";
+import Categories from "../components/categories";
 
 const App = () => (
     <Layout>
@@ -16,6 +17,7 @@ const App = () => (
             <Login path="/app/login" />
             <Collage path="/app/collage" />
             <Shop path="/app/shop" />
+            <Categories path="/app/categories"/>
         </Router>
     </Layout>
 )

@@ -54,7 +54,7 @@ const Category = class extends React.Component {
             <div style={cardStyles}>
                 <h4>{category.id}</h4>
                 {category.products.map( product => (
-                    <div>{product}</div>
+                    <a href={"/" + product}>Product</a>
                 ))}
             </div>
         )
