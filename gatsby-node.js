@@ -19,9 +19,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         reporter.panicOnBuild("AAAAAAAAA")
         return
     }
-    const pageTemplate = path.resolve(`src/templates/page.js`)
+    const pageTemplate = path.resolve(`src/templates/product-page.js`)
     const ProductsData = result.data.allProductsJson.nodes;
-    ProductsData.forEach(product => {
+    for (const product of ProductsData) {
         createPage({
             path: "/" + product.id,
             component: pageTemplate,
@@ -30,7 +30,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                 name: product.name
             }
         })
-    })
+    }
 
 }
 exports.onCreatePage = async ({ page, actions }) => {

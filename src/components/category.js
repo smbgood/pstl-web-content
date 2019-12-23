@@ -48,13 +48,40 @@ const Category = class extends React.Component {
         }
     }
 
+
+
     render() {
         const category = this.props.category
+        function getProductById(id, products) {
+            if(products && products.edges) {
+                for (const edge of products.edges) {
+                    if (edge.node.id === id) {
+                        return edge.node
+                    }
+                }
+            }
+            return null
+        }
+        function getName(result){
+            if(result && result.name){
+                return result.name
+            }
+            return ""
+        }
+        function getDescription(result){
+            if(result && result.description){
+                return result.description
+            }
+            return ""
+        }
         return (
-            <div style={cardStyles}>
-                <h4>{category.id}</h4>
-                {category.products.map( product => (
-                    <a href={"/" + product}>Product</a>
+            <div style={cardStyles} id={category.id + "-key"}>
+                <h4 id={category.id + "-title"}>{category.id}</h4>
+                {category.products.map( (product) => (
+                    <React.Fragment key={product}>
+                        <a href={"/" + product} id={product + "-link"}>{getName(getProductById(product, this.props.products))}</a>
+                        <p id={product + "-desc"}>{getDescription(getProductById(product, this.props.products))}</p>
+                    </React.Fragment>
                 ))}
             </div>
         )

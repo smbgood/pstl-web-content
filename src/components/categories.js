@@ -25,13 +25,22 @@ class Categories extends Component {
                             id
                             products
                         }
-                    }
+                    },
+                    products: allProductsJson {
+                        edges {
+                          node {
+                            id
+                            name
+                            description
+                          }
+                        }
+                      }
                   }
                 `}
-                render={({ categories }) => (
+                render={({ categories, products }) => (
                     <div style={containerStyles}>
                         {categories.nodes.map( node => (
-                            <Category key={node.id} category={node}/>
+                            <Category key={node.id} category={node} products={products}/>
                         ))}
                     </div>
                 )}
