@@ -3,11 +3,7 @@ import {graphql, StaticQuery} from 'gatsby'
 import Category from "./category";
 
 const containerStyles = {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    padding: '1rem 0 1rem 0',
+    padding: '1rem 0 1rem 0'
 }
 
 class Categories extends Component {

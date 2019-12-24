@@ -1,5 +1,5 @@
 @import 'values.scss';
-@import 'materialize/sass/materialize.scss';
+@import 'node_modules/materialize-css/sass/materialize.scss';
 
 @mixin color-1() {
     color:rgba(66, 0, 57, 1);
@@ -50,7 +50,12 @@ h3,h4,h5,p,div,body{
 }*/
 
 body{
-    @include color-1();
+    @include bg-color-1();
+    @include color-4();
+}
+
+a{
+    @include color-2();
 }
 
 .nav-root{
@@ -109,7 +114,9 @@ body{
     justify-content: center;
 }
 
-
+.collapsible-header{
+    @include bg-color-1();
+}
 
 
 /*@-webkit-keyframes swing

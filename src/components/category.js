@@ -1,28 +1,5 @@
 import React from "react"
-
-const cardStyles = {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-around",
-    alignItems: "flex-start",
-    padding: "1rem",
-    marginBottom: "1rem",
-    boxShadow: "5px 5px 25px 0 rgba(46,61,73,.2)",
-    backgroundColor: "#fff",
-    borderRadius: "6px",
-    maxWidth: "300px",
-}
-const buttonStyles = {
-    fontSize: "13px",
-    textAlign: "center",
-    color: "#fff",
-    outline: "none",
-    padding: "12px",
-    boxShadow: "2px 5px 10px rgba(0,0,0,.1)",
-    backgroundColor: "rgb(255, 178, 56)",
-    borderRadius: "6px",
-    letterSpacing: "1.5px",
-}
+import M from "materialize-css"
 
 const formatPrice = (amount, currency) => {
     let price = (amount / 100).toFixed(2)
@@ -48,7 +25,12 @@ const Category = class extends React.Component {
         }
     }
 
-
+    componentDidMount() {
+        var elem = document.querySelectorAll('.collapsible.expandable');
+        var instance = M.Collapsible.init(elem, {
+            accordion: false
+        });
+    }
 
     render() {
         const category = this.props.category
@@ -75,14 +57,24 @@ const Category = class extends React.Component {
             return ""
         }
         return (
-            <div style={cardStyles} id={category.id + "-key"}>
-                <h4 id={category.id + "-title"}>{category.id}</h4>
+            <div className="category-root" id={category.id + "-key"}>
+                <h4 className="category-title" id={category.id + "-title"}>{category.id}</h4>
+                <ul className="collapsible expandable category-holder">
                 {category.products.map( (product) => (
-                    <React.Fragment key={product}>
-                        <a href={"/" + product} id={product + "-link"}>{getName(getProductById(product, this.props.products))}</a>
-                        <p id={product + "-desc"}>{getDescription(getProductById(product, this.props.products))}</p>
+                    <React.Fragment key={category.id + "-" + product}>
+                        <li>
+                            <div className="collapsible-header">
+                                <a href={"/" + product} id={category.id + "-" + product + "-link"}>{getName(getProductById(product, this.props.products))}</a>
+                            </div>
+                            <div className="collapsible-body">
+                                <div id={"dropdown" + category.id + "-" + product}>
+                                    <p id={category.id + "-" + product + "-desc"}>{getDescription(getProductById(product, this.props.products))}</p>
+                                </div>
+                            </div>
+                        </li>
                     </React.Fragment>
                 ))}
+                </ul>
             </div>
         )
     }

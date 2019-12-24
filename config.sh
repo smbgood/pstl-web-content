@@ -10,4 +10,3 @@ npm install --save react-typography
 npm install --save gatsby-plugin-stripe
 npm install --save gatsby-source-stripe
 npm install --save gatsby-transformer-json
-npm install js-image-zoom --save
