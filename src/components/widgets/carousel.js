@@ -1,7 +1,6 @@
 // src/components/widgets/Carousel.js
 import React from "react"
 import M from "materialize-css"
-import ReactImageZoom from "react-image-zoom"
 import "../../styles/carousel.scss"
 
 class Carousel extends React.Component {
@@ -18,12 +17,6 @@ class Carousel extends React.Component {
     let modalElems = document.querySelectorAll('.modal')
     let modals = M.Modal.init(modalElems, null)
     this.setState( {modals} )
-
-    let options = {
-      width: 400,
-      zoomWidth: 500,
-      offset: {vertical: 0, horizontal: 10}
-    };
   }
 
   constructor(props){
@@ -53,7 +46,7 @@ class Carousel extends React.Component {
     return ""
   }
 
-  getLargerSizeImage(input){
+  getLargestSizeImage(input){
     if(input.node.fixed.srcSet){
       let split = input.node.fixed.srcSet.split(",\n")
       let sizeToImage = []
@@ -93,7 +86,6 @@ class Carousel extends React.Component {
 
   render(){
     const images = this.props.images;
-    const offset = {vertical:0, horizontal:-320}
     return(
       <div>
       <div className="carousel">
@@ -104,7 +96,7 @@ class Carousel extends React.Component {
     {images.map(item => (
       <div className="modal" id={this.createHTMLSafeKey(item.node.fixed.originalName)+"-modal"} key={this.createHTMLSafeKey(item.node.fixed.originalName)+"-modal"}>
         <div className="modal-content">
-          {this.getLargerSizeImage(item).map( (itemImage) => (
+          {this.getLargestSizeImage(item).map( (itemImage) => (
             <img data-size={itemImage.size} src={itemImage.src}/>
           ))}
         </div>

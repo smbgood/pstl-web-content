@@ -1,11 +1,21 @@
-.image-preview{
+@import 'values.scss';
+.modal-content img{
   margin:0 auto;
+  border-color:rgba(112, 205, 255, 1);
+  border-style:solid;
+}
+.carousel .carousel-item{
+  max-height:220px;
+}
+.modal-content{
+  text-align:center;
 }
 .modal{
   /*overflow-y:initial;*/
   max-height:85%;
   background-color:rgba(0,0,0,0);
-
+  border-color:rgba(139, 249, 124, 1);
+  border-style:solid;
 }
 
 .modal::-webkit-scrollbar {
