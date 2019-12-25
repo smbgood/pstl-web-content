@@ -1,11 +1,14 @@
 // src/components/widgets/Carousel.js
 import React from "react"
 import M from "materialize-css"
-import ImageZoom from "js-image-zoom"
+import ReactImageZoom from "react-image-zoom"
+import "../../styles/carousel.scss"
+
 class Carousel extends React.Component {
 
   state = {
     modals: [],
+    images: [],
   }
 
   componentDidMount(){
@@ -15,16 +18,23 @@ class Carousel extends React.Component {
     let modalElems = document.querySelectorAll('.modal')
     let modals = M.Modal.init(modalElems, null)
     this.setState( {modals} )
+
+    let options = {
+      width: 400,
+      zoomWidth: 500,
+      offset: {vertical: 0, horizontal: 10}
+    };
   }
 
   constructor(props){
     super(props)
     this.doClick = this.doClick.bind(this)
+    this.createHTMLSafeKey = this.createHTMLSafeKey.bind(this)
   }
 
   doClick(e){
     for(const modal of this.state.modals){
-      console.log(modal)
+      //console.log(modal)
       if(modal.id === e.target.getAttribute("data-modal-href")){
         modal.open();
       }
@@ -32,10 +42,13 @@ class Carousel extends React.Component {
   }
 
   createHTMLSafeKey(input){
-    if(input.node.fixed.originalName){
-      let name = input.node.fixed.originalName;
-      let replaced = name.replace(/\./g, '_')
-      return replaced
+    if(input){
+      let other = input.toString();
+      const retVal = other.replace(/\./g, '-')
+      if(retVal){
+        return retVal
+      }
+      return ""
     }
     return ""
   }
@@ -55,7 +68,24 @@ class Carousel extends React.Component {
           sizeToImage.push(retVal);
         }
       }
+      console.log(sizeToImage)
+      let highest = 0
+      let index = -1
+      for(let i=0;i<sizeToImage.length; i++){
+        let size = sizeToImage[i]
+        if(size.size){
+          if(highest < parseFloat(size.size)){
+            highest = parseFloat(size.size)
+            index = i
+          }
+        }
+      }
 
+      if(index > -1){
+        const retArray = []
+        retArray[0] = sizeToImage[index]
+        return retArray
+      }
       return sizeToImage
     }
     return null
@@ -63,25 +93,23 @@ class Carousel extends React.Component {
 
   render(){
     const images = this.props.images;
+    const offset = {vertical:0, horizontal:-320}
     return(
       <div>
       <div className="carousel">
       {images.map(item => (
-        <a className="carousel-item waves-effect waves-purple" data-modal-href={this.createHTMLSafeKey(item)+"-modal"} onClick={this.doClick} key={this.createHTMLSafeKey(item) + "-parent"}><img src={item.node.fixed.src} key={this.createHTMLSafeKey(item)}/> </a>
+        <a className="carousel-item waves-effect waves-purple" data-modal-href={this.createHTMLSafeKey(item.node.fixed.originalName)+"-modal"} onClick={this.doClick} key={this.createHTMLSafeKey(item.node.fixed.originalName) + "-parent"}><img src={item.node.fixed.src} key={this.createHTMLSafeKey(item.node.fixed.originalName)}/> </a>
       ))}
       </div>
     {images.map(item => (
-      <div className="modal" id={this.createHTMLSafeKey(item)+"-modal"} key={this.createHTMLSafeKey(item)+"-modal"}>
+      <div className="modal" id={this.createHTMLSafeKey(item.node.fixed.originalName)+"-modal"} key={this.createHTMLSafeKey(item.node.fixed.originalName)+"-modal"}>
         <div className="modal-content">
           {this.getLargerSizeImage(item).map( (itemImage) => (
-            <img src={itemImage.src} key={itemImage.size + "-image"} />
+            <img data-size={itemImage.size} src={itemImage.src}/>
           ))}
         </div>
-        <div className="modal-footer">
-          {this.getLargerSizeImage(item).map( (itemImage) => (
-            <a className="btn" key={itemImage.size + "-button"} >{itemImage.size}</a>
-          ))}
-        </div>
+        {/*<div className="modal-footer">
+        </div>*/}
       </div>
       ))}
       </div>

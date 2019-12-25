@@ -2,6 +2,7 @@
 import React from "react"
 import Layout from "../components/layout"
 import Carousel from "../components/widgets/carousel"
+import "../styles/product.scss"
 class ProductPageTemplate extends React.Component {
 
   componentDidMount(){
@@ -12,8 +13,10 @@ class ProductPageTemplate extends React.Component {
     return(
         <Layout key={this.props.pageContext.id}>
           <Carousel images={this.props.pageContext.images.data.allImageSharp.edges}/>
-          <h1>{this.props.pageContext.name}</h1>
-          <p>{this.props.pageContext.description}</p>
+          <div className="product-info-root">
+            <h1>{this.props.pageContext.name}</h1>
+            <p>{this.props.pageContext.description}</p>
+          </div>
         </Layout>
     )
   }

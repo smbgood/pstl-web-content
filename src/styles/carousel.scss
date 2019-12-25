@@ -1,0 +1,13 @@
+.image-preview{
+  margin:0 auto;
+}
+.modal{
+  /*overflow-y:initial;*/
+  max-height:85%;
+  background-color:rgba(0,0,0,0);
+
+}
+
+.modal::-webkit-scrollbar {
+  display: none;
+}
