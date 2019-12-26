@@ -4,9 +4,11 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
-require('dotenv').config({
-    path: `.env.${process.env.NODE_ENV}`,
-})
+if(!process.env.STRIPE_SECRET_KEY) {
+    require('dotenv').config({
+        path: `.env.${process.env.NODE_ENV}`,
+    })
+}
 
 module.exports = {
     siteMetadata: {
