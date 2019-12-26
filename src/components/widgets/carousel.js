@@ -1,9 +1,10 @@
 // src/components/widgets/Carousel.js
 import React from "react"
-import M from "materialize-css"
+import Flickity from "react-flickity-component"
+import "../../../node_modules/flickity/css/flickity.css"
 import "../../styles/carousel.scss"
 
-class Carousel extends React.Component {
+export default class Carousel extends React.Component {
 
   state = {
     modals: [],
@@ -11,11 +12,11 @@ class Carousel extends React.Component {
   }
 
   componentDidMount(){
-    let elems = document.querySelectorAll('.carousel');
-    M.Carousel.init(elems, null);
+    //let elems = document.querySelectorAll('.carousel');
+    //M.Carousel.init(elems, null);
 
-    let modalElems = document.querySelectorAll('.modal')
-    let modals = M.Modal.init(modalElems, null)
+    let modals = document.querySelectorAll('.modal')
+    //let modals = M.Modal.init(modalElems, null)
     this.setState( {modals} )
   }
 
@@ -85,28 +86,35 @@ class Carousel extends React.Component {
   }
 
   render(){
-    const images = this.props.images;
-    return(
-      <div>
-      <div className="carousel">
-      {images.map(item => (
-        <a className="carousel-item waves-effect waves-purple" data-modal-href={this.createHTMLSafeKey(item.node.fixed.originalName)+"-modal"} onClick={this.doClick} key={this.createHTMLSafeKey(item.node.fixed.originalName) + "-parent"}><img src={item.node.fixed.src} key={this.createHTMLSafeKey(item.node.fixed.originalName)}/> </a>
-      ))}
-      </div>
-    {images.map(item => (
-      <div className="modal" id={this.createHTMLSafeKey(item.node.fixed.originalName)+"-modal"} key={this.createHTMLSafeKey(item.node.fixed.originalName)+"-modal"}>
-        <div className="modal-content">
-          {this.getLargestSizeImage(item).map( (itemImage) => (
-            <img data-size={itemImage.size} src={itemImage.src}/>
+    if(typeof(window) !== "undefined") {
+      const images = this.props.images;
+      const opts = {contain : true}
+      return (
+        <div className="merp-root">
+          <Flickity className={'carousel'} // default ''
+                    elementType={'div'}
+                    options={opts}>
+            {images.map(item => (
+              <img
+                src={item.node.fixed.src} key={this.createHTMLSafeKey(item.node.fixed.originalName)}/>
+            ))}
+          </Flickity>
+          {images.map(item => (
+            <div className="modal" id={this.createHTMLSafeKey(item.node.fixed.originalName) + "-modal"}
+                 key={this.createHTMLSafeKey(item.node.fixed.originalName) + "-modal"}>
+              <div className="modal-content">
+                {this.getLargestSizeImage(item).map((itemImage) => (
+                  <img data-size={itemImage.size} src={itemImage.src}/>
+                ))}
+              </div>
+              {/*<div className="modal-footer">
+        </div>*/}
+            </div>
           ))}
         </div>
-        {/*<div className="modal-footer">
-        </div>*/}
-      </div>
-      ))}
-      </div>
-    )
+      )
+    }
+    return null
   }
 
 }
-export default Carousel

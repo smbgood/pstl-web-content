@@ -1,5 +1,5 @@
 # banshee-web-content
-once more
+
 ## project setup
 
 npm install -g gatsby-cli
@@ -10,4 +10,4 @@ npm install --save react-typography
 npm install --save gatsby-plugin-stripe
 npm install --save gatsby-source-stripe
 npm install --save gatsby-transformer-json
-npm install react-image-zoom --save
+npm install gatsby-plugin-netlify-cms --save

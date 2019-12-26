@@ -4,9 +4,9 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
-/*require('dotenv').config({
+require('dotenv').config({
     path: `.env.${process.env.NODE_ENV}`,
-})*/
+})
 
 module.exports = {
     siteMetadata: {
@@ -41,8 +41,8 @@ module.exports = {
             },
         },
         `gatsby-plugin-sass`,
-      'gatsby-transformer-sharp',
-      'gatsby-plugin-sharp',
+        'gatsby-transformer-sharp',
+        'gatsby-plugin-sharp',
         {
             resolve: `gatsby-source-filesystem`,
             options: {
@@ -71,5 +71,6 @@ module.exports = {
                 path: `./src/info/`,
             },
         },
+        `gatsby-plugin-netlify-cms`,
     ],
 }

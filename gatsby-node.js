@@ -2,8 +2,6 @@
 // called after every page is created.
 const path = require("path")
 
-require("gatsby-image")
-
 exports.createPages = async ({ graphql, actions, reporter }) => {
     const { createPage } = actions
     const result = await graphql(`
@@ -112,3 +110,20 @@ exports.onCreatePage = async ({ page, actions }) => {
 require("dotenv").config({
     path: `.env.${process.env.NODE_ENV}`,
 })*/
+/*
+const webpack= require('webpack');
+exports.onCreateWebpackConfig = ({
+                                     stage,
+                                     rules,
+                                     loaders,
+                                     plugins,
+                                     actions,
+                                 }) => {
+    actions.setWebpackConfig({
+        plugins: [
+            new webpack.ProvidePlugin({
+                window: {}
+            }),
+        ],
+    })
+}*/
