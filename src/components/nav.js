@@ -7,7 +7,7 @@ export default () => {
     if (isLoggedIn()) {
         content.message = `Hello, ${getUser().name}`
     } else {
-        content.message = "You are not logged in"
+        content.message = ""
     }
     return (
         <div
@@ -15,9 +15,11 @@ export default () => {
         >
             <span className="nav-icon">{content.message}</span>
             <nav className="nav-container">
-                <Link className="nav-link" to="/app/categories">Home</Link>
+                <Link className="nav-link" to="/">Home</Link>
                 {` `}
-                <Link className="nav-link" to="/app/profile">Profile</Link>
+                <Link className="nav-link" to="/app/blog">Blog</Link>
+                {` `}
+                <Link className="nav-link" to="/app/categories">Shop</Link>
                 {` `}
                 {isLoggedIn() ? (
                     <a
