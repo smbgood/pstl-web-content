@@ -8,6 +8,7 @@ import Collage from "../components/collage"
 import SEO from "../components/seo";
 import Shop from "../components/shop";
 import Categories from "../components/categories";
+import Blog from "../components/blog"
 
 const App = () => (
     <Layout>
@@ -18,6 +19,7 @@ const App = () => (
             <Collage path="/app/collage" />
             <Shop path="/app/shop" />
             <Categories path="/app/categories"/>
+            <Blog path="/app/blog"/>
         </Router>
     </Layout>
 )

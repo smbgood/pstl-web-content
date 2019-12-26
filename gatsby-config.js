@@ -18,7 +18,13 @@ module.exports = {
     },
     plugins: [
         "gatsby-plugin-theme-ui",
-        "gatsby-plugin-mdx",{
+        {
+            resolve: "gatsby-plugin-mdx",
+            options: {
+                extensions: [".mdx", ".md"],
+            }
+        },
+        {
             resolve: `gatsby-plugin-manifest`,
             options: {
                 name: `Banshee Babe Boutique`,
@@ -49,6 +55,13 @@ module.exports = {
             resolve: `gatsby-source-filesystem`,
             options: {
                 path: `${__dirname}/src/images`,
+            },
+        },
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                path: `${__dirname}/blog`,
+                name: `blog`,
             },
         },
         {
