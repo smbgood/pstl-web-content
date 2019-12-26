@@ -1,12 +1,12 @@
 backend:
   name: github
-  repo: smbgood/banshee-staging
+  repo: smbgood/banshee-web-content
 media_folder: static/assets
 public_folder: assets
 collections:
   - name: blog
     label: Blog
-    folder: content/blog
+    folder: blog
     create: true
     fields:
       - { name: path, label: Path }
