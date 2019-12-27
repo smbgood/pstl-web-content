@@ -103,6 +103,42 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         })
     }
 
+    const blogResult = await graphql(`
+        query MyQuery {
+          allMdx {
+            edges {
+              node {
+                id
+                body
+                frontmatter {
+                  path
+                  title
+                  date
+                }
+                excerpt
+              }
+            }
+          }
+        }
+    `)
+    if(blogResult.errors){
+        reporter.panicOnBuild("AAAAAAAAA")
+        return
+    }
+
+    const blogTemplate = path.resolve(`src/templates/blog-page.js`)
+    const BlogData = blogResult.data.allMdx.edges;
+    for(const edge of BlogData){
+        createPage({
+            path: "/" + edge.node.frontmatter.path,
+            component: blogTemplate,
+            context: {
+                id: edge.node.id,
+                blog: edge.node
+            }
+        })
+    }
+
 }
 exports.onCreatePage = async ({ page, actions }) => {
     const { createPage } = actions

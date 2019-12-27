@@ -1,3 +1,27 @@
+@import "./global.scss";
+
 .blog-root{
-  padding: 4rem;
+  padding: 2rem;
+  margin-top:3rem;
+}
+
+.blog-container{
+  @include light-bg-color-2();
+}
+
+.blog-container{
+  h1{
+    padding-top:1rem;
+  }
+  h1,p{
+    margin-left:1rem;
+  }
+  p{
+    margin-right:1rem;
+  }
+  .blog-page-link{
+    display:block;
+    text-align:right;
+  }
+
 }

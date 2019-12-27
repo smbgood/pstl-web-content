@@ -17,19 +17,34 @@
     color:rgba(0, 16, 17, 1);
 }
 @mixin bg-color-1() {
-    background-color:rgba(66, 0, 57, 1);
+    background-color:rgba(66, 0, 57, 1) !important;
 }
 @mixin bg-color-2() {
-    background-color:rgba(139, 249, 124, 1);
+    background-color:rgba(139, 249, 124, 1) !important;
 }
 @mixin bg-color-3() {
-    background-color:rgba(240, 140, 174, 1);
+    background-color:rgba(240, 140, 174, 1) !important;
 }
 @mixin bg-color-4() {
-    background-color:rgba(112, 205, 255, 1);
+    background-color:rgba(112, 205, 255, 1) !important;
 }
 @mixin bg-color-5() {
     background-color:rgba(0, 16, 17, 1) !important;
+}
+@mixin light-bg-color-1() {
+    background-color:rgba(255,255,255, .1);
+}
+@mixin light-bg-color-2() {
+    background-color:rgba(255,255,255, .2);
+}
+@mixin light-bg-color-3() {
+    background-color:rgba(255,255,255, .3);
+}
+@mixin light-bg-color-4() {
+    background-color:rgba(255,255,255, .4);
+}
+@mixin light-bg-color-5() {
+    background-color:rgba(255,255,255, .5);
 }
 
 @mixin nav-gutters() {
@@ -44,6 +59,17 @@
 @mixin ultimate-center(){
     margin:0 auto;
     text-align:center;
+}
+
+h1{
+    @media screen and (max-width:$bp-small){
+        font-size:2.75rem;
+        margin-top:0;
+    }
+}
+
+.btn, .btn-small{
+    @include bg-color-5();
 }
 
 /*h1{
@@ -88,6 +114,12 @@ nav, .footer-root{
         margin-left:10%;
         margin-right:10%;
     }
+}
+
+.blog-page-root{
+    margin: 5rem;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
 }
 
 .footer-copyright{

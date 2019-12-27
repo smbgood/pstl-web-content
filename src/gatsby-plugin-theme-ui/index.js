@@ -1,9 +1,9 @@
 export default {
     colors: {
-        text: "rgba(112, 205, 255, 1)",
-        background: "rgba(66, 0, 57, 1)",
-        primary: "rgba(139, 249, 124, 1)",
-        secondary: "rgba(240, 140, 174, 1)",
+        secondary: "rgba(112, 205, 255, 1)",
+        primary: "rgba(66, 0, 57, 1)",
+        background: "rgba(139, 249, 124, 1)",
+        text: "rgba(240, 140, 174, 1)",
     },
     fonts: {
         body: "Imprima, system-ui, sans-serif",

@@ -31,9 +31,11 @@ class Blog extends Component {
           <div className="blog-home">
             {blogs.edges.map( edge => (
               <div className="blog-root" key={edge.node.id}>
-                <h1>{edge.node.frontmatter.title}</h1>
-                <p>{edge.node.excerpt}</p>
-                <a href={edge.node.frontmatter.path}>Go to Blog</a>
+                <div className="blog-container">
+                  <h1>{edge.node.frontmatter.title}</h1>
+                  <p>{edge.node.excerpt}</p>
+                  <a className="blog-page-link btn btn-small waves-purple" href={"/" + edge.node.frontmatter.path}>Go to Blog</a>
+                </div>
               </div>
             ))}
           </div>
