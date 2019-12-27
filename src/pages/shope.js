@@ -20,8 +20,8 @@ const Shope = () => (
             <Collage path="/shope/collage" />
             <Shop path="/shope/shop" />
             <Categories path="/shope/categories"/>
-            <Blog path="/shope/blog"/>
-            <Home path="/shope"/>
+            <Blog path="/shope"/>
+            <Home path="/shope/home"/>
         </Router>
     </Layout>
 )

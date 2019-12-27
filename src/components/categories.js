@@ -19,6 +19,7 @@ class Categories extends Component {
                     categories: allCategoriesJson{
                         nodes{
                             id
+                            name
                             products
                         }
                     },

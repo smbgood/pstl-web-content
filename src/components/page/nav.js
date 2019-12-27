@@ -15,9 +15,9 @@ export default () => {
         >
             <span className="nav-icon">{content.message}</span>
             <nav className="nav-container">
-                <Link className="nav-link" to="/">Home</Link>
+                {/*<Link className="nav-link" to="/">Home</Link>*/}
                 {` `}
-                <Link className="nav-link" to="/shope/blog">Blog</Link>
+                <Link className="nav-link" to="/shope">Blog</Link>
                 {` `}
                 <Link className="nav-link" to="/shope/categories">Shop</Link>
                 {` `}

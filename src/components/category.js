@@ -59,7 +59,7 @@ const Category = class extends React.Component {
 
             return (
               <div className="category-root" id={category.id + "-key"}>
-                  <h4 className="category-title" id={category.id + "-title"}>{category.id}</h4>
+                  <h4 className="category-title" id={category.id + "-title"}>{category.name}</h4>
                   <ul className="collapsible expandable category-holder">
                       {category.products.map((product) => (
                         <React.Fragment key={category.id + "-" + product}>
