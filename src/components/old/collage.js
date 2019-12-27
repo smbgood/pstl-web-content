@@ -1,5 +1,5 @@
 import React from "react"
-import { getUser } from "../services/login"
+import { getUser } from "../../services/login"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 

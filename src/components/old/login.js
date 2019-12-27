@@ -1,6 +1,6 @@
 import React from "react"
 import { navigate } from "gatsby"
-import { isLoggedIn , handleLogin, setUser} from "../services/login";
+import { isLoggedIn , handleLogin, setUser} from "../../services/login";
 
 class Login extends React.Component {
     state = {
@@ -19,14 +19,14 @@ class Login extends React.Component {
         handleLogin(this.state).then(r =>{
             if(r && r.data){
                 setUser(r);
-                navigate("/app/profile")
+                navigate("/shope/profile")
             }
         });
     }
 
     render() {
         if (isLoggedIn()) {
-            navigate(`/app/profile`)
+            navigate(`/shope/profile`)
         }
 
         return (

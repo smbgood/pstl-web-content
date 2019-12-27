@@ -29,12 +29,21 @@
     background-color:rgba(112, 205, 255, 1);
 }
 @mixin bg-color-5() {
-    background-color:rgba(0, 16, 17, 1);
+    background-color:rgba(0, 16, 17, 1) !important;
 }
 
 @mixin nav-gutters() {
     margin-left:25rem;
     margin-right:25rem;
+}
+
+@mixin some-margin(){
+    margin: 1.5rem;
+}
+
+@mixin ultimate-center(){
+    margin:0 auto;
+    text-align:center;
 }
 
 /*h1{
@@ -58,7 +67,11 @@ a{
     @include color-2();
 }
 
-.nav-root{
+nav, .footer-root{
+    @include bg-color-3;
+}
+
+.nav-root, .footer-root{
     display:flex;
     border-bottom: 1px solid #d1c1e0;
     @media screen and (min-width:$bp-large) {
@@ -77,9 +90,16 @@ a{
     }
 }
 
+.footer-copyright{
+    @include ultimate-center();
+    padding:3rem;
+    @include color-1();
+}
+
 .nav-link{
     font-size:1.75rem;
     margin-right:1rem;
+    @include color-1();
 }
 
 .nav-container{

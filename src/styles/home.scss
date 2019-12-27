@@ -1,0 +1,56 @@
+@import "global.scss";
+
+@mixin banner-cols() {
+  display:inline-block;
+  width:24%;
+}
+
+@mixin more-margins() {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.blended_grid{
+  display : block;
+  width : 85%;
+  overflow : auto;
+  margin: 0 auto;
+}
+.topBanner{
+  @include some-margin();
+  background-color : rgba(255,255,255, 0.5);
+  height : 200px;
+}
+.middleBanner{
+  @include some-margin();
+  @include more-margins();
+  background-color : rgba(255,255,255, 0.3);
+  height : 450px;
+}
+.cols-container{
+  @include ultimate-center();
+}
+.leftBanner{
+  @include some-margin();
+  @include banner-cols();
+  background-color : rgba(255,255,255, 0.5);
+  height : 350px;
+  margin-left:4%;
+}
+.centerBanner{
+  @include banner-cols();
+  @include some-margin();
+  background-color : rgba(255,255,255, 0.5);
+  height : 350px;
+}
+.rightBanner{
+  @include banner-cols();
+  @include some-margin();
+  background-color : rgba(255,255,255, 0.5);
+  height : 350px;
+}
+.bottomBanner{
+  @include some-margin();
+  background-color : rgba(255,255,255, 0.3);
+  height : 100px;
+}

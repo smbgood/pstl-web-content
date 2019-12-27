@@ -39,7 +39,7 @@ export const logout = () => {
         const user = getUser()
         if (user) {
             window.localStorage.clear()
-            navigate('/app/login')
+            navigate('/shope/login')
         }
     }
 }

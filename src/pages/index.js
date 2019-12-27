@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import { getUser, isLoggedIn } from "../services/login"
 
-import Layout from "../components/layout"
+import Layout from "../components/page/layout"
 
 export default () => (
     <Layout>
@@ -11,11 +11,11 @@ export default () => (
             {isLoggedIn() ? (
                 <>
                     You are logged in, so check your{" "}
-                    <Link to="/app/profile">profile</Link>
+                    <Link to="/shope/profile">profile</Link>
                 </>
             ) : (
                 <>
-                    You should <Link to="/app/login">log in</Link> to see restricted
+                    You should <Link to="/shope/login">log in</Link> to see restricted
                     content
                 </>
             )}

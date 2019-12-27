@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, navigate } from "gatsby"
-import { getUser, isLoggedIn, logout } from "../services/login"
+import { getUser, isLoggedIn, logout } from "../../services/login"
 
 export default () => {
     const content = { message: "", login: true }
@@ -17,9 +17,9 @@ export default () => {
             <nav className="nav-container">
                 <Link className="nav-link" to="/">Home</Link>
                 {` `}
-                <Link className="nav-link" to="/app/blog">Blog</Link>
+                <Link className="nav-link" to="/shope/blog">Blog</Link>
                 {` `}
-                <Link className="nav-link" to="/app/categories">Shop</Link>
+                <Link className="nav-link" to="/shope/categories">Shop</Link>
                 {` `}
                 {isLoggedIn() ? (
                     <a
@@ -27,7 +27,7 @@ export default () => {
                         href="/"
                         onClick={event => {
                             event.preventDefault()
-                            logout(() => navigate(`/app/login`))
+                            logout(() => navigate(`/shope/login`))
                         }}
                     >
                         Logout

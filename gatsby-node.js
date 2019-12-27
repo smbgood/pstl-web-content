@@ -4,6 +4,15 @@ const path = require("path")
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
     const { createPage } = actions
+    const { createRedirect } = actions
+
+    createRedirect({
+        fromPath: `/`,
+        toPath: `/shope`,
+        redirectInBrowser: true,
+        isPermanent: true,
+    })
+
     const result = await graphql(`
         query MyQuery {
             allProductsJson {
@@ -99,8 +108,8 @@ exports.onCreatePage = async ({ page, actions }) => {
     const { createPage } = actions
     // page.matchPath is a special key that's used for matching pages
     // only on the client.
-    if (page.path.match(/^\/app/)) {
-        page.matchPath = "/app/*"
+    if (page.path.match(/^\/shope/)) {
+        page.matchPath = "/shope/*"
         // Update the page.
         createPage(page)
     }

@@ -1,7 +1,7 @@
 // src/templates/Page.js
 import React from "react"
-import Layout from "../components/layout"
-import Carousel from "../components/widgets/carousel"
+import Layout from "../components/page/layout"
+import Carousel from "../components/widget/carousel"
 import "../styles/product.scss"
 class ProductPageTemplate extends React.Component {
 
