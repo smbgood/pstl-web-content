@@ -1,5 +1,5 @@
 ---
-path: super-blog
+path: super-blog-also
 date: 2019-12-26T15:49:05.292Z
 title: I am Super Blog Also
 ---
