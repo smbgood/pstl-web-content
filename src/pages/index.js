@@ -6,7 +6,7 @@ import Layout from "../components/page/layout"
 
 export default () => (
     <Layout>
-        <h1>Hello {isLoggedIn() ? getUser().name : "world"}!</h1>
+        {/*<h1>Hello {isLoggedIn() ? getUser().name : "world"}!</h1>
         <p>
             {isLoggedIn() ? (
                 <>
@@ -19,6 +19,7 @@ export default () => (
                     content
                 </>
             )}
-        </p>
+        </p>*/}
+        <h1 className="center-splash">Welcome to Banshee Babe Boutique!</h1>
     </Layout>
 )

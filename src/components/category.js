@@ -60,20 +60,20 @@ const Category = class extends React.Component {
             return (
               <div className="category-root" id={category.id + "-key"}>
                   <h4 className="category-title" id={category.id + "-title"}>{category.name}</h4>
-                  <ul className="collapsible expandable category-holder">
+                  <ul className="category-holder">
                       {category.products.map((product) => (
                         <React.Fragment key={category.id + "-" + product}>
                             <li>
-                                <div className="collapsible-header">
+                                <div className="category-header">
                                     <a href={"/" + product}
                                        id={category.id + "-" + product + "-link"}>{getName(getProductById(product, this.props.products))}</a>
                                 </div>
-                                <div className="collapsible-body">
+                                {/*<div className="category-body">
                                     <div id={"dropdown" + category.id + "-" + product}>
                                         <p
                                           id={category.id + "-" + product + "-desc"}>{getDescription(getProductById(product, this.props.products))}</p>
                                     </div>
-                                </div>
+                                </div>*/}
                             </li>
                         </React.Fragment>
                       ))}

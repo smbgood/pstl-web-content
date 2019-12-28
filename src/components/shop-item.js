@@ -1,16 +1,15 @@
 import React from "react"
 
 const cardStyles = {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-around",
-    alignItems: "flex-start",
+    display: "block",
+    textAlign: "center",
+    maxWidth: "400px",
+    margin: "0 auto",
     padding: "1rem",
     marginBottom: "1rem",
     boxShadow: "5px 5px 25px 0 rgba(46,61,73,.2)",
-    backgroundColor: "#fff",
+    backgroundColor: "rgba(255,255,255,.2)",
     borderRadius: "6px",
-    maxWidth: "300px",
 }
 const buttonStyles = {
     fontSize: "13px",
@@ -54,7 +53,7 @@ const ShopItem = class extends React.Component {
             <div style={cardStyles}>
                 <h4>{sku.attributes.name}</h4>
                 <p>Price: {formatPrice(sku.price, sku.currency)}</p>
-                <img src={sku.image}/>
+{/*                <img src={sku.image}/>*/}
                 <button
                     style={buttonStyles}
                     onClick={event => this.redirectToCheckout(event, sku.id)}

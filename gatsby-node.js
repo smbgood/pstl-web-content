@@ -91,6 +91,29 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         }
         `)
 
+        const stripeResult = await graphql(`
+        query StripeQuery {
+            allStripeSku(filter: {product: {id: {eq: "${product.id}"}}}) {
+                edges {
+                  node {
+                    id
+                    attributes{
+                        name
+                    }
+                    currency
+                    price                  
+                    product {
+                      name
+                      id
+                      attributes
+                    }
+                    image
+                  }
+                }
+            }
+        }       
+        `)
+
         createPage({
             path: "/" + product.id,
             component: pageTemplate,
@@ -98,7 +121,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                 id: product.id,
                 name: product.name,
                 description: product.description,
-                images: imageSharpResult
+                images: imageSharpResult,
+                stripeData: stripeResult.data.allStripeSku.edges[0].node,
             }
         })
     }
