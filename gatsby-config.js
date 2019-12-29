@@ -82,7 +82,16 @@ module.exports = {
         {
             resolve: `gatsby-source-filesystem`,
             options: {
-                path: `./src/info/`,
+                path: `./content/products/`,
+                name: "products"
+            },
+        },
+        `gatsby-transformer-json`,
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                path: `./content/categories/`,
+                name: "categories"
             },
         },
         `gatsby-plugin-netlify-cms`,

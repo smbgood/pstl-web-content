@@ -1,15 +1,29 @@
 backend:
   name: github
   repo: smbgood/banshee-web-content
-media_folder: static/assets
-public_folder: content/assets
+#publish_mode:editorial_workflow
+media_folder: "static/images/uploads"
+public_folder: "images/uploads"
+site_url: https://www.richornot.com
+display_url: https://richornot.com
 collections:
   - name: blog
     label: Blog
-    folder: content/blog
+    folder: "content/blog"
     create: true
     fields:
       - { name: path, label: Path }
       - { name: date, label: Date, widget: datetime }
       - { name: title, label: Title }
       - { name: body, label: Body, widget: markdown }
+  - name: products
+    label: Products
+    folder: "content/products"
+    create: true
+    extension: json
+    identifier_field: id
+    fields:
+      - { name: name, label: Name }
+      - { name: id, label: SKU }
+      - { name: description, label: Description }
+      - { name: images, label: "Category of Images to Use" }
