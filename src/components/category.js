@@ -56,7 +56,7 @@ const Category = class extends React.Component {
                 }
                 return ""
             }
-
+            console.log(this.props)
             return (
               <div className="category-root" id={category.id + "-key"}>
                   <h4 className="category-title" id={category.id + "-title"}>{category.name}</h4>

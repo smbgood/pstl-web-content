@@ -1,17 +1,25 @@
+@import "./global.scss";
 .category-root{
   max-width:400px;
+  @media screen and (max-width:$bp-large){
+    max-width:800px;
+  }
   margin: 0 auto;
 }
 .category-holder{
-  min-width:300px;
   max-width:400px;
+  @media screen and (max-width:$bp-large){
+    max-width:800px;
+  }
+  display:inline;
+  li{
+    margin-bottom:2rem;
+    display:inline;
+    margin-right:1rem;
+  }
 }
 .category-title{
-  text-align:center;
-}
-
-li{
-  margin-bottom:2rem;
+  margin-bottom: 3rem;
 }
 
 .category-header a{
@@ -19,10 +27,17 @@ li{
   text-align:center;
   border-style:solid;
   border-width:medium;
-  width:100%;
-  display:block;
+  display:inline;
+  @media screen and (max-width:$bp-small){
+    width:75%;
+  }
 }
 
 .category-header{
-  width:100%;
+  display: inline;
+}
+
+.category-root{
+  border-style: solid;
+  padding: 1rem 1rem 2rem 2rem;
 }

@@ -46,10 +46,12 @@
     "react-image-zoom": "^1.1.0",
     "react-typography": "^0.16.19",
     "theme-ui": "^0.2.49",
-    "typography": "^0.16.19"
+    "typography": "^0.16.19",
+    "typography-theme-funston": "^0.16.19"
   },
   "devDependencies": {
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "typography-theme-moraga": "^0.16.19"
   },
   "repository": {
     "type": "git",

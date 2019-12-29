@@ -27,3 +27,14 @@ collections:
       - { name: id, label: SKU }
       - { name: description, label: Description }
       - { name: images, label: "Category of Images to Use" }
+  - name: categories
+    label: Categories
+    folder: "content/categories"
+    create: true
+    extension: json
+    identifier_field: id
+    fields:
+      - { name: name, label: Name }
+      - { name: id, label: SKU }
+      - { name: products, label: Product Image Urls, widget: list }
+      - { name: image, label: Image, widget: image}
