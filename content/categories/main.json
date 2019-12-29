@@ -1,3 +1,9 @@
-{"id":"main",
-  "name": "Bath Treats",
-  "products": ["prod_GP3Rhf64ceON21","prod_GP3R4ozmDIwjv8", "prod_GP3PS7WrZRlMOS"]}
+{
+  "name": "Bath Treats!",
+  "id": "main",
+  "products": [
+    "prod_GP3Rhf64ceON21",
+    "prod_GP3R4ozmDIwjv8",
+    "prod_GP3PS7WrZRlMOS"
+  ]
+}
