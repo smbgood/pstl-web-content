@@ -7,6 +7,18 @@
 
 .blog-container{
   @include light-bg-color-2();
+
+  @media screen and (max-width:$bp-large){
+    max-width:500px;
+    margin:0 auto;
+  }
+}
+
+.blog-image-container{
+  @media screen and (max-width:$bp-large){
+    max-width:500px;
+    margin:0 auto;
+  }
 }
 
 .blog-container{
