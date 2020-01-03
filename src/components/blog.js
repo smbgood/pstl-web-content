@@ -13,41 +13,10 @@ class Blog extends Component {
     //this.handleScroll = this.handleScroll.bind(this)
   }
 
-  createFilterArrayForBlogImages(props) {
-    let retString = "";
-    let propArray = []
-    if(props && props.blogs && props.blogs.blogResults && props.blogs.blogResults.edges){
-      for(const result of props.blogs.blogResults.edges){
-        if(result && result.node && result.node.frontmatter && result.node.frontmatter.image) {
-          propArray.push(result.node.frontmatter.image)
-        }
-      }
-    }
-    let uniqueArray = Array.from(new Set(propArray))
-    if(uniqueArray.length > 0) {
-      let counter = 0
-      let imageNamesToQuery = `["`
-      for(const inValue of uniqueArray){
-
-        //pull off the image name
-        const value = inValue.substring(inValue.lastIndexOf("/")+1, inValue.length)
-        counter++
-        if(counter < uniqueArray.length) {
-          imageNamesToQuery += value + `", "`
-        }else{
-          imageNamesToQuery += value
-        }
-      }
-      imageNamesToQuery += `"]`
-      retString = imageNamesToQuery
-    }
-    return retString
-  }
-
   findImageForSetBlogImage(props, blogItem){
     let fluidReturn = null
-    if(blogItem && blogItem.node && blogItem.node.frontmatter && blogItem.node.frontmatter.image && props && props.blogs && props.blogs.blogImages && props.blogs.blogImages.edges){
-      const blogName = blogItem.node.frontmatter.image.substring(blogItem.node.frontmatter.image.lastIndexOf("/")+1,blogItem.node.frontmatter.image.length)
+    if(blogItem && blogItem.node && blogItem.node.frontmatter && blogItem.node.frontmatter.coverimage && props && props.blogs && props.blogs.blogImages && props.blogs.blogImages.edges){
+      const blogName = blogItem.node.frontmatter.coverimage.substring(blogItem.node.frontmatter.coverimage.lastIndexOf("/")+1,blogItem.node.frontmatter.coverimage.length)
       for(const item of props.blogs.blogImages.edges){
         if(item && item.node && item.node.fluid) {
           const fluid = item.node.fluid

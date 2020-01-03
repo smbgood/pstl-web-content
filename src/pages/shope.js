@@ -37,7 +37,8 @@ export const query = graphql`
                         path
                         title
                         date
-                        image
+                        coverimage
+                        fullimage
                     }
                     excerpt
                 }
