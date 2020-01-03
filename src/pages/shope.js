@@ -29,7 +29,7 @@ const Shope = ({data}) => (
 )
 export const query = graphql`
     query MyQuery {
-        blogResults: allMdx {
+        blogResults: allMdx(sort: {fields: frontmatter___date}) {
             edges {
                 node {
                     id
