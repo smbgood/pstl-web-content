@@ -138,6 +138,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                   path
                   title
                   date
+                  fullimage
                 }
                 excerpt
               }

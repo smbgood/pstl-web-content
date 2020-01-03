@@ -1,7 +1,7 @@
-import React, { Component, useState } from 'react'
-import {graphql, StaticQuery} from 'gatsby'
+import React, { Component } from 'react'
 import "../styles/blog.scss"
 import Img from "gatsby-image"
+import findImageForSetBlogImage from "../services/utils"
 
 class Blog extends Component {
   // Initialise Stripe.js with your publishable key.
@@ -11,26 +11,6 @@ class Blog extends Component {
   constructor(props) {
     super(props);
     //this.handleScroll = this.handleScroll.bind(this)
-  }
-
-  findImageForSetBlogImage(props, blogItem){
-    let fluidReturn = null
-    if(blogItem && blogItem.node && blogItem.node.frontmatter && blogItem.node.frontmatter.coverimage && props && props.blogs && props.blogs.blogImages && props.blogs.blogImages.edges){
-      let coverimage = blogItem.node.frontmatter.coverimage
-      const blogName = coverimage.substring(coverimage.lastIndexOf("/")+1, coverimage.length)
-      for(const item of props.blogs.blogImages.edges){
-        if(item && item.node && item.node.fluid) {
-          const fluid = item.node.fluid
-          if(fluid.originalName){
-            if(fluid.originalName === blogName){
-              fluidReturn = fluid
-              break
-            }
-          }
-        }
-      }
-    }
-    return fluidReturn
   }
 
   componentDidMount() {
@@ -102,7 +82,7 @@ class Blog extends Component {
               <div className="blog-root" key={edge.node.id}>
                 <div className="blog-container">
                   <div className="blog-image-container">
-                  {this.findImageForSetBlogImage(this.props, edge) != null ? (<Img fluid={this.findImageForSetBlogImage(this.props, edge)} />) : console.log("no")}
+                  {findImageForSetBlogImage(this.props.blogs.blogImages, edge, true) != null ? (<Img fluid={findImageForSetBlogImage(this.props.blogs.blogImages, edge, true)} />) : console.log("no image found for set blog")}
                   </div>
                   <div className="blog-detail-container">
                     <h1>{edge.node.frontmatter.title}</h1>
