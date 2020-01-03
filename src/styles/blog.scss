@@ -2,22 +2,28 @@
 
 .blog-root{
   padding: 2rem;
-  margin-top:3rem;
+  margin-top:1rem;
 }
 
 .blog-container{
   @include light-bg-color-2();
 
   @media screen and (max-width:$bp-large){
-    max-width:500px;
-    margin:0 auto;
+    max-width:800px;
   }
 }
 
 .blog-image-container{
   @media screen and (max-width:$bp-large){
-    max-width:500px;
-    margin:0 auto;
+    max-width:400px;
+    vertical-align: bottom;
+  }
+}
+
+.blog-image-container,.blog-detail-container{
+  @media screen and (max-width:$bp-large){
+    width:50%;
+    display:inline-block;
   }
 }
 
@@ -35,6 +41,42 @@
   .blog-page-link{
     display:block;
     text-align:right;
+    @include hannah-1();
+    color:black;
   }
 
+}
+
+@mixin hover-bar(){
+  margin-right:3%;
+  @media screen and (min-width:$bp-med){
+    margin-right:10%;
+  }
+  position: fixed;
+  right: 0;
+  width: 280px;
+  padding:2.5rem;
+  @media screen and (max-width:$bp-column){
+    display:none;
+  }
+  display:inline-block;
+}
+
+.blog-hover-bar{
+  top: 64px;
+  height: 100%;
+  @include hover-bar();
+
+}
+
+.blog-hover-bar-sticky{
+  top:0;
+  height: 100%;
+  @include hover-bar();
+}
+
+.blog-hover-bar-sticky-btm{
+  bottom:13.9%;
+  height:86%;
+  @include hover-bar();
 }

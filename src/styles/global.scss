@@ -16,6 +16,11 @@
 @mixin color-5() {
     color:rgba(0, 16, 17, 1);
 }
+
+@mixin hannah-1(){
+    background-color:rgba(240,140,174,.86)!important;
+}
+
 @mixin bg-color-1() {
     background-color:rgba(66, 0, 57, 1) !important;
 }
