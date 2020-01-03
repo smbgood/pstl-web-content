@@ -14,7 +14,7 @@ import {graphql} from 'gatsby'
 import Img from "gatsby-image"
 
 const Shope = ({data}) => (
-    <Layout>
+    <Layout navImage={data.logoImage.edges[0].node}>
         <SEO title="Banshee Babe Boutique | Trinkets, Odds & Ends" />
         <Router>
 {/*            <PrivateRoute path="/shope/profile" component={Profile} />
@@ -45,6 +45,16 @@ export const query = graphql`
             }
         },
         blogImages: allImageSharp {
+            edges {
+                node {
+                    fluid(maxWidth: 500, quality: 100) {
+                        ...GatsbyImageSharpFluid
+                        originalName
+                    }
+                }
+            }
+        },
+        logoImage: allImageSharp(filter: {fluid: {originalName: {eq: "banshee-logo-full.png"}}}) {
             edges {
                 node {
                     fluid(maxWidth: 500, quality: 100) {

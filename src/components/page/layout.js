@@ -1,13 +1,23 @@
-import React from "react"
+import React, { Component } from "react"
 import NavBar from "./nav"
 import Footer from "./footer"
-const Layout = ({ children }) => (
-    <>
-        <NavBar />
+
+
+class Layout extends Component{
+  constructor(props){
+    super(props)
+  }
+
+  render(){
+    return (
+      <>
+        <NavBar navImage={this.props.navImage} />
         <div className="page-root">
-            {children}
+          {this.props.children}
         </div>
         <Footer />
-    </>
-)
+      </>
+    )
+  }
+}
 export default Layout

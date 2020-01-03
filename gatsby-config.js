@@ -62,12 +62,12 @@ module.exports = {
                 path: `${__dirname}/static/images/uploads`,
             },
         },
-        {
+        /*{
             resolve: "gatsby-plugin-typography",
             options: {
                 pathToConfigModule: "src/utils/typography.js"
             }
-        },
+        },*/
         "gatsby-plugin-stripe",
         {
             resolve: `gatsby-source-stripe`,

@@ -1,39 +1,36 @@
-import React from "react"
+/** @jsx jsx */
+import { jsx } from "theme-ui"
+import React, { Component } from "react"
 import { Link, navigate } from "gatsby"
-import { getUser, isLoggedIn, logout } from "../../services/login"
+import Img from "gatsby-image"
 
-export default () => {
-    const content = { message: "", login: true }
-    if (isLoggedIn()) {
-        content.message = `Hello, ${getUser().name}`
-    } else {
-        content.message = ""
+class Nav extends Component {
+    constructor(props) {
+        super(props)
     }
-    return (
-        <div
-            className="nav-root"
-        >
-            <span className="nav-icon">{content.message}</span>
-            <nav className="nav-container">
-                {/*<Link className="nav-link" to="/">Home</Link>*/}
-                {` `}
-                <Link className="nav-link" to="/shope">Blog</Link>
-                {` `}
-                <Link className="nav-link" to="/shope/categories">Boutique</Link>
-                {` `}
-                {isLoggedIn() ? (
-                    <a
-                        className="nav-link"
-                        href="/"
-                        onClick={event => {
-                            event.preventDefault()
-                            logout(() => navigate(`/shope/login`))
-                        }}
-                    >
-                        Logout
-                    </a>
-                ) : null}
-            </nav>
-        </div>
-    )
+
+    render() {
+        console.log(this)
+        return (
+          <div className="nav-root">
+              <div className="nav-icon">
+                <Img fluid={this.props.navImage.fluid}/>
+              </div>
+              <div className="nav-container">
+                  <div className="nav-inner">
+                  {` `}
+                  <Link sx={{
+                    fontFamily: "heading",
+                  }} className="nav-link" to="/shope">Blog</Link>
+                  {` `}
+                  <Link sx={{
+                    fontFamily: "heading",
+                  }}  className="nav-link" to="/shope/categories">Boutique</Link>
+                  {` `}
+                  </div>
+              </div>
+          </div>
+        )
+    }
 }
+export default Nav

@@ -16,8 +16,9 @@ collections:
       - { name: date, label: Date, widget: datetime }
       - { name: title, label: Title }
       - { name: body, label: Body, widget: markdown }
-      - { name: coverimage, label: Image, widget: image }
-      - { name: fullimage, label: Image, widget: image }
+      - { name: coverimage, label: Cover Image, widget: image }
+      - { name: fullimage, label: Full Image, widget: image }
+      - { name: glowcolor, label: Glow Color}
   - name: products
     label: Products
     folder: "content/products"

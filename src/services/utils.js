@@ -19,6 +19,7 @@ export default function findImageForSetBlogImage(blogImages, blogItem, isCoverIm
   }else{
     if (blogItem && blogItem.node && blogItem.node.frontmatter && blogItem.node.frontmatter.fullimage && blogImages && blogImages.edges) {
       let fullimage = blogItem.node.frontmatter.fullimage
+      console.log(fullimage)
       const blogName = fullimage.substring(fullimage.lastIndexOf("/") + 1, fullimage.length)
       for (const item of blogImages.edges) {
         if (item && item.node && item.node.fluid) {

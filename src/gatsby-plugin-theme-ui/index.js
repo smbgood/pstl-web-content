@@ -1,10 +1,10 @@
-import {dark} from '@theme-ui/presets'
+//import {dark} from '@theme-ui/presets'
 
 export default {
-    ...dark,
+/*    ...dark,
     styles:{
         ...dark.styles
-    },
+    },*/
     colors: {
         secondary: "rgba(112, 205, 255, 1)",
         primary: "rgba(66, 0, 57, 1)",
@@ -12,9 +12,9 @@ export default {
         text: "rgba(240, 140, 174, 1)",
     },
     fonts: {
-        body: "Imprima, system-ui, sans-serif",
-        heading: "Arima Madurai, system-ui, sans-serif",
-        subheading: "Bad Script, cursive",
+        body: 'Imprima, system-ui, sans-serif',
+        heading: '"Bad Script", system-ui, sans-serif',
+        subheading: '"Avenir Next", cursive',
         monospace: "Menlo, monospace",
     },
     fontWeights: {
@@ -29,7 +29,7 @@ export default {
     },
     fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 72],
     space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
-    /*styles: {
+    styles: {
         // the keys used here reference elements in MDX
         h1: {
             // the style object for each element
@@ -59,5 +59,5 @@ export default {
             backgroundColor: 'primary',
         }
         // more styles can be added as needed
-    },*/
+    },
 }

@@ -139,6 +139,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                   title
                   date
                   fullimage
+                  glowcolor
                 }
                 excerpt
               }
@@ -159,7 +160,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             component: blogTemplate,
             context: {
                 id: edge.node.id,
-                blog: edge.node
+                blog: edge
             }
         })
     }
