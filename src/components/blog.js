@@ -123,7 +123,9 @@ class Blog extends Component {
             ))}
             {/*this.props.scroll != null && this.props.scroll > 64 ? "sticky" : ""*/}
             <div className="blog-hover-bar">
-              whooo
+              <div className="about-us-root">
+                <h2 className="about-title">About Banshee Babe</h2>
+              </div>
             </div>
           </div>
         )

@@ -19,7 +19,7 @@ export default () => {
                 {` `}
                 <Link className="nav-link" to="/shope">Blog</Link>
                 {` `}
-                <Link className="nav-link" to="/shope/categories">Shop</Link>
+                <Link className="nav-link" to="/shope/categories">Boutique</Link>
                 {` `}
                 {isLoggedIn() ? (
                     <a

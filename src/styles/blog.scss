@@ -55,7 +55,6 @@
   position: fixed;
   right: 0;
   width: 280px;
-  padding:2.5rem;
   @media screen and (max-width:$bp-column){
     display:none;
   }
@@ -79,4 +78,12 @@
   bottom:13.9%;
   height:86%;
   @include hover-bar();
+}
+
+.about-us-root{
+  text-align:center;
+}
+
+.about-title{
+  font-size:1.95rem;
 }
