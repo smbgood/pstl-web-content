@@ -16,7 +16,8 @@ class Blog extends Component {
   findImageForSetBlogImage(props, blogItem){
     let fluidReturn = null
     if(blogItem && blogItem.node && blogItem.node.frontmatter && blogItem.node.frontmatter.coverimage && props && props.blogs && props.blogs.blogImages && props.blogs.blogImages.edges){
-      const blogName = blogItem.node.frontmatter.coverimage.substring(blogItem.node.frontmatter.coverimage.lastIndexOf("/")+1,blogItem.node.frontmatter.coverimage.length)
+      let coverimage = blogItem.node.frontmatter.coverimage
+      const blogName = coverimage.substring(coverimage.lastIndexOf("/")+1, coverimage.length)
       for(const item of props.blogs.blogImages.edges){
         if(item && item.node && item.node.fluid) {
           const fluid = item.node.fluid
@@ -88,16 +89,6 @@ class Blog extends Component {
         }
       }
     }
-
-    /*let scrollTop = event.srcElement.body.scrollTop,
-      itemTranslate = Math.min(0, scrollTop/3 - 60);
-
-    this.setState({
-
-    this.setState({
-      transform: itemTranslate
-    });*/
-    //console.log(event)
   }
 
   render() {
@@ -125,6 +116,7 @@ class Blog extends Component {
             <div className="blog-hover-bar">
               <div className="about-us-root">
                 <h2 className="about-title">About Banshee Babe</h2>
+                <p className="about-text">Founded in 2019, we are home to many traditional recipes updated for the modern age. Let us demystify the world of plants and herbs for you, so you can better work with what Mother Nature has provided all around us!  </p>
               </div>
             </div>
           </div>
