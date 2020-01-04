@@ -10,7 +10,6 @@ class Nav extends Component {
     }
 
     render() {
-        console.log(this)
         return (
           <div className="nav-root">
               <div className="nav-icon">

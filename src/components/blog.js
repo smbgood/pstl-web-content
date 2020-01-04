@@ -38,7 +38,7 @@ class Blog extends Component {
 
     console.log(valToBreak + "  " + valToExceed)
 
-    if (window.pageYOffset > 64 && valToBreak < valToExceed) {
+    if (window.pageYOffset > 196.86 && valToBreak < valToExceed) {
       let item = event.target.querySelector(".blog-hover-bar")
       if(item) {
         item.className = "blog-hover-bar-sticky"

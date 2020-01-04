@@ -62,16 +62,23 @@
 }
 
 .blog-hover-bar{
-  top: 64px;
+  top: 196.86px;
   height: 100%;
   @include hover-bar();
-
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .blog-hover-bar-sticky{
   top:0;
   height: 100%;
   @include hover-bar();
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .blog-hover-bar-sticky-btm{
