@@ -5,7 +5,7 @@ title: The First of Many Great Articles
 coverimage: /images/uploads/bg-2.png
 fullimage: /images/uploads/eezy_78-01.png
 glowcolor: 'rgba(214,69,196,1)'
-Attribution:
+attribution:
   attrAuthor: Vecteezy
   attrLicense: Free
   attrLink: 'https://www.vecteezy.com/free-vector/purple-plant'
