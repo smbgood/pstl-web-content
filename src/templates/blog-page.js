@@ -6,6 +6,7 @@ import Img from "gatsby-image"
 import findImageForSetBlogImage from "../services/utils"
 import { graphql } from "gatsby"
 import "../styles/blog-page.scss"
+import {FaInfoCircle} from "react-icons/fa"
 
 class BlogPageTemplate extends React.Component {
 
@@ -31,6 +32,7 @@ class BlogPageTemplate extends React.Component {
         <div className="blog-page-root">
           <div className="blog-page-image-container" style={styles}>
             {findImageForSetBlogImage(this.props.data.images, this.props.pageContext.blog, false) != null ? (<Img fluid={findImageForSetBlogImage(this.props.data.images, this.props.pageContext.blog, false)} />) : console.log("no image found for set blog")}
+            <div className="blog-attrib-open"><FaInfoCircle /></div>
           </div>
           <div className="blog-page-header">
             <h1>{this.props.pageContext.blog.node.frontmatter.title}</h1>

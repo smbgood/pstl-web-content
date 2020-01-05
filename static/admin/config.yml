@@ -20,14 +20,14 @@ collections:
       - { name: fullimage, label: Full Image, widget: image }
       - { name: glowcolor, label: Glow Color}
       - label: Attribution
-        name: Attribution
+        name: attribution
         widget: object
         fields:
-          - {label: Image Title, name: attrTitle, widget: mywidget}
-          - {label: Author, name: attrAuthor, widget: mywidget}
-          - {label: Source, name: attrLink, widget: mywidget}
-          - {label: License, name: attrLicense, widget: mywidget}
-          - {label: Modifications, name: attrMods, widget: mywidget}
+          - {label: Image Title, name: attrTitle, widget: string, required: false}
+          - {label: Author, name: attrAuthor, widget: string, required: false}
+          - {label: Source Link, name: attrLink, widget: string, pattern:['.+', "Must fill out image source link at the very least"]}
+          - {label: License, name: attrLicense, widget: string, required: false}
+          - {label: Modifications, name: attrMods, widget: string, required: false}
   - name: products
     label: Products
     folder: "content/products"

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+//import { graphql, useStaticQuery } from "gatsby"
 
 export default class Control extends React.Component {
   static propTypes = {
@@ -13,14 +14,33 @@ export default class Control extends React.Component {
     value: '',
   }
 
+  /*getSiteInfo(){
+    const { site } = useStaticQuery(
+      graphql`
+          query {
+              site {
+                  siteMetadata {
+                      title
+                      description
+                      author
+                  }
+              }
+          }
+      `
+    )
+    return site
+  }*/
+
+
   render() {
-    console.log(this)
     const {
       forID,
       value,
       onChange,
       classNameWrapper,
     } = this.props;
+
+    /*console.log(this.getSiteInfo())*/
 
     return (
       <div>

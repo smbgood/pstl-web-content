@@ -5,6 +5,7 @@ import Carousel from "../components/widget/carousel"
 import "../styles/product.scss"
 import ShopItem from "../components/shop-item"
 import { graphql } from "gatsby"
+
 class ProductPageTemplate extends React.Component {
 
   state = {

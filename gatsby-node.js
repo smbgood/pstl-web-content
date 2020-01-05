@@ -140,6 +140,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                   date
                   fullimage
                   glowcolor
+                  attribution{
+                    attrTitle
+                    attrAuthor
+                    attrLink
+                    attrLicense
+                    attrMods                    
+                  }
                 }
                 excerpt
               }
