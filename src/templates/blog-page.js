@@ -14,6 +14,28 @@ class BlogPageTemplate extends React.Component {
     //console.log(this);
   }
 
+  generateCorrectAttribution(node) {
+
+    let fullAttribution = ""
+
+    if (node.frontmatter.attribution != null){
+      if (node.frontmatter.attribution.attrTitle != null) {
+        fullAttribution += node.frontmatter.attribution.attrTitle
+      } else {
+        fullAttribution += "Image"
+      }
+      if(node.frontmatter.attribution.attrAuthor != null) {
+        fullAttribution += " by "
+        fullAttribution += node.frontmatter.attribution.attrAuthor
+      }
+
+      if(node.frontmatter.attribution.attrLink != null){
+        fullAttribution = ("<a href='" + node.frontmatter.attribution.attrLink + "'>" + fullAttribution + "</a>")
+      }
+    }
+    return fullAttribution
+  }
+
   render(){
     let styles = null;
     if(this.props.pageContext.blog.node.frontmatter.glowcolor){
@@ -32,7 +54,8 @@ class BlogPageTemplate extends React.Component {
         <div className="blog-page-root">
           <div className="blog-page-image-container" style={styles}>
             {findImageForSetBlogImage(this.props.data.images, this.props.pageContext.blog, false) != null ? (<Img fluid={findImageForSetBlogImage(this.props.data.images, this.props.pageContext.blog, false)} />) : console.log("no image found for set blog")}
-            <div className="blog-attrib-open"><FaInfoCircle /></div>
+            <div className="blog-attrib-open"><FaInfoCircle className="blog-attrib-icon" /><span className="blog-image-attribution" dangerouslySetInnerHTML={{__html: this.generateCorrectAttribution(this.props.pageContext.blog.node)}}>
+            </span></div>
           </div>
           <div className="blog-page-header">
             <h1>{this.props.pageContext.blog.node.frontmatter.title}</h1>

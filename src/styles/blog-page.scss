@@ -1,4 +1,5 @@
 @import "values.scss";
+@import "global.scss";
 
 .blog-page-root{
   margin-top:1.5rem;
@@ -22,4 +23,17 @@
   width: 89%;
   position: absolute;
   z-index: 2;
+}
+
+.blog-image-attribution{
+  a{
+    @include color-5();
+    font-size:13px;
+  }
+}
+
+.blog-attrib-icon{
+  margin-right: 5px;
+  position: relative;
+  top: 3px;
 }
