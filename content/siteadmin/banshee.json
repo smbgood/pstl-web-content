@@ -1,0 +1,13 @@
+{
+  "name": "Banshee Babe",
+  "path": "banshee",
+  "blogpage": {
+    "aboutbar": {
+      "barTitle": "About Banshee Babe",
+      "barBody": "Founded in 2019, we are home to many traditional recipes updated for the modern age. Let us demystify the world of plants and herbs for you, so you can better work with what Mother Nature has provided all around us!"
+    }
+  },
+  "sitewide": {
+    "copyright": "Banshee Babe Boutique © 2020"
+  }
+}
