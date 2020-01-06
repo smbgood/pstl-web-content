@@ -3,6 +3,7 @@ import React from 'react';
 //import { graphql, useStaticQuery } from "gatsby"
 
 export default class Control extends React.Component {
+
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     forID: PropTypes.string,
@@ -13,23 +14,6 @@ export default class Control extends React.Component {
   static defaultProps = {
     value: '',
   }
-
-  /*getSiteInfo(){
-    const { site } = useStaticQuery(
-      graphql`
-          query {
-              site {
-                  siteMetadata {
-                      title
-                      description
-                      author
-                  }
-              }
-          }
-      `
-    )
-    return site
-  }*/
 
 
   render() {

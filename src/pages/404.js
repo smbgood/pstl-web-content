@@ -35,6 +35,17 @@ export const query=graphql`
                     }
                 }
             }
+        },
+        monsterImage: allImageSharp(filter: {fluid: {originalName: {eq: "404.png"}}}) {
+            edges {
+                node {
+                    id
+                    fluid(maxWidth: 2800, quality: 100) {
+                        ...GatsbyImageSharpFluid
+                        originalName
+                    }
+                }
+            }
         }
     }
 `
