@@ -3,6 +3,7 @@ import "../styles/blog.scss"
 import Img from "gatsby-image"
 import findImageForSetBlogImage from "../services/utils"
 import {FaCoffee} from "react-icons/fa"
+import {Link} from "gatsby"
 
 class Blog extends Component {
   // Initialise Stripe.js with your publishable key.
@@ -77,9 +78,9 @@ class Blog extends Component {
                   {findImageForSetBlogImage(this.props.blogs.blogImages, edge, true) != null ? (<Img fluid={findImageForSetBlogImage(this.props.blogs.blogImages, edge, true)} />) : console.log("no image found for set blog")}
                   </div>
                   <div className="blog-detail-container">
-                    <h2>{edge.node.frontmatter.title}</h2>
+                    <Link to={"/" + edge.node.frontmatter.path}><h2>{edge.node.frontmatter.title}</h2></Link>
                     <p>{edge.node.excerpt}</p>
-                    <a className="blog-page-link" href={"/" + edge.node.frontmatter.path}>Go to Blog</a>
+                    <Link className="blog-page-link" to={"/" + edge.node.frontmatter.path}>Go to Blog</Link>
                   </div>
                 </div>
               </div>

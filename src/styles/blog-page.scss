@@ -11,6 +11,14 @@
   padding-bottom: 6rem;
 }
 
+.blog-page-header{
+  h1{
+    @media screen and (max-width:$bp-med){
+      margin-top:3rem;
+    }
+  }
+}
+
 .blog-page-image-container{
   box-shadow: 5px 10px 63px;
   @media screen and (max-width:$bp-med){
@@ -21,6 +29,9 @@
 .blog-attrib-open{
   text-align: right;
   width: 89%;
+  @media screen and (max-width:$bp-med){
+    width:71%;
+  }
   position: absolute;
   z-index: 2;
 }
