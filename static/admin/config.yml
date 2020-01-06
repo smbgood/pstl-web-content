@@ -25,7 +25,7 @@ collections:
         fields:
           - {label: Image Title, name: attrTitle, widget: string, required: false}
           - {label: Author, name: attrAuthor, widget: string, required: false}
-          - {label: Source Link, name: attrLink, widget: string, pattern:['.+', "Must fill out image source link at the very least"]}
+          - {label: Source URL, name: attrLink, widget: string, pattern:['.+', "Must fill out image source link at the very least"]}
           - {label: License, name: attrLicense, widget: string, required: false}
           - {label: Modifications, name: attrMods, widget: string, required: false}
   - name: products
@@ -50,3 +50,38 @@ collections:
       - { name: id, label: SKU }
       - { name: products, label: Product Image Urls, widget: list }
       - { name: image, label: Image, widget: image}
+  - name: siteadmin
+    label: Site Admin
+    folder: "content/siteadmin"
+    create: true
+    extension: json
+    identifier_field: id
+    fields:
+      - { name: name, label: Name }
+      - { name: path, label: Path }
+      - label: 404 Page
+        name: notfoundpage
+        widget: object
+        fields:
+          - { name: pageImage, label: Page Image, widget: image, required: false}
+          - {label: Image Title, name: attrTitle, widget: string, required: false}
+          - {label: Author, name: attrAuthor, widget: string, required: false}
+          - {label: Source Attribution URL, name: attrLink, widget: string, required: false}
+          - {label: License, name: attrLicense, widget: string, required: false}
+          - {label: Modifications, name: attrMods, widget: string, required: false}
+      - label: Blog Page
+        name: blogpage
+        widget: object
+        fields:
+          - {label: Sort Type, name: sortType, widget: string, required: false}
+          - label: About Bar
+            name: aboutbar
+            widget: object
+            fields:
+              - {label: Title, name: barTitle, widget: string, required: false}
+              - {label: Body, name: barBody, widget: string, required: false}
+      - label: Site Wide
+        name: sitewide
+        widget: object
+        fields:
+          - {label: Copyright, name: copyright, widget: string, required: false}

@@ -48,7 +48,10 @@
     "react-image-zoom": "^1.1.0",
     "react-typography": "^0.16.19",
     "theme-ui": "^0.2.49",
+    "typeface-arima-madurai": "0.0.72",
     "typeface-bad-script": "0.0.72",
+    "typeface-courgette": "0.0.72",
+    "typeface-imprima": "0.0.71",
     "typography": "^0.16.19",
     "typography-theme-funston": "^0.16.19"
   },

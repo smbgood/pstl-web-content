@@ -4,7 +4,7 @@ import Layout from "../components/page/layout"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import Img from "gatsby-image"
 import findImageForSetBlogImage from "../services/utils"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import "../styles/blog-page.scss"
 import {FaInfoCircle} from "react-icons/fa"
 
@@ -64,7 +64,7 @@ class BlogPageTemplate extends React.Component {
             <MDXRenderer>{this.props.pageContext.blog.node.body}</MDXRenderer>
           </div>
           <div className="blog-page-footer">
-            <span>See more</span>
+            <Link to={"/shope"}>See more</Link>
           </div>
         </div>
       </Layout>

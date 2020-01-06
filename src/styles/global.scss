@@ -78,17 +78,21 @@ h1{
     @include bg-color-5();
 }
 
-/*h1{
+h1,h2,h3{
     font-family: 'Arima Madurai', cursive;
 }
 
-h2,a{
+h2{
+    font-size:2rem;
+}
+
+a{
     font-family: 'Bad Script', cursive;
 }
 
-h3,h4,h5,p,div,body{
+h4,h5,p,div,body{
     font-family: 'Imprima', sans-serif;
-}*/
+}
 
 body{
     @include bg-color-1();
@@ -105,7 +109,6 @@ nav, .footer-root{
 
 .nav-root, .footer-root{
     display:flex;
-    border-bottom: 1px solid #d1c1e0;
     @media screen and (min-width:$bp-large) {
         @include nav-gutters();
     }
@@ -183,5 +186,8 @@ nav, .footer-root{
 }
 
 .center-splash{
-    @include color-5();
+    @include color-2();
+    text-shadow: 2px 2px white;
+    @include ultimate-center();
+    padding:4rem;
 }

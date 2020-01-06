@@ -11,7 +11,6 @@ class Blog extends Component {
 
   constructor(props) {
     super(props);
-    //this.handleScroll = this.handleScroll.bind(this)
   }
 
   componentDidMount() {
@@ -23,9 +22,6 @@ class Blog extends Component {
   }
 
   handleScroll(event) {
-    //let scrollTop = event.srcElement.body.scrollTop;
-    //console.log(scrollTop)
-    //console.log(event.target.body.scrollTop)
 
     let body = this.document.body,
       html = this.document.documentElement;
@@ -36,8 +32,6 @@ class Blog extends Component {
     let valToBreak = window.pageYOffset + window.innerHeight;
 
     let valToExceed = height - 53.3;
-
-    console.log(valToBreak + "  " + valToExceed)
 
     if (window.pageYOffset > 196.86 && valToBreak < valToExceed) {
       let item = event.target.querySelector(".blog-hover-bar")
@@ -73,9 +67,6 @@ class Blog extends Component {
   }
 
   render() {
-
-/*    const [listenerAdded, setListenerAdded] = useState(false);*/
-
     return (
 
           <div className="blog-home">
@@ -86,9 +77,9 @@ class Blog extends Component {
                   {findImageForSetBlogImage(this.props.blogs.blogImages, edge, true) != null ? (<Img fluid={findImageForSetBlogImage(this.props.blogs.blogImages, edge, true)} />) : console.log("no image found for set blog")}
                   </div>
                   <div className="blog-detail-container">
-                    <h1>{edge.node.frontmatter.title}</h1>
+                    <h2>{edge.node.frontmatter.title}</h2>
                     <p>{edge.node.excerpt}</p>
-                    <a className="blog-page-link btn btn-small waves-purple" href={"/" + edge.node.frontmatter.path}>Go to Blog</a>
+                    <a className="blog-page-link" href={"/" + edge.node.frontmatter.path}>Go to Blog</a>
                   </div>
                 </div>
               </div>
@@ -96,7 +87,7 @@ class Blog extends Component {
             {/*this.props.scroll != null && this.props.scroll > 64 ? "sticky" : ""*/}
             <div className="blog-hover-bar">
               <div className="about-us-root">
-                <h2 className="about-title">About Banshee Babe</h2>
+                <h3 className="about-title">About Banshee Babe</h3>
                 <FaCoffee/>
                 <p className="about-text">Founded in 2019, we are home to many traditional recipes updated for the modern age. Let us demystify the world of plants and herbs for you, so you can better work with what Mother Nature has provided all around us!  </p>
               </div>

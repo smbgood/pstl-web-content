@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui"
 import React, { Component } from "react"
 import NavBar from "./nav"
 import Footer from "./footer"
@@ -12,7 +14,7 @@ class Layout extends Component{
     return (
       <>
         <NavBar navImage={this.props.navImage} />
-        <div className="page-root">
+        <div className="page-root" >
           {this.props.children}
         </div>
         <Footer />

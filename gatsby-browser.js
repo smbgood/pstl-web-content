@@ -8,4 +8,7 @@ import "./src/styles/global.scss"
 import "./src/styles/category.scss"
 
 require('typeface-bad-script')
+require('typeface-arima-madurai')
+require('typeface-imprima')
+require('typeface-courgette')
 

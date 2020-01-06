@@ -12,7 +12,7 @@ export default {
         text: "rgba(240, 140, 174, 1)",
     },
     fonts: {
-        body: 'Imprima, system-ui, sans-serif',
+        body: '"Arima Madurai" system-ui, sans-serif',
         heading: '"Bad Script", system-ui, sans-serif',
         subheading: '"Avenir Next", cursive',
         monospace: "Menlo, monospace",
