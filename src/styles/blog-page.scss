@@ -16,14 +16,12 @@
     @media screen and (max-width:$bp-med){
       margin-top:3rem;
     }
+    @include color-5()
   }
 }
 
 .blog-page-image-container{
-  box-shadow: 5px 10px 63px;
-  @media screen and (max-width:$bp-med){
-    box-shadow: 3px 6px 36px;
-  }
+
 }
 
 .blog-attrib-open{

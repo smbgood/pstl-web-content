@@ -6,8 +6,8 @@ export default {
         ...dark.styles
     },*/
     colors: {
-        secondary: "rgba(112, 205, 255, 1)",
-        primary: "rgba(66, 0, 57, 1)",
+        secondary: "#1c638ae6",
+        primary: "#7f167f38",
         background: "rgba(139, 249, 124, 1)",
         text: "rgba(240, 140, 174, 1)",
     },
@@ -56,7 +56,6 @@ export default {
         },
         p:{
             color: "secondary",
-            backgroundColor: 'primary',
         }
         // more styles can be added as needed
     },

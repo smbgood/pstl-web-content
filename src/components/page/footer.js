@@ -6,17 +6,21 @@ class Footer extends React.Component{
         return(
           <StaticQuery
             query={graphql`
-          query SiteInfo2 {
-            siteInfo: site {
-                siteMetadata {
-                    title
+              query CopyrightQuery {
+                siteInfo: allSiteadminJson(filter: {path: {eq: "banshee"}}) {
+                  edges {
+                    node {
+                      sitewide {
+                        copyright
+                      }
+                    }
+                  }
                 }
-            }
-          }
-        `}
+              }
+            `}
             render={({ siteInfo }) => (
               <div className="footer-root">
-                  <span className="footer-copyright">Banshee Babe Boutique © 2020</span>
+                  <span className="footer-copyright">{siteInfo.edges[0].node.sitewide.copyright}</span>
               </div>
             )}
           />

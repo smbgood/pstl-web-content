@@ -93,6 +93,14 @@ module.exports = {
                 name: "categories"
             },
         },
+        `gatsby-transformer-json`,
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                path: `./content/siteadmin/`,
+                name: "cms"
+            },
+        },
         {
             resolve: `gatsby-plugin-netlify-cms`,
             options: {

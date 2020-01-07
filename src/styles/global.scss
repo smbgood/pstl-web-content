@@ -3,27 +3,32 @@
 
 
 @mixin color-1() {
-    color:rgba(66, 0, 57, 1);
+    color:#7f167f38;
 }
 @mixin color-2() {
     color:rgba(139, 249, 124, 1);
 }
 @mixin color-3() {
-    color:rgba(240, 140, 174, 1);
+    color:#b34984;
 }
+//MAIN BODY TEXT COLOR
 @mixin color-4() {
-    color:rgba(112, 205, 255, 1);
+    color:#1c638ae6;
 }
+//blog highlight header color, go to blog link
 @mixin color-5() {
-    color:rgba(0, 16, 17, 1);
+    color:#7b446f;
 }
-
-@mixin hannah-1(){
-    background-color:rgba(240,140,174,.86)!important;
+//blog highlight body color, main (default) link color
+@mixin color-6(){
+    color:#43a057;
+}
+@mixin color-7(){
+    color:rgba(240,140,174,.86)!important;
 }
 
 @mixin bg-color-1() {
-    background-color:rgba(66, 0, 57, 1) !important;
+    background-color:#f0afe67a;
 }
 @mixin bg-color-2() {
     background-color:rgba(139, 249, 124, 1) !important;
@@ -37,6 +42,15 @@
 @mixin bg-color-5() {
     background-color:rgba(0, 16, 17, 1) !important;
 }
+@mixin bg-color-6(){
+    background-color:#43a057;
+}
+@mixin bg-color-7(){
+    background-color:rgba(240,140,174,.86)!important;
+}
+
+
+
 @mixin light-bg-color-1() {
     background-color:rgba(255,255,255, .1);
 }
@@ -100,7 +114,7 @@ body{
 }
 
 a{
-    @include color-2();
+    @include color-6();
 }
 
 nav, .footer-root{
@@ -128,12 +142,15 @@ nav, .footer-root{
 .footer-copyright{
     @include ultimate-center();
     padding:3rem;
-    @include color-1();
+    @include color-3();
 }
 
 .nav-icon{
+    border-radius: 39.7px;
+    padding: 1.2rem;
     width:306px;
     margin:2.8rem;
+    background-color:#000000
 }
 
 .nav-link{
@@ -144,15 +161,9 @@ nav, .footer-root{
 
 .nav-container{
     text-align:right;
-    width: 100%;
+    width: 70%;
     display: block;
-    //padding:7% 0;
-}
-
-.nav-inner{
-    position:relative;
-    top:50%;
-    margin-right:2.8rem;
+    padding: 6.5% 0;
 }
 
 .nav-icon{

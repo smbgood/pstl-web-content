@@ -41,8 +41,8 @@
   .blog-page-link{
     display:block;
     text-align:right;
-    @include hannah-1();
-    color:black;
+    @include bg-color-7();
+    @include color-5();
     font-family: "Courgette", monospace;
     padding-right: 0.6rem;
     padding-top: 0.1rem;
@@ -53,11 +53,15 @@
 
 .blog-detail-container{
   h2{
-    @include color-4();
+    @include color-5();
     font-size:4rem;
+    font-weight:800;
     @media screen and (max-width:$bp-med){
       font-size:2.5rem;
     }
+  }
+  p{
+    @include color-6();
   }
 }
 

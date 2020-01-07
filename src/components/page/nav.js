@@ -13,20 +13,18 @@ class Nav extends Component {
         return (
           <div className="nav-root">
               <div className="nav-icon">
-                <Img fluid={this.props.navImage.fluid}/>
+                <Link to="/shope"><Img fluid={this.props.navImage.fluid}/></Link>
               </div>
               <div className="nav-container">
-                  <div className="nav-inner">
-                  {` `}
-                  <Link sx={{
-                    fontFamily: "heading",
-                  }} className="nav-link" to="/shope">Blog</Link>
-                  {` `}
-                  <Link sx={{
-                    fontFamily: "heading",
-                  }}  className="nav-link" to="/shope/categories">Boutique</Link>
-                  {` `}
-                  </div>
+                {` `}
+                <Link sx={{
+                  fontFamily: "heading",
+                }} className="nav-link" to="/shope">Blog</Link>
+                {` `}
+                <Link sx={{
+                  fontFamily: "heading",
+                }}  className="nav-link" to="/shope/categories">Boutique</Link>
+                {` `}
               </div>
           </div>
         )
