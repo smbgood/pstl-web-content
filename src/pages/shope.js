@@ -22,7 +22,7 @@ const Shope = ({data}) => (
     </Layout>
 )
 export const query = graphql`
-    query MyQuery {
+    query ShopeQuery {
         blogResults: allMdx(sort: {fields: frontmatter___date}) {
             edges {
                 node {

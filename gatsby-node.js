@@ -16,11 +16,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     const result = await graphql(`
         query MyQuery {
             allProductsJson {
-                nodes {
-                    id
-                    name
-                    description
-                    images
+                edges{
+                    node {
+                        id
+                        name
+                        description
+                        images
+                    }
                 }
             }
         }
@@ -30,8 +32,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         return
     }
     const pageTemplate = path.resolve(`src/templates/product-page.js`)
-    const ProductsData = result.data.allProductsJson.nodes;
-    for (const product of ProductsData) {
+    const ProductsData = result.data.allProductsJson.edges;
+    for (let product of ProductsData) {
+        product = product.node;
 
         const imageRegex = product.images
         const imageResult = await graphql(`
@@ -128,7 +131,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     }
 
     const blogResult = await graphql(`
-        query MyQuery {
+        query MyBlogMDXQuery {
           allMdx {
             edges {
               node {
