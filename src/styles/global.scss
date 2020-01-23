@@ -9,35 +9,35 @@
     color:rgba(139, 249, 124, 1);
 }
 @mixin color-3() {
-    color:#b34984;
+    color: #8f15d2;
 }
 //MAIN BODY TEXT COLOR
 @mixin color-4() {
-    color:#1c638ae6;
+    color:#fe02fe;
 }
 //blog highlight header color, go to blog link
 @mixin color-5() {
-    color:#7b446f;
+    color:#8f15d2;
 }
 //blog highlight body color, main (default) link color
 @mixin color-6(){
-    color:#43a057;
+    color:#7666e5;
 }
 @mixin color-7(){
     color:rgba(240,140,174,.86)!important;
 }
 
 @mixin bg-color-1() {
-    background-color:#f0afe67a;
+    background-color: #b1f5ff;
 }
 @mixin bg-color-2() {
     background-color:rgba(139, 249, 124, 1) !important;
 }
 @mixin bg-color-3() {
-    background-color:rgba(240, 140, 174, 1) !important;
+    background-color:#f1fb60 !important;
 }
 @mixin bg-color-4() {
-    background-color:rgba(112, 205, 255, 1) !important;
+    background-color:#95ecff !important;
 }
 @mixin bg-color-5() {
     background-color:rgba(0, 16, 17, 1) !important;
@@ -46,7 +46,7 @@
     background-color:#43a057;
 }
 @mixin bg-color-7(){
-    background-color:rgba(240,140,174,.86)!important;
+    background-color:rgba(77,245,46,.76)!important;
 }
 
 
@@ -55,7 +55,7 @@
     background-color:rgba(255,255,255, .1);
 }
 @mixin light-bg-color-2() {
-    background-color:rgba(255,255,255, .2);
+    background-color: #ffc8ef;
 }
 @mixin light-bg-color-3() {
     background-color:rgba(255,255,255, .3);
@@ -145,14 +145,6 @@ nav, .footer-root{
     @include color-3();
 }
 
-.nav-icon{
-    /*border-radius: 39.7px;
-    padding: 1.2rem;*/
-    width:306px;/*
-    margin:2.8rem;
-    background-color:#000000*/
-}
-
 .nav-link{
     font-size:1.75rem;
     margin-right:1.5rem;
@@ -160,14 +152,52 @@ nav, .footer-root{
 }
 
 .nav-container{
-    text-align:right;
-    width: 70%;
+    text-align:center;
     display: block;
+    position:absolute;
     padding: 6.5% 0;
+    @media screen and (max-width:$bp-med){
+        display:none;
+    }
+}
+
+.nav-left{
+    @media screen and (min-width:$bp-med){
+        left:9rem;
+    }
+}
+
+.nav-right{
+    @media screen and (min-width:$bp-med){
+        right:9rem;
+    }
+}
+
+.nav-mobile-btn{
+    display:none;
+    @media screen and (max-width:$bp-med){
+        display:block;
+        position:absolute;
+        top:6rem;
+        right:2rem;
+        a, svg{
+            width:2rem;
+            height:2rem;
+        }
+    }
 }
 
 .nav-icon{
+    width:358px;
+    margin: 0 auto;
+    @media screen and (max-width:$bp-med){
+        padding-top:1rem;
+    }
+}
 
+.nav-separator{
+    margin-right:1.4rem;
+    padding-bottom:.3rem;
 }
 
 .collage-container{
