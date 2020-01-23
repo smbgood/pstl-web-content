@@ -34,7 +34,7 @@
     background-color:rgba(139, 249, 124, 1) !important;
 }
 @mixin bg-color-3() {
-    background-color:#f1fb60 !important;
+    background-color:#24fb9d !important;
 }
 @mixin bg-color-4() {
     background-color:#95ecff !important;
@@ -48,8 +48,6 @@
 @mixin bg-color-7(){
     background-color:rgba(77,245,46,.76)!important;
 }
-
-
 
 @mixin light-bg-color-1() {
     background-color:rgba(255,255,255, .1);
@@ -65,6 +63,43 @@
 }
 @mixin light-bg-color-5() {
     background-color:rgba(255,255,255, .5);
+}
+
+//Color from which the logo transition starts on
+@mixin wavy-color-finish() {
+    background-color:rgba(0,0,0,.2);
+}
+
+@mixin wavy-color-start() {
+    background-color:rgba(0,0,0,.8);
+}
+
+/*.wavy-start{
+    @include wavy-color-start();
+    -webkit-transition: 0.75s;
+    -moz-transition: 0.75s;
+    -o-transition: 0.75s;
+    transition: 0.75s;
+}
+
+.wavy-finish{
+    @include wavy-color-finish();
+    -webkit-transition: 0.75s;
+    -moz-transition: 0.75s;
+    -o-transition: 0.75s;
+    transition: 0.75s;
+}*/
+
+.wavy-start{
+    @include wavy-color-start();
+    transition-timing-function: linear;
+    transition: 5s;
+}
+
+.wavy-finish{
+    @include wavy-color-finish();
+    transition-timing-function: linear;
+    transition: 5s;
 }
 
 @mixin nav-gutters() {
@@ -187,9 +222,30 @@ nav, .footer-root{
     }
 }
 
+.nav-mobile-menu{
+    display:none;
+}
+
+.opened{
+    @media screen and (max-width:$bp-small){
+
+            display:block;
+
+    }
+}
+.closed{
+
+}
+
 .nav-icon{
     width:358px;
     margin: 0 auto;
+    padding-left: 1.7rem;
+    padding-right: 1rem;
+    padding-top: 0.8rem;
+    padding-bottom: 1rem;
+    border-radius: 3rem;
+    margin-top: 1rem;
     @media screen and (max-width:$bp-med){
         padding-top:1rem;
     }

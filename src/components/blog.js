@@ -67,6 +67,8 @@ class Blog extends Component {
     }
   }
 
+  doMouseEn
+
   render() {
     return (
 
@@ -80,7 +82,9 @@ class Blog extends Component {
                   <div className="blog-detail-container">
                     <Link to={"/" + edge.node.frontmatter.path}><h2>{edge.node.frontmatter.title}</h2></Link>
                     <p>{edge.node.excerpt}</p>
-                    <Link className="blog-page-link" to={"/" + edge.node.frontmatter.path}>Go to Blog</Link>
+                    <div className="blog-ripple-container" onMouseEnter={doMouseEnter()} onMouseLeave={doMouseLeave()}>
+                      <Link className="blog-page-link" to={"/" + edge.node.frontmatter.path}>Go to Blog</Link>
+                    </div>
                   </div>
                 </div>
               </div>
