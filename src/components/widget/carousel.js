@@ -90,7 +90,7 @@ export default class Carousel extends React.Component {
       const images = this.props.images;
       const opts = {contain : true}
       return (
-        <div className="merp-root">
+
           <Flickity className={'carousel'} // default ''
                     elementType={'div'}
                     options={opts}>
@@ -99,7 +99,7 @@ export default class Carousel extends React.Component {
                 src={item.node.fixed.src} key={this.createHTMLSafeKey(item.node.fixed.originalName)}/>
             ))}
           </Flickity>
-          {images.map(item => (
+          /*{images.map(item => (
             <div className="modal" id={this.createHTMLSafeKey(item.node.fixed.originalName) + "-modal"}
                  key={this.createHTMLSafeKey(item.node.fixed.originalName) + "-modal"}>
               <div className="modal-content">
@@ -107,11 +107,8 @@ export default class Carousel extends React.Component {
                   <img data-size={itemImage.size} src={itemImage.src}/>
                 ))}
               </div>
-              {/*<div className="modal-footer">
-        </div>*/}
             </div>
-          ))}
-        </div>
+          ))}*/
       )
     }
     return null

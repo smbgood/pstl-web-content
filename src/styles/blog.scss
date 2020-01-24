@@ -7,24 +7,32 @@
 
 .blog-container{
   @include light-bg-color-2();
-
-  @media screen and (max-width:$bp-large){
-    max-width:800px;
+  max-width:800px;
+  @media screen and (min-width:$bp-med) and (max-width:$bp-large){
+   max-width:55rem;
+  }
+  @media screen and (min-width:$bp-large){
+    max-width:1086px;
   }
 }
 
 .blog-image-container{
+  max-width:100%;
   @media screen and (max-width:$bp-large){
-    max-width:400px;
     vertical-align: bottom;
+  }
+  @media screen and (min-width:$bp-large){
+    //max-width:400px;
+    height:384px;
+    overflow:hidden;
   }
 }
 
 .blog-image-container,.blog-detail-container{
-  @media screen and (max-width:$bp-large){
-    width:50%;
+  /*@media screen and (min-width:$bp-med) and (max-width:$bp-large){
+    width:54.5%;
     display:inline-block;
-  }
+  }*/
 }
 
 .blog-container{
@@ -47,6 +55,7 @@
     padding-right: 0.6rem;
     padding-top: 0.1rem;
     padding-bottom: 0.1rem;
+    line-height:38px;
   }
 
 }
@@ -74,6 +83,12 @@
   @media screen and (min-width:$bp-med){
     margin-right:10%;
   }
+  @media screen and (min-width:$bp-large){
+    margin-right:4%;
+  }
+  @media screen and (min-width:$bp-mega){
+    margin-right:7.3%;
+  }
   position: fixed;
   right: 0;
   width: 280px;
@@ -85,6 +100,9 @@
 
 .blog-hover-bar{
   top: 196.86px;
+  @media screen and (min-width:$bp-mega){
+    top: 238.86px;
+  }
   height: 100%;
   @include hover-bar();
   -webkit-transition: 0.5s;
@@ -107,35 +125,6 @@
   bottom:13.9%;
   height:86%;
   @include hover-bar();
-}
-
-.blog-ripple-container{
-  position:relative;
-  overflow:hidden;
-  transform: translate3d(0, 0, 0);
-
-  &:hover{
-    content:"";
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    background-image: radial-gradient(circle, #000 10%, transparent 10.01%);
-    background-repeat: no-repeat;
-    background-position: 50%;
-    transform: scale(10,10);
-    opacity: 0;
-    transition: transform .5s, opacity 1s;
-  }
-
-/*  &:active:after {
-    transform: scale(0,0);
-    opacity: .2;
-    transition: 0s;
-  }*/
 }
 
 .about-us-root{

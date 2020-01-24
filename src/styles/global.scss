@@ -1,5 +1,4 @@
 @import 'values.scss';
-@import 'node_modules/materialize-css/sass/materialize.scss';
 
 
 @mixin color-1() {
@@ -74,22 +73,6 @@
     background-color:rgba(0,0,0,.8);
 }
 
-/*.wavy-start{
-    @include wavy-color-start();
-    -webkit-transition: 0.75s;
-    -moz-transition: 0.75s;
-    -o-transition: 0.75s;
-    transition: 0.75s;
-}
-
-.wavy-finish{
-    @include wavy-color-finish();
-    -webkit-transition: 0.75s;
-    -moz-transition: 0.75s;
-    -o-transition: 0.75s;
-    transition: 0.75s;
-}*/
-
 .wavy-start{
     @include wavy-color-start();
     transition-timing-function: linear;
@@ -137,6 +120,7 @@ h2{
 
 a{
     font-family: 'Bad Script', cursive;
+    text-decoration-line:none;
 }
 
 h4,h5,p,div,body{
@@ -146,6 +130,7 @@ h4,h5,p,div,body{
 body{
     @include bg-color-1();
     @include color-4();
+    margin:0;
 }
 
 a{
@@ -204,6 +189,9 @@ nav, .footer-root{
 
 .nav-right{
     @media screen and (min-width:$bp-med){
+        right:4.1rem;
+    }
+    @media screen and (min-width:$bp-large){
         right:9rem;
     }
 }

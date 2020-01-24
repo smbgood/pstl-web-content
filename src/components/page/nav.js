@@ -18,7 +18,6 @@ class Nav extends Component {
     doTimeout(){
       setTimeout(
         function(){
-          console.log("timeout called")
           this.setState({animationEnd: !this.state.animationEnd});
           this.doTimeout();
         }.bind(this),5000
