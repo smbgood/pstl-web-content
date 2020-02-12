@@ -32,6 +32,7 @@ class Nav extends Component {
 
     render() {
         return (
+            <div className="nav-outer">
           <div className="nav-root">
             <div className="nav-container nav-left">
               {` `}
@@ -67,26 +68,28 @@ class Nav extends Component {
                 <FaAlignJustify/>
               </a>
             </div>
-            <div className={("nav-mobile-menu " + (this.state.isMobileMenuOpen ? "opened" : "closed"))} >
-              {` `}
-              <Link sx={{
-                fontFamily: "heading",
-              }} className="nav-link" to="/shope/contact">Contact Us</Link>
-              {` `}
-              <Link sx={{
-                fontFamily: "heading",
-              }} className="nav-link" to="/shope/categories">Boutique</Link>
-              {` `}
-              <Link sx={{
-                fontFamily: "heading",
-              }} className="nav-link" to="/shope/about">About</Link>
-              {` `}
-              <Link sx={{
-                fontFamily: "heading",
-              }} className="nav-link" to="/shope">Blog</Link>
-              {` `}
-            </div>
           </div>
+                <div className={("nav-mobile-menu " + (this.state.isMobileMenuOpen ? "opened" : "closed"))} >
+                    {` `}
+                    <Link sx={{
+                        fontFamily: "heading",
+                    }} className="nav-link" to="/shope/contact">Contact Us</Link>
+                    {` `}
+                    <Link sx={{
+                        fontFamily: "heading",
+                    }} className="nav-link" to="/shope/categories">Boutique</Link>
+                    {` `}
+                    <Link sx={{
+                        fontFamily: "heading",
+                    }} className="nav-link" to="/shope/about">About</Link>
+                    {` `}
+                    <Link sx={{
+                        fontFamily: "heading",
+                    }} className="nav-link" to="/shope">Blog</Link>
+                    {` `}
+                </div>
+            </div>
+
         )
     }
 }

@@ -20,7 +20,7 @@ class Shop extends Component {
         stripe: null,
     }
     componentDidMount() {
-        const stripe = window.Stripe("pk_live_VJQj7RY3rBubLWBVzmHF2PXM00WQixkUZ0")
+        const stripe = window.Stripe("pk_test_4xqQzlAyU2e9MJ2h9P1SapFe00K4jXy6Rk")
         this.setState({ stripe })
     }
 

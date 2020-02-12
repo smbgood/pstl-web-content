@@ -217,9 +217,17 @@ nav, .footer-root{
 
 .opened{
     @media screen and (max-width:$bp-small){
-
-            display:block;
-
+        z-index: 2;
+        position: absolute;
+        display: block;
+        top: 22px;
+        border-radius: 17px;
+        border-top-right-radius: 48px;
+        border-bottom-right-radius: 25px;
+        width: 174px;
+        left: 229px;
+        padding: 1rem;
+        background: linear-gradient(45deg, black, transparent);
     }
 }
 .closed{

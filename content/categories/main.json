@@ -1,10 +1,8 @@
 {
-  "name": "Bath Treats!",
+  "name": "Test Products!",
   "id": "main",
   "products": [
-    "prod_GP3Rhf64ceON21",
-    "prod_GP3R4ozmDIwjv8",
-    "prod_GP3PS7WrZRlMOS"
+    "prod_GipqrvRvxqijoE"
   ],
   "image":  "content/assets/blue-and-red-plants-2505693.jpg"
 }

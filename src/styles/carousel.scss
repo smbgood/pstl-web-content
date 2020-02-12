@@ -4,8 +4,10 @@
   border-color:rgba(112, 205, 255, 1);
   border-style:solid;
 }
-.carousel .carousel-item{
-  max-height:220px;
+
+.flickity-viewport{
+  height:420px!important;
+  margin-top: 1rem;
 }
 .modal-content{
   text-align:center;

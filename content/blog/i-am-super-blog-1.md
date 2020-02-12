@@ -5,5 +5,11 @@ title: I am Super Blog Also
 coverimage: /images/uploads/blog-1.png
 fullimage: /images/uploads/eezy_68-01.jpg
 glowcolor: 'rgba(206, 82, 47, 1)'
+attribution:
+  attrAuthor: Vecteezy
+  attrLicense: Free
+  attrLink: 'https://www.vecteezy.com/free-vector/purple-plant'
+  attrMods: Resized to fit blog cover image
+  attrTitle: Purple Plant Vectors
 ---
 What could happen if someone actually tried to make an interesting blog article? It could really be the breakthrough we were all waiting for. If writing lorem ipsum seems interesting to you, then blogging is the place to be.
