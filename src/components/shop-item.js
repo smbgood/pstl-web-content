@@ -51,7 +51,7 @@ const ShopItem = class extends React.Component {
         const sku = this.props.sku
         return (
             <div style={cardStyles}>
-                <h4>{sku.attributes.name}</h4>
+                {/*<h4>{sku.attributes.name}</h4>*/}
                 <p>Price: {formatPrice(sku.price, sku.currency)}</p>
 {/*                <img src={sku.image}/>*/}
                 <button

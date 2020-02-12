@@ -34,10 +34,7 @@ class Shop extends Component {
                 node {
                   id
                   currency
-                  price
-                  attributes {
-                    name
-                  }
+                  price                 
                   image
                 }
               }
