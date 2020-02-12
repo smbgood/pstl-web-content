@@ -1,0 +1,54 @@
+@import 'global.scss';
+
+.contact-root{
+  margin: 0 auto;
+  text-align: center;
+
+  input{
+    text-align: center;
+    width: 27rem;
+    height: 4.7rem;
+  }
+
+  textarea{
+    width: 50rem;
+    height: 15rem;
+
+    &::placeholder{
+      padding-left:3rem;
+      padding-right:2rem;
+      padding-top:2rem;
+    }
+  }
+
+  input, textarea{
+
+    margin-bottom:2rem;
+
+    font-size:2rem;
+    font-family:"Arima Madurai";
+
+    &::placeholder{
+      font-size:2rem;
+    }
+    &:focus{
+      font-size:2rem;
+    }
+  }
+
+  form{
+    padding-top: 1rem;
+    padding-bottom: 6rem;
+    
+    div{
+      @include color-6();
+      font-size:1.9rem;
+    }
+  }
+}
+
+.contact-title{
+  font-size: 4rem;
+  margin-top: .3rem;
+  margin-bottom: 0.2rem;
+}

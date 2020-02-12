@@ -90,6 +90,10 @@
     margin-right:25rem;
 }
 
+@mixin nav-gutters-large() {
+    margin: 0 auto;
+}
+
 @mixin some-margin(){
     margin: 1.5rem;
 }
@@ -143,9 +147,6 @@ nav, .footer-root{
 
 .nav-root, .footer-root{
     display:flex;
-    @media screen and (min-width:$bp-large) {
-        @include nav-gutters();
-    }
 }
 
 .page-root{

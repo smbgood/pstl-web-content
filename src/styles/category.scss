@@ -1,16 +1,8 @@
 @import "./global.scss";
 .category-root{
-  max-width:400px;
-  @media screen and (max-width:$bp-large){
-    max-width:800px;
-  }
   margin: 0 auto;
 }
 .category-holder{
-  max-width:400px;
-  @media screen and (max-width:$bp-large){
-    max-width:800px;
-  }
   display:inline;
   li{
     margin-bottom:2rem;

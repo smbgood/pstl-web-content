@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import "../styles/blog.scss"
 import Img from "gatsby-image"
 import findImageForSetBlogImage from "../services/utils"
-import {FaCoffee} from "react-icons/fa"
 import {Link} from "gatsby"
 
 class Blog extends Component {
@@ -87,13 +86,6 @@ class Blog extends Component {
                 </div>
               </div>
             ))}
-            <div className="blog-hover-bar">
-              <div className="about-us-root">
-                <h3 className="about-title">About Banshee Babe</h3>
-                <FaCoffee/>
-                <p className="about-text">Founded in 2019, we are home to many traditional recipes updated for the modern age. Let us demystify the world of plants and herbs for you, so you can better work with what Mother Nature has provided all around us!  </p>
-              </div>
-            </div>
           </div>
         )
   }
