@@ -100,15 +100,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                 edges {
                   node {
                     id
-                    attributes{
-                        name
-                    }
                     currency
                     price                  
                     product {
                       name
-                      id
-                      attributes
+                      id                      
                     }
                     image
                   }
