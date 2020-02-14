@@ -105,8 +105,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                     product {
                       name
                       id                      
-                    }
-                    image
+                    }                    
                   }
                 }
             }

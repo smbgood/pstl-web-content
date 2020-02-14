@@ -23,6 +23,7 @@
     "@mdx-js/mdx": "^1.5.1",
     "@mdx-js/react": "^1.5.1",
     "@theme-ui/presets": "^0.2.44",
+    "flickity": "^2.2.1",
     "formik": "^2.1.2",
     "gatsby": "^2.18.4",
     "gatsby-image": "^2.2.39",
@@ -62,6 +63,7 @@
     "typography-theme-funston": "^0.16.19"
   },
   "devDependencies": {
+    "history": "^4.10.1",
     "prettier": "^1.19.1",
     "typography-theme-moraga": "^0.16.19"
   },

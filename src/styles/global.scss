@@ -204,6 +204,7 @@ nav, .footer-root{
         position:absolute;
         top:6rem;
         right:2rem;
+        z-index:3;
         a, svg{
             width:2rem;
             height:2rem;
@@ -214,24 +215,34 @@ nav, .footer-root{
 .nav-mobile-menu{
     display:none;
 }
-
+.nav-mobile-menu-item{
+    display:block;
+    a{
+        margin-left: 0.5rem;
+        position: relative;
+        top: 0.1rem;
+        text-shadow: 1px 1px #00000055;
+    }
+}
 .opened{
-    @media screen and (max-width:$bp-small){
+    @media screen and (max-width:$bp-med){
         z-index: 2;
         position: absolute;
         display: block;
-        top: 22px;
+        top: 1.4rem;
         border-radius: 17px;
         border-top-right-radius: 48px;
         border-bottom-right-radius: 25px;
-        width: 174px;
-        left: 229px;
+        width: 11rem;
+        right: 1.6rem;
         padding: 1rem;
-        background: linear-gradient(45deg, black, transparent);
+        background: linear-gradient(45deg,#8bf97c,#ffc8ef);
     }
 }
 .closed{
-
+    @media screen and (max-width:$bp-med){
+        display:none;
+    }
 }
 
 .nav-icon{

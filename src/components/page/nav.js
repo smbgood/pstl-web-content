@@ -2,7 +2,7 @@
 import { jsx } from "theme-ui"
 import React, { Component } from "react"
 import { Link, navigate } from "gatsby"
-import {FaCrow, FaAlignJustify} from "react-icons/fa"
+import {FaCrow, FaAlignJustify, FaPencilAlt, FaSpa, FaStoreAlt, FaTelegram} from "react-icons/fa"
 import Img from "gatsby-image"
 
 class Nav extends Component {
@@ -13,6 +13,10 @@ class Nav extends Component {
 
         this.doTimeout();
 
+    }
+
+    componentDidMount() {
+        console.log("mounted")
     }
 
     doTimeout(){
@@ -71,21 +75,30 @@ class Nav extends Component {
           </div>
                 <div className={("nav-mobile-menu " + (this.state.isMobileMenuOpen ? "opened" : "closed"))} >
                     {` `}
-                    <Link sx={{
-                        fontFamily: "heading",
-                    }} className="nav-link" to="/shope/contact">Contact Us</Link>
+                    <div className={("nav-mobile-menu-item" + (this.state.itemSelected === "contact" ? "active" : ""))}>
+                        <FaTelegram/><Link sx={{
+                            fontFamily: "heading",
+                        }} className="nav-link" to="/shope/contact">Contact Us</Link>
+                    </div>
                     {` `}
-                    <Link sx={{
-                        fontFamily: "heading",
-                    }} className="nav-link" to="/shope/categories">Boutique</Link>
+                    <div className={("nav-mobile-menu-item" + (this.state.itemSelected === "store" ? "active" : ""))}>
+                        <FaStoreAlt/><Link sx={{
+                            fontFamily: "heading",
+                        }} className="nav-link" to="/shope/categories">Boutique</Link>
+                    </div>
                     {` `}
-                    <Link sx={{
-                        fontFamily: "heading",
-                    }} className="nav-link" to="/shope/about">About</Link>
+                    <div className={("nav-mobile-menu-item" + (this.state.itemSelected === "about" ? "active" : ""))}>
+                        <FaSpa/><Link sx={{
+                            fontFamily: "heading",
+                        }} className="nav-link" to="/shope/about">About</Link>
+                    </div>
                     {` `}
-                    <Link sx={{
-                        fontFamily: "heading",
-                    }} className="nav-link" to="/shope">Blog</Link>
+                    <div className={("nav-mobile-menu-item" + (this.state.itemSelected === "blog" ? "active" : ""))}>
+                        <FaPencilAlt/>
+                        <Link sx={{
+                            fontFamily: "heading",
+                        }} className="nav-link" to="/shope">Blog</Link>
+                    </div>
                     {` `}
                 </div>
             </div>

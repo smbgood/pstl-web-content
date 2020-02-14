@@ -11,20 +11,35 @@ import About from "../components/page/about"
 import Contact from "../components/page/contact"
 import { graphql, useStaticQuery } from "gatsby"
 
-const Shope = ({data}) => (
-    <Layout navImage={data.logoImage.edges[0].node}>
-        <SEO title={"Banshee Babe Boutique | Trinkets, Odds & Ends"} />
-        <Router>
-            <Collage path="/shope/collage" />
-            <Shop path="/shope/shop" />
-            <Categories path="/shope/categories"/>
-            <Blog path="/shope" blogs={data}/>
-            <Home path="/shope/home"/>
-            <About path="/shope/about"/>
-            <Contact path="/shope/contact"/>
-        </Router>
-    </Layout>
-)
+import {createBrowserHistory} from "history";
+
+class Shope extends Component{
+
+    componentDidMount(){
+        const history = createBrowserHistory()
+
+        history.listen((location, action) => {
+            console.log(`The current URL is ${location.pathname}${location.search}${location.hash}`)
+            console.log(`The last navigation action was ${action}`)
+        })
+    }
+
+    render(){
+        return( <Layout navImage={data.logoImage.edges[0].node}>
+            <SEO title={"Banshee Babe Boutique | Trinkets, Odds & Ends"} />
+            <Router history={history}>
+                <Collage path="/shope/collage" />
+                <Shop path="/shope/shop" />
+                <Categories path="/shope/categories"/>
+                <Blog path="/shope" blogs={data}/>
+                <Home path="/shope/home"/>
+                <About path="/shope/about"/>
+                <Contact path="/shope/contact"/>
+            </Router>
+        </Layout>)
+    }
+
+}
 export const query = graphql`
     query ShopeQuery {
         blogResults: allMdx(sort: {fields: frontmatter___date}) {
