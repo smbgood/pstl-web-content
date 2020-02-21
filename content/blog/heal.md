@@ -11,15 +11,21 @@ attribution:
 ---
 <!--StartFragment-->
 
-This is a bath I created initially to help myself come back into a more normal state after trauma processing. I am a firm believer in integrating your shadow side. However, confronting your demons (so to speak) is no easy task, and often leaves me reeling for hours afterward. This bath is a necessary addition to my trauma processing arsenal at this point, and I hope it can help you too.
+"The most terrifying thing is to accept oneself completely. Your visions will become clear only when you can look into your own heart. Who looks outside, dreams; who looks inside, awakes." ~ Carl Jung
 
-
+This bath was initially created to help myself come back into a more normal state after trauma processing. I am a firm believer in integrating our shadow side in order to live your happiest and most authentic life. However, confronting your demons (so to speak) is no easy task, and often leaves me reeling for hours afterward. This bath is a necessary addition to my trauma processing arsenal at this point, and we hope it can help you too.
 
 We all have wounds we carry with us from our past. This bath is designed to help you calm back down as much as possible after heavy therapy sessions, doing shadow work, or anything that's particularly emotionally taxing.
 
+The main scents in this bath include vanilla and eucalyptus, as well as a mixture of other herbs and flowers such as lemon balm, thyme, and a touch of lavender.
 
 
-The main scents in this bath include vanilla and eucalyptus, as well as a mixture of other herbs and flowers such as lemon balm, thyme, and a touch of lavender. For any questions or allergy concerns please feel free to contact me for more information!!
+
+
+
+* Do not use if pregnant.
+* All our baths are vegan, all natural, and cruelty free.
+* Please contact me for any questions or allergy concerns!
 
 
 
