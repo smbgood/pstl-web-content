@@ -15,6 +15,12 @@ This bath earned its name *Free* for the feelings it evokes. That even if you fe
 
 *Free* is a citrus scented bath with coffee and dead sea salt serving as its primary base. It might sound like there's a lot going on with this one, but that's because there is (and P.s **you're worth it!)**. There is no reason to walk through life carrying every outdated cycle or belief that's ever affected us, allowing it to weigh us down as a heavy shroud of shame, guilt, anger, etc.... If you've been doing the work and trying to better yourself & your life and struggling to see the results, then why not treat yourself a little and see if maybe something changes?
 
+<br/>
+
+<br/>
+
+<br/>
+
 * Do not use if pregnant. 
 * All our bath soaks are vegan, all natural, and cruelty free.
 * Please contact me for any questions or allergy concerns!
