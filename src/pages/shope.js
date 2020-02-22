@@ -1,4 +1,4 @@
-import React from "react"
+import {React, Component} from "react"
 import { Router } from "@reach/router"
 import Layout from "../components/page/layout"
 import Collage from "../components/old/collage"
@@ -16,18 +16,18 @@ import {createBrowserHistory} from "history";
 class Shope extends Component{
 
     componentDidMount(){
-        const history = createBrowserHistory()
+        /*let history = createBrowserHistory()
 
         history.listen((location, action) => {
             console.log(`The current URL is ${location.pathname}${location.search}${location.hash}`)
             console.log(`The last navigation action was ${action}`)
-        })
+        })*/
     }
 
-    render(){
+    render({data}){
         return( <Layout navImage={data.logoImage.edges[0].node}>
             <SEO title={"Banshee Babe Boutique | Trinkets, Odds & Ends"} />
-            <Router history={history}>
+            <Router>
                 <Collage path="/shope/collage" />
                 <Shop path="/shope/shop" />
                 <Categories path="/shope/categories"/>
@@ -40,6 +40,7 @@ class Shope extends Component{
     }
 
 }
+export default Shope
 export const query = graphql`
     query ShopeQuery {
         blogResults: allMdx(sort: {fields: frontmatter___date}) {
@@ -79,4 +80,3 @@ export const query = graphql`
         }
     }
 `
-export default Shope
