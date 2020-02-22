@@ -6,8 +6,11 @@ coverimage: /images/uploads/photo-of-constellation-2832084.jpg
 fullimage: /images/uploads/photo-of-constellation-2832084.jpg
 glowcolor: violet
 attribution:
-  attrAuthor: ''
+  attrAuthor: Pexels
   attrLink: 'https://www.pexels.com/photo/photo-of-constellation-2832084/'
+  attrLicense: Free   
+  attrMods: Resized to fit blog cover image
+  attrTitle: Pexels
 ---
 <!--StartFragment-->
 

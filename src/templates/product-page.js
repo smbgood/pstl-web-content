@@ -12,9 +12,8 @@ class ProductPageTemplate extends React.Component {
     stripe: null,
   }
   componentDidMount() {
-    const stripe = window.Stripe("pk_test_4xqQzlAyU2e9MJ2h9P1SapFe00K4jXy6Rk")
+    const stripe = window.Stripe("pk_live_OGxNOUzWvpoUJS3yscyZ6Ccw00ukIopzD4")
     this.setState({ stripe })
-    console.log(this);
   }
 
   render(){

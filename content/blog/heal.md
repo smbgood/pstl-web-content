@@ -7,7 +7,10 @@ fullimage: /images/uploads/mountain-landscape-3004.jpg
 glowcolor: pink
 attribution:
   attrAuthor: Vectors by Vecteezy
-  attrLink: 'href="https://www.vecteezy.com/"'
+  attrLink: 'https://www.vecteezy.com/'    
+  attrLicense: Free   
+  attrMods: Resized to fit blog cover image
+  attrTitle: Pexels
 ---
 <!--StartFragment-->
 

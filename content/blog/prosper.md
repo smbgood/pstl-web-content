@@ -8,6 +8,9 @@ glowcolor: green
 attribution:
   attrAuthor: Pixabay
   attrLink: 'https://www.pexels.com/photo/bullion-gold-gold-bars-golden-47047/'
+  attrLicense: Free   
+  attrMods: Resized to fit blog cover image
+  attrTitle: Pexels
 ---
 <!--StartFragment-->
 

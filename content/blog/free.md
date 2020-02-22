@@ -7,7 +7,10 @@ fullimage: /images/uploads/yellow-and-black-butterfly-2671074.jpg
 glowcolor: orange
 attribution:
   attrAuthor: Miri
-  attrLink: 'https://www.pexels.com/photo/yellow-and-black-butterfly-2671074/'
+  attrLink: 'https://www.pexels.com/photo/yellow-and-black-butterfly-2671074/'   
+  attrLicense: Free   
+  attrMods: Resized to fit blog cover image
+  attrTitle: Pexels
 ---
 <!--StartFragment-->
 
