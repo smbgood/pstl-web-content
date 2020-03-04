@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {graphql, StaticQuery} from 'gatsby'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import "../../styles/contact.scss"
+import axios from "axios";
 
 class Contact extends Component {
 
@@ -27,13 +28,24 @@ class Contact extends Component {
                   return errors;
               }}
               onSubmit={(values, { setSubmitting }) => {
-                  setTimeout(() => {
-                      setSubmitting(false);
-                  }, 400);
+                  axios.post("https://www.bansheebabe.com/netlifysubmits", values, {headers: {"Content-Type":"application/x-www-form-urlencoded"}})
+                      .then(response => {
+                          //used to parse out stuff to use on the spot
+                          /*const {
+                              data: {
+                                  userId: id
+                              }
+                          } = profile*/
+
+                          console.log(response)
+                      }).catch(error => {
+                      console.log(error)
+                  })
+                  setSubmitting(false);
               }}
           >
               {({ isSubmitting }) => (
-                  <Form name="b-b-contact" data-netlify="true" netlify-honeypot="bot-field" method="POST" action="/">
+                  <Form name="b-b-contact" data-netlify="true" netlify-honeypot="bot-field" method="POST" action="/" netlify>
                       <input type="hidden" name="bot-field"/>
                       <Field name="name" placeholder="What's your name?"/>
                       <ErrorMessage name="name" component="div"/>
