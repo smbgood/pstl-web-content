@@ -22,6 +22,7 @@ class Cart extends Component {
         return (
             <CartContext.Consumer>
                 {cart => (
+                    cart != null && cart.cart != null ?
                     <div className={"cart-root"} >
                         <div className={"cart-row-item cart-header-item"}>
                             <div className={"cart-left"}>SKU</div>
@@ -36,7 +37,7 @@ class Cart extends Component {
 
                         {this.doTotal(cart.cart)}
 
-                    </div>
+                    </div> : ""
                 )}
             </CartContext.Consumer>
         )

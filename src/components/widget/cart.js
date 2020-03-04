@@ -36,7 +36,7 @@ const Cart = class extends React.Component {
         return (
             <CartContext.Consumer>
                 {cart => (
-                    cart.cart.length > 0 ?
+                    cart != null && cart.cart != null && cart.cart.length > 0 ?
                     <div className={"cart-root"} style={cardStyles}>
                         {this.displayTotalItemsInCart(cart)}
                         <Link to={"/shope/cart"} className={"view-cart-link"}>View Cart</Link>

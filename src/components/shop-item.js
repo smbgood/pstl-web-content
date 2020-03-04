@@ -103,6 +103,7 @@ const ShopItem = class extends React.Component {
         return (
             <CartContext.Consumer>
                 {cart => (
+                    cart != null && cart.cart != null ?
                     <div style={cardStyles}>
                         <p key={"shop-item-price-disp"}>Price: {formatPrice(sku.price, sku.currency)}</p>
                         <button key={"shop-item-amt-increase"} style={otherButtonStyles}
@@ -120,7 +121,7 @@ const ShopItem = class extends React.Component {
                             REMOVE FROM CART
                         </button>
                         {this.displayQuantityInCart(cart.cart, sku.id)}
-                    </div>
+                    </div> : ""
                 )}
             </CartContext.Consumer>
 
