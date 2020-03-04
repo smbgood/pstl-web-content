@@ -28,13 +28,13 @@ class Contact extends Component {
               }}
               onSubmit={(values, { setSubmitting }) => {
                   setTimeout(() => {
-                      alert(JSON.stringify(values, null, 2));
                       setSubmitting(false);
                   }, 400);
               }}
           >
               {({ isSubmitting }) => (
-                  <Form>
+                  <Form name="b-b-contact" data-netlify="true" netlify-honeypot="bot-field" method="POST" action="/">
+                      <input type="hidden" name="bot-field"/>
                       <Field name="name" placeholder="What's your name?"/>
                       <ErrorMessage name="name" component="div"/>
                       <br/>

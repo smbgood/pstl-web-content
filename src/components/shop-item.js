@@ -1,4 +1,5 @@
 import React from "react"
+import CartContext from "./widget/cart-context";
 
 const cardStyles = {
     display: "block",
@@ -23,6 +24,18 @@ const buttonStyles = {
     letterSpacing: "1.5px",
 }
 
+const otherButtonStyles = {
+    fontSize: "13px",
+    textAlign: "center",
+    color: "#fff",
+    outline: "none",
+    padding: "6px",
+    boxShadow: "1px 2px 5px rgba(0,0,0,.1)",
+    backgroundColor: "rgb(255, 18, 56)",
+    borderRadius: "6px",
+    letterSpacing: "1.5px",
+}
+
 const formatPrice = (amount, currency) => {
     let price = (amount / 100).toFixed(2)
     let numberFormat = new Intl.NumberFormat(["en-US"], {
@@ -34,12 +47,25 @@ const formatPrice = (amount, currency) => {
 }
 
 const ShopItem = class extends React.Component {
+    state = {
+        amountToAdd: 0
+    }
+
+    handleInputChange = event => {
+        const target = event.target
+        const value = target.value
+        const name = target.name
+        this.setState({
+            [name]: value,
+        })
+    }
+
     async redirectToCheckout(event, sku, quantity = 1) {
         event.preventDefault()
         const { error } = await this.props.stripe.redirectToCheckout({
             items: [{ sku, quantity }],
-            successUrl: `https://www.richornot.com/page-2/`,
-            cancelUrl: `https://www.richornot.com/advanced`,
+            successUrl: `https://www.bansheebabe.com/page-2/`,
+            cancelUrl: `https://www.bansheebabe.com/advanced`,
         })
 
         if (error) {
@@ -47,20 +73,57 @@ const ShopItem = class extends React.Component {
         }
     }
 
+    resetAmounts(){
+        this.setState({amountToAdd:0})
+    }
+
+    displayQuantityInCart(cart, id){
+        for( let cartItem of cart){
+            if(cartItem.sku === id){
+                return (<div key={"qty-cart-count"} className={"existing-cart-count"}>{cartItem.qty} in cart</div>)
+            }
+        }
+        return (<div key={"0-cart-count"} className={"existing-cart-count"}>0 in cart</div>)
+    }
+
+    increaseInputQuantity(){
+        let increased = this.state.amountToAdd + 1;
+        this.setState({amountToAdd:increased})
+    }
+
+    decreaseInputQuantity(){
+        if(this.state.amountToAdd === 0)
+            return
+        let decreased = this.state.amountToAdd - 1;
+        this.setState({amountToAdd:decreased})
+    }
+
     render() {
         const sku = this.props.sku
         return (
-            <div style={cardStyles}>
-                {/*<h4>{sku.attributes.name}</h4>*/}
-                <p>Price: {formatPrice(sku.price, sku.currency)}</p>
-{/*                <img src={sku.image}/>*/}
-                <button
-                    style={buttonStyles}
-                    onClick={event => this.redirectToCheckout(event, sku.id)}
-                >
-                    BUY ME
-                </button>
-            </div>
+            <CartContext.Consumer>
+                {cart => (
+                    <div style={cardStyles}>
+                        <p key={"shop-item-price-disp"}>Price: {formatPrice(sku.price, sku.currency)}</p>
+                        <button key={"shop-item-amt-increase"} style={otherButtonStyles}
+                                onClick={() => {this.increaseInputQuantity();}}>+</button>
+                        <button key={"shop-item-amt-decrease"} style={otherButtonStyles}
+                                onClick={() => {this.decreaseInputQuantity();}}>-</button>
+                        <input key={"shop-item-amt-input"} type="number" min="0" name="amountToAdd" value={this.state.amountToAdd}
+                               onChange={this.handleInputChange}/>
+                        <button key={"shop-item-add-cart"} style={buttonStyles}
+                                onClick={() => {cart.addToCart(sku.id, this.state.amountToAdd, sku.price, sku.currency); this.resetAmounts();}}>
+                            ADD TO CART
+                        </button>
+                        <button key={"shop-item-remove-cart"} style={buttonStyles}
+                                onClick={() => {cart.removeFromCart(sku.id, this.state.amountToAdd); this.resetAmounts();}}>
+                            REMOVE FROM CART
+                        </button>
+                        {this.displayQuantityInCart(cart.cart, sku.id)}
+                    </div>
+                )}
+            </CartContext.Consumer>
+
         )
     }
 }

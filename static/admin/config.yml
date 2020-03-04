@@ -28,17 +28,6 @@ collections:
           - {label: Source URL, name: attrLink, widget: string, pattern:['.+', "Must fill out image source link at the very least"]}
           - {label: License, name: attrLicense, widget: string, required: false}
           - {label: Modifications, name: attrMods, widget: string, required: false}
-  - name: products
-    label: Products
-    folder: "content/products"
-    create: true
-    extension: json
-    identifier_field: id
-    fields:
-      - { name: name, label: Name }
-      - { name: id, label: SKU }
-      - { name: description, label: Description }
-      - { name: images, label: "Category of Images to Use" }
   - name: categories
     label: Categories
     folder: "content/categories"
@@ -48,7 +37,7 @@ collections:
     fields:
       - { name: name, label: Name }
       - { name: id, label: SKU }
-      - { name: products, label: Product Image Urls, widget: list }
+      - { name: product, label: Product Image Urls, widget: list }
       - { name: image, label: Image, widget: image}
   - name: siteadmin
     label: Site Admin

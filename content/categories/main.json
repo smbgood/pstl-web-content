@@ -1,8 +1,8 @@
 {
-  "name": "Test Products!",
+  "name": "Necessities!",
   "id": "main",
   "products": [
-    "prod_GmaoIVWTVEivRD"
+    "sku_GqilVQumeA5DWd","sku_GqieRpegmpEELC"
   ],
   "image":  "content/assets/blue-and-red-plants-2505693.jpg"
 }

@@ -15,28 +15,29 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
     const result = await graphql(`
         query MyQuery {
-            allProductsJson {
-                edges{
-                    node {
-                        id
-                        name
-                        description
-                        images
+            allStripeSku {
+                nodes {
+                  id
+                  price
+                  currency
+                  product {                                        
+                    id
+                    metadata {
+                      img_category
                     }
+                    description
+                    name
+                  }
                 }
+              }
             }
-        }
     `)
-    if(result.errors){
-        reporter.panicOnBuild("AAAAAAAAA")
-        return
-    }
-    const pageTemplate = path.resolve(`src/templates/product-page.js`)
-    const ProductsData = result.data.allProductsJson.edges;
-    for (let product of ProductsData) {
-        product = product.node;
 
-        const imageRegex = product.images
+    const pageTemplate = path.resolve(`src/templates/product-page.js`)
+    const ProductsData = result.data.allStripeSku.nodes;
+    for (let product of ProductsData) {
+
+        const imageRegex = product.product.metadata.img_category
         const imageResult = await graphql(`
         query FileNamesQuery {
             allFile(filter: {relativePath: {regex: "/${imageRegex}//"}}) {
@@ -49,10 +50,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             }
         }
         `)
-        /*if(imageResult.errors){
-            reporter.panicOnBuild("BBBBBBB")
-            return
-        }*/
+
         let querySet = []
         if(imageResult && imageResult.data && imageResult.data.allFile && imageResult.data.allFile.edges){
             for(const edge of imageResult.data.allFile.edges){
@@ -94,33 +92,15 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         }
         `)
 
-        const stripeResult = await graphql(`
-        query StripeQuery {
-            allStripeSku(filter: {product: {id: {eq: "${product.id}"}}}) {
-                edges {
-                  node {
-                    id
-                    currency
-                    price                  
-                    product {
-                      name
-                      id                      
-                    }                    
-                  }
-                }
-            }
-        }       
-        `)
-
         createPage({
             path: "/" + product.id,
             component: pageTemplate,
             context: {
                 id: product.id,
-                name: product.name,
-                description: product.description,
+                name: product.product.name,
+                description: product.product.description,
                 images: imageSharpResult,
-                stripeData: stripeResult.data.allStripeSku.edges[0].node,
+                stripeData: product,
             }
         })
     }

@@ -43,6 +43,7 @@ module.exports = {
         `gatsby-plugin-sass`,
         'gatsby-transformer-sharp',
         'gatsby-plugin-sharp',
+        `gatsby-transformer-json`,
         {
             resolve: `gatsby-source-filesystem`,
             options: {
@@ -68,6 +69,14 @@ module.exports = {
                 pathToConfigModule: "src/utils/typography.js"
             }
         },*/
+        `gatsby-transformer-json`,
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                path: `./content/categories/`,
+                name: "categories"
+            },
+        },
         "gatsby-plugin-stripe",
         {
             resolve: `gatsby-source-stripe`,
@@ -75,22 +84,6 @@ module.exports = {
                 objects: ["Sku"],
                 secretKey: process.env.STRIPE_SECRET_KEY,
                 downloadFiles: true,
-            },
-        },
-        `gatsby-transformer-json`,
-        {
-            resolve: `gatsby-source-filesystem`,
-            options: {
-                path: `./content/products/`,
-                name: "products"
-            },
-        },
-        `gatsby-transformer-json`,
-        {
-            resolve: `gatsby-source-filesystem`,
-            options: {
-                path: `./content/categories/`,
-                name: "categories"
             },
         },
         `gatsby-transformer-json`,

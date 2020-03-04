@@ -23,15 +23,21 @@ class Categories extends Component {
                             products
                         }
                     },
-                    products: allProductsJson {
-                        edges {
-                          node {
+                    products: allStripeSku {
+                        nodes {
+                          id
+                          price
+                          currency
+                          product {                                        
                             id
-                            name
+                            metadata {
+                              img_category
+                            }
                             description
+                            name
                           }
                         }
-                      }
+                      }                    
                   }
                 `}
                 render={({ categories, products }) => (

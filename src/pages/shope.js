@@ -9,6 +9,7 @@ import Blog from "../components/blog"
 import Home from "../components/page/home"
 import About from "../components/page/about"
 import Contact from "../components/page/contact"
+import Cart from "../components/page/cart"
 import { graphql, useStaticQuery } from "gatsby"
 
 const Shope = ({data}) => (
@@ -22,6 +23,7 @@ const Shope = ({data}) => (
             <Home path="/shope/home"/>
             <About path="/shope/about"/>
             <Contact path="/shope/contact"/>
+            <Cart path="/shope/cart"/>
         </Router>
     </Layout>
 )
