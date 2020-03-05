@@ -61,7 +61,8 @@
     "typeface-imprima": "0.0.71",
     "typography": "^0.16.19",
     "typography-theme-funston": "^0.16.19",
-    "axios": "^0.19.0"
+    "axios": "^0.19.0",
+    "react-router-dom": "latest"
   },
   "devDependencies": {
     "history": "^4.10.1",
