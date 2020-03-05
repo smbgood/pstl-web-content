@@ -36,8 +36,8 @@ collections:
     identifier_field: id
     fields:
       - { name: name, label: Name }
-      - { name: id, label: SKU }
-      - { name: product, label: Product Image Urls, widget: list }
+      - { name: id, label: Category ID }
+      - { name: products, label: Products, widget: list }
       - { name: image, label: Image, widget: image}
   - name: siteadmin
     label: Site Admin
