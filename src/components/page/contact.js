@@ -10,7 +10,7 @@ class Contact extends Component {
             <div className="contact-root">
                 <h1 className="contact-title">Contact Us</h1>
                 <Formik
-                    initialValues={{ name: '', email: '', message: '' }}
+                    initialValues={{ firstname: '', email: '', message: '' }}
                     validate={values => {
                         const errors = {};
                         if (!values.email) {
@@ -21,13 +21,13 @@ class Contact extends Component {
                             errors.email = 'Invalid email address';
                         }
 
-                        if(!values.name){
-                            errors.name = 'Please enter your name';
+                        if(!values.firstname){
+                            errors.firstname = 'Please enter your name';
                         }
                         return errors;
                     }}
                     onSubmit={(values, { setSubmitting }) => {
-                        values["form-name"] = "b-b-contact"
+                        values["form-name"] = "bbcontact"
                         values = qs.stringify(values)
                         axios.post("/contact", values, {headers: {'Content-Type':'application/x-www-form-urlencoded'}})
                             .then(response => {
@@ -47,10 +47,10 @@ class Contact extends Component {
                     }}
                 >
                     {({ isSubmitting }) => (
-                        <Form name="b-b-contact" data-netlify="true" netlify-honeypot="bot-field" method="post" action="/success" >
+                        <Form name="bbcontact" data-netlify="true" netlify-honeypot="bot-field" method="post" action="/success" >
                             <input type="hidden" name="bot-field"/>
-                            <Field name="name" placeholder="What's your name?"/>
-                            <ErrorMessage name="name" component="div"/>
+                            <Field name="firstname" placeholder="What's your name?"/>
+                            <ErrorMessage name="firstname" component="div"/>
                             <br/>
                             <Field type="email" name="email" placeholder="Enter a good contact email" />
                             <ErrorMessage name="email" component="div" />
