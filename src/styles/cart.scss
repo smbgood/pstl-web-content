@@ -1,3 +1,5 @@
+@import "values.scss";
+
 .cart-row-item{
   display:block;
   text-align:center;
@@ -11,4 +13,28 @@
 .cart-left, .cart-mid, .cart-right, .cart-last{
   display:inline;
   margin-left:2rem;
+}
+
+.cart-root{
+  display: block;
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);
+  background-color: rgba(255,255,255,.2);
+  border-radius: 6px;
+  @media screen and(max-width:$bp-small){
+    max-width: 236px;
+    max-height: 4.2rem;
+  }
+}
+
+.view-cart-link{
+  display:block;
+  margin-top:1rem;
+  @media screen and(max-width:$bp-small){
+    margin-top:.45rem;
+  }
 }
