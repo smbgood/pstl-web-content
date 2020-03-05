@@ -6,14 +6,14 @@ import CartContext from "../widget/cart-context";
 
 class Cart extends Component {
 
-    doOutput(item){
+    doOutput(item, cart){
         return (
             <div className={"cart-row-item"}>
                 <div className={"cart-left"}>{item.sku}</div>
                 <div className={"cart-mid"}>{item.qty}</div>
                 <div className={"cart-right"}>{formatPrice(item.price, item.currency)}</div>
                 <div className={"cart-last"}>{formatPrice((item.price*item.qty), item.currency)}</div>
-
+                <div className={"cart-delete-item"}><button onClick={() => {cart.removeFromCart(item.sku, item.qty)}}>X</button></div>
             </div>
         )
     }
@@ -32,7 +32,7 @@ class Cart extends Component {
                         </div>
 
                         {cart.cart.map( item => (
-                            item != null && item.qty > 0 ? this.doOutput(item) : ""
+                            item != null && item.qty > 0 ? this.doOutput(item, cart) : ""
                         ))}
 
                         {this.doTotal(cart.cart)}
