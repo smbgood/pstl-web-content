@@ -11,7 +11,7 @@ const ContactPage = ({data}) => (
   </Layout>
 )
 export const query=graphql`
-    query OurSuccessQuery{
+    query OurContactPageQuery{
         navImage: allImageSharp(filter: {fluid: {originalName: {eq: "banshee-logo-full.png"}}}) {
             edges {
                 node {
