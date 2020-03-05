@@ -32,6 +32,7 @@ class Cart extends Component {
             let sku = cartItem.sku
             let qty = cartItem.qty
             let obj = {sku: sku, quantity:qty}
+            console.log(obj)
             outItems.push(obj)
         }
         //make request to stripe
