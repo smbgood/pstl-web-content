@@ -6,6 +6,14 @@ import CartContext from "../widget/cart-context";
 
 class Cart extends Component {
 
+    state = {
+        stripe: null,
+    }
+    componentDidMount() {
+        const stripe = window.Stripe("pk_live_OGxNOUzWvpoUJS3yscyZ6Ccw00ukIopzD4")
+        this.setState({ stripe })
+    }
+
     doOutput(item, cart){
         return (
             <div className={"cart-row-item"}>
@@ -16,6 +24,26 @@ class Cart extends Component {
                 <div className={"cart-delete-item"}><button onClick={() => {cart.removeFromCart(item.sku, item.qty)}}>X</button></div>
             </div>
         )
+    }
+
+    async doCheckout(cart, stripe){
+        let outItems = []
+        for(let cartItem of cart){
+            let sku = cartItem.sku
+            let qty = cartItem.qty
+            let obj = {sku, qty}
+            outItems.push(obj)
+        }
+        //make request to stripe
+        const { error } = await stripe.redirectToCheckout({
+            items: outItems,
+            successUrl: `https://www.bansheebabe.com/page-2/`,
+            cancelUrl: `https://www.bansheebabe.com/advanced`,
+        })
+
+        if (error) {
+            console.warn("Error:", error)
+        }
     }
 
     render() {
@@ -36,6 +64,8 @@ class Cart extends Component {
                         ))}
 
                         {this.doTotal(cart.cart)}
+
+                        {cart.cart.length > 0 ? <button onClick={() => {this.doCheckout(cart.cart, this.state.stripe)}}>Checkout</button> : ""}
 
                     </div> : ""
                 )}
