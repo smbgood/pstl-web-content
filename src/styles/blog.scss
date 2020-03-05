@@ -3,6 +3,11 @@
 .blog-root{
   padding: 2rem;
   margin-top:1rem;
+  @media screen and (min-width:$bp-large) {
+    width: 28%;
+    display: inline-block;
+  }
+
 }
 
 .blog-container{
@@ -22,8 +27,7 @@
     vertical-align: bottom;
   }
   @media screen and (min-width:$bp-large){
-    //max-width:400px;
-    height:384px;
+    max-height:286px;
     overflow:hidden;
   }
 }
@@ -69,6 +73,10 @@
     @media screen and (max-width:$bp-med){
       font-size:2.5rem;
     }
+    @media screen and(min-width:$bp-large){
+      margin-block-start:0;
+      margin-block-end:0;
+    }
   }
   p{
     @include color-6();
@@ -101,9 +109,6 @@
 
 .blog-hover-bar{
   top: 196.86px;
-  @media screen and (min-width:$bp-mega){
-    top: 238.86px;
-  }
   height: 100%;
   @include hover-bar();
   -webkit-transition: 0.5s;

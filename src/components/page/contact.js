@@ -49,6 +49,7 @@ class Contact extends Component {
               {({ isSubmitting }) => (
                   <Form name="b-b-contact" data-netlify="true" netlify-honeypot="bot-field" method="POST" action="/" netlify>
                       <input type="hidden" name="bot-field"/>
+                      <input type="hidden" name="form-name" value="b-b-contact" />
                       <Field name="name" placeholder="What's your name?"/>
                       <ErrorMessage name="name" component="div"/>
                       <br/>
