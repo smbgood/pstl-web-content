@@ -31,7 +31,7 @@ class Cart extends Component {
         for(let cartItem of cart){
             let sku = cartItem.sku
             let qty = cartItem.qty
-            let obj = {sku, qty}
+            let obj = {sku: sku, quantity:qty}
             outItems.push(obj)
         }
         //make request to stripe
