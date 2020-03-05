@@ -39,7 +39,7 @@ class Cart extends Component {
         const { error } = await stripe.redirectToCheckout({
             items: outItems,
             successUrl: `https://www.bansheebabe.com/page-2/`,
-            cancelUrl: `https://www.bansheebabe.com/advanced`,
+            cancelUrl: `https://www.bansheebabe.com/shope/cart`,
         })
 
         if (error) {
