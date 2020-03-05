@@ -3,6 +3,7 @@ import {graphql, StaticQuery} from 'gatsby'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import "../../styles/contact.scss"
 import axios from "axios";
+import qs from "querystring"
 
 class Contact extends Component {
 
@@ -28,7 +29,8 @@ class Contact extends Component {
                   return errors;
               }}
               onSubmit={(values, { setSubmitting }) => {
-                  axios.post("https://www.bansheebabe.com/netlifysubmits", values, {headers: {"Content-Type":"application/x-www-form-urlencoded"}})
+                  values = qs.stringify(values)
+                  axios.post(this.props.location.pathname, values, {headers: {"Content-Type":"application/x-www-form-urlencoded"}})
                       .then(response => {
                           //used to parse out stuff to use on the spot
                           /*const {
