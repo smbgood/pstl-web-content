@@ -32,7 +32,6 @@ class Cart extends Component {
             let sku = cartItem.sku
             let qty = cartItem.qty
             let obj = {sku: sku, quantity:qty}
-            console.log(obj)
             outItems.push(obj)
         }
         //make request to stripe
@@ -52,7 +51,7 @@ class Cart extends Component {
             <CartContext.Consumer>
                 {cart => (
                     cart != null && cart.cart != null ?
-                    <div className={"cart-root"} >
+                    <div className={"cart-page-root"} >
                         <div className={"cart-row-item cart-header-item"}>
                             <div className={"cart-left"}>SKU</div>
                             <div className={"cart-mid"}>QTY</div>

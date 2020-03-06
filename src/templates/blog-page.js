@@ -10,10 +10,6 @@ import {FaInfoCircle} from "react-icons/fa"
 
 class BlogPageTemplate extends React.Component {
 
-  componentDidMount(){
-    //console.log(this);
-  }
-
   generateCorrectAttribution(node) {
 
     let fullAttribution = ""
@@ -48,7 +44,6 @@ class BlogPageTemplate extends React.Component {
         color: "rgba(112, 205, 255, 1)"
       }
     }
-    console.log(this)
     return(
       <Layout key={this.props.pageContext.id} navImage={this.props.data.navImage.edges[0].node}>
         <div className="blog-page-root">
@@ -63,6 +58,7 @@ class BlogPageTemplate extends React.Component {
           <div className="blog-page-body">
             <MDXRenderer>{this.props.pageContext.blog.node.body}</MDXRenderer>
           </div>
+            {this.doLinkOutput()}
           <div className="blog-page-footer">
             <Link to={"/shope"}>See more</Link>
           </div>
@@ -71,6 +67,12 @@ class BlogPageTemplate extends React.Component {
     )
   }
 
+    doLinkOutput() {
+        return this.props.pageContext.blog.node.frontmatter.product != null ?
+            <div className="blog-page-link">
+                <Link to={"/" + this.props.pageContext.blog.node.frontmatter.product}/>
+            </div> : ""
+    }
 }
 export const query=graphql`
   query OurQuery{

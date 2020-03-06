@@ -18,6 +18,7 @@ collections:
       - { name: body, label: Body, widget: markdown }
       - { name: coverimage, label: Cover Image, widget: image }
       - { name: fullimage, label: Full Image, widget: image }
+      - { name: product, label: Product to Link}
       - { name: glowcolor, label: Glow Color}
       - label: Attribution
         name: attribution
