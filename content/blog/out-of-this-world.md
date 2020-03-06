@@ -4,11 +4,12 @@ date: 2020-02-21T13:41:22.927Z
 title: Out of this World!
 coverimage: /images/uploads/photo-of-constellation-2832084.jpg
 fullimage: /images/uploads/photo-of-constellation-2832084.jpg
+product: xyz
 glowcolor: violet
 attribution:
   attrAuthor: Pexels
+  attrLicense: Free
   attrLink: 'https://www.pexels.com/photo/photo-of-constellation-2832084/'
-  attrLicense: Free   
   attrMods: Resized to fit blog cover image
   attrTitle: Pexels
 ---
