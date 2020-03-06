@@ -7,6 +7,7 @@ import findImageForSetBlogImage from "../services/utils"
 import { graphql, Link } from "gatsby"
 import "../styles/blog-page.scss"
 import {FaInfoCircle} from "react-icons/fa"
+import SEO from "../components/page/seo";
 
 class BlogPageTemplate extends React.Component {
 
@@ -46,6 +47,7 @@ class BlogPageTemplate extends React.Component {
     }
     return(
       <Layout key={this.props.pageContext.id} navImage={this.props.data.navImage.edges[0].node}>
+        <SEO title={"Banshee Babe Boutique | " + this.props.pageContext.blog.node.frontmatter.title} />
         <div className="blog-page-root">
           <div className="blog-page-image-container" style={styles}>
             {findImageForSetBlogImage(this.props.data.images, this.props.pageContext.blog, false) != null ? (<Img fluid={findImageForSetBlogImage(this.props.data.images, this.props.pageContext.blog, false)} />) : console.log("no image found for set blog")}
@@ -58,19 +60,19 @@ class BlogPageTemplate extends React.Component {
           <div className="blog-page-body">
             <MDXRenderer>{this.props.pageContext.blog.node.body}</MDXRenderer>
           </div>
-            {this.doLinkOutput()}
+            {this.doLinkOutput(this.props.pageContext.blog.node.frontmatter.product )}
           <div className="blog-page-footer">
-            <Link to={"/shope"}>See more</Link>
+            <Link to={"/shope"}>Go back</Link>
           </div>
         </div>
       </Layout>
     )
   }
 
-    doLinkOutput() {
-        return this.props.pageContext.blog.node.frontmatter.product != null ?
+    doLinkOutput(product) {
+        return product != null ?
             <div className="blog-page-link">
-                <Link to={"/" + this.props.pageContext.blog.node.frontmatter.product}/>
+                <Link to={"/" + product}>View product</Link>
             </div> : ""
     }
 }

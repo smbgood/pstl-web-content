@@ -11,12 +11,35 @@
   padding-bottom: 6rem;
 }
 
+.blog-page-link{
+  display:block;
+  a {
+    @include color-7()
+  }
+  margin-top:2rem;
+  font-size:1.75rem;
+  text-align:right;
+  @media screen and (max-width:$bp-med){
+    font-size:1.1rem;
+  }
+}
+
 .blog-page-header{
+  text-align:center;
   h1{
+    font-size:3.5rem;
     @media screen and (max-width:$bp-med){
       margin-top:3rem;
+      font-size:2.5rem;
     }
     @include color-5()
+  }
+}
+
+.blog-page-footer{
+  margin-top:5rem;
+  @media screen and(max-width:$bp-med){
+    margin-top:2.5rem;
   }
 }
 

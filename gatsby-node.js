@@ -117,6 +117,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                   title
                   date
                   fullimage
+                  product
                   glowcolor
                   attribution{
                     attrTitle
