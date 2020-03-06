@@ -4,11 +4,12 @@ date: 2020-02-21T13:08:10.621Z
 title: Prosper
 coverimage: /images/uploads/bullion-gold-gold-bars-golden-47047.jpg
 fullimage: /images/uploads/53ccb84405f321be88b2383ba9e78bf3.png
+product: sku_GqieRpegmpEELC
 glowcolor: green
 attribution:
   attrAuthor: Pixabay
+  attrLicense: Free
   attrLink: 'https://www.pexels.com/photo/bullion-gold-gold-bars-golden-47047/'
-  attrLicense: Free   
   attrMods: Resized to fit blog cover image
   attrTitle: Pexels
 ---
