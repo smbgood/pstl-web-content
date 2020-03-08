@@ -19,7 +19,7 @@ attribution:
 
 Say it with me! **I am worthy of love and success**. My life is **infinitely blessed**! I receive the **flow of abundance** with **open arms**, and lovingly pay it forward. **I gleefully share my blessings** with those I love and those who are in need!
 
-This is a coffee and oat based bath, with no use of strong smelling essential oils. The coffee grounds your intention into physical reality and gives the bath a little extra punch. The oats were chosen to counteract the coffee's abrasiveness as well as for their association with wealth. A blend of additional ingredients such as honey suckle, basil, and irish moss were carefully selected to help you attract good fortune and thrive. Sometimes it can be as simple as dedicating 30 minutes to yourself, taking a steamy hot bath, and allowing nature's gifts to work their magic on you!
+This is a cocoa, coffee, and oat based bath, with no use of strong smelling essential oils. The coffee grounds your intention into physical reality and gives the bath a little extra punch. The oats were chosen to counteract the coffee's abrasiveness, and the special dark cocoa powder for its associations with wealth. A blend of additional ingredients such as honey suckle, basil, and Irish moss were carefully selected to help you attract good fortune and thrive. Sometimes it can be as simple as dedicating 30 minutes to yourself, taking a steamy hot bath, and allowing nature's gifts to work their magic on you!
 
 * Do not use if pregnant. 
 * All our bath soaks are vegan, all natural, and cruelty free.
