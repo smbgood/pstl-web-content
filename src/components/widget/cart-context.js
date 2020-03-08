@@ -17,7 +17,7 @@ class CartProvider extends React.Component {
         hasItems: false,
         itemSet: []
     }
-    addToCart = (item, qty, price, currency) => {
+    addToCart = (item, qty, price, currency, name) => {
         let contents = localStorage.getItem("b-b-cart")
         if(contents != null && contents !== ""){
             let input = JSON.parse(contents)
@@ -35,7 +35,8 @@ class CartProvider extends React.Component {
                     sku:item,
                     qty:qty,
                     price:price,
-                    currency:currency
+                    currency:currency,
+                    name:name,
                 })
             }
             localStorage.setItem("b-b-cart", JSON.stringify(outArray))
@@ -45,7 +46,8 @@ class CartProvider extends React.Component {
                 sku: item,
                 qty: qty,
                 price:price,
-                currency:currency
+                currency:currency,
+                name:name
             }]
             localStorage.setItem("b-b-cart", JSON.stringify(init_cart))
             this.setState({itemSet:init_cart, hasItems:true})

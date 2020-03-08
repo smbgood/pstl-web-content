@@ -113,7 +113,7 @@ const ShopItem = class extends React.Component {
                         <input key={"shop-item-amt-input"} type="number" min="0" name="amountToAdd" value={this.state.amountToAdd}
                                onChange={this.handleInputChange}/>
                         <button key={"shop-item-add-cart"} style={buttonStyles}
-                                onClick={() => {cart.addToCart(sku.id, this.state.amountToAdd, sku.price, sku.currency); this.resetAmounts();}}>
+                                onClick={() => {cart.addToCart(sku.id, this.state.amountToAdd, sku.price, sku.currency, sku.product.name); this.resetAmounts();}}>
                             ADD TO CART
                         </button>
                         <button key={"shop-item-remove-cart"} style={buttonStyles}
