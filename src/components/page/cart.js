@@ -46,33 +46,6 @@ class Cart extends Component {
         }
     }
 
-    render() {
-        return (
-            <CartContext.Consumer>
-                {cart => (
-                    cart != null && cart.cart != null ?
-                    <div className={"cart-page-root"} >
-                        <div className={"cart-row-item cart-header-item"}>
-                            <div className={"cart-left"}>SKU</div>
-                            <div className={"cart-mid"}>QTY</div>
-                            <div className={"cart-right"}>PRICE</div>
-                            <div className={"cart-last"}>TOTAL</div>
-                        </div>
-
-                        {cart.cart.map( item => (
-                            item != null && item.qty > 0 ? this.doOutput(item, cart) : ""
-                        ))}
-
-                        {this.doTotal(cart.cart)}
-
-                        {cart.cart.length > 0 ? <button onClick={() => {this.doCheckout(cart.cart, this.state.stripe)}}>Checkout</button> : ""}
-
-                    </div> : ""
-                )}
-            </CartContext.Consumer>
-        )
-    }
-
     doTotal(cart) {
         let total = 0
         let currency = null
@@ -83,14 +56,41 @@ class Cart extends Component {
         if(currency){
             return(
                 <div className={"cart-row-item cart-total-line"}>
-                    <div className={"cart-left"}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                    <div className={"cart-mid"}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                    <div className={"cart-right"}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                    <div className={"cart-left"}/>
+                    <div className={"cart-mid"}/>
+                    <div className={"cart-right"}/>
                     <div className={"cart-last"}> GRAND TOTAL:{formatPrice(total, currency)}</div>
                 </div>
             )
         }
 
+    }
+
+    render() {
+        return (
+            <CartContext.Consumer>
+                {cart => (
+                    cart != null && cart.cart != null ?
+                    <div className={"cart-page-root"} >
+                        <div className={"cart-row-item cart-header-item"}>
+                            <div className={"cart-left header"}>Item</div>
+                            <div className={"cart-mid header"}>Amount</div>
+                            <div className={"cart-right header"}>Price ($)</div>
+                            <div className={"cart-last header"}>Total</div>
+                        </div>
+
+                        {cart.cart.map( item => (
+                            item != null && item.qty > 0 ? this.doOutput(item, cart) : ""
+                        ))}
+
+                        {this.doTotal(cart.cart)}
+
+                        {cart.cart.length > 0 ? <button className={"checkout-cart-page-btn"} onClick={() => {this.doCheckout(cart.cart, this.state.stripe)}}>Checkout</button> : ""}
+
+                    </div> : ""
+                )}
+            </CartContext.Consumer>
+        )
     }
 }
 

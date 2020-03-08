@@ -1,9 +1,12 @@
 @import "values.scss";
+@import "global.scss";
 
 //for actual cart (checkout) page
 
 .cart-page-root{
   background-color:rgba(0,0,0,.5);
+  max-width:32rem;
+  margin:0 auto;
 }
 
 .cart-row-item{
@@ -17,8 +20,16 @@
   margin-left:1.5rem;
 }
 
+.checkout-cart-page-btn{
+  position: relative;
+  left: 77.1%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .cart-header-item{
   margin-top:4rem;
+  @include bg-color-8();
   @media screen and(max-width:$bp-med){
     margin-top:2rem;
   }
@@ -26,7 +37,13 @@
 
 .cart-left, .cart-mid, .cart-right, .cart-last{
   display:inline;
-  margin-left:2rem;
+  .header{
+  margin-right:1rem;
+  }
+}
+
+.cart-mid, .cart-right, .cart-last{
+  margin-left:3rem;
 }
 
 
