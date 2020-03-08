@@ -9,16 +9,19 @@ const Cart = class extends React.Component {
         super(props);
     }
 
+
     render() {
         return (
             <CartContext.Consumer>
                 {cart => (
                     cart != null && cart.cart != null && cart.cart.length > 0 ?
-                    <div className={"cart-root"} >
+                        (!this.checkIfShouldClear(cart) ?
+                            <div className={"cart-root"} >
                         {this.displayTotalItemsInCart(cart)}
                         <Link to={"/shope/cart"} className={"view-cart-link"}>View Cart</Link>
-                    </div> :
-                        ""
+                        </div>
+                            : "")
+                        : ""
                 )}
 
             </CartContext.Consumer>
@@ -43,6 +46,14 @@ const Cart = class extends React.Component {
         }else{
             return ""
         }
+    }
+
+    checkIfShouldClear(cart) {
+        if(window != null && window.location.pathname === "/page-2"){
+            cart.resetCart()
+            return true
+        }
+        return false
     }
 }
 

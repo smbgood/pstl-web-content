@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {graphql, StaticQuery, useStaticQuery} from 'gatsby'
+import {graphql, StaticQuery} from 'gatsby'
 import ShopItem from './shop-item'
 import Category from "./category";
 
@@ -12,17 +12,6 @@ const containerStyles = {
 }
 
 class Shop extends Component {
-    // Initialise Stripe.js with your publishable key.
-    // You can find your key in the Dashboard:
-    // https://dashboard.stripe.com/account/apikeys
-
-    state = {
-        stripe: null,
-    }
-    componentDidMount() {
-        const stripe = window.Stripe("pk_live_OGxNOUzWvpoUJS3yscyZ6Ccw00ukIopzD4")
-        this.setState({ stripe })
-    }
 
     render() {
         return (
@@ -49,7 +38,7 @@ class Shop extends Component {
                 render={({ skus, categories }) => (
                     <div style={containerStyles}>
                         {skus.edges.map(({ node: sku }) => (
-                            <ShopItem key={sku.id} sku={sku} stripe={this.state.stripe} />
+                            <ShopItem key={sku.id} sku={sku}/>
                         ))}
                         {categories.nodes.map( node => (
                             <Category key={node.id} category={node}/>

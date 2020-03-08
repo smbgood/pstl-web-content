@@ -10,7 +10,8 @@ class Cart extends Component {
         stripe: null,
     }
     componentDidMount() {
-        const stripe = window.Stripe("pk_live_OGxNOUzWvpoUJS3yscyZ6Ccw00ukIopzD4")
+        /*const stripe = window.Stripe("pk_live_OGxNOUzWvpoUJS3yscyZ6Ccw00ukIopzD4")*/
+        const stripe = window.Stripe("pk_test_4xqQzlAyU2e9MJ2h9P1SapFe00K4jXy6Rk")
         this.setState({ stripe })
     }
 
@@ -39,6 +40,7 @@ class Cart extends Component {
             items: outItems,
             successUrl: `https://www.bansheebabe.com/page-2/`,
             cancelUrl: `https://www.bansheebabe.com/shope/cart`,
+            billingAddressCollection:`required`,
         })
 
         if (error) {

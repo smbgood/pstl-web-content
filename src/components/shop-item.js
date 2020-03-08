@@ -60,19 +60,6 @@ const ShopItem = class extends React.Component {
         })
     }
 
-    async redirectToCheckout(event, sku, quantity = 1) {
-        event.preventDefault()
-        const { error } = await this.props.stripe.redirectToCheckout({
-            items: [{ sku, quantity }],
-            successUrl: `https://www.bansheebabe.com/page-2/`,
-            cancelUrl: `https://www.bansheebabe.com/advanced`,
-        })
-
-        if (error) {
-            console.warn("Error:", error)
-        }
-    }
-
     resetAmounts(){
         this.setState({amountToAdd:0})
     }
