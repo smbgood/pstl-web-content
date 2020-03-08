@@ -7,6 +7,7 @@
   background-color:rgba(0,0,0,.5);
   max-width:32rem;
   margin:0 auto;
+  text-align:center;
 }
 
 .cart-row-item{
@@ -21,10 +22,16 @@
 }
 
 .checkout-cart-page-btn{
-  position: relative;
-  left: 77.1%;
-  margin-top: 1rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
+  font-family: "Courgette", monospace;
+  font-size:1.75rem;
+  padding-left:1.5rem;
+  padding-right:1.5rem;
+  background-color:rgba(140,130,100,.5);
+  border:none;
+  border-radius:5px;
+  color:white;
 }
 
 .cart-header-item{
