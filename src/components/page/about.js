@@ -33,8 +33,7 @@ class About extends Component {
                 <div className="blended_grid">
                     <h3 className="about-title">About Banshee Babe</h3>
                     <FaCoffee/>
-                    <FaAndroid/>
-                    <p className="about-text">{this.renderHtmlToReact(siteInfo.edges[0].node.blogpage.aboutbar.barBody)}</p>
+                    <p className="about-text">{siteInfo.edges[0].node.blogpage.aboutbar.barBody}</p>
                 </div>
             )}
         />
