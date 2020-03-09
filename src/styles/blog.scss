@@ -81,6 +81,12 @@
   p{
     @include color-6();
   }
+  a{
+    h2{
+      @include color-12();
+      text-shadow: 3px 3px black;
+    }
+  }
 }
 
 @mixin hover-bar(){

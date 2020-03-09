@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import "../../styles/cart.scss"
 import {formatPrice} from "../../utils/shared";
 import CartContext from "../widget/cart-context";
+import {FaTrash} from "react-icons/fa"
 
 class Cart extends Component {
 
@@ -22,7 +23,7 @@ class Cart extends Component {
                 <div className={"cart-mid"}>{item.qty}</div>
                 <div className={"cart-right"}>{formatPrice(item.price, item.currency)}</div>
                 <div className={"cart-last"}>{formatPrice((item.price*item.qty), item.currency)}</div>
-                <div className={"cart-delete-item"}><button onClick={() => {cart.removeFromCart(item.sku, item.qty)}}>X</button></div>
+                <div className={"cart-delete-item"}><button className={"cart-delete-btn"} onClick={() => {cart.removeFromCart(item.sku, item.qty)}}><FaTrash/></button></div>
             </div>
         )
     }
@@ -58,9 +59,6 @@ class Cart extends Component {
         if(currency){
             return(
                 <div className={"cart-row-item cart-total-line"}>
-                    <div className={"cart-left"}/>
-                    <div className={"cart-mid"}/>
-                    <div className={"cart-right"}/>
                     <div className={"cart-last"}> GRAND TOTAL:{formatPrice(total, currency)}</div>
                 </div>
             )

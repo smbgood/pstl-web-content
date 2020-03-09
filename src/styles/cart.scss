@@ -4,13 +4,15 @@
 //for actual cart (checkout) page
 
 .cart-page-root{
-  background-color:rgba(0,0,0,.5);
+  @include bg-color-9();
   max-width:32rem;
   margin:0 auto;
   text-align:center;
+  margin-bottom:3.5rem;
 }
 
 .cart-row-item{
+  @include color-8();
   display:block;
   text-align:center;
   margin-top:2rem;
@@ -21,6 +23,11 @@
   margin-left:1.5rem;
 }
 
+.cart-delete-btn{
+  background-color:rgba(0,0,0,0);
+  border:none;
+}
+
 .checkout-cart-page-btn{
   margin-top: 2rem;
   margin-bottom: 1rem;
@@ -28,10 +35,10 @@
   font-size:1.75rem;
   padding-left:1.5rem;
   padding-right:1.5rem;
-  background-color:rgba(140,130,100,.5);
+  @include bg-color-10();
   border:none;
   border-radius:5px;
-  color:white;
+  @include color-9();
 }
 
 .cart-header-item{
@@ -53,6 +60,12 @@
   margin-left:3rem;
 }
 
+.cart-total-line{
+  .cart-last{
+    margin-left:0;
+  }
+}
+
 
 //for on-page cart widget
 
@@ -63,9 +76,10 @@
   margin: 0 auto;
   padding: 1rem;
   margin-bottom: 1rem;
-  box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);
-  background-color: rgba(255,255,255,.2);
+  @include shadow-color-1();
+  @include bg-color-11();
   border-radius: 6px;
+  margin-top: 1rem;
   @media screen and(max-width:$bp-small){
     max-width: 236px;
     max-height: 4.2rem;
@@ -73,9 +87,14 @@
 }
 
 .view-cart-link{
+  @include color-11();
   display:block;
   margin-top:1rem;
   @media screen and(max-width:$bp-small){
     margin-top:.45rem;
   }
+}
+
+.cart-widget-total-count{
+  @include color-10();
 }

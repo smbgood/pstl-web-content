@@ -1,5 +1,6 @@
 import React from "react"
 import CartContext from "./widget/cart-context";
+import "../styles/shop-item.scss"
 
 const cardStyles = {
     display: "block",
@@ -60,10 +61,6 @@ const ShopItem = class extends React.Component {
         })
     }
 
-    resetAmounts(){
-        this.setState({amountToAdd:0})
-    }
-
     displayQuantityInCart(cart, id){
         for( let cartItem of cart){
             if(cartItem.sku === id){
@@ -97,15 +94,11 @@ const ShopItem = class extends React.Component {
                                 onClick={() => {this.increaseInputQuantity();}}>+</button>
                         <button key={"shop-item-amt-decrease"} style={otherButtonStyles}
                                 onClick={() => {this.decreaseInputQuantity();}}>-</button>
-                        <input key={"shop-item-amt-input"} type="number" min="0" name="amountToAdd" value={this.state.amountToAdd}
+                        <input key={"shop-item-amt-input"} className={"shop-item-input-amt"} type="number" min="0" name="amountToAdd" value={this.state.amountToAdd}
                                onChange={this.handleInputChange}/>
                         <button key={"shop-item-add-cart"} style={buttonStyles}
-                                onClick={() => {cart.addToCart(sku.id, this.state.amountToAdd, sku.price, sku.currency, sku.product.name); this.resetAmounts();}}>
+                                onClick={() => {cart.addToCart(sku.id, this.state.amountToAdd, sku.price, sku.currency, sku.product.name);}}>
                             ADD TO CART
-                        </button>
-                        <button key={"shop-item-remove-cart"} style={buttonStyles}
-                                onClick={() => {cart.removeFromCart(sku.id, this.state.amountToAdd); this.resetAmounts();}}>
-                            REMOVE FROM CART
                         </button>
                         {this.displayQuantityInCart(cart.cart, sku.id)}
                     </div> : ""
