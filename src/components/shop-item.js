@@ -79,6 +79,9 @@ const ShopItem = class extends React.Component {
         if(this.state.amountToAdd === 0)
             return
         let decreased = this.state.amountToAdd - 1;
+        if(decreased < 0){
+            decreased = 0;
+        }
         this.setState({amountToAdd:decreased})
     }
 
