@@ -6,7 +6,7 @@ import hastToHyperscript from "hast-to-hyperscript"
 class About extends Component {
 
     renderHtmlToReact = node => {
-        return hastToHyperscript(React.createElement, node);
+        return { __html : node }
     };
 
   render() {
@@ -33,7 +33,7 @@ class About extends Component {
                 <div className="blended_grid">
                     <h3 className="about-title">About Banshee Babe</h3>
                     <FaCoffee/>
-                    <p className="about-text">{siteInfo.edges[0].node.blogpage.aboutbar.barBody}</p>
+                    <p className="about-text" dangerouslySetInnerHTML={renderHtmlToReact(siteInfo.edges[0].node.blogpage.aboutbar.barBody)}/>
                 </div>
             )}
         />
