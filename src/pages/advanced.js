@@ -3,7 +3,7 @@ import React from "react"
 import Layout from "../components/page/layout"
 import SEO from "../components/page/seo"
 
-import Shop from "../components/shop";
+import Shop from "../components/page/shop";
 import { graphql } from "gatsby"
 
 const AdvancedExamplePage = ({data}) => (

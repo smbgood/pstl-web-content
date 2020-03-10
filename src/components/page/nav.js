@@ -6,13 +6,11 @@ import {FaCrow, FaAlignJustify, FaPencilAlt, FaSpa, FaStoreAlt, FaTelegram} from
 import Img from "gatsby-image"
 
 class Nav extends Component {
+
     constructor(props) {
         super(props)
         this.state = {isMobileMenuOpen : false, animationEnd: false};
         this.handleClick = this.handleClick.bind(this);
-    }
-
-    componentDidMount() {
     }
 
     doTimeout(){
@@ -31,7 +29,6 @@ class Nav extends Component {
     }
 
     render() {
-        //this.doTimeout();
         return (
             <div className="nav-outer">
           <div className="nav-root">
@@ -99,7 +96,6 @@ class Nav extends Component {
                     {` `}
                 </div>
             </div>
-
         )
     }
 }

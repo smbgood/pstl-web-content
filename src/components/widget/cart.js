@@ -9,23 +9,29 @@ const Cart = class extends React.Component {
         super(props);
     }
 
-
     render() {
         return (
             <CartContext.Consumer>
                 {cart => (
                     cart != null && cart.cart != null && cart.cart.length > 0 ?
-                        (!this.checkIfShouldClear(cart) ?
+                        (!this.checkIfShouldClear(cart) && this.okToDisplay() ?
                             <div className={"cart-root"} >
-                        {this.displayTotalItemsInCart(cart)}
-                        <Link to={"/shope/cart"} className={"view-cart-link"}>View Cart</Link>
-                        </div>
-                            : "")
-                        : ""
+                                {this.displayTotalItemsInCart(cart)}
+                                <Link to={"/shope/cart"} className={"view-cart-link"}>View Cart</Link>
+                            </div>
+                        : "")
+                    : ""
                 )}
 
             </CartContext.Consumer>
         )
+    }
+
+    okToDisplay(){
+        if(window != null && window.location.pathname === "/shope/cart"){
+            return false
+        }
+        return true
     }
 
     displayTotalItemsInCart(cart) {

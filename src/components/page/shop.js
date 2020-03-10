@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {graphql, StaticQuery} from 'gatsby'
-import ShopItem from './shop-item'
-import Category from "./category";
+import ShopItem from '../shop-item'
+import Category from "../category";
 
 const containerStyles = {
     display: 'flex',

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {graphql, StaticQuery} from 'gatsby'
-import {FaCoffee, FaAndroid} from "react-icons/fa"
-import hastToHyperscript from "hast-to-hyperscript"
+import {FaCoffee} from "react-icons/fa"
 
 class About extends Component {
 

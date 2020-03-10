@@ -70,7 +70,7 @@ class Cart extends Component {
         return (
             <CartContext.Consumer>
                 {cart => (
-                    cart != null && cart.cart != null ?
+                    cart != null && cart.cart != null && cart.cart.length > 0 ?
                     <div className={"cart-page-root"} >
                         <div className={"cart-row-item cart-header-item"}>
                             <div className={"cart-left header"}>Item</div>
@@ -85,9 +85,9 @@ class Cart extends Component {
 
                         {this.doTotal(cart.cart)}
 
-                        {cart.cart.length > 0 ? <button className={"checkout-cart-page-btn"} onClick={() => {this.doCheckout(cart.cart, this.state.stripe)}}>Checkout</button> : ""}
+                        <button className={"checkout-cart-page-btn"} onClick={() => {this.doCheckout(cart.cart, this.state.stripe)}}>Checkout</button>
 
-                    </div> : ""
+                    </div> : <div className={"cart-page-root"}><h4 className={"cart-items-empty"}>No items currently in cart.</h4></div>
                 )}
             </CartContext.Consumer>
         )
