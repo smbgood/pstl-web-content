@@ -5,7 +5,7 @@ import hastToHyperscript from "hast-to-hyperscript"
 
 class About extends Component {
 
-    renderHtmlToReact = node => {
+    renderHtmlToReact(node){
         return { __html : node }
     };
 
