@@ -4,6 +4,7 @@ import "../../styles/cart.scss"
 import {formatPrice} from "../../utils/shared";
 import CartContext from "../widget/cart-context";
 import {FaTrash} from "react-icons/fa"
+import { Link } from "gatsby"
 
 class Cart extends Component {
 
@@ -11,8 +12,8 @@ class Cart extends Component {
         stripe: null,
     }
     componentDidMount() {
-        const stripe = window.Stripe("pk_live_OGxNOUzWvpoUJS3yscyZ6Ccw00ukIopzD4")
-        /*const stripe = window.Stripe("pk_test_4xqQzlAyU2e9MJ2h9P1SapFe00K4jXy6Rk")*/
+        /*const stripe = window.Stripe("pk_live_OGxNOUzWvpoUJS3yscyZ6Ccw00ukIopzD4")*/
+        const stripe = window.Stripe("pk_test_4xqQzlAyU2e9MJ2h9P1SapFe00K4jXy6Rk")
         this.setState({ stripe })
     }
 
@@ -59,7 +60,7 @@ class Cart extends Component {
         if(currency){
             return(
                 <div className={"cart-row-item cart-total-line"}>
-                    <div className={"cart-last"}> GRAND TOTAL:{formatPrice(total, currency)}</div>
+                    <div className={"cart-last subtotal-line"}> Subtotal:{formatPrice(total, currency)}</div>
                 </div>
             )
         }
@@ -85,7 +86,7 @@ class Cart extends Component {
 
                         {this.doTotal(cart.cart)}
 
-                        <button className={"checkout-cart-page-btn"} onClick={() => {this.doCheckout(cart.cart, this.state.stripe)}}>Checkout</button>
+                        <Link to={"/shope/checkout"} className={"checkout-cart-page-btn"}>Checkout</Link>
 
                     </div> : <div className={"cart-page-root"}><h4 className={"cart-items-empty"}>No items currently in cart.</h4></div>
                 )}

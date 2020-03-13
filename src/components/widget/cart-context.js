@@ -7,6 +7,8 @@ const defaultState = {
     removeFromCart: () => {},
     getCartItemsTotal: () => {},
     resetCart: () => {},
+    updateAddressValidation: () => {},
+    addressValidated: null
 }
 const CartContext = React.createContext(defaultState)
 
@@ -128,6 +130,8 @@ class CartProvider extends React.Component {
                     removeFromCart: this.removeFromCart,
                     getCartItemsTotal: this.getCartItemsTotal,
                     resetCart: this.resetCart,
+                    addressValidated: this.state.addressValidated,
+                    updateAddressValidation: this.updateAddressValidation,
                 }}
             >
                 {children}

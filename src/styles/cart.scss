@@ -5,7 +5,7 @@
 
 .cart-page-root{
   @include bg-color-9();
-  max-width:32rem;
+  max-width:66%;
   margin:0 auto;
   text-align:center;
   margin-bottom:3.5rem;
@@ -29,6 +29,7 @@
 }
 
 .checkout-cart-page-btn{
+  display:inline-block;
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-family: "Courgette", monospace;

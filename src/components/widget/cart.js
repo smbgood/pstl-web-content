@@ -28,7 +28,7 @@ const Cart = class extends React.Component {
     }
 
     okToDisplay(){
-        if(window != null && window.location.pathname === "/shope/cart"){
+        if(window != null && (window.location.pathname === "/shope/cart" || window.location.pathname === "/shope/checkout")){
             return false
         }
         return true

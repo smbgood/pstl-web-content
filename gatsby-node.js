@@ -1,6 +1,6 @@
-/*require("dotenv").config({
+require("dotenv").config({
     path: `.env.${process.env.NODE_ENV}`,
-})*/
+})
 
 // Implement the Gatsby API “onCreatePage”. This is
 // called after every page is created.

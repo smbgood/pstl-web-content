@@ -7,7 +7,9 @@ import Blog from "../components/page/blog"
 import About from "../components/page/about"
 import Contact from "../components/page/contact"
 import Cart from "../components/page/cart"
+import Checkout from "../components/page/checkout"
 import { graphql } from "gatsby"
+import Categories from "../components/old/categories";
 
 const Shope = ({data}) => (
     <Layout navImage={data.logoImage.edges[0].node}>
@@ -18,6 +20,8 @@ const Shope = ({data}) => (
             <About path="/shope/about"/>
             <Contact path="/shope/contact"/>
             <Cart path="/shope/cart"/>
+            <Checkout path="/shope/checkout"/>
+            <Categories path="/shope/categories"/>
         </Router>
     </Layout>
 )
