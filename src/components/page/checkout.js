@@ -12,13 +12,11 @@ class Checkout extends Component {
 
     state = {
         stripe: null,
-        orderId: "",
     }
     componentDidMount() {
         /*const stripe = window.Stripe("pk_live_OGxNOUzWvpoUJS3yscyZ6Ccw00ukIopzD4")*/
         const stripe = window.Stripe("pk_test_4xqQzlAyU2e9MJ2h9P1SapFe00K4jXy6Rk")
-        const orderId = this.createOrderId()
-        this.setState({ stripe: stripe, orderId: orderId })
+        this.setState({ stripe: stripe })
     }
 
     doOutput(item, cart){
@@ -28,6 +26,7 @@ class Checkout extends Component {
                 <div className={"cart-mid"}>{item.qty}</div>
                 <div className={"cart-right"}>{formatPrice(item.price, item.currency)}</div>
                 <div className={"cart-last"}>{formatPrice((item.price*item.qty), item.currency)}</div>
+                {/* TODO add function to return to cart screen and show empty cart message */}
                 <div className={"cart-delete-item"}><button onClick={() => {cart.removeFromCart(item.sku, item.qty)}}><FaTrash/></button></div>
             </div>
         )
@@ -75,11 +74,6 @@ class Checkout extends Component {
 
     }
 
-    calcShipping(){
-        //do call
-        console.log("http call")
-    }
-
     render() {
         return (
             <CartContext.Consumer>
@@ -100,95 +94,24 @@ class Checkout extends Component {
                             {this.doTotal(cart.cart)}
 
                             <Formik
-                                initialValues={{ firstname: '', lastname: '', email: '', addresslineone: '', addresslinetwo: '', city: '', state: '', country:'', zip:'', message: '', cart: cart, shipping: null }}
-                                validate={values => {
-                                    const errors = {};
-                                    if (!values.email) {
-                                        errors.email = 'Email required';
-                                    }else if (
-                                        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-                                    ) {
-                                        errors.email = 'Invalid email address';
-                                    }
-
-                                    if(!values.firstname){
-                                        errors.firstname = 'Please enter your first name';
-                                    }
-                                    if(!values.addresslineone){
-                                        errors.addresslineone = 'Please enter an address to ship to'
-                                    }
-                                    if(!values.city){
-                                        errors.city  = 'Please enter a city'
-                                    }
-                                    if(!values.state){
-                                        errors.state = 'Please enter a state'
-                                    }
-                                    if(!values.zip){
-                                        errors.zip = 'Please enter a zip code'
-                                    }
-                                    if(!values.country){
-                                        errors.country = 'Please enter a country'
-                                    }
-                                    return errors;
-                                }}
+                                initialValues={
+                                    {
+                                        firstname: this.props.location.state.address.name,
+                                        email: this.props.location.state.address.email,
+                                        addresslineone: this.props.location.state.address["street1"],
+                                        addresslinetwo: this.props.location.state.address["street2"],
+                                        city: this.props.location.state.address.city,
+                                        state: this.props.location.state.address.state,
+                                        country:this.props.location.state.address.country,
+                                        zip:this.props.location.state.address["zip"],
+                                        message: '',
+                                        cart: cart,
+                                        shipping: this.props.location.state.rates,
+                                        orderId: this.props.location.state.orderId }}
                                 onSubmit={(values, { setSubmitting }) => {
                                     if(values && values.cart != null){
-                                        //validate address before we allow submit:
-                                        let addressValues = {}
-                                        addressValues["name"] = values["firstname"]
-                                        addressValues["street1"] = values["addresslineone"]
-                                        addressValues["city"] = values["city"]
-                                        addressValues["state"] = values["state"]
-                                        addressValues["zip"] = parseInt(values["zip"])
-                                        addressValues["country"] = values["country"]
-                                        addressValues["validate"] = true
+                                        //need to post to our OMS so we can start fufillment, then redirectToCheckout
 
-                                        let url = "http://localhost:9090/banshee/addr?" + qs.stringify(addressValues)
-                                        axios.get(url).then(response => {
-                                            //if valid, show them how much to ship,
-                                            if(response && response.data) {
-                                                if(response.data.rates && response.data.rates.length > 0){
-                                                    values.shipping = response.data.rates;
-                                                    setSubmitting(false)
-                                                }
-                                            }
-                                            //if not valid, pop up an error next to address and do not allow form submit
-                                        })
-
-                                        /*axios.post("http://localhost:9090/banshee/addr",
-                                            addressValues, {headers:{"Access-Control-Allow-Origin":"http://localhost:8000"}}).then(response => {
-                                            console.log(response)
-                                        })*/
-
-
-                                        /*//need to initiate authorization with shippo before we can make this call to our endpoint
-                                        axios.post("http://localhost:9090/addresses/", addressValues,
-                                            {headers:  {"Authorization" : "Authorized",
-                                                    "Content-Type": "application/json"}} ).then(response => {
-                                            if(response && response.data){
-                                                let validationResult = response.data["validation_results"]
-                                                if(validationResult){
-                                                    let isValid = validationResult["is_valid"] === true
-                                                    if(isValid === true) {
-                                                        values["form-name"] = "bborder"
-                                                        let post_values = qs.stringify(values)
-                                                        axios.post("/orderinfo", post_values, {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
-                                                            .then(response => {
-                                                                this.doCheckout(values.cart.cart, this.state.stripe)
-                                                            }).catch(error => {
-                                                            console.log("Error with order form submit: " + error)
-                                                            }
-                                                        )
-
-                                                    }
-                                                    setSubmitting(false);
-                                                }
-                                            }
-
-                                        }).catch(error => {
-                                            console.log("error with input")
-                                            setSubmitting(false);
-                                        })*/
                                     }
 
                                 }}
@@ -197,36 +120,27 @@ class Checkout extends Component {
                                     <Form name="bborder" data-netlify="true" netlify-honeypot="bot-field" method="post" action="/" >
                                         <input type="hidden" name="bot-field"/>
                                         <input type="hidden" name="form-name" value="bborder"/>
-                                        <input type="hidden" name="stripe-order-id" value={this.state.orderId}/>
+                                        <input type="hidden" name="stripe-order-id" value={values.orderId}/>
                                         <br/>
                                         <br/>
-                                        <h3 className={"form-heading-shipping"}>Shipping Address</h3>
-                                        <h4 className={"form-subheading-shipping"}>(US and Canada only, please)</h4>
-                                        <Field name="firstname" placeholder="Name"/>
-                                        <ErrorMessage name="firstname" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
-                                        <Field type="email" name="email" placeholder="Email" />
-                                        <ErrorMessage name="email" render={msg => <div className={"form-error-msg"}>{msg}</div>} />
+                                        <Field name="firstname" placeholder="Name" disabled/>
                                         <br/>
-                                        <Field name="addresslineone" placeholder="Address 1"/>
-                                        <ErrorMessage name="addresslineone" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
+                                        <Field type="email" name="email" placeholder="Email" disabled/>
                                         <br/>
-                                        <Field name="addresslinetwo" placeholder="Address 2"/>
-                                        <ErrorMessage name="addresslinetwo" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
+                                        <Field name="addresslineone" placeholder="Address 1" disabled/>
                                         <br/>
-                                        <Field name="city" placeholder="City"/>
-                                        <ErrorMessage name="city" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
-                                        <Field name="state" placeholder="State"/>
-                                        <ErrorMessage name="state" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
+                                        <Field name="addresslinetwo" placeholder="Address 2" disabled/>
                                         <br/>
-                                        <Field name="zip" placeholder="Zip"/>
-                                        <ErrorMessage name="zip" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
+                                        <Field name="city" placeholder="City" disabled/>
+                                        <Field name="state" placeholder="State" disabled/>
                                         <br/>
-                                        <Field as="select" name="country">
+                                        <Field name="zip" placeholder="Zip" disabled/>
+                                        <br/>
+                                        <Field as="select" name="country" disabled>
                                             <option value="">Select a country</option>
                                             <option value="US">United States</option>
                                             <option value="CA">Canada</option>
                                         </Field>
-                                        <ErrorMessage name="country" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
                                         <br/>
 
                                         <Field as="select" name="shipping-option">
@@ -258,10 +172,6 @@ class Checkout extends Component {
         }
     }
 
-
-    createOrderId() {
-        return 'order_' + Math.random().toString(36).substr(2, 9);
-    }
 }
 
 export default Checkout

@@ -7,8 +7,6 @@ const defaultState = {
     removeFromCart: () => {},
     getCartItemsTotal: () => {},
     resetCart: () => {},
-    updateAddressValidation: () => {},
-    addressValidated: null
 }
 const CartContext = React.createContext(defaultState)
 
@@ -18,7 +16,7 @@ class CartProvider extends React.Component {
     }
     state = {
         hasItems: false,
-        itemSet: []
+        itemSet: [],
     }
     addToCart = (item, qty, price, currency, name) => {
         let contents = localStorage.getItem("b-b-cart")
@@ -130,8 +128,6 @@ class CartProvider extends React.Component {
                     removeFromCart: this.removeFromCart,
                     getCartItemsTotal: this.getCartItemsTotal,
                     resetCart: this.resetCart,
-                    addressValidated: this.state.addressValidated,
-                    updateAddressValidation: this.updateAddressValidation,
                 }}
             >
                 {children}

@@ -4,17 +4,19 @@ import "../../styles/cart.scss"
 import {formatPrice} from "../../utils/shared";
 import CartContext from "../widget/cart-context";
 import {FaTrash} from "react-icons/fa"
-import { Link } from "gatsby"
+import qs from "querystring";
+import axios from "axios";
+import { navigate } from "@reach/router"
+import {ErrorMessage, Field, Form, Formik} from "formik";
 
 class Cart extends Component {
 
     state = {
-        stripe: null,
+        orderId: "",
     }
     componentDidMount() {
-        /*const stripe = window.Stripe("pk_live_OGxNOUzWvpoUJS3yscyZ6Ccw00ukIopzD4")*/
-        const stripe = window.Stripe("pk_test_4xqQzlAyU2e9MJ2h9P1SapFe00K4jXy6Rk")
-        this.setState({ stripe })
+        const orderId = this.createOrderId()
+        this.setState({ orderId: orderId })
     }
 
     doOutput(item, cart){
@@ -27,27 +29,6 @@ class Cart extends Component {
                 <div className={"cart-delete-item"}><button className={"cart-delete-btn"} onClick={() => {cart.removeFromCart(item.sku, item.qty)}}><FaTrash/></button></div>
             </div>
         )
-    }
-
-    async doCheckout(cart, stripe){
-        let outItems = []
-        for(let cartItem of cart){
-            let sku = cartItem.sku
-            let qty = cartItem.qty
-            let obj = {sku: sku, quantity:qty}
-            outItems.push(obj)
-        }
-        //make request to stripe
-        const { error } = await stripe.redirectToCheckout({
-            items: outItems,
-            successUrl: `https://www.bansheebabe.com/page-2/`,
-            cancelUrl: `https://www.bansheebabe.com/shope/cart`,
-            billingAddressCollection:`required`,
-        })
-
-        if (error) {
-            console.warn("Error:", error)
-        }
     }
 
     doTotal(cart) {
@@ -86,12 +67,133 @@ class Cart extends Component {
 
                         {this.doTotal(cart.cart)}
 
-                        <Link to={"/shope/checkout"} className={"checkout-cart-page-btn"}>Checkout</Link>
+                        <Formik
+                            initialValues={{ firstname: '', lastname: '', email: '', addresslineone: '',
+                                addresslinetwo: '', city: '', state: '', country:'', zip:'', message: '', cart: cart }}
+                            validate={values => {
+                                const errors = {};
+                                if (!values.email) {
+                                    errors.email = 'Email required';
+                                }else if (
+                                    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+                                ) {
+                                    errors.email = 'Invalid email address';
+                                }
+
+                                if(!values.firstname){
+                                    errors.firstname = 'Please enter your first name';
+                                }
+                                if(!values.addresslineone){
+                                    errors.addresslineone = 'Please enter an address to ship to'
+                                }
+                                if(!values.city){
+                                    errors.city  = 'Please enter a city'
+                                }
+                                if(!values.state){
+                                    errors.state = 'Please enter a state'
+                                }else{
+                                    if(values.state.length > 2){
+                                        errors.state = 'Please use 2 letter abbreviation'
+                                    }
+                                }
+                                if(!values.zip){
+                                    errors.zip = 'Please enter a zip code'
+                                }
+                                if(!values.country){
+                                    errors.country = 'Please enter a country'
+                                }
+                                return errors;
+                            }}
+                            onSubmit={async (values, {setSubmitting}) => {
+                                if (values && values.cart != null) {
+                                    //validate address before we allow submit:
+                                    let addressValues = {}
+                                    addressValues["name"] = values["firstname"]
+                                    addressValues["email"] = values["email"]
+                                    addressValues["street1"] = values["addresslineone"]
+                                    addressValues["street2"] = values["addresslinetwo"]
+                                    addressValues["city"] = values["city"]
+                                    addressValues["state"] = values["state"]
+                                    addressValues["zip"] = parseInt(values["zip"])
+                                    addressValues["country"] = values["country"]
+                                    addressValues["validate"] = true
+                                    let responseData = null
+                                    let url = "http://localhost:9090/banshee/addr?" + qs.stringify(addressValues)
+                                    await axios.get(url).then(response => {
+                                        setSubmitting(false)
+                                        //if valid, show them how much to ship,
+                                        if (response && response.data) {
+                                            if (response.data.rates && response.data.rates.length > 0) {
+                                                //values.shipping = response.data.rates;
+                                                responseData = response.data.rates
+                                            }
+                                        }
+                                        //if not valid, pop up an error next to address and do not allow form submit
+                                    })
+                                    if(responseData){
+                                        navigate(`/shope/checkout`, {
+                                            state: {
+                                                rates: responseData,
+                                                address: addressValues,
+                                                orderId: this.state.orderId
+                                            }
+                                        })
+                                    }
+                                }
+                            }}
+                        >
+                            {({ values, touched, isSubmitting}) => (
+                                <Form name="bborder" data-netlify="true" netlify-honeypot="bot-field" method="post" action="/" >
+                                    <input type="hidden" name="bot-field"/>
+                                    <input type="hidden" name="form-name" value="bborder"/>
+                                    <input type="hidden" name="stripe-order-id" value={this.state.orderId}/>
+                                    <br/>
+                                    <br/>
+                                    <h3 className={"form-heading-shipping"}>Shipping Address</h3>
+                                    <h4 className={"form-subheading-shipping"}>(US and Canada only, please)</h4>
+                                    <Field name="firstname" placeholder="Name"/>
+                                    <ErrorMessage name="firstname" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
+                                    <Field type="email" name="email" placeholder="Email" />
+                                    <ErrorMessage name="email" render={msg => <div className={"form-error-msg"}>{msg}</div>} />
+                                    <br/>
+                                    <Field name="addresslineone" placeholder="Address 1"/>
+                                    <ErrorMessage name="addresslineone" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
+                                    <br/>
+                                    <Field name="addresslinetwo" placeholder="Address 2"/>
+                                    <ErrorMessage name="addresslinetwo" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
+                                    <br/>
+                                    <Field name="city" placeholder="City"/>
+                                    <ErrorMessage name="city" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
+                                    <Field name="state" placeholder="State"/>
+                                    <ErrorMessage name="state" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
+                                    <br/>
+                                    <Field name="zip" placeholder="Zip"/>
+                                    <ErrorMessage name="zip" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
+                                    <br/>
+                                    <Field as="select" name="country">
+                                        <option value="">Select a country</option>
+                                        <option value="US">United States</option>
+                                        <option value="CA">Canada</option>
+                                    </Field>
+                                    <ErrorMessage name="country" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
+                                    <br/>
+
+
+                                    <button className="checkout-cart-page-btn" type="submit" disabled={isSubmitting}>
+                                        Next
+                                    </button>
+                                </Form>
+                            )}
+                        </Formik>
 
                     </div> : <div className={"cart-page-root"}><h4 className={"cart-items-empty"}>No items currently in cart.</h4></div>
                 )}
             </CartContext.Consumer>
         )
+    }
+
+    createOrderId() {
+        return 'order_' + Math.random().toString(36).substr(2, 9);
     }
 }
 
