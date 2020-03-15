@@ -75,6 +75,11 @@ class Checkout extends Component {
 
     }
 
+    calcShipping(){
+        //do call
+        console.log("http call")
+    }
+
     render() {
         return (
             <CartContext.Consumer>
@@ -92,13 +97,10 @@ class Checkout extends Component {
                                 item != null && item.qty > 0 ? this.doOutput(item, cart) : ""
                             ))}
 
-                            {this.doShippingTotal(cart.cart)}
-
                             {this.doTotal(cart.cart)}
 
                             <Formik
-                                initialValues={{ firstname: '', lastname: '', email: '', addresslineone: '', addresslinetwo: '', city: '', state: '', country:'', zip:'', message: '', cart: cart }}
-                                validateOnChange={false}
+                                initialValues={{ firstname: '', lastname: '', email: '', addresslineone: '', addresslinetwo: '', city: '', state: '', country:'', zip:'', message: '', cart: cart, shipping: null }}
                                 validate={values => {
                                     const errors = {};
                                     if (!values.email) {
@@ -131,12 +133,67 @@ class Checkout extends Component {
                                 }}
                                 onSubmit={(values, { setSubmitting }) => {
                                     if(values && values.cart != null){
-                                        console.log(values.cart)
+                                        //validate address before we allow submit:
+                                        let addressValues = {}
+                                        addressValues["name"] = values["firstname"]
+                                        addressValues["street1"] = values["addresslineone"]
+                                        addressValues["city"] = values["city"]
+                                        addressValues["state"] = values["state"]
+                                        addressValues["zip"] = parseInt(values["zip"])
+                                        addressValues["country"] = values["country"]
+                                        addressValues["validate"] = true
+
+                                        let url = "http://localhost:9090/banshee/addr?" + qs.stringify(addressValues)
+                                        axios.get(url).then(response => {
+                                            //if valid, show them how much to ship,
+                                            if(response && response.data) {
+                                                if(response.data.rates && response.data.rates.length > 0){
+                                                    values.shipping = response.data.rates;
+                                                    setSubmitting(false)
+                                                }
+                                            }
+                                            //if not valid, pop up an error next to address and do not allow form submit
+                                        })
+
+                                        /*axios.post("http://localhost:9090/banshee/addr",
+                                            addressValues, {headers:{"Access-Control-Allow-Origin":"http://localhost:8000"}}).then(response => {
+                                            console.log(response)
+                                        })*/
+
+
+                                        /*//need to initiate authorization with shippo before we can make this call to our endpoint
+                                        axios.post("http://localhost:9090/addresses/", addressValues,
+                                            {headers:  {"Authorization" : "Authorized",
+                                                    "Content-Type": "application/json"}} ).then(response => {
+                                            if(response && response.data){
+                                                let validationResult = response.data["validation_results"]
+                                                if(validationResult){
+                                                    let isValid = validationResult["is_valid"] === true
+                                                    if(isValid === true) {
+                                                        values["form-name"] = "bborder"
+                                                        let post_values = qs.stringify(values)
+                                                        axios.post("/orderinfo", post_values, {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
+                                                            .then(response => {
+                                                                this.doCheckout(values.cart.cart, this.state.stripe)
+                                                            }).catch(error => {
+                                                            console.log("Error with order form submit: " + error)
+                                                            }
+                                                        )
+
+                                                    }
+                                                    setSubmitting(false);
+                                                }
+                                            }
+
+                                        }).catch(error => {
+                                            console.log("error with input")
+                                            setSubmitting(false);
+                                        })*/
                                     }
 
                                 }}
                             >
-                                {({ errors, touched, isSubmitting}) => (
+                                {({ values, touched, isSubmitting}) => (
                                     <Form name="bborder" data-netlify="true" netlify-honeypot="bot-field" method="post" action="/" >
                                         <input type="hidden" name="bot-field"/>
                                         <input type="hidden" name="form-name" value="bborder"/>
@@ -164,12 +221,25 @@ class Checkout extends Component {
                                         <Field name="zip" placeholder="Zip"/>
                                         <ErrorMessage name="zip" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
                                         <br/>
-                                        <Field name="country" placeholder="Country"/>
+                                        <Field as="select" name="country">
+                                            <option value="">Select a country</option>
+                                            <option value="US">United States</option>
+                                            <option value="CA">Canada</option>
+                                        </Field>
                                         <ErrorMessage name="country" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
                                         <br/>
+
+                                        <Field as="select" name="shipping-option">
+                                            <option value="">Select a shipping method</option>
+                                            {values.shipping != null ? values.shipping.map( item =>{
+                                                return item != null ? this.showShippingOptions(item) : ""
+                                            }) : ""}
+                                        </Field>
+
                                         <Field name="message" component="textarea" placeholder="Message" />
                                         <ErrorMessage name="message" render={msg => <div className={"form-error-msg"}>{msg}</div>} />
                                         <br/>
+
                                         <button className="order-form-submit" type="submit" disabled={isSubmitting}>
                                             Submit
                                         </button>
@@ -182,26 +252,12 @@ class Checkout extends Component {
         )
     }
 
-    showValidatedAddressField(value){
-        /*return this.state.ableToValidateAddress != null ?
-            (this.state.ableToValidateAddress ? "true" :
-                    <div className={"invalid-address-shipping"}>Could not validate address entered. Please check and try again</div>
-            ) :
-            "null"*/
-        if(value){
-            if(value === true)
-                return (<div>true</div>)
-            else{
-                return (<div>false</div>)
-            }
-        }else{
-            return (<div>undefined</div>)
+    showShippingOptions(item) {
+        if(item != null && item.provider) {
+            return (<option value={item.shipmentId}>{item.provider} - {item.serviceLevel} - {item.rate}</option>)
         }
     }
 
-    doShippingTotal(cart) {
-
-    }
 
     createOrderId() {
         return 'order_' + Math.random().toString(36).substr(2, 9);
