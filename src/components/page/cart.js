@@ -69,7 +69,7 @@ class Cart extends Component {
 
                         <Formik
                             initialValues={{ firstname: '', lastname: '', email: '', addresslineone: '',
-                                addresslinetwo: '', city: '', state: '', country:'', zip:'', message: '', cart: cart }}
+                                addresslinetwo: '', city: '', state: '', country:'', zip:'', message: '' }}
                             validate={values => {
                                 const errors = {};
                                 if (!values.email) {
@@ -105,7 +105,7 @@ class Cart extends Component {
                                 return errors;
                             }}
                             onSubmit={async (values, {setSubmitting}) => {
-                                if (values && values.cart != null) {
+                                if (cart != null) {
                                     //validate address before we allow submit:
                                     let addressValues = {}
                                     addressValues["name"] = values["firstname"]
@@ -131,12 +131,14 @@ class Cart extends Component {
                                         //if not valid, pop up an error next to address and do not allow form submit
                                     })
                                     if(responseData){
+                                        let state = {
+                                            rates: responseData,
+                                            address: addressValues,
+                                            orderId: this.state.orderId,
+                                            beepBoop: cart.cart,
+                                        }
                                         navigate(`/shope/checkout`, {
-                                            state: {
-                                                rates: responseData,
-                                                address: addressValues,
-                                                orderId: this.state.orderId
-                                            }
+                                            state: state
                                         })
                                     }
                                 }
