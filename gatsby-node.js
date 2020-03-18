@@ -42,7 +42,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     for (let product of ProductsData) {
 
         const imageRegex = product.product.metadata.img_category
-        const imageResult = await graphql(`
+        if(imageRegex) {
+            const imageResult = await graphql(`
         query FileNamesQuery {
             allFile(filter: {relativePath: {regex: "/${imageRegex}//"}}) {
                 edges {
@@ -55,32 +56,32 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         }
         `)
 
-        let querySet = []
-        if(imageResult && imageResult.data && imageResult.data.allFile && imageResult.data.allFile.edges){
-            for(const edge of imageResult.data.allFile.edges){
-                if(edge.node) {
-                    const node = edge.node;
-                    if(node && node.relativePath){
-                        let path = node.relativePath;
-                        const pathToQuery = path.substring(path.lastIndexOf("/")+1)
-                        querySet.push(pathToQuery)
+            let querySet = []
+            if (imageResult && imageResult.data && imageResult.data.allFile && imageResult.data.allFile.edges) {
+                for (const edge of imageResult.data.allFile.edges) {
+                    if (edge.node) {
+                        const node = edge.node;
+                        if (node && node.relativePath) {
+                            let path = node.relativePath;
+                            const pathToQuery = path.substring(path.lastIndexOf("/") + 1)
+                            querySet.push(pathToQuery)
+                        }
                     }
                 }
             }
-        }
-        let counter = 0
-        let imageNamesToQuery = `["`
-        for(const value of querySet){
-            counter++
-            if(counter < querySet.length) {
-                imageNamesToQuery += value + `", "`
-            }else{
-                imageNamesToQuery += value
+            let counter = 0
+            let imageNamesToQuery = `["`
+            for (const value of querySet) {
+                counter++
+                if (counter < querySet.length) {
+                    imageNamesToQuery += value + `", "`
+                } else {
+                    imageNamesToQuery += value
+                }
             }
-        }
-        imageNamesToQuery += `"]`
+            imageNamesToQuery += `"]`
 
-        const imageSharpResult = await graphql(`
+            const imageSharpResult = await graphql(`
         query SharpQuery {
             allImageSharp(filter: {fluid: {originalName: {in: ${imageNamesToQuery} }}}) {
             edges {
@@ -96,17 +97,18 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         }
         `)
 
-        createPage({
-            path: "/" + product.id,
-            component: pageTemplate,
-            context: {
-                id: product.id,
-                name: product.product.name,
-                description: product.product.description,
-                images: imageSharpResult,
-                stripeData: product,
-            }
-        })
+            createPage({
+                path: "/" + product.id,
+                component: pageTemplate,
+                context: {
+                    id: product.id,
+                    name: product.product.name,
+                    description: product.product.description,
+                    images: imageSharpResult,
+                    stripeData: product,
+                }
+            })
+        }
     }
 
     const blogResult = await graphql(`
