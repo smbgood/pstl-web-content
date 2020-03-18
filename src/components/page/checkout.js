@@ -18,15 +18,15 @@ class Checkout extends Component {
 
     state = {
         stripe: null,
+        shipping: null,
     }
     componentDidMount() {
         /*const stripe = window.Stripe("pk_live_OGxNOUzWvpoUJS3yscyZ6Ccw00ukIopzD4")*/
         const stripe = window.Stripe("pk_test_4xqQzlAyU2e9MJ2h9P1SapFe00K4jXy6Rk")
-        this.setState({ stripe: stripe })
-
+        this.setState({ stripe: stripe, shipping: {} })
     }
 
-    async doCheckout(cart, stripe){
+    async doCheckout(cart, orderId, shipping, stripe){
         let outItems = []
         for(let cartItem of cart){
             let sku = cartItem.sku
@@ -34,13 +34,23 @@ class Checkout extends Component {
             let obj = {sku: sku, quantity:qty}
             outItems.push(obj)
         }
+
+        //add pseudo items for shipping
+        if(shipping && shipping.rate) {
+            let rate = parseInt(shipping.rate)
+            //testing sku
+            let shippingSku = "sku_GtwTbV76ZkJSXo"
+            let obj = {sku : shippingSku, quantity: rate}
+            outItems.push(obj)
+        }
+
         //make request to stripe
         const { error } = await stripe.redirectToCheckout({
             items: outItems,
             successUrl: `https://www.bansheebabe.com/page-2/`,
             cancelUrl: `https://www.bansheebabe.com/shope/checkout`,
             billingAddressCollection:`required`,
-            clientReferenceId: this.state.orderId,
+            clientReferenceId: orderId+"___"+shipping.id,
         })
 
         if (error) {
@@ -59,6 +69,11 @@ class Checkout extends Component {
                                     const errors = {}
                                     if(!values.shippingoption){
                                         errors.shippingoption = "Please select a shipping method"
+                                    }else{
+                                        console.log(values.shippingoption)
+                                        let rate = values.shippingoption.substring(0,values.shippingoption.indexOf("___"))
+                                        let rateId = values.shippingoption.substring(values.shippingoption.indexOf("___")+3, values.shippingoption.length)
+                                        this.setState({shipping: {rate: rate, id:rateId}});
                                     }
                                     return errors
                                 }}
@@ -79,12 +94,13 @@ class Checkout extends Component {
                                         orderId: this.props.location.state.orderId,
                                         formatPrice: formatPrice,
                                         shippingoption: '',
+                                        checkout: this.doCheckout
                                     }
                                 }
                                 onSubmit={(values, { setSubmitting }) => {
-                                    if(values && values.cart != null){
+                                    if(values && values.cart != null && values.shippingoption){
                                         //need to post to our OMS so we can start fufillment, then redirectToCheckout
-
+                                        this.doCheckout(values.cart, values.orderId, this.state.shipping, this.state.stripe)
                                     }
 
                                 }}
@@ -93,7 +109,6 @@ class Checkout extends Component {
                                     <Form name="bborder" data-netlify="true" netlify-honeypot="bot-field" method="post" action="/" >
                                         <input type="hidden" name="bot-field"/>
                                         <input type="hidden" name="form-name" value="bborder"/>
-                                        <input type="hidden" name="stripe-order-id" value={values.orderId}/>
                                         <br/>
                                         <br/>
                                         <Field name="firstname" placeholder="Name" disabled/>
@@ -124,6 +139,8 @@ class Checkout extends Component {
                                         </Field>
                                         <ErrorMessage name="shippingoption" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
 
+                                        <Field name="shipprice" disabled/>
+
                                         <Field name="message" component="textarea" placeholder="Message" />
                                         <ErrorMessage name="message" render={msg => <div className={"form-error-msg"}>{msg}</div>} />
                                         <br/>
@@ -140,7 +157,7 @@ class Checkout extends Component {
                                             : ""
                                         ))}
 
-                                        {values.shippingoption != null && "Shipping: " + values.shippingoption}
+                                        {this.state.shipping != null && this.state.shipping.rate != null && "Shipping: " + this.state.shipping.rate}
 
                                         <div className={"cart-row-item cart-total-line"}>
                                             <div className={"cart-left"}/>
@@ -166,7 +183,7 @@ class Checkout extends Component {
 
     showShippingOptions(item) {
         if(item != null && item.provider) {
-            return (<option key={item.shipmentId} id={item.shipmentId} value={item.rate}>{item.provider} - {item.serviceLevel} - {item.rate}</option>)
+            return (<option key={item.shipmentId} id={item.shipmentId} value={item.rate+"___"+item.shipmentId}>{item.provider} - {item.serviceLevel} - {item.rate}</option>)
         }
     }
 

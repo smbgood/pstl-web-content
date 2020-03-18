@@ -11,14 +11,6 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 
 class Cart extends Component {
 
-    state = {
-        orderId: "",
-    }
-    componentDidMount() {
-        const orderId = this.createOrderId()
-        this.setState({ orderId: orderId })
-    }
-
     doOutput(item, cart){
         return (
             <div className={"cart-row-item"}>
@@ -118,6 +110,7 @@ class Cart extends Component {
                                     addressValues["country"] = values["country"]
                                     addressValues["validate"] = true
                                     let responseData = null
+                                    let orderId = ""
                                     let url = "http://localhost:9090/banshee/addr?" + qs.stringify(addressValues)
                                     await axios.get(url).then(response => {
                                         setSubmitting(false)
@@ -127,6 +120,9 @@ class Cart extends Component {
                                                 //values.shipping = response.data.rates;
                                                 responseData = response.data.rates
                                             }
+                                            if(response.data.orderId){
+                                                orderId = response.data.orderId;
+                                            }
                                         }
                                         //if not valid, pop up an error next to address and do not allow form submit
                                     })
@@ -134,7 +130,7 @@ class Cart extends Component {
                                         let state = {
                                             rates: responseData,
                                             address: addressValues,
-                                            orderId: this.state.orderId,
+                                            orderId: orderId,
                                             beepBoop: cart.cart,
                                         }
                                         navigate(`/shope/checkout`, {
@@ -148,7 +144,7 @@ class Cart extends Component {
                                 <Form name="bborder" data-netlify="true" netlify-honeypot="bot-field" method="post" action="/" >
                                     <input type="hidden" name="bot-field"/>
                                     <input type="hidden" name="form-name" value="bborder"/>
-                                    <input type="hidden" name="stripe-order-id" value={this.state.orderId}/>
+                                    <input type="hidden" name="stripe-order-id" value={values.orderId}/>
                                     <br/>
                                     <br/>
                                     <h3 className={"form-heading-shipping"}>Shipping Address</h3>
@@ -192,10 +188,6 @@ class Cart extends Component {
                 )}
             </CartContext.Consumer>
         )
-    }
-
-    createOrderId() {
-        return 'order_' + Math.random().toString(36).substr(2, 9);
     }
 }
 
