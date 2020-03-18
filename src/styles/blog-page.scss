@@ -16,9 +16,9 @@
   a {
     @include color-7()
   }
-  margin-top:2rem;
+  margin-top:3.6rem;
   font-size:1.75rem;
-  text-align:right;
+  text-align:center;
   @media screen and (max-width:$bp-med){
     font-size:1.1rem;
   }
@@ -32,8 +32,12 @@
       margin-top:3rem;
       font-size:2.5rem;
     }
-    @include color-5()
+    @include color-13()
   }
+}
+
+.blog-page-body{
+  p{@include color-14();}
 }
 
 .blog-page-footer{

@@ -1,3 +1,7 @@
+/*require("dotenv").config({
+    path: `.env.${process.env.NODE_ENV}`,
+})*/
+
 // Implement the Gatsby API “onCreatePage”. This is
 // called after every page is created.
 const path = require("path")
@@ -163,10 +167,6 @@ exports.onCreatePage = async ({ page, actions }) => {
     }
 
 }
-/*
-require("dotenv").config({
-    path: `.env.${process.env.NODE_ENV}`,
-})*/
 /*
 const webpack= require('webpack');
 exports.onCreateWebpackConfig = ({

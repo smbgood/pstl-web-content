@@ -1,12 +1,14 @@
 @import 'values.scss';
 
-
+//not used
 @mixin color-1() {
     color:#7f167f38;
 }
+//splash screen welcome text color
 @mixin color-2() {
     color:rgba(139, 249, 124, 1);
 }
+//footer copyright and nav link item text color
 @mixin color-3() {
     color: #8f15d2;
 }
@@ -14,55 +16,102 @@
 @mixin color-4() {
     color:#fe02fe;
 }
-//blog highlight header color, go to blog link
+//blog 'go to blog' link color
 @mixin color-5() {
-    color:#8f15d2;
+    color: rgba(65, 222, 214, 0.97);
 }
 //blog highlight body color, main (default) link color
 @mixin color-6(){
-    color:#7666e5;
+    color: #b347ed;
+}
+//blog item -- title text color
+@mixin color-12(){
+    color: rgba(83, 232, 108, 0.91);
+}
+//blog page header text color
+@mixin color-13(){
+    color: rgba(157, 72, 178, 0.91);
+}
+//blog page body text color
+@mixin color-14(){
+    color: rgba(222, 111, 164, 0.91);
 }
 //blog view product link color
 @mixin color-7(){
-    color:rgba(240,140,174,.86)!important;
+    color: rgba(129, 96, 180, 0.91) !important;
+}
+//cart page -- text color for each row
+@mixin color-8(){
+    color: rgba(5, 136, 125, 0.91);
+}
+//cart page -- checkout button text color
+@mixin color-9(){
+    color:white;
+}
+//cart on every page -- items count text color
+@mixin color-10(){
+    color: #f252bb;
+}
+//cart on every page -- view cart link color
+@mixin color-11(){
+    color: #441744;
 }
 
+//default background color -- not used rn
 @mixin bg-color-1() {
     background-color: #b1f5ff;
 }
+//not used
 @mixin bg-color-2() {
     background-color:rgba(139, 249, 124, 1) !important;
 }
+//copyright footer area background color
 @mixin bg-color-3() {
     background-color:#24fb9d !important;
 }
+//not used
 @mixin bg-color-4() {
     background-color:#95ecff !important;
 }
+//default btn background color
 @mixin bg-color-5() {
     background-color:rgba(0, 16, 17, 1) !important;
 }
+//not used
 @mixin bg-color-6(){
     background-color:#43a057;
 }
+//bottom blog item -- 'go to blog' link background color
 @mixin bg-color-7(){
-    background-color:rgba(77,245,46,.76)!important;
+    background-color: rgba(170, 29, 245, 0.76) !important;
 }
-
-@mixin light-bg-color-1() {
-    background-color:rgba(255,255,255, .1);
+// on cart page, background color for the header row
+@mixin bg-color-8(){
+    background-color: rgba(242, 248, 64, 0.75);
 }
+// on cart page, background color for cart table section
+@mixin bg-color-9(){
+    background-color: rgba(229, 137, 197, 0.47) !important;
+}
+//background for cart page 'checkout' page
+@mixin bg-color-10(){
+    background-color: rgba(236, 101, 162, 0.63);
+}
+//background color for the cart widget at the top of every page (when you have an item)
+@mixin bg-color-11(){
+    background-color: rgb(111, 245, 128);
+}
+//mobile menu background color
+@mixin bg-color-12(){
+    background: linear-gradient(45deg, #e0bdf9,#ffc8ef);
+}
+//shadow color for cart widget at top of every page
+@mixin shadow-color-1(){
+    box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);
+}
+//blog item container background color
 @mixin light-bg-color-2() {
-    background-color: #ffc8ef;
-}
-@mixin light-bg-color-3() {
-    background-color:rgba(255,255,255, .3);
-}
-@mixin light-bg-color-4() {
-    background-color:rgba(255,255,255, .4);
-}
-@mixin light-bg-color-5() {
-    background-color:rgba(255,255,255, .5);
+    background-color: rgba(244, 173, 224, 0.98);
 }
 
 //Color from which the logo transition starts on
@@ -71,7 +120,7 @@
 }
 
 @mixin wavy-color-start() {
-    background-color:rgba(0,0,0,.8);
+    background-color: rgba(0, 0, 0, 0.89);
 }
 
 .wavy-start{
@@ -102,6 +151,19 @@
 @mixin ultimate-center(){
     margin:0 auto;
     text-align:center;
+}
+
+@mixin light-bg-color-1() {
+    background-color:rgba(255,255,255, .1);
+}
+@mixin light-bg-color-3() {
+    background-color:rgba(255,255,255, .3);
+}
+@mixin light-bg-color-4() {
+    background-color:rgba(255,255,255, .4);
+}
+@mixin light-bg-color-5() {
+    background-color:rgba(255,255,255, .5);
 }
 
 h1{
@@ -237,7 +299,7 @@ nav, .footer-root{
         width: 11rem;
         right: 1.6rem;
         padding: 1rem;
-        background: linear-gradient(45deg,#8bf97c,#ffc8ef);
+        @include bg-color-12()
     }
 }
 .closed{
@@ -285,10 +347,6 @@ nav, .footer-root{
 .collage-child{
     margin: 1rem;
     justify-content: center;
-}
-
-.collapsible-header{
-    @include bg-color-1();
 }
 
 .center-splash{

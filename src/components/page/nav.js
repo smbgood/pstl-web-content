@@ -1,22 +1,16 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 import React, { Component } from "react"
-import { Link, navigate } from "gatsby"
+import { Link } from "gatsby"
 import {FaCrow, FaAlignJustify, FaPencilAlt, FaSpa, FaStoreAlt, FaTelegram} from "react-icons/fa"
 import Img from "gatsby-image"
 
 class Nav extends Component {
+
     constructor(props) {
         super(props)
         this.state = {isMobileMenuOpen : false, animationEnd: false};
         this.handleClick = this.handleClick.bind(this);
-
-        this.doTimeout();
-
-    }
-
-    componentDidMount() {
-        console.log("mounted")
     }
 
     doTimeout(){
@@ -102,7 +96,6 @@ class Nav extends Component {
                     {` `}
                 </div>
             </div>
-
         )
     }
 }

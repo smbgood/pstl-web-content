@@ -23,6 +23,7 @@
     "@mdx-js/mdx": "^1.5.1",
     "@mdx-js/react": "^1.5.1",
     "@theme-ui/presets": "^0.2.44",
+    "axios": "^0.19.0",
     "flickity": "^2.2.1",
     "formik": "^2.1.2",
     "gatsby": "^2.18.4",
@@ -42,6 +43,7 @@
     "gatsby-source-stripe": "^3.0.5",
     "gatsby-transformer-json": "^2.2.25",
     "gatsby-transformer-sharp": "^2.3.13",
+    "hast-to-hyperscript": "^8.0.0",
     "js-image-zoom": "^0.7.0",
     "lightense-images": "^1.0.9",
     "netlify-cms-app": "^2.10.1",
@@ -53,6 +55,7 @@
     "react-icons": "^3.8.0",
     "react-image-zoom": "^1.1.0",
     "react-native-svg": "^11.0.1",
+    "react-router-dom": "latest",
     "react-typography": "^0.16.19",
     "theme-ui": "^0.2.49",
     "typeface-arima-madurai": "0.0.72",
@@ -61,8 +64,7 @@
     "typeface-imprima": "0.0.71",
     "typography": "^0.16.19",
     "typography-theme-funston": "^0.16.19",
-    "axios": "^0.19.0",
-    "react-router-dom": "latest"
+    "@reach/router": "latest"
   },
   "devDependencies": {
     "history": "^4.10.1",

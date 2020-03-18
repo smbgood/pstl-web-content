@@ -5,7 +5,8 @@ const defaultState = {
     itemSet: [],
     addToCart: () => {},
     removeFromCart: () => {},
-    getCartItemsTotal: () => {}
+    getCartItemsTotal: () => {},
+    resetCart: () => {},
 }
 const CartContext = React.createContext(defaultState)
 
@@ -15,9 +16,9 @@ class CartProvider extends React.Component {
     }
     state = {
         hasItems: false,
-        itemSet: []
+        itemSet: [],
     }
-    addToCart = (item, qty, price, currency) => {
+    addToCart = (item, qty, price, currency, name) => {
         let contents = localStorage.getItem("b-b-cart")
         if(contents != null && contents !== ""){
             let input = JSON.parse(contents)
@@ -35,7 +36,8 @@ class CartProvider extends React.Component {
                     sku:item,
                     qty:qty,
                     price:price,
-                    currency:currency
+                    currency:currency,
+                    name:name,
                 })
             }
             localStorage.setItem("b-b-cart", JSON.stringify(outArray))
@@ -45,7 +47,8 @@ class CartProvider extends React.Component {
                 sku: item,
                 qty: qty,
                 price:price,
-                currency:currency
+                currency:currency,
+                name:name
             }]
             localStorage.setItem("b-b-cart", JSON.stringify(init_cart))
             this.setState({itemSet:init_cart, hasItems:true})
@@ -91,6 +94,16 @@ class CartProvider extends React.Component {
         return total
     }
 
+    resetCart(){
+        let contents = localStorage.getItem("b-b-cart")
+        if(contents){
+            localStorage.removeItem("b-b-cart")
+        }
+        let outArray = []
+        if(this.state)
+            this.setState({itemSet:outArray, hasItems:false})
+    }
+
     componentDidMount() {
         let contents = localStorage.getItem("b-b-cart")
         if(contents != null && contents !== "") {
@@ -100,6 +113,8 @@ class CartProvider extends React.Component {
                 outArray.push(item)
             }
             this.setState({itemSet:outArray, hasItems:true})
+        }else{
+            this.setState( {itemSet:[], hasItems:false})
         }
     }
 
@@ -111,7 +126,8 @@ class CartProvider extends React.Component {
                     cart: this.state.itemSet,
                     addToCart: this.addToCart,
                     removeFromCart: this.removeFromCart,
-                    getCartItemsTotal: this.getCartItemsTotal
+                    getCartItemsTotal: this.getCartItemsTotal,
+                    resetCart: this.resetCart,
                 }}
             >
                 {children}

@@ -21,6 +21,19 @@
     }
   }
 
+.contact-us-submit{
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-family: "Courgette", monospace;
+  font-size:1.75rem;
+  padding-left:1.5rem;
+  padding-right:1.5rem;
+  @include bg-color-10();
+  border:none;
+  border-radius:5px;
+  @include color-9();
+}
+
   input, textarea{
 
     margin-bottom:2rem;

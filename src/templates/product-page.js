@@ -8,14 +8,6 @@ import { graphql } from "gatsby"
 
 class ProductPageTemplate extends React.Component {
 
-  state = {
-    stripe: null,
-  }
-  componentDidMount() {
-    const stripe = window.Stripe("pk_live_OGxNOUzWvpoUJS3yscyZ6Ccw00ukIopzD4")
-    this.setState({ stripe })
-  }
-
   render(){
     return(
         <Layout key={this.props.pageContext.id} navImage={this.props.data.navImage.edges[0].node}>
@@ -24,7 +16,7 @@ class ProductPageTemplate extends React.Component {
             <h1>{this.props.pageContext.name}</h1>
             <p>{this.props.pageContext.description}</p>
           </div>
-          <ShopItem key={this.props.pageContext.id+"-item"} sku={this.props.pageContext.stripeData} stripe={this.state.stripe}/>
+          <ShopItem key={this.props.pageContext.id+"-item"} sku={this.props.pageContext.stripeData} />
         </Layout>
     )
   }

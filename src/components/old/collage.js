@@ -1,23 +1,8 @@
 import React from "react"
-import { getUser } from "../../services/login"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 
 const Collage = () => {
-
-  /*const data = useStaticQuery(graphql`
-    query {
-      file(relativePath: { eq: "alternative-background-color-cooking-105028.jpg" }) {
-        childImageSharp {
-          # Specify a fixed image and fragment.
-          # The default width is 400 pixels
-          fixed {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
-    }
-  `)*/
 
   const data = useStaticQuery(graphql`
     query {

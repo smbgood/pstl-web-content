@@ -1,29 +1,27 @@
 import React from "react"
 import { Router } from "@reach/router"
 import Layout from "../components/page/layout"
-import Collage from "../components/old/collage"
 import SEO from "../components/page/seo";
-import Shop from "../components/shop";
-import Categories from "../components/categories";
-import Blog from "../components/blog"
-import Home from "../components/page/home"
+import Shop from "../components/page/shop";
+import Blog from "../components/page/blog"
 import About from "../components/page/about"
 import Contact from "../components/page/contact"
 import Cart from "../components/page/cart"
-import { graphql, useStaticQuery } from "gatsby"
+import Checkout from "../components/page/checkout"
+import { graphql } from "gatsby"
+import Categories from "../components/old/categories";
 
 const Shope = ({data}) => (
     <Layout navImage={data.logoImage.edges[0].node}>
         <SEO title={"Banshee Babe Boutique | Trinkets, Odds & Ends"} />
         <Router>
-            <Collage path="/shope/collage" />
             <Shop path="/shope/shop" />
-            <Categories path="/shope/categories"/>
             <Blog path="/shope" blogs={data}/>
-            <Home path="/shope/home"/>
             <About path="/shope/about"/>
             <Contact path="/shope/contact"/>
             <Cart path="/shope/cart"/>
+            <Checkout path="/shope/checkout"/>
+            <Categories path="/shope/categories"/>
         </Router>
     </Layout>
 )
