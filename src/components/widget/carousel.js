@@ -42,11 +42,9 @@ export default class Carousel extends React.Component {
   }
 
   render(){
-    if(typeof(window) !== "undefined") {
       const images = this.props.images;
       const opts = {contain : true}
       return (
-
           <Flickity className={'carousel'} // default ''
                     elementType={'div'}
                     options={opts}>
@@ -56,7 +54,6 @@ export default class Carousel extends React.Component {
             ))}
           </Flickity>
       )
-    }
   }
 
 }
