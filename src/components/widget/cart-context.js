@@ -22,26 +22,28 @@ class CartProvider extends React.Component {
         let contents = localStorage.getItem("b-b-cart")
         if(contents != null && contents !== ""){
             let input = JSON.parse(contents)
-            let incremented = false
-            let outArray = []
-            for( let cartItem of input){
-                if(cartItem.sku === item){
-                    cartItem.qty = parseInt(cartItem.qty) + parseInt(qty)
-                    incremented = true
+            if(input) {
+                let incremented = false
+                let outArray = []
+                for (let cartItem of input) {
+                    if (cartItem.sku === item) {
+                        cartItem.qty = parseInt(cartItem.qty) + parseInt(qty)
+                        incremented = true
+                    }
+                    outArray.push(cartItem)
                 }
-                outArray.push(cartItem)
+                if (!incremented) {
+                    outArray.push({
+                        sku: item,
+                        qty: qty,
+                        price: price,
+                        currency: currency,
+                        name: name,
+                    })
+                }
+                localStorage.setItem("b-b-cart", JSON.stringify(outArray))
+                this.setState({itemSet: outArray, hasItems: outArray.length > 0})
             }
-            if(!incremented){
-                outArray.push({
-                    sku:item,
-                    qty:qty,
-                    price:price,
-                    currency:currency,
-                    name:name,
-                })
-            }
-            localStorage.setItem("b-b-cart", JSON.stringify(outArray))
-            this.setState({itemSet:outArray, hasItems:outArray.length > 0})
         }else{
             let init_cart = [{
                 sku: item,
@@ -59,24 +61,26 @@ class CartProvider extends React.Component {
         let contents = localStorage.getItem("b-b-cart")
         if(contents != null && contents !== "") {
             let input = JSON.parse(contents)
-            let outArray = []
-            for (let cartItem of input) {
-                if(cartItem.sku === item){
-                    if(cartItem.qty > qty){
-                        cartItem.qty = parseInt(cartItem.qty) - parseInt(qty)
-                        if(cartItem.qty < 0){
-                            cartItem.qty = 0
+            if(input) {
+                let outArray = []
+                for (let cartItem of input) {
+                    if (cartItem.sku === item) {
+                        if (cartItem.qty > qty) {
+                            cartItem.qty = parseInt(cartItem.qty) - parseInt(qty)
+                            if (cartItem.qty < 0) {
+                                cartItem.qty = 0
+                            }
+                            outArray.push(cartItem)
+                        } else {
+                            //do not push to array since qty is now 0
                         }
+                    } else {
                         outArray.push(cartItem)
-                    }else{
-                        //do not push to array since qty is now 0
                     }
-                }else{
-                    outArray.push(cartItem)
                 }
+                localStorage.setItem("b-b-cart", JSON.stringify(outArray))
+                this.setState({itemSet: outArray, hasItems: outArray.length > 0})
             }
-            localStorage.setItem("b-b-cart", JSON.stringify(outArray))
-            this.setState({itemSet:outArray, hasItems:outArray.length > 0})
         }
     }
 
@@ -85,9 +89,11 @@ class CartProvider extends React.Component {
         let contents = localStorage.getItem("b-b-cart")
         if(contents != null && contents !== "") {
             let input = JSON.parse(contents)
-            for (let item of input) {
-                if(item.qty > 0 && item.price) {
-                    total += (item.qty * item.price)
+            if(input) {
+                for (let item of input) {
+                    if (item.qty > 0 && item.price) {
+                        total += (item.qty * item.price)
+                    }
                 }
             }
         }

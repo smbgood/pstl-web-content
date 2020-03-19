@@ -11,7 +11,7 @@ class SecondPage extends React.Component{
     }
 
     clearCart(){
-        localStorage.setItem("b-b-cart", "{}")
+        localStorage.removeItem("b-b-cart")
     }
 
     render(){
