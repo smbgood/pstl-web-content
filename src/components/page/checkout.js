@@ -45,7 +45,7 @@ class Checkout extends Component {
         const { error } = await stripe.redirectToCheckout({
             items: outItems,
             successUrl: `https://www.bansheebabe.com/page-2/`,
-            cancelUrl: `https://www.bansheebabe.com/shope/checkout`,
+            cancelUrl: `https://www.bansheebabe.com/shope/cart`,
             billingAddressCollection:`required`,
             clientReferenceId: orderId+"___"+shipping.id,
         })
