@@ -135,9 +135,6 @@ class Checkout extends Component {
                                             }) : ""}
                                         </Field>
                                         <ErrorMessage name="shippingoption" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
-
-                                        <Field name="message" component="textarea" placeholder="Message" />
-                                        <ErrorMessage name="message" render={msg => <div className={"form-error-msg"}>{msg}</div>} />
                                         <br/>
 
                                         {values.cart != null && values.cart.map( item => (
@@ -158,13 +155,16 @@ class Checkout extends Component {
                                             <div className={"cart-left"}/>
                                             <div className={"cart-mid"}/>
                                             <div className={"cart-right"}/>
-                                            <div className={"cart-last"}>GRAND TOTAL:
-                                                {values.cart != null && values.cart.length > 0 && values.formatPrice(parseInt(values.shippingoption.removeCharAt(values.shippingoption.indexOf(".")+1)) + parseInt(values.cart.reduce(function(acc, val){ return acc + (val.qty * val.price)}, 0)),
-                                                    values.cart[0].currency)}
+                                            <div className={"cart-last"}>
+                                                {values.cart != null && values.cart.length > 0 && values.shippingoption !== '' ? "GRAND TOTAL:" + values.formatPrice(parseInt(values.shippingoption.removeCharAt(values.shippingoption.indexOf(".")+1)) + parseInt(values.cart.reduce(function(acc, val){ return acc + (val.qty * val.price)}, 0)),
+                                                    values.cart[0].currency) : ""}
                                             </div>
                                         </div>
 
-                                        <button className="order-form-submit" type="submit" disabled={isSubmitting}>
+                                        <Field name="message" component="textarea" placeholder="Message" />
+                                        <ErrorMessage name="message" render={msg => <div className={"form-error-msg"}>{msg}</div>} />
+
+                                        <button className="order-form-submit" type="submit" disabled={isSubmitting && values.shippingoption !== ''}>
                                             Submit
                                         </button>
                                     </Form>
