@@ -3,9 +3,6 @@ import React, { Component } from 'react'
 import "../../styles/checkout.scss"
 import {formatPrice} from "../../utils/shared";
 import CartContext from "../widget/cart-context";
-import {FaTrash} from "react-icons/fa"
-import qs from "querystring";
-import axios from "axios";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 
 String.prototype.removeCharAt = function (i) {
@@ -21,8 +18,8 @@ class Checkout extends Component {
         shipping: null,
     }
     componentDidMount() {
-        /*const stripe = window.Stripe("pk_live_OGxNOUzWvpoUJS3yscyZ6Ccw00ukIopzD4")*/
-        const stripe = window.Stripe("pk_test_4xqQzlAyU2e9MJ2h9P1SapFe00K4jXy6Rk")
+        const stripe = window.Stripe("pk_live_OGxNOUzWvpoUJS3yscyZ6Ccw00ukIopzD4")
+        /*const stripe = window.Stripe("pk_test_4xqQzlAyU2e9MJ2h9P1SapFe00K4jXy6Rk")*/
         this.setState({ stripe: stripe, shipping: {} })
     }
 
@@ -39,7 +36,7 @@ class Checkout extends Component {
         if(shipping && shipping.rate) {
             let rate = parseInt(shipping.rate)
             //testing sku
-            let shippingSku = "sku_GtwTbV76ZkJSXo"
+            let shippingSku = "sku_GwA4reU8UYoeki"
             let obj = {sku : shippingSku, quantity: rate}
             outItems.push(obj)
         }
@@ -138,8 +135,6 @@ class Checkout extends Component {
                                             }) : ""}
                                         </Field>
                                         <ErrorMessage name="shippingoption" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
-
-                                        <Field name="shipprice" disabled/>
 
                                         <Field name="message" component="textarea" placeholder="Message" />
                                         <ErrorMessage name="message" render={msg => <div className={"form-error-msg"}>{msg}</div>} />
