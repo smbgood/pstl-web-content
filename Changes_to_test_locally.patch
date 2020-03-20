@@ -1,0 +1,72 @@
+Index: src/components/page/checkout.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/components/page/checkout.js	(revision Local Version)
++++ src/components/page/checkout.js	(revision Shelved Version)
+@@ -18,8 +18,8 @@
+         shipping: null,
+     }
+     componentDidMount() {
+-        const stripe = window.Stripe("pk_live_OGxNOUzWvpoUJS3yscyZ6Ccw00ukIopzD4")
+-        /*const stripe = window.Stripe("pk_test_4xqQzlAyU2e9MJ2h9P1SapFe00K4jXy6Rk")*/
++        /*const stripe = window.Stripe("pk_live_OGxNOUzWvpoUJS3yscyZ6Ccw00ukIopzD4")*/
++        const stripe = window.Stripe("pk_test_4xqQzlAyU2e9MJ2h9P1SapFe00K4jXy6Rk")
+         this.setState({ stripe: stripe, shipping: {} })
+     }
+ 
+@@ -36,7 +36,9 @@
+         if(shipping && shipping.rate) {
+             let rate = parseInt(shipping.rate)
+             //testing sku
+-            let shippingSku = "sku_GwA4reU8UYoeki"
++            let shippingSku = "sku_GtwTbV76ZkJSXo"
++            //live sku
++            //let shippingSku = "sku_GwA4reU8UYoeki"
+             let obj = {sku : shippingSku, quantity: rate}
+             outItems.push(obj)
+         }
+@@ -44,8 +46,8 @@
+         //make request to stripe
+         const { error } = await stripe.redirectToCheckout({
+             items: outItems,
+-            successUrl: `https://www.bansheebabe.com/page-2/`,
+-            cancelUrl: `https://www.bansheebabe.com/shope/cart`,
++            successUrl: `https://localhost:8000/page-2/`,
++            cancelUrl: `https://localhost:8000/shope/cart`,
+             billingAddressCollection:`required`,
+             clientReferenceId: orderId+"___"+shipping.id,
+         })
+Index: gatsby-node.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- gatsby-node.js	(revision Local Version)
++++ gatsby-node.js	(revision Shelved Version)
+@@ -1,6 +1,6 @@
+-/*require("dotenv").config({
++require("dotenv").config({
+     path: `.env.${process.env.NODE_ENV}`,
+-})*/
++})
+ 
+ // Implement the Gatsby API “onCreatePage”. This is
+ // called after every page is created.
+Index: content/categories/main.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- content/categories/main.json	(revision Local Version)
++++ content/categories/main.json	(revision Shelved Version)
+@@ -2,7 +2,7 @@
+   "name": "Necessities!",
+   "id": "main",
+   "products": [
+-    "sku_GqieRpegmpEELC","sku_Gr3s24Ebbr2EkP"
++    "sku_Gs8qHKkVxMdXfv"
+   ],
+   "image":  "content/assets/blue-and-red-plants-2505693.jpg"
+ }

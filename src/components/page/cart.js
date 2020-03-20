@@ -112,7 +112,7 @@ class Cart extends Component {
                                             addressValues["validate"] = true
                                             let responseData = null
                                             let orderId = ""
-                                            let url = "https://richornot.com/banshee/addr?" + qs.stringify(addressValues)
+                                            let url = "http://localhost:9090/banshee/addr?" + qs.stringify(addressValues)
                                             await axios.get(url).then(response => {
                                                 setSubmitting(false)
                                                 //if valid, show them how much to ship,
@@ -146,37 +146,28 @@ class Cart extends Component {
                                             <input type="hidden" name="bot-field"/>
                                             <input type="hidden" name="form-name" value="bborder"/>
                                             <input type="hidden" name="stripe-order-id" value={values.orderId}/>
-                                            <br/>
-                                            <br/>
                                             <h3 className={"form-heading-shipping"}>Shipping Address</h3>
                                             <h4 className={"form-subheading-shipping"}>(US and Canada only, please)</h4>
                                             <Field name="firstname" placeholder="Name"/>
                                             <ErrorMessage name="firstname" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
                                             <Field type="email" name="email" placeholder="Email" />
                                             <ErrorMessage name="email" render={msg => <div className={"form-error-msg"}>{msg}</div>} />
-                                            <br/>
                                             <Field name="addresslineone" placeholder="Address 1"/>
                                             <ErrorMessage name="addresslineone" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
-                                            <br/>
                                             <Field name="addresslinetwo" placeholder="Address 2"/>
                                             <ErrorMessage name="addresslinetwo" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
-                                            <br/>
                                             <Field name="city" placeholder="City"/>
                                             <ErrorMessage name="city" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
                                             <Field name="state" placeholder="State"/>
                                             <ErrorMessage name="state" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
-                                            <br/>
                                             <Field name="zip" placeholder="Zip"/>
                                             <ErrorMessage name="zip" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
-                                            <br/>
                                             <Field as="select" name="country">
                                                 <option value="">Select a country</option>
                                                 <option value="US">United States</option>
                                                 <option value="CA">Canada</option>
                                             </Field>
                                             <ErrorMessage name="country" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
-                                            <br/>
-
 
                                             <button className="checkout-cart-page-btn" type="submit" disabled={isSubmitting}>
                                                 Next
