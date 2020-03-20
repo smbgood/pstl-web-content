@@ -1,6 +1,9 @@
 @import "./global.scss";
 .category-root{
   margin: 0 auto;
+  border-style: solid;
+  padding: 1rem 1rem 2rem 2rem;
+  margin: 2rem;
 }
 .category-holder{
   display:inline;
@@ -36,9 +39,4 @@
 
 .category-header{
   display: inline;
-}
-
-.category-root{
-  border-style: solid;
-  padding: 1rem 1rem 2rem 2rem;
 }

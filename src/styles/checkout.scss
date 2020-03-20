@@ -16,6 +16,11 @@
 form[name='bborder']{
   .form-error-msg{
     background-color:purple;
+    @media only screen and (max-width:$bp-med){
+      width: 64%;
+      margin: 0 auto;
+      padding: 2rem;
+    }
   }
   input{
     @media only screen and (max-width:$bp-med){
