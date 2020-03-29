@@ -11,6 +11,7 @@ class Nav extends Component {
         super(props)
         this.state = {isMobileMenuOpen : false, animationEnd: false};
         this.handleClick = this.handleClick.bind(this);
+        this.doTimeout();
     }
 
     doTimeout(){

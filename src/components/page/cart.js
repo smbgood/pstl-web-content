@@ -14,11 +14,11 @@ class Cart extends Component {
     doOutput(item, cart){
         return (
             <div className={"cart-row-item"}>
-                <div className={"cart-left"}>{item.name}</div>
-                <div className={"cart-mid"}>{item.qty}</div>
-                <div className={"cart-right"}>{formatPrice(item.price, item.currency)}</div>
-                <div className={"cart-last"}>{formatPrice((item.price*item.qty), item.currency)}</div>
-                <div className={"cart-delete-item"}><button className={"cart-delete-btn"} onClick={() => {cart.removeFromCart(item.sku, item.qty)}}><FaTrash/></button></div>
+                <div key={"cart-left-"+item.sku} className={"cart-left"}>{item.name}</div>
+                <div key={"cart-mid-"+item.sku} className={"cart-mid"}>{item.qty}</div>
+                <div key={"cart-right-"+item.sku} className={"cart-right"}>{formatPrice(item.price, item.currency)}</div>
+                <div key={"cart-last-"+item.sku} className={"cart-last"}>{formatPrice((item.price*item.qty), item.currency)}</div>
+                <div key={"cart-delete-"+item.sku} className={"cart-delete-item"}><button className={"cart-delete-btn"} onClick={() => {cart.removeFromCart(item.sku, item.qty)}}><FaTrash/></button></div>
             </div>
         )
     }
@@ -60,9 +60,11 @@ class Cart extends Component {
 
                                 {this.doTotal(cart.cart)}
 
+                            </div>
+                            <div className={"cart-page-lower"}>
                                 <Formik
                                     initialValues={{ firstname: '', lastname: '', email: '', addresslineone: '',
-                                        addresslinetwo: '', city: '', state: '', country:'', zip:'', message: '' }}
+                                        addresslinetwo: '', city: '', state: '', country:'', zip:'', message: '', addressvalid: '', lastaddress: '' }}
                                     validate={values => {
                                         const errors = {};
                                         if (!values.email) {
@@ -74,11 +76,18 @@ class Cart extends Component {
                                         }
 
                                         if(!values.firstname){
-                                            errors.firstname = 'Please enter your first name';
+                                            errors.firstname = 'Please enter your full name';
                                         }
                                         if(!values.addresslineone){
                                             errors.addresslineone = 'Please enter an address to ship to'
                                         }
+                                        let enteredAddress = values.addresslineone + "_" + values.addresslinetwo + "_" + values.city + "_" + values.state + "_" + values.country + "_" + values.zip;
+                                        if(values.lastaddress){
+                                            if(enteredAddress === values.lastaddress){
+                                                errors.addresslineone = 'Unable to validate address. Please check and try again.'
+                                            }
+                                        }
+
                                         if(!values.city){
                                             errors.city  = 'Please enter a city'
                                         }
@@ -93,11 +102,11 @@ class Cart extends Component {
                                             errors.zip = 'Please enter a zip code'
                                         }
                                         if(!values.country){
-                                            errors.country = 'Please enter a country'
+                                            errors.country = 'Please select a country'
                                         }
                                         return errors;
                                     }}
-                                    onSubmit={async (values, {setSubmitting}) => {
+                                    onSubmit={async (values, {setSubmitting, setFieldValue}) => {
                                         if (cart != null) {
                                             //validate address before we allow submit:
                                             let addressValues = {}
@@ -114,7 +123,6 @@ class Cart extends Component {
                                             let orderId = ""
                                             let url = "http://localhost:9090/banshee/addr?" + qs.stringify(addressValues)
                                             await axios.get(url).then(response => {
-                                                setSubmitting(false)
                                                 //if valid, show them how much to ship,
                                                 if (response && response.data) {
                                                     if (response.data.rates && response.data.rates.length > 0) {
@@ -126,6 +134,16 @@ class Cart extends Component {
                                                     }
                                                 }
                                                 //if not valid, pop up an error next to address and do not allow form submit
+                                            }).catch((error) => {
+                                                if(error.response){
+                                                    console.log(error.response);
+                                                }else if(error.request){
+                                                    console.log(error.request);
+                                                }else{
+                                                    console.log('error', error);
+                                                }
+                                                console.log(error.config);
+                                                setSubmitting(false)
                                             })
                                             if(responseData){
                                                 let state = {
@@ -137,6 +155,10 @@ class Cart extends Component {
                                                 navigate(`/shope/checkout`, {
                                                     state: state
                                                 })
+                                            }else{
+                                                setFieldValue("lastaddress", values.addresslineone + "_" + values.addresslinetwo + "_" + values.city + "_" + values.state + "_" + values.country + "_" + values.zip, false)
+                                                setFieldValue("addressvalid", false, true)
+                                                setSubmitting(false)
                                             }
                                         }
                                     }}
@@ -148,37 +170,108 @@ class Cart extends Component {
                                             <input type="hidden" name="stripe-order-id" value={values.orderId}/>
                                             <h3 className={"form-heading-shipping"}>Shipping Address</h3>
                                             <h4 className={"form-subheading-shipping"}>(US and Canada only, please)</h4>
-                                            <Field name="firstname" placeholder="Name"/>
-                                            <ErrorMessage name="firstname" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
+                                            <div className={"form-field-holder"}>
+                                                <Field name="firstname" placeholder="Name"/>
+                                                <ErrorMessage name="firstname" render={msg => <div className={"form-error-holder"}>
+                                                    <div className={"form-error-msg"}>{msg}</div>
+                                                    <div className={"form-error-msg-mobile"}>X</div>
+                                                </div>}/>
+                                            </div>
+                                            <div className={"form-field-holder"}>
                                             <Field type="email" name="email" placeholder="Email" />
-                                            <ErrorMessage name="email" render={msg => <div className={"form-error-msg"}>{msg}</div>} />
+                                            <ErrorMessage name="email" render={msg => <div className={"form-error-holder"}>
+                                                    <div className={"form-error-msg"}>{msg}</div>
+                                                    <div className={"form-error-msg-mobile"}>X</div>
+                                                </div>} />
+                                            </div>
+                                            <div className={"form-field-holder"}>
                                             <Field name="addresslineone" placeholder="Address 1"/>
-                                            <ErrorMessage name="addresslineone" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
+                                            <ErrorMessage name="addresslineone" render={msg => <div className={"form-error-holder"}>
+                                                    <div className={"form-error-msg"}>{msg}</div>
+                                                    <div className={"form-error-msg-mobile"}>X</div>
+                                                </div>}/>
+                                            </div>
+                                            <div className={"form-field-holder"}>
                                             <Field name="addresslinetwo" placeholder="Address 2"/>
-                                            <ErrorMessage name="addresslinetwo" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
-                                            <Field name="city" placeholder="City"/>
-                                            <ErrorMessage name="city" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
-                                            <Field name="state" placeholder="State"/>
-                                            <ErrorMessage name="state" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
-                                            <Field name="zip" placeholder="Zip"/>
-                                            <ErrorMessage name="zip" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
-                                            <Field as="select" name="country">
-                                                <option value="">Select a country</option>
-                                                <option value="US">United States</option>
-                                                <option value="CA">Canada</option>
-                                            </Field>
-                                            <ErrorMessage name="country" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
+                                            <ErrorMessage name="addresslinetwo" render={msg =>  <div className={"form-error-holder"}>
+                                                    <div className={"form-error-msg"}>{msg}</div>
+                                                    <div className={"form-error-msg-mobile"}>X</div>
+                                                </div>}/>
+                                            </div>
+                                            <div className={"city-state-holder"}>
+                                                <div className={"fields-row-holder"}>
+                                                    <Field name="city" placeholder="City"/>
+                                                    <Field name="state" placeholder="State"/>
+                                                </div>
+                                                <div className={"errors-row-holder"}>
+                                                    <ErrorMessage name="city" render={msg => <div className={"form-error-holder"}>
+                                                        <div className={"form-error-msg city-msg"}>{msg}</div>
+                                                        <div className={"form-error-msg-mobile city-error-msg"}>X</div>
+                                                    </div>}/>
+                                                    <ErrorMessage name="state" render={msg => <div className={"form-error-holder"}>
+                                                        <div className={"form-error-msg state-msg"}>{msg}</div>
+                                                        <div className={"form-error-msg-mobile state-error-msg"}>X</div>
+                                                    </div>}/>
+                                                </div>
+                                            </div>
+                                            <div className={"country-zip-holder"}>
+                                                <div className={"fields-row-holder"}>
+                                                    <Field as="select" name="country">
+                                                        <option value="">Select a country</option>
+                                                        <option value="US">United States</option>
+                                                        <option value="CA">Canada</option>
+                                                    </Field>
+                                                    <Field name="zip" placeholder="Zip"/>
+                                                </div>
+                                                <div className={"errors-row-holder"}>
+                                                    <ErrorMessage name="country" render={msg => <div className={"form-error-holder"}>
+                                                        <div className={"form-error-msg country-msg"}>{msg}</div>
+                                                        <div className={"form-error-msg-mobile country-error-msg"}>X</div>
+                                                    </div>}/>
+                                                    <ErrorMessage name="zip" render={msg => <div className={"form-error-holder"}>
+                                                        <div className={"form-error-msg zip-msg"}>{msg}</div>
+                                                        <div className={"form-error-msg-mobile"}>X</div>
+                                                    </div>}/>
+                                                </div>
+                                            </div>
 
-                                            <button className="checkout-cart-page-btn" type="submit" disabled={isSubmitting}>
+                                            <ErrorMessage name="firstname" render={msg => <div className={"form-error-holder"}>
+                                                <div className={"form-error-btm-msg"}>{msg}</div>
+                                            </div>}/>
+
+                                            <ErrorMessage name="email" render={msg => <div className={"form-error-holder"}>
+                                                <div className={"form-error-btm-msg"}>{msg}</div>
+                                            </div>} />
+
+                                            <ErrorMessage name="addresslineone" render={msg => <div className={"form-error-holder"}>
+                                                <div className={"form-error-btm-msg"}>{msg}</div>
+                                            </div>}/>
+
+                                            <ErrorMessage name="city" render={msg => <div className={"form-error-holder"}>
+                                                <div className={"form-error-btm-msg"}>{msg}</div>
+                                            </div>}/>
+                                            <ErrorMessage name="state" render={msg => <div className={"form-error-holder"}>
+                                                <div className={"form-error-btm-msg"}>{msg}</div>
+                                            </div>}/>
+
+                                            <ErrorMessage name="country" render={msg => <div className={"form-error-holder"}>
+                                                <div className={"form-error-btm-msg"}>{msg}</div>
+                                            </div>}/>
+                                            <ErrorMessage name="zip" render={msg => <div className={"form-error-holder"}>
+                                                <div className={"form-error-btm-msg"}>{msg}</div>
+                                            </div>}/>
+
+                                            {isSubmitting ? <div className="lds-heart">
+                                                <div></div>
+                                            </div> : <button className="checkout-cart-page-btn" type="submit" disabled={isSubmitting}>
                                                 Next
-                                            </button>
+                                            </button>}
+
+
+
                                         </Form>
                                     )}
                                 </Formik>
-
-                            </div>
-                            <div className={"cart-page-lower"}>
-
                             </div>
                         </div> : <div className={"cart-page-root"}><h4 className={"cart-items-empty"}>No items currently in cart.</h4></div>
                 )}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import "../../styles/checkout.scss"
+import "../../styles/cart.scss"
 import {formatPrice} from "../../utils/shared";
 import CartContext from "../widget/cart-context";
 import {ErrorMessage, Field, Form, Formik} from "formik";

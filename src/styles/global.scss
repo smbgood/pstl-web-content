@@ -105,6 +105,9 @@
 @mixin bg-color-12(){
     background: linear-gradient(45deg, #e0bdf9,#ffc8ef);
 }
+@mixin bg-color-13(){
+    background: rgb(236, 101, 162);
+}
 //shadow color for cart widget at top of every page
 @mixin shadow-color-1(){
     box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);
