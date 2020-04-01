@@ -4,6 +4,9 @@ import "../../styles/cart.scss"
 import {formatPrice} from "../../utils/shared";
 import CartContext from "../widget/cart-context";
 import {ErrorMessage, Field, Form, Formik} from "formik";
+import Modal from 'react-modal';
+import { FaInfo, FaRegWindowClose } from "react-icons/fa";
+import { IconContext } from "react-icons"
 
 String.prototype.removeCharAt = function (i) {
     let tmp = this.split(''); // convert to an array
@@ -16,11 +19,34 @@ class Checkout extends Component {
     state = {
         stripe: null,
         shipping: null,
+        modalsOpen: []
     }
     componentDidMount() {
         /*const stripe = window.Stripe("pk_live_OGxNOUzWvpoUJS3yscyZ6Ccw00ukIopzD4")*/
         const stripe = window.Stripe("pk_test_4xqQzlAyU2e9MJ2h9P1SapFe00K4jXy6Rk")
-        this.setState({ stripe: stripe, shipping: {} })
+        this.setState({ stripe: stripe, shipping: {}, modalsOpen:[] })
+    }
+
+    openModal(state, id){
+        if(state.state.modalsOpen){
+            if(state.state.modalsOpen[id]){
+                //modal already open, do nothing
+            }else{
+                let newVal = state.state.modalsOpen;
+                newVal.push(id)
+                state.setState({modalsOpen: newVal})
+            }
+        }
+    }
+
+    closeModal(state, id){
+        if(state.state.modalsOpen) {
+            if (state.state.modalsOpen.indexOf(id) > -1) {
+                let newVals = state.state.modalsOpen;
+                newVals.splice(newVals.indexOf(id))
+                state.setState({modalsOpen: newVals})
+            }
+        }
     }
 
     async doCheckout(cart, orderId, shipping, stripe){
@@ -54,6 +80,7 @@ class Checkout extends Component {
 
         if (error) {
             console.warn("Error:", error)
+            //TODO error handling if stripe payment request fails
         }
     }
 
@@ -93,81 +120,93 @@ class Checkout extends Component {
                                         orderId: this.props.location.state.orderId,
                                         formatPrice: formatPrice,
                                         shippingoption: '',
-                                        checkout: this.doCheckout
+                                        checkout: this.doCheckout,
                                     }
                                 }
                                 onSubmit={(values, { setSubmitting }) => {
                                     if(values && values.cart != null && values.shippingoption){
-                                        //need to post to our OMS so we can start fufillment, then redirectToCheckout
+                                        //TODO post message off to our own server if user added one so we can take action
+                                        //need to post to our OMS so we can start fulfillment, then redirectToCheckout
                                         this.doCheckout(values.cart, values.orderId, this.state.shipping, this.state.stripe)
                                     }
 
                                 }}
                             >
                                 {({ values, touched, isSubmitting}) => (
-                                    <Form name="bborder" data-netlify="true" netlify-honeypot="bot-field" method="post" action="/" >
-                                        <input type="hidden" name="bot-field"/>
-                                        <input type="hidden" name="form-name" value="bborder"/>
-                                        <br/>
-                                        <br/>
-                                        <Field name="firstname" placeholder="Name" disabled/>
-                                        <br/>
-                                        <Field type="email" name="email" placeholder="Email" disabled/>
-                                        <br/>
-                                        <Field name="addresslineone" placeholder="Address 1" disabled/>
-                                        <br/>
-                                        <Field name="addresslinetwo" placeholder="Address 2" disabled/>
-                                        <br/>
-                                        <Field name="city" placeholder="City" disabled/>
-                                        <Field name="state" placeholder="State" disabled/>
-                                        <br/>
-                                        <Field name="zip" placeholder="Zip" disabled/>
-                                        <br/>
-                                        <Field as="select" name="country" disabled>
-                                            <option value="">Select a country</option>
-                                            <option value="US">United States</option>
-                                            <option value="CA">Canada</option>
-                                        </Field>
-                                        <br/>
-
-                                        <Field as="select" name="shippingoption">
-                                            <option value="">Select a shipping method</option>
-                                            {values.shipping != null ? values.shipping.map( item =>{
-                                                return item != null ? this.showShippingOptions(item) : ""
-                                            }) : ""}
-                                        </Field>
-                                        <ErrorMessage name="shippingoption" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
-                                        <br/>
-
-                                        {values.cart != null && values.cart.map( item => (
-                                            item != null && item.qty > 0 ?
-                                                <div key={item.name + "-cart-item"} className={"cart-row-item"}>
-                                                    <div className={"cart-left"}>{item.name}</div>
-                                                    <div className={"cart-mid"}>{item.qty}</div>
-                                                    <div className={"cart-right"}>{formatPrice(item.price, item.currency)}</div>
-                                                    <div className={"cart-last"}>{formatPrice((item.price*item.qty), item.currency)}</div>
-                                                    {/* TODO add function to return to cart screen and show empty cart message */}
-                                                </div>
-                                            : ""
-                                        ))}
-
-                                        {this.state.shipping != null && this.state.shipping.rate != null && "Shipping: " + this.state.shipping.rate}
-
-                                        <div className={"cart-row-item cart-total-line"}>
-                                            <div className={"cart-left"}/>
-                                            <div className={"cart-mid"}/>
-                                            <div className={"cart-right"}/>
-                                            <div className={"cart-last"}>
-                                                {values.cart != null && values.cart.length > 0 && values.shippingoption !== '' ? "GRAND TOTAL:" + values.formatPrice(parseInt(values.shippingoption.removeCharAt(values.shippingoption.indexOf(".")+1)) + parseInt(values.cart.reduce(function(acc, val){ return acc + (val.qty * val.price)}, 0)),
-                                                    values.cart[0].currency) : ""}
-                                            </div>
+                                    <Form name="bbcheckout" action="/" >
+                                        <div className={"checkout-top"}>
+                                        <div className={"checkout-shipping-to-heading"}>
+                                            <h5>Ship to:</h5>
+                                        </div>
+                                        <div className={"checkout-shipping-to"}>
+                                            <Field name="firstname" disabled/>
+                                            <Field type="email" name="email" disabled/>
+                                            <Field name="addresslineone" disabled/>
+                                            {values.addresslinetwo !== "" ? <Field name="addresslinetwo" disabled /> : ""}
+                                            <Field name="city" disabled/>
+                                            <Field name="state" disabled/>
+                                            <Field name="zip" disabled/>
+                                            <Field as="select" name="country" disabled>
+                                                <option value="">Select a country</option>
+                                                <option value="US">United States</option>
+                                                <option value="CA">Canada</option>
+                                            </Field>
+                                        </div>
                                         </div>
 
-                                        <Field name="message" component="textarea" placeholder="Message" />
-                                        <ErrorMessage name="message" render={msg => <div className={"form-error-msg"}>{msg}</div>} />
+                                        <div className={"checkout-shipping-options"}>
+                                            <h4>Shipping Options</h4>
+                                            <Field name="shippingoption" render={({field}) => (
+                                                <>
+                                                    {values.shipping != null ? values.shipping.map( item =>{
+                                                        return item != null ? this.showShippingOptions(item, field, this, this.openModal, this.closeModal, this.state.modalOpen) : ""
+                                                    }) : ""}
+                                                </>
+                                            )}/>
+                                            <ErrorMessage name="shippingoption" render={msg => <div className={"form-error-msg"}>{msg}</div>}/>
+                                        </div>
+
+                                        <div className={"checkout-cart-contents"}>
+                                            <h6>You'll receive:</h6>
+                                            {values.cart != null && values.cart.map( item => (
+                                                item != null && item.qty > 0 ?
+                                                    <div key={item.name + "-cart-item"} className={"cart-row-item"}>
+                                                        <div className={"cart-left"}>{item.name}</div>
+                                                        <div className={"cart-mid"}>{item.qty}</div>
+                                                        <div className={"cart-right"}>{formatPrice(item.price, item.currency)}</div>
+                                                        <div className={"cart-last"}>{formatPrice((item.price*item.qty), item.currency)}</div>
+                                                        {/* TODO add function to return to cart screen and show empty cart message */}
+                                                    </div>
+                                                : ""
+                                            ))}
+
+                                        </div>
+
+                                        <div className={"checkout-shipping-total"}>
+
+                                            <div className={"shipping-amount-line"}>
+                                                {this.state.shipping != null && this.state.shipping.rate != null && "Shipping: $" + this.state.shipping.rate}
+                                            </div>
+
+                                            <div className={"cart-row-item cart-total-line"}>
+                                                <div className={"cart-left"}/>
+                                                <div className={"cart-mid"}/>
+                                                <div className={"cart-right"}/>
+                                                <div className={"cart-last"}>
+                                                    {values.cart != null && values.cart.length > 0 && values.shippingoption !== '' ? "GRAND TOTAL:" + values.formatPrice(parseInt(values.shippingoption.removeCharAt(values.shippingoption.indexOf(".")+1)) + parseInt(values.cart.reduce(function(acc, val){ return acc + (val.qty * val.price)}, 0)),
+                                                        values.cart[0].currency) : ""}
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        {/*<div className={"checkout-order-message"}>
+                                            <Field name="message" component="textarea" placeholder="Message" />
+                                            <ErrorMessage name="message" render={msg => <div className={"form-error-msg"}>{msg}</div>} />
+                                        </div>*/}
 
                                         <button className="order-form-submit" type="submit" disabled={isSubmitting && values.shippingoption !== ''}>
-                                            Submit
+                                            Pay Now
                                         </button>
                                     </Form>
                                 )}
@@ -178,9 +217,43 @@ class Checkout extends Component {
         )
     }
 
-    showShippingOptions(item) {
+
+
+    showShippingOptions(item, field, state, openModal, closeModal) {
         if(item != null && item.provider) {
-            return (<option key={item.shipmentId} id={item.shipmentId} value={item.rate+"___"+item.shipmentId}>{item.provider} - {item.serviceLevel} - {item.rate}</option>)
+            let customStyles = {
+                content : {
+                    top                   : '50%',
+                    left                  : '50%',
+                    right                 : 'auto',
+                    bottom                : 'auto',
+                    marginRight           : '-50%',
+                    transform             : 'translate(-50%, -50%)'
+                }
+            };
+            let modalOpen = false;
+            if(state.state && state.state.modalsOpen && state.state.modalsOpen.length > 0 ) {
+                modalOpen = state.state.modalsOpen.indexOf(item.shipmentId) > -1;
+            }
+            return (<div className={"shipping-option-single"}>
+                <input {...field} key={item.shipmentId} id={item.shipmentId} value={item.rate+"___"+item.shipmentId} name="shippingoption" type="radio"/>
+                {item.provider} - {item.serviceLevel} - {item.rate} <button className={"shipping-option-modal-open"} type={"button"} onClick={() => {openModal(state, item.shipmentId)}}><FaInfo/></button>
+
+                {modalOpen ?
+                <Modal
+                    isOpen={modalOpen}
+                    onRequestClose={() => {closeModal(state, item.shipmentId)}}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                >
+                    <IconContext.Provider value={{size: "1.25em"}}>
+                    <button onClick={() => {closeModal(state, item.shipmentId)}} className={"shipping-modal-close-button"}>
+                        <FaRegWindowClose/>
+                    </button>
+                    </IconContext.Provider>
+                    <div dangerouslySetInnerHTML={{__html: item.durationTerms}}/>
+                </Modal> : ""}
+            </div>)
         }
     }
 
