@@ -267,8 +267,6 @@ class Cart extends Component {
                                                 Next
                                             </button>}
 
-
-
                                         </Form>
                                     )}
                                 </Formik>

@@ -56,6 +56,14 @@
 @mixin color-11(){
     color: #441744;
 }
+//about section headings h4
+@mixin color-12(){
+    color: #8f15d2;
+}
+//about section CW h5
+@mixin color-13(){
+    color: #ABCDEF;
+}
 
 //default background color -- not used rn
 @mixin bg-color-1() {
@@ -357,4 +365,22 @@ nav, .footer-root{
     text-shadow: 2px 2px white;
     @include ultimate-center();
     padding:4rem;
+}
+
+.about-root{
+    margin:1rem;
+}
+
+.about-text{
+    margin-top:2.4rem;
+    line-height:1.9rem;
+    margin-bottom:2.4rem;
+}
+
+.about-heading{
+    @include color-12();
+}
+
+.about-warning{
+    @include color-13();
 }

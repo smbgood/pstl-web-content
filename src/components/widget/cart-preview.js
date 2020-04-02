@@ -3,7 +3,7 @@ import CartContext from "./cart-context";
 import {Link} from "gatsby"
 import {formatPrice} from "../../utils/shared";
 
-const Cart = class extends React.Component {
+const CartPreview = class extends React.Component {
 
     constructor(props) {
         super(props);
@@ -63,4 +63,4 @@ const Cart = class extends React.Component {
     }
 }
 
-export default Cart
+export default CartPreview

@@ -61,7 +61,7 @@ class Contact extends Component {
                             <Field name="message" component="textarea" placeholder="Here is where you leave me your glowing messages or ask any questions!" />
                             <ErrorMessage name="message" component="div" />
                             <br/>
-                            <button class="contact-us-submit" type="submit" disabled={isSubmitting}>
+                            <button className={"contact-us-submit"} type="submit" disabled={isSubmitting}>
                                 Submit
                             </button>
                         </Form>

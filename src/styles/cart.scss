@@ -10,8 +10,12 @@
   text-align:center;
   margin-bottom:3.5rem;
   margin-top:1rem;
+  padding-bottom:1.2rem;
   @media screen and(max-width:$bp-med){
     max-width:88%;
+  }
+  @media screen and(max-width:$bp-small){
+    max-width:95%;
   }
 }
 
@@ -227,15 +231,15 @@ form[name='bborder']{
     font-size: 1.1rem;
     text-align: center;
     @media only screen and (max-width:$bp-small){
-      width: 100%;
+      width: 90%;
       height: 2rem;
       padding: 1rem;
-      font-size:2rem;
+      font-size:1.7rem;
     }
     &[name=city]{
       width:60%;
       @media only screen and (max-width: $bp-small) {
-        width:100%;
+        width:90%;
       }
     }
     &[name=state]{
@@ -245,7 +249,7 @@ form[name='bborder']{
         margin-right: 1rem;
       }
       @media only screen and (max-width: $bp-small) {
-        width:100%;
+        width:90%;
         margin-top:1rem;
       }
     }
@@ -255,7 +259,7 @@ form[name='bborder']{
         float: right;
       }
       @media only screen and (max-width: $bp-small) {
-        width:100%;
+        width:90%;
         margin-top:1rem;
       }
     }
@@ -355,10 +359,24 @@ form[name=bbcheckout]{
     border-color:black;
   }
   .checkout-shipping-to-heading{
-    display: inline-block;
-    width: 37%;
-    vertical-align: top;
-    margin-top:1.5rem;
+    @media screen and (min-width:$bp-small) {
+      display: inline-block;
+      width: 37%;
+      vertical-align: top;
+      margin-top: 1.5rem;
+    }
+    @media screen and(max-width:$bp-small){
+      display:none;
+    }
+  }
+  .checkout-shipping-to-heading-mobile{
+    @media screen and(max-width:$bp-small){
+      display:block;
+      padding-top:.1rem;
+    }
+    @media screen and(min-width:$bp-small){
+      display:none;
+    }
   }
   .checkout-shipping-options,.checkout-order-message{
     margin-top:1.5rem;
@@ -381,7 +399,9 @@ form[name=bbcheckout]{
   .checkout-shipping-to {
     display:inline-block;
     width:31%;
-    margin-top:1.5rem;
+    @media screen and(min-width:$bp-small) {
+      margin-top: 1.5rem;
+    }
     input,
     label,
     select,

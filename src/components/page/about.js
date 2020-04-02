@@ -29,7 +29,7 @@ class About extends Component {
               }
             `}
             render={({ siteInfo }) => (
-                <div className="blended_grid">
+                <div className="about-root">
                     <h3 className="about-title">About Banshee Babe</h3>
                     <FaCoffee/>
                     <p className="about-text" dangerouslySetInnerHTML={this.renderHtmlToReact(siteInfo.edges[0].node.blogpage.aboutbar.barBody)}/>

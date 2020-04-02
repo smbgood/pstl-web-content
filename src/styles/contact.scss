@@ -14,6 +14,11 @@
     width: 50rem;
     height: 15rem;
 
+    @media screen and (max-width:$bp-small){
+      width:90%;
+      height:20rem;
+    }
+
     &::placeholder{
       padding-left:3rem;
       padding-right:2rem;

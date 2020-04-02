@@ -138,6 +138,9 @@ class Checkout extends Component {
                                         <div className={"checkout-shipping-to-heading"}>
                                             <h5>Ship to:</h5>
                                         </div>
+                                        <div className={"checkout-shipping-to-heading-mobile"}>
+                                            <h5>Ship to:</h5>
+                                        </div>
                                         <div className={"checkout-shipping-to"}>
                                             <Field name="firstname" disabled/>
                                             <Field type="email" name="email" disabled/>

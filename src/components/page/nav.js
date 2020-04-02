@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 import React, { Component } from "react"
-import { Link } from "gatsby"
+import { Link, navigate} from "gatsby"
 import {FaCrow, FaAlignJustify, FaPencilAlt, FaSpa, FaStoreAlt, FaTelegram} from "react-icons/fa"
 import Img from "gatsby-image"
 
@@ -9,7 +9,7 @@ class Nav extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {isMobileMenuOpen : false, animationEnd: false};
+        this.state = {isMobileMenuOpen : false, animationEnd: false, itemSelected: ""};
         this.handleClick = this.handleClick.bind(this);
         this.doTimeout();
     }
@@ -23,10 +23,20 @@ class Nav extends Component {
       )
     }
 
-    handleClick(){
-      this.setState(state => ({
-        isMobileMenuOpen: !state.isMobileMenuOpen
-      }))
+    handleClick(link, openClose, state, setNavItem){
+        openClose(state)
+        setNavItem(link, state)
+        navigate((link === "" ? "/shope" : ("/shope/" + link)))
+    }
+
+    setCurrentNavItem(link, stateIn){
+        stateIn.setState( {itemSelected: (link === "" ? "blog" : link)})
+    }
+
+    openCloseMenu(stateIn) {
+        stateIn.setState(state => ({
+            isMobileMenuOpen: !state.isMobileMenuOpen
+        }))
     }
 
     render() {
@@ -63,7 +73,7 @@ class Nav extends Component {
               {` `}
             </div>
             <div className="nav-mobile-btn">
-              <a href="#" onClick={this.handleClick}>
+              <a href="#" onClick={() => {this.openCloseMenu(this)}}>
                 <FaAlignJustify/>
               </a>
             </div>
@@ -71,28 +81,28 @@ class Nav extends Component {
                 <div className={("nav-mobile-menu " + (this.state.isMobileMenuOpen ? "opened" : "closed"))} >
                     {` `}
                     <div className={("nav-mobile-menu-item" + (this.state.itemSelected === "contact" ? "active" : ""))}>
-                        <FaTelegram/><Link sx={{
+                        <FaTelegram/><a sx={{
                             fontFamily: "heading",
-                        }} className="nav-link" to="/shope/contact">Contact Us</Link>
+                        }} className="nav-link" onClick={(e) => {this.handleClick("contact", this.openCloseMenu, this, this.setCurrentNavItem)}}>Contact Us</a>
                     </div>
                     {` `}
-                    <div className={("nav-mobile-menu-item" + (this.state.itemSelected === "store" ? "active" : ""))}>
-                        <FaStoreAlt/><Link sx={{
+                    <div className={("nav-mobile-menu-item" + (this.state.itemSelected === "categories" ? "active" : ""))}>
+                        <FaStoreAlt/><a sx={{
                             fontFamily: "heading",
-                        }} className="nav-link" to="/shope/categories">Boutique</Link>
+                        }} className="nav-link" onClick={(e) => {this.handleClick("categories", this.openCloseMenu, this, this.setCurrentNavItem)}}>Boutique</a>
                     </div>
                     {` `}
                     <div className={("nav-mobile-menu-item" + (this.state.itemSelected === "about" ? "active" : ""))}>
-                        <FaSpa/><Link sx={{
+                        <FaSpa/><a sx={{
                             fontFamily: "heading",
-                        }} className="nav-link" to="/shope/about">About</Link>
+                        }} className="nav-link" onClick={(e) => {this.handleClick("about", this.openCloseMenu, this, this.setCurrentNavItem)}}>About</a>
                     </div>
                     {` `}
                     <div className={("nav-mobile-menu-item" + (this.state.itemSelected === "blog" ? "active" : ""))}>
                         <FaPencilAlt/>
-                        <Link sx={{
+                        <a sx={{
                             fontFamily: "heading",
-                        }} className="nav-link" to="/shope">Blog</Link>
+                        }} className="nav-link" onClick={(e) => {this.handleClick("", this.openCloseMenu, this, this.setCurrentNavItem)}}>Blog</a>
                     </div>
                     {` `}
                 </div>
