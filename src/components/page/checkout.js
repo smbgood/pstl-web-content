@@ -22,8 +22,8 @@ class Checkout extends Component {
         modalsOpen: []
     }
     componentDidMount() {
-        /*const stripe = window.Stripe("pk_live_OGxNOUzWvpoUJS3yscyZ6Ccw00ukIopzD4")*/
-        const stripe = window.Stripe("pk_test_4xqQzlAyU2e9MJ2h9P1SapFe00K4jXy6Rk")
+        const stripe = window.Stripe("pk_live_OGxNOUzWvpoUJS3yscyZ6Ccw00ukIopzD4")
+        /*const stripe = window.Stripe("pk_test_4xqQzlAyU2e9MJ2h9P1SapFe00K4jXy6Rk")*/
         this.setState({ stripe: stripe, shipping: {}, modalsOpen:[] })
     }
 
@@ -72,8 +72,8 @@ class Checkout extends Component {
         //make request to stripe
         const { error } = await stripe.redirectToCheckout({
             items: outItems,
-            successUrl: `https://localhost:8000/page-2/`,
-            cancelUrl: `https://localhost:8000/shope/cart`,
+            successUrl: `https://www.bansheebabe.com/page-2/`,
+            cancelUrl: `https://www.bansheebabe.com/shope/cart`,
             billingAddressCollection:`required`,
             clientReferenceId: orderId+"___"+shipping.id,
         })
