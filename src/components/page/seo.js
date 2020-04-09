@@ -9,8 +9,9 @@ import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
+import {createHistory} from "@reach/router";
 
-function SEO({ description, lang, meta, title }) {
+function SEO({ description, lang, meta, title, history }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -26,6 +27,24 @@ function SEO({ description, lang, meta, title }) {
   )
 
   const metaDescription = description || site.siteMetadata.description
+
+  //let history = createHistory(window)
+  if(history && history.pathname){
+    switch(history.pathname){
+      case "/shope/contact":
+        title = "Contact Us | Banshee Babe Boutique"
+        break
+      case "/shope/about":
+        title = "About | Banshee Babe Boutique"
+        break
+      case "/shope":
+        title = "Blog | Banshee Babe Boutique"
+        break
+      case "/shope/categories":
+        title = "Shope | Banshee Babe Boutique"
+        break
+    }
+  }
 
   return (
     <Helmet

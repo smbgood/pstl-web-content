@@ -1,0 +1,41 @@
+@import "values.scss";
+@import "global.scss";
+
+.about-title,.about-icon{
+  text-align:center;
+}
+
+.about-root{
+  margin:1rem;
+}
+
+.about-text{
+  margin-top:2.4rem;
+  line-height:1.9rem;
+  margin-bottom:2.4rem;
+}
+
+.about-heading{
+  @include color-12();
+  margin-left:2.1rem;
+}
+
+.about-warning{
+  @include color-13();
+}
+
+.about-section-first{
+
+}
+
+.about-section-first-text,.about-section-second-text,.about-warning-section{
+  text-align:center;
+}
+
+.about-section-second{
+
+}
+
+.about-warning-section{
+
+}

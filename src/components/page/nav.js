@@ -9,7 +9,8 @@ class Nav extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {isMobileMenuOpen : false, animationEnd: false, itemSelected: ""};
+        let itemToSelect = props && props.item ? props.item : "blog"
+        this.state = {isMobileMenuOpen : false, animationEnd: false, itemSelected: itemToSelect};
         this.handleClick = this.handleClick.bind(this);
         this.doTimeout();
     }
@@ -80,25 +81,25 @@ class Nav extends Component {
           </div>
                 <div className={("nav-mobile-menu " + (this.state.isMobileMenuOpen ? "opened" : "closed"))} >
                     {` `}
-                    <div className={("nav-mobile-menu-item" + (this.state.itemSelected === "contact" ? "active" : ""))}>
+                    <div className={("nav-mobile-menu-item " + (this.state.itemSelected === "contact" ? "active" : ""))}>
                         <FaTelegram/><a sx={{
                             fontFamily: "heading",
                         }} className="nav-link" onClick={(e) => {this.handleClick("contact", this.openCloseMenu, this, this.setCurrentNavItem)}}>Contact Us</a>
                     </div>
                     {` `}
-                    <div className={("nav-mobile-menu-item" + (this.state.itemSelected === "categories" ? "active" : ""))}>
+                    <div className={("nav-mobile-menu-item " + (this.state.itemSelected === "categories" ? "active" : ""))}>
                         <FaStoreAlt/><a sx={{
                             fontFamily: "heading",
                         }} className="nav-link" onClick={(e) => {this.handleClick("categories", this.openCloseMenu, this, this.setCurrentNavItem)}}>Boutique</a>
                     </div>
                     {` `}
-                    <div className={("nav-mobile-menu-item" + (this.state.itemSelected === "about" ? "active" : ""))}>
+                    <div className={("nav-mobile-menu-item " + (this.state.itemSelected === "about" ? "active" : ""))}>
                         <FaSpa/><a sx={{
                             fontFamily: "heading",
                         }} className="nav-link" onClick={(e) => {this.handleClick("about", this.openCloseMenu, this, this.setCurrentNavItem)}}>About</a>
                     </div>
                     {` `}
-                    <div className={("nav-mobile-menu-item" + (this.state.itemSelected === "blog" ? "active" : ""))}>
+                    <div className={("nav-mobile-menu-item " + (this.state.itemSelected === "blog" ? "active" : ""))}>
                         <FaPencilAlt/>
                         <a sx={{
                             fontFamily: "heading",

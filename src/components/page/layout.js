@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 import React from "react"
-import NavBar from "./nav"
+import Nav from "./nav"
 import Footer from "./footer"
 import CartPreview from "../widget/cart-preview"
 import { graphql, StaticQuery } from "gatsby"
@@ -25,7 +25,7 @@ class Layout extends React.Component{
                 render={ siteInfo  => (
                     <>
                         <CartPreview/>
-                        <NavBar navImage={this.props.navImage} />
+                        <Nav navImage={this.props.navImage} item={this.props.item ? this.props.item : ""} />
                         <div className="page-root" >
                         {this.props.children}
                         </div>

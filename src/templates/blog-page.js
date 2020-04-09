@@ -47,7 +47,7 @@ class BlogPageTemplate extends React.Component {
     }
     return(
       <Layout key={this.props.pageContext.id} navImage={this.props.data.navImage.edges[0].node}>
-        <SEO title={"Banshee Babe Boutique | " + this.props.pageContext.blog.node.frontmatter.title} />
+        <SEO title={"" + this.props.pageContext.blog.node.frontmatter.title} />
         <div className="blog-page-root">
           <div className="blog-page-image-container" style={styles}>
             {findImageForSetBlogImage(this.props.data.images, this.props.pageContext.blog, false) != null ? (<Img fluid={findImageForSetBlogImage(this.props.data.images, this.props.pageContext.blog, false)} />) : console.log("no image found for set blog")}

@@ -11,9 +11,9 @@ import Checkout from "../components/page/checkout"
 import { graphql } from "gatsby"
 import Categories from "../components/old/categories";
 
-const Shope = ({data}) => (
+const Shope = ({data, location}) => (
     <Layout navImage={data.logoImage.edges[0].node}>
-        <SEO title={"Banshee Babe Boutique | Trinkets, Odds & Ends"} />
+        <SEO title={"Banshee Babe Boutique | Trinkets, Odds & Ends"} history={location}/>
         <Router>
             <Shop path="/shope/shop" />
             <Blog path="/shope" blogs={data}/>

@@ -5,12 +5,14 @@ import Carousel from "../components/widget/carousel"
 import "../styles/product.scss"
 import ShopItem from "../components/shop-item"
 import { graphql } from "gatsby"
+import SEO from "../components/page/seo";
 
 class ProductPageTemplate extends React.Component {
 
   render(){
     return(
-        <Layout key={this.props.pageContext.id} navImage={this.props.data.navImage.edges[0].node}>
+        <Layout key={this.props.pageContext.id} navImage={this.props.data.navImage.edges[0].node} item={"categories"}>
+          <SEO title={this.props.pageContext.name + " | Banshee Babe Boutique | Trinkets, Odds & Ends"} />
           <Carousel key={this.props.pageContext.id+"-carousel"} images={this.props.pageContext.images.data.allImageSharp.edges}/>
           <div className="product-info-root">
             <h1>{this.props.pageContext.name}</h1>

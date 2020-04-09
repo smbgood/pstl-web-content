@@ -296,6 +296,13 @@ nav, .footer-root{
         position: relative;
         top: 0.1rem;
         text-shadow: 1px 1px #00000055;
+        cursor: pointer;
+    }
+    &.active{
+        color:white;
+        a{
+            color:black;
+        }
     }
 }
 .opened{
@@ -365,22 +372,4 @@ nav, .footer-root{
     text-shadow: 2px 2px white;
     @include ultimate-center();
     padding:4rem;
-}
-
-.about-root{
-    margin:1rem;
-}
-
-.about-text{
-    margin-top:2.4rem;
-    line-height:1.9rem;
-    margin-bottom:2.4rem;
-}
-
-.about-heading{
-    @include color-12();
-}
-
-.about-warning{
-    @include color-13();
 }
