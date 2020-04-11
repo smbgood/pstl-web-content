@@ -40,9 +40,9 @@ collections:
       - { name: id, label: Category ID }
       - { name: products, label: Products, widget: list }
       - { name: image, label: Image, widget: image}
-  - name: butts
+  - name: products
     label: Products
-    folder: "content/butts"
+    folder: "content/products"
     create: true
     extension: json
     identifier_field: id
