@@ -94,6 +94,14 @@ module.exports = {
                 name: "cms"
             },
         },
+        `gatsby-transformer-json`,
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                path: `./content/products/`,
+                name: "products"
+            },
+        },
         {
             resolve: `gatsby-plugin-netlify-cms`,
             options: {
