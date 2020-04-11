@@ -45,7 +45,7 @@ collections:
     folder: "content/products"
     create: true
     extension: json
-    identifier_field: id
+    identifier_field: name
     fields:
       - { name: name, label: Name }
       - { name: id, label: Product SKU ID }
