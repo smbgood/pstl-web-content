@@ -46,7 +46,7 @@ export const query = graphql`
             edges {
                 node {
                     fluid(maxWidth: 500, quality: 100) {
-                        ...GatsbyImageSharpFluid
+                        ...GatsbyImageSharpFluid_noBase64
                         originalName
                     }
                 }

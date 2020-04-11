@@ -40,6 +40,16 @@ collections:
       - { name: id, label: Category ID }
       - { name: products, label: Products, widget: list }
       - { name: image, label: Image, widget: image}
+  - name: products
+    label: Products
+    folder: "content/products"
+    create: true
+    extension: json
+    identifier_field: id
+    fields:
+      - { name: name, label: Name }
+      - { name: id, label: Product SKU ID }
+      - { name: image, label: Image, widget: image}
   - name: siteadmin
     label: Site Admin
     folder: "content/siteadmin"

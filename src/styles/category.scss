@@ -9,8 +9,9 @@
   display:inline;
   li{
     margin-bottom:2rem;
-    display:inline;
-    margin-right:1rem;
+    display:inline-block;
+    margin-right:1.5%;
+    width:30%;
     @media screen and (max-width:$bp-small) {
       display: block;
       text-align:center;
@@ -31,7 +32,8 @@
   text-align:center;
   border-style:solid;
   border-width:medium;
-  display:inline;
+  display:block;
+  width:95%;
   @media screen and (max-width:$bp-small){
     width:75%;
   }
