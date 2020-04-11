@@ -121,7 +121,7 @@ class Cart extends Component {
                                             addressValues["validate"] = true
                                             let responseData = null
                                             let orderId = ""
-                                            let url = "http://localhost:9090/banshee/addr?" + qs.stringify(addressValues)
+                                            let url = "https://richornot.com/banshee/addr?" + qs.stringify(addressValues)
                                             await axios.get(url).then(response => {
                                                 //if valid, show them how much to ship,
                                                 if (response && response.data) {
