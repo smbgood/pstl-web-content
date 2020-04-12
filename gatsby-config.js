@@ -77,15 +77,6 @@ module.exports = {
                 name: "categories"
             },
         },
-        "gatsby-plugin-stripe",
-        {
-            resolve: `gatsby-source-stripe`,
-            options: {
-                objects: ["Sku"],
-                secretKey: process.env.STRIPE_SECRET_KEY,
-                downloadFiles: true,
-            },
-        },
         `gatsby-transformer-json`,
         {
             resolve: `gatsby-source-filesystem`,
@@ -98,8 +89,17 @@ module.exports = {
         {
             resolve: `gatsby-source-filesystem`,
             options: {
-                path: `./content/products/`,
-                name: "products"
+                path: './content/baths/',
+                name: "baths"
+            }
+        },
+        "gatsby-plugin-stripe",
+        {
+            resolve: `gatsby-source-stripe`,
+            options: {
+                objects: ["Sku"],
+                secretKey: process.env.STRIPE_SECRET_KEY,
+                downloadFiles: true,
             },
         },
         {
