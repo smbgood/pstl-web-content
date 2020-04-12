@@ -3,5 +3,6 @@
   "sku": "1234",
   "image": "images/uploads/53ccb84405f321be88b2383ba9e78bf3.png",
   "title": "Title",
-  "description": "Description"
+  "description": "Description",
+  "stripeId": "sku_Gs8qHKkVxMdXfv"
 }

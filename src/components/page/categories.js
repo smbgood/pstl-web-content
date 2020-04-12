@@ -34,7 +34,13 @@ class Categories extends Component {
                             name
                           }
                         }
-                      }                    
+                      },
+                    baths: allBathsJson{
+                        nodes{
+                            sku
+                            name
+                        }
+                    }                    
                   }
                 `}
                 render={({ categories, products }) => (

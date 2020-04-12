@@ -52,6 +52,7 @@ collections:
       - { name: image, label: Image, widget: image }
       - { name: title, label: Title }
       - { name: description, label: Description, widget: text}
+      - { name: stripeId, label: Stripe Id }
   - name: siteadmin
     label: Site Admin
     folder: "content/siteadmin"

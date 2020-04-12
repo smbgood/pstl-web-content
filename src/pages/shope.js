@@ -9,7 +9,7 @@ import Contact from "../components/page/contact"
 import Cart from "../components/page/cart"
 import Checkout from "../components/page/checkout"
 import { graphql } from "gatsby"
-import Categories from "../components/old/categories";
+import Categories from "../components/page/categories";
 
 const Shope = ({data, location}) => (
     <Layout navImage={data.logoImage.edges[0].node}>
