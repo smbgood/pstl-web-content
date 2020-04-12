@@ -45,10 +45,13 @@ collections:
     folder: "content/baths"
     create: true
     extension: json
-    identifier_field: id
+    identifier_field: sku
     fields:
       - { name: name, label: Name }
-      - { name: id, label: Id }
+      - { name: sku, label: Id }
+      - { name: image, label: Image, widget: image }
+      - { name: title, label: Title }
+      - { name: description, label: Description, widget: text}
   - name: siteadmin
     label: Site Admin
     folder: "content/siteadmin"
