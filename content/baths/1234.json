@@ -3,7 +3,7 @@
   "sku": "1234",
   "image": "images/uploads/money-product-cropped.png",
   "title": "Title",
-  "short_description": "Description",
+  "short_description": "I appear on the categories page",
   "full_description": "I appear on the product page",
   "stripeId": "sku_Gs8qHKkVxMdXfv"
 }
