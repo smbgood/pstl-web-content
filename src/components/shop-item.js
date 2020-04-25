@@ -1,6 +1,7 @@
 import React from "react"
 import CartContext from "./widget/cart-context";
 import "../styles/shop-item.scss"
+import {formatPrice} from "../utils/shared.js"
 
 const cardStyles = {
     display: "block",
@@ -35,16 +36,6 @@ const otherButtonStyles = {
     backgroundColor: "rgb(255, 18, 56)",
     borderRadius: "6px",
     letterSpacing: "1.5px",
-}
-
-const formatPrice = (amount, currency) => {
-    let price = (amount / 100).toFixed(2)
-    let numberFormat = new Intl.NumberFormat(["en-US"], {
-        style: "currency",
-        currency: currency,
-        currencyDisplay: "symbol",
-    })
-    return numberFormat.format(price)
 }
 
 const ShopItem = class extends React.Component {
@@ -90,7 +81,7 @@ const ShopItem = class extends React.Component {
         return (
             <CartContext.Consumer>
                 {cart => (
-                    cart != null && cart.cart != null ?
+                    cart !== null && cart.cart != null ?
                     <div style={cardStyles}>
                         <p key={"shop-item-price-disp"}>Price: {formatPrice(sku.price, sku.currency)}</p>
                         <button key={"shop-item-amt-increase"} style={otherButtonStyles}

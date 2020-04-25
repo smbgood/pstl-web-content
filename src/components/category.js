@@ -1,5 +1,6 @@
 import React from "react"
 import Img from "gatsby-image"
+import CartContext from "./widget/cart-context";
 
 const Category = class extends React.Component {
 
@@ -8,43 +9,48 @@ const Category = class extends React.Component {
         const baths = this.props.baths
         const images = this.props.images
 
-        function getProductById(id, products) {
-            if (products && products.nodes) {
-                for (const node of products.nodes) {
-                    if (node.id === id) {
-                        return node
-                    }
+        function getBathName(id, baths) {
+            if(id && baths){
+                let bath = getBathById(id, baths)
+                if(bath && bath.full_description){
+                    return bath.full_description
                 }
-            }
-            return null
-        }
-
-        function getName(result) {
-            if (result && result.product.name) {
-                return result.product.name
             }
             return ""
         }
 
-        function getDescription(result) {
-            if (result && result.product.description) {
-                return result.product.description
+        function getBathDescription(id, baths) {
+            if(id && baths){
+                let bath = getBathById(id, baths)
+                if(bath && bath.short_description){
+                    return bath.short_description
+                }
             }
             return ""
         }
 
         function getImage(id, baths){
-            if(baths && baths.nodes){
-                for(const bath of baths.nodes){
-                    if(bath && bath.stripeId) {
-                        if (bath.stripeId === id) {
-                            return bath.image
-                        }
-                    }
+            if(id && baths){
+                let bath = getBathById(id, baths)
+                if(bath && bath.image){
+                    return bath.image
                 }
             }
             return ""
         }
+
+        function getBathById(id, baths) {
+            if (baths && baths.nodes) {
+                for (const bath of baths.nodes) {
+                    if (bath && bath.stripeId) {
+                        if (bath.stripeId === id) {
+                            return bath
+                        }
+                    }
+                }
+            }
+        }
+
         function displayImageForStripeSku(imageName, images){
             /*if(imageName){
                 while(imageName.indexOf("/") > -1){
@@ -56,37 +62,46 @@ const Category = class extends React.Component {
             }
             if(images && images.nodes){
                 for(const image of images.nodes){
-                    if(image && image.originalName === imageName){
-                        return (<Img fluid={image.fluid}/>)
+                    if(image && image.fluid.originalName === imageName){
+                        return (<Img className={"category-product-img"} fluid={image.fluid}/>)
                     }
                 }
             }
             return ""
         }
         return (
-          <div className="category-root" id={category.id + "-key"}>
-              <h4 className="category-title" id={category.id + "-title"}>{category.name}</h4>
-              <ul className="category-holder">
-                  {category.products.map((productStripeSku) => (
-                    <React.Fragment key={category.id + "-" + productStripeSku}>
-                        <li>
-                            {/*static query for the bath image goes here*/}
-                            {displayImageForStripeSku(getImage(productStripeSku, baths), images)}
-                            <div className="category-header">
-                                <a href={"/" + productStripeSku}
-                                   id={category.id + "-" + productStripeSku + "-link"}>{getName(getProductById(productStripeSku, this.props.products))}</a>
-                            </div>
-                            {/*<div className="category-body">
+            <CartContext.Consumer>
+                {cart => (
+                    cart !== null && cart.cart != null ?
+                        <div className="category-root" id={category.id + "-key"}>
+                            <h4 className="category-title" id={category.id + "-title"}>{category.name}</h4>
+                            <ul className="category-holder">
+                                {category.products.map((productStripeSku) => (
+                                    <React.Fragment key={category.id + "-" + productStripeSku}>
+                                        <li>
+                                            {/*static query for the bath image goes here*/}
+                                            <div className="category-header">
+                                                {displayImageForStripeSku(getImage(productStripeSku, baths), images)}
+                                                <a href={"/" + productStripeSku}
+                                                   id={category.id + "-" + productStripeSku + "-link"}>{getBathName(productStripeSku, baths)}</a>
+                                                <p>{getBathDescription(productStripeSku, baths)}</p>
+                                                <button className={"add-to-cart"}>Add To Cart</button>
+                                                <a className={"view-details"}>View More Details</a>
+                                            </div>
+                                            {/*<div className="category-body">
                                 <div id={"dropdown" + category.id + "-" + product}>
                                     <p
                                       id={category.id + "-" + product + "-desc"}>{getDescription(getProductById(product, this.props.product))}</p>
                                 </div>
                             </div>*/}
-                        </li>
-                    </React.Fragment>
-                  ))}
-              </ul>
-          </div>
+                                        </li>
+                                    </React.Fragment>
+                                ))}
+                            </ul>
+                        </div>
+                        : "")}
+            </CartContext.Consumer>
+
         )
     }
 }

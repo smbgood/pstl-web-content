@@ -28,11 +28,9 @@
 }
 
 .category-header a{
-  padding:1rem;
   text-align:center;
-  border-style:solid;
-  border-width:medium;
   display:block;
+  margin-top:1rem;
   width:95%;
   @media screen and (max-width:$bp-small){
     width:75%;
@@ -40,5 +38,12 @@
 }
 
 .category-header{
-  display: inline;
+  border-style:solid;
+  border-width:medium;
+  padding:1rem;
+}
+
+.category-product-img{
+  width: 50%;
+  margin: 0 auto;
 }
