@@ -21,6 +21,8 @@
 }
 .category-title{
   margin-bottom: 3rem;
+  font-size: 2.4rem;
+  text-align:center;
 
   @media screen and (max-width:$bp-small){
     text-align:center;
@@ -44,10 +46,25 @@
   .add-to-cart{
     display:block;
     margin:0 auto;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-family: "Courgette", monospace;
+    font-size:1.75rem;
+    padding-left:1.5rem;
+    padding-right:1.5rem;
+    @include bg-color-10();
+    border:none;
+    border-radius:5px;
+    @include color-9();
   }
 }
 
 .category-product-img{
   width: 50%;
   margin: 0 auto;
+  height: 300px;
+}
+
+.bath-description{
+  margin-left:2%;
 }

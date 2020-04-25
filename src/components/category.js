@@ -84,7 +84,7 @@ const Category = class extends React.Component {
                                                 <a href={"/" + productStripeSku}>{displayImageForStripeSku(getImage(productStripeSku, baths), images)}</a>
                                                 <a href={"/" + productStripeSku}
                                                    id={category.id + "-" + productStripeSku + "-link"}>{getBathName(productStripeSku, baths)}</a>
-                                                <p>{getBathDescription(productStripeSku, baths)}</p>
+                                                <p className={"bath-description"}>{getBathDescription(productStripeSku, baths)}</p>
                                                 <button className={"add-to-cart"}>Add To Cart</button>
                                                 <a className={"view-details"} href={"/" + productStripeSku}>View More Details</a>
                                             </div>
