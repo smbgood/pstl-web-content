@@ -12,8 +12,8 @@ const Category = class extends React.Component {
         function getBathName(id, baths) {
             if(id && baths){
                 let bath = getBathById(id, baths)
-                if(bath && bath.full_description){
-                    return bath.full_description
+                if(bath && bath.name){
+                    return bath.name
                 }
             }
             return ""
@@ -81,12 +81,12 @@ const Category = class extends React.Component {
                                         <li>
                                             {/*static query for the bath image goes here*/}
                                             <div className="category-header">
-                                                {displayImageForStripeSku(getImage(productStripeSku, baths), images)}
+                                                <a href={"/" + productStripeSku}>{displayImageForStripeSku(getImage(productStripeSku, baths), images)}</a>
                                                 <a href={"/" + productStripeSku}
                                                    id={category.id + "-" + productStripeSku + "-link"}>{getBathName(productStripeSku, baths)}</a>
                                                 <p>{getBathDescription(productStripeSku, baths)}</p>
                                                 <button className={"add-to-cart"}>Add To Cart</button>
-                                                <a className={"view-details"}>View More Details</a>
+                                                <a className={"view-details"} href={"/" + productStripeSku}>View More Details</a>
                                             </div>
                                             {/*<div className="category-body">
                                 <div id={"dropdown" + category.id + "-" + product}>

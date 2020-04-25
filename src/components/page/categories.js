@@ -40,6 +40,8 @@ class Categories extends Component {
                             sku
                             name
                             image
+                            full_description
+                            short_description
                             stripeId
                         }
                     },
