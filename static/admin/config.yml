@@ -51,7 +51,8 @@ collections:
       - { name: sku, label: Id }
       - { name: image, label: Image, widget: image }
       - { name: title, label: Title }
-      - { name: description, label: Description, widget: text}
+      - { name: short_description, label: Description, widget: text}
+      - { name: full_description, label: Full Description, widget: text}
       - { name: stripeId, label: Stripe Id }
   - name: siteadmin
     label: Site Admin
