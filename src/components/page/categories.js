@@ -42,6 +42,7 @@ class Categories extends Component {
                             image
                             full_description
                             short_description
+                            detail_images
                             stripeId
                         }
                     },
