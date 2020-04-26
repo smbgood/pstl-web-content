@@ -5,5 +5,9 @@
   "title": "Title",
   "short_description": "I appear on the categories page",
   "full_description": "I appear on the product page",
+  "detail_images": [
+    "images/uploads/green-leafed-plant-under-white-clouds-2528333.jpg",
+    "images/uploads/53ccb84405f321be88b2383ba9e78bf3.png"
+  ],
   "stripeId": "sku_Gs8qHKkVxMdXfv"
 }
