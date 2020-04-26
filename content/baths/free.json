@@ -1,9 +1,14 @@
 {
-  "name": "Test",
-  "sku": "1234",
+  "name": "Free",
+  "sku": "Free",
   "image": "images/uploads/destress-product-image.png",
-  "title": "Title",
+  "title": "Free",
   "short_description": "Description",
   "full_description": "I appear on the product page",
+  "detail_images": [
+    "images/uploads/destress-product-image.png",
+    "images/uploads/money-product-cropped.png",
+    "images/uploads/love-bath-cropped.png"
+  ],
   "stripeId": "sku_H4fw0BGNftgIKi"
 }
