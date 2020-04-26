@@ -53,6 +53,10 @@ collections:
       - { name: title, label: Title }
       - { name: short_description, label: Description, widget: text}
       - { name: full_description, label: Full Description, widget: text}
+      - label: "Product Detail Images"
+        name: "detail_images"
+        widget: "list"
+        field: {label: Image, name: image, widget: image}
       - { name: stripeId, label: Stripe Id }
   - name: siteadmin
     label: Site Admin

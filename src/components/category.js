@@ -1,8 +1,54 @@
-import React from "react"
+import React, {Component} from "react"
 import Img from "gatsby-image"
 import CartContext from "./widget/cart-context";
+import {IconContext} from "react-icons";
+import {FaRegWindowClose} from "react-icons/fa";
+import Modal from "react-modal";
 
-const Category = class extends React.Component {
+class Category extends Component {
+
+    state = {
+        modalsOpen : []
+    }
+
+    componentDidMount() {
+        this.setState({modalsOpen: []})
+    }
+
+    constructor(props) {
+        super(props)
+        this.openModal = this.openModal.bind(this)
+    }
+
+    openModal(productStripeSku){
+        if(this.state && this.state.modalsOpen){
+            if(this.state.modalsOpen.indexOf(productStripeSku) === -1) {
+                let newArray = this.state.modalsOpen
+                newArray.push(productStripeSku)
+                this.setState({modalsOpen: newArray})
+            }
+        }
+    }
+
+    getModalOpen(productStripeSku){
+        if(this.state && this.state.modalsOpen && this.state.modalsOpen.length > 0){
+            if(this.state.modalsOpen.indexOf(productStripeSku) > -1){
+                return true
+            }
+        }
+        return false
+    }
+
+    closeModal(productStripeSku){
+        if(this.state.modalsOpen) {
+            if (this.state.modalsOpen.indexOf(productStripeSku) > -1) {
+                let newVals = this.state.modalsOpen;
+                newVals.splice(newVals.indexOf(productStripeSku))
+                this.setState({modalsOpen: newVals})
+            }
+        }
+
+    }
 
     render() {
         const category = this.props.category
@@ -52,11 +98,6 @@ const Category = class extends React.Component {
         }
 
         function displayImageForStripeSku(imageName, images){
-            /*if(imageName){
-                while(imageName.indexOf("/") > -1){
-                    imageName = imageName.substring(imageName.indexOf("/"), imageName.length)
-                }
-            }*/
             if(imageName && imageName.indexOf("/") > -1){
                 imageName = imageName.substring(imageName.lastIndexOf("/") + 1, imageName.length )
             }
@@ -69,6 +110,38 @@ const Category = class extends React.Component {
             }
             return ""
         }
+
+        function getBathDetailImages(productStripeSku, baths){
+
+        }
+
+        function displayProductInfoModal(productStripeSku, baths, state, that){
+            if(that.getModalOpen(productStripeSku, state)){
+                return (<Modal
+                    isOpen={that.getModalOpen(productStripeSku, state)}
+                    onRequestClose={() => {that.closeModal(productStripeSku, state)}}
+                    style={{
+                        content : {
+                            top                   : '50%',
+                            left                  : '50%',
+                            right                 : 'auto',
+                            bottom                : 'auto',
+                            marginRight           : '-50%',
+                            transform             : 'translate(-50%, -50%)'
+                        }
+                    }}
+                    contentLabel="Example Modal"
+                >
+                    <IconContext.Provider value={{size: "1.25em"}}>
+                        <button onClick={() => {that.closeModal(productStripeSku, state)}} className={"shipping-modal-close-button"}>
+                            <FaRegWindowClose/>
+                        </button>
+                    </IconContext.Provider>
+                    <div> {getBathDetailImages(productStripeSku, baths)}</div>
+                </Modal>)
+            }
+        }
+
         return (
             <CartContext.Consumer>
                 {cart => (
@@ -79,21 +152,15 @@ const Category = class extends React.Component {
                                 {category.products.map((productStripeSku) => (
                                     <React.Fragment key={category.id + "-" + productStripeSku}>
                                         <li>
-                                            {/*static query for the bath image goes here*/}
                                             <div className="category-header">
                                                 <a href={"/" + productStripeSku}>{displayImageForStripeSku(getImage(productStripeSku, baths), images)}</a>
                                                 <a href={"/" + productStripeSku}
                                                    id={category.id + "-" + productStripeSku + "-link"}>{getBathName(productStripeSku, baths)}</a>
                                                 <p className={"bath-description"}>{getBathDescription(productStripeSku, baths)}</p>
                                                 <button className={"add-to-cart"}>Add To Cart</button>
-                                                <a className={"view-details"} href={"/" + productStripeSku}>View More Details</a>
+                                                <a className={"view-details"} onClick={() => {this.openModal(productStripeSku, this.state)}}>View More Details</a>
                                             </div>
-                                            {/*<div className="category-body">
-                                <div id={"dropdown" + category.id + "-" + product}>
-                                    <p
-                                      id={category.id + "-" + product + "-desc"}>{getDescription(getProductById(product, this.props.product))}</p>
-                                </div>
-                            </div>*/}
+                                            {displayProductInfoModal(productStripeSku, baths, this.state, this)}
                                         </li>
                                     </React.Fragment>
                                 ))}

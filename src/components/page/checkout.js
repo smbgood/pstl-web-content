@@ -178,7 +178,6 @@ class Checkout extends Component {
                                                         <div className={"cart-mid"}>{item.qty}</div>
                                                         <div className={"cart-right"}>{formatPrice(item.price, item.currency)}</div>
                                                         <div className={"cart-last"}>{formatPrice((item.price*item.qty), item.currency)}</div>
-                                                        {/* TODO add function to return to cart screen and show empty cart message */}
                                                     </div>
                                                 : ""
                                             ))}
@@ -202,11 +201,6 @@ class Checkout extends Component {
                                             </div>
 
                                         </div>
-
-                                        {/*<div className={"checkout-order-message"}>
-                                            <Field name="message" component="textarea" placeholder="Message" />
-                                            <ErrorMessage name="message" render={msg => <div className={"form-error-msg"}>{msg}</div>} />
-                                        </div>*/}
 
                                         <button className="order-form-submit" type="submit" disabled={isSubmitting && values.shippingoption !== ''}>
                                             Pay Now
