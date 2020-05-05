@@ -107,6 +107,11 @@
   }
 }
 
+.cart-items-empty{
+  margin-top:1rem;
+  padding-top:2rem;
+}
+
 .cart-widget-total-count{
   @include color-10();
 }

@@ -38,8 +38,6 @@
 .category-header a{
   text-align:center;
   display:block;
-  margin-top:1rem;
-  width:95%;
   @media screen and (max-width:$bp-small){
     width:75%;
   }
@@ -53,6 +51,7 @@
     margin: 1rem;
   }
   .add-to-cart{
+    cursor:pointer;
     display:block;
     margin:0 auto;
     margin-top: 2rem;
@@ -67,20 +66,114 @@
     @include color-9();
   }
 }
+.product-image-bg{
+  background-color:rgba(0,0,0,.3);
+  padding-top:1rem;
+  padding-bottom:1rem;
+}
 
 .category-product-img{
   @media screen and (min-width:$bp-small) {
-    width: 50%;
+    width: 54%;
     margin: 0 auto;
     height: 300px;
   }
   @media screen and (max-width:$bp-small){
-    width: 42%;
-    left: 46%;
+    //width: 42%;
+    //left: 46%;
     height: 13rem;
   }
+  padding-top:1rem;
+  padding-bottom:1rem;
+  margin-bottom:.6rem;
+}
+
+.modal-product-contents{
+  width:100%;
+  height:100%;
+  display:flex;
+}
+
+.modal-product-img{
+  /*@media screen and(max-width:$bp-small){
+    width:36%;
+    height:17rem;
+  }
+  width:14%;*/
+  //width:50%;
+  width:100%;
+  height:320px;
+  margin-right:10px;
+}
+
+.modal-small-nav-img{
+  width:25%;
+  height:84px;
+  margin-right:10px;
+}
+
+.modal-product-images{
+  flex:35%;
+  margin-top:3%;
 }
 
 .bath-description{
   margin-left:2%;
+}
+.product-subtitle{
+  background-color:rgba(255,255,255,.6);
+  padding-top:.2rem;
+  padding-left:1rem;
+  padding-right:1rem;
+}
+.product-image-subtitle-link{
+  cursor:pointer;
+}
+.modal-product-name{
+  font-size:1.4rem;
+  font-weight:600;
+  display:block;
+  margin-top:1rem;
+}
+.modal-product-price{
+  display:block;
+  margin-top:3.5rem;
+}
+.modal-product-description{
+  display:block;
+  margin-top:1rem;
+}
+.modal-product-long-description{
+  margin-left: 1rem;
+  flex:58%;
+  white-space:normal;
+}
+.category-product-name{
+  display:inline;
+  font-size:1.4rem;
+  font-weight:600;
+  font-family: "Bad Script", cursive
+}
+.category-price{
+  display:inline;
+  float:right;
+}
+.view-details, .view-product-page{
+  display:inline!important;
+  cursor:pointer;
+  font-size:1.1rem;
+  &:hover{
+    color:red;
+  }
+}
+
+.ReactModal__Content--after-open{
+  @media screen and(max-width:$bp-small){
+    width: 27.5rem!important;
+    height: 83%!important;
+  }
+  @media screen and (min-width:$bp-small) {
+    width: 75rem!important;
+    height: 36rem;
+  }
 }

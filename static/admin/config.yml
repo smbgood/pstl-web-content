@@ -52,7 +52,7 @@ collections:
       - { name: image, label: Image, widget: image }
       - { name: title, label: Title }
       - { name: short_description, label: Description, widget: text}
-      - { name: full_description, label: Full Description, widget: text}
+      - { name: full_description, label: Full Description, widget: markdown}
       - label: "Product Detail Images"
         name: "detail_images"
         widget: "list"

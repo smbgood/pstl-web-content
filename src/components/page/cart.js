@@ -271,7 +271,11 @@ class Cart extends Component {
                                     )}
                                 </Formik>
                             </div>
-                        </div> : <div className={"cart-page-root"}><h4 className={"cart-items-empty"}>No items currently in cart.</h4></div>
+                        </div> :
+                        <div className={"cart-page-root"}>
+                            <h4 className={"cart-items-empty"}>No items currently in cart.</h4>
+                            <a href={"/shope/categories"}>Visit Shop</a>
+                        </div>
                 )}
             </CartContext.Consumer>
         )
