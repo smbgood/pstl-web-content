@@ -1,14 +1,12 @@
 @import 'values.scss';
 .modal-content img{
   margin:0 auto;
-  border-color:rgba(112, 205, 255, 1);
-  border-style:solid;
 }
 
-/*.flickity-viewport{
+.flickity-viewport{
   height:420px!important;
   margin-top: 1rem;
-}*/
+}
 .modal-content{
   text-align:center;
 }
@@ -16,8 +14,6 @@
   /*overflow-y:initial;*/
   max-height:85%;
   background-color:rgba(0,0,0,0);
-  border-color:rgba(139, 249, 124, 1);
-  border-style:solid;
 }
 
 .modal::-webkit-scrollbar {

@@ -5,24 +5,28 @@ import {IconContext} from "react-icons";
 import {FaRegWindowClose} from "react-icons/fa";
 import Modal from "react-modal";
 import Flickity from "react-flickity-component";
-import 'flickity-as-nav-for';
+import "../../node_modules/flickity/css/flickity.css"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {formatPrice, getCurrencyForStripeSku, getPriceForStripeSku} from "../utils/shared";
-import {navigate} from "@reach/router";
 
 class Category extends Component {
 
+    //TODO add full cart display
     notify = () => toast("Added to Cart!")
 
     state = {
         modalsOpen : [],
         bigModalRefs : {},
-        smallModalRefs: {}
+        smallModalRefs: {},
+        firstTab: {},
+        secondTab: {},
+        thirdTab: {},
+        tabActive: {},
     }
 
     componentDidMount() {
-        this.setState({modalsOpen: [], bigModalRefs: {}, smallModalRefs: {}})
+        this.setState({modalsOpen: [], bigModalRefs: {}, smallModalRefs: {}, firstTab:{}, secondTab:{}, thirdTab: {}})
         /*this.flkty.on('settle', () => {
             console.log(`current index is ${this.flkty.selectedIndex}`)
         })*/
@@ -34,6 +38,41 @@ class Category extends Component {
         this.notify = this.notify.bind(this)
         this.setBigCarousel = this.setBigCarousel.bind(this)
         this.setLittleCarousel = this.setLittleCarousel.bind(this)
+        this.setTabs = this.setTabs.bind(this)
+    }
+
+    setTabs(productStripeSku, baths){
+        if(this.state && this.state.tabActive && this.state.tabActive[productStripeSku]){
+            //do nothing
+        }else{
+            let bath = this.getBathById(productStripeSku, baths)
+            let newFirst,newSecond,newThird
+            let tabsActive = []
+            if(bath.firstTab){
+                //add new value
+                newFirst = this.state.firstTab
+                newFirst[productStripeSku] = bath.firstTab
+            }
+            if(bath.secondTab){
+                //add new value
+                newSecond = this.state.secondTab
+                newSecond[productStripeSku] = bath.secondTab
+            }
+            if(bath.thirdTab){
+                //add new value
+                newThird = this.state.thirdTab
+                newThird[productStripeSku] = bath.thirdTab
+            }
+            if(this.state && this.state.tabActive){
+                tabsActive = this.state.tabActive
+            }
+            if(this.state && this.state.tabActive && this.state.tabActive.length > 0 && this.state.tabActive[productStripeSku]){
+                //do not overwrite
+            }else{
+                tabsActive[productStripeSku] = "first"
+            }
+            this.setState({tabActive: tabsActive, firstTab:newFirst,secondTab:newSecond, thirdTab:newThird})
+        }
     }
 
     openModal(productStripeSku){
@@ -105,63 +144,60 @@ class Category extends Component {
         }
     }
 
-    render() {
-        const category = this.props.category
-        const baths = this.props.baths
-        const images = this.props.images
-        const products = this.props.products
-
-        function getBathName(id, baths) {
-            if(id && baths){
-                let bath = getBathById(id, baths)
-                if(bath && bath.name){
-                    return bath.name
-                }
+    getBathName(id, baths, that) {
+        if(id && baths){
+            let bath = that.getBathById(id, baths)
+            if(bath && bath.name){
+                return bath.name
             }
-            return ""
         }
+        return ""
+    }
 
-        function getBathDescription(id, baths) {
-            if(id && baths){
-                let bath = getBathById(id, baths)
-                if(bath && bath.short_description){
-                    return bath.short_description
-                }
+    getBathDescription(id, baths, that) {
+        if(id && baths){
+            let bath = that.getBathById(id, baths)
+            if(bath && bath.short_description){
+                return bath.short_description
             }
-            return ""
         }
+        return ""
+    }
 
-        function getBathLongDescription(id, baths) {
-            if(id && baths){
-                let bath = getBathById(id, baths)
-                if(bath && bath.full_description){
-                    return bath.full_description
-                }
+    getBathLongDescription(id, baths, that) {
+        if(id && baths){
+            let bath = that.getBathById(id, baths)
+            if(bath && bath.full_description){
+                return bath.full_description
             }
-            return ""
         }
+        return ""
+    }
 
-        function getImage(id, baths){
-            if(id && baths){
-                let bath = getBathById(id, baths)
-                if(bath && bath.image){
-                    return bath.image
-                }
+    getImage(id, baths, that){
+        if(id && baths){
+            let bath = that.getBathById(id, baths)
+            if(bath && bath.image){
+                return bath.image
             }
-            return ""
         }
+        return ""
+    }
 
-        function getBathById(id, baths) {
-            if (baths && baths.nodes) {
-                for (const bath of baths.nodes) {
-                    if (bath && bath.stripeId) {
-                        if (bath.stripeId === id) {
-                            return bath
-                        }
+    getBathById(id, baths) {
+        if (baths && baths.nodes) {
+            for (const bath of baths.nodes) {
+                if (bath && bath.stripeId) {
+                    if (bath.stripeId === id) {
+                        return bath
                     }
                 }
             }
         }
+        return null
+    }
+
+    render() {
 
         function displayImageForImageName(imageName, images, imageClass){
             if(imageName && imageName.indexOf("/") > -1){
@@ -177,18 +213,77 @@ class Category extends Component {
             return ""
         }
 
-        function getBathDetailImages(id, baths){
+        function getBathDetailImages(id, baths, that){
             if(baths && id){
-                let bath = getBathById(id, baths)
+                let bath = that.getBathById(id, baths)
                 if(bath && bath.detail_images){
                     return bath.detail_images
                 }
             }
         }
 
+        function doTabClick(tab, productStripeSku, state, that) {
+            let tabsActive = {}
+            if(that.state && that.state.tabActive && that.state.tabActive.length > 0){
+                tabsActive = that.state.tabActive
+            }
+            tabsActive[productStripeSku] = tab
+            that.setState({tabActive: tabsActive})
+        }
+
+        function getTabsContent(productStripeSku, baths, state, that) {
+            if(state && state.tabActive && state.tabActive[productStripeSku]){
+                let activeTab = state.tabActive[productStripeSku]
+                switch(activeTab){
+                    case "first":
+                        if(state.firstTab && state.firstTab[productStripeSku])
+                            return state.firstTab[productStripeSku]
+                        break
+                    case "second":
+                        if(state.secondTab && state.secondTab[productStripeSku])
+                            return state.secondTab[productStripeSku]
+                        break                     
+                    case "third":
+                        if(state.thirdTab && state.thirdTab[productStripeSku])
+                            return state.thirdTab[productStripeSku]
+                        break
+                }
+            }else{
+                //set tabs
+                that.setTabs(productStripeSku, baths);
+            }
+            return ""
+        }
+
+        function getBathTabsDisplay(productStripeSku, baths, bath, state, that) {
+            return (
+                <div className={"tabs-container"}>
+                    <div className={"tabs-top-holder"}>
+                        <input type={"checkbox"} id={"tabs-top-first"} checked={state.tabActive && state.tabActive[productStripeSku] && state.tabActive[productStripeSku] === "first"}/>
+                        <label for={"tabs-top-first"}>
+                            <div className={"tabs-top-first banshee-tab"} onClick={() => {doTabClick("first", productStripeSku, that.state, that)}}>First</div>
+                        </label>
+                        <input type={"checkbox"} id={"tabs-top-second"} checked={state.tabActive && state.tabActive[productStripeSku] && state.tabActive[productStripeSku] === "second"}/>
+                        <label for={"tabs-top-second"}>
+                            <div className={"tabs-top-second banshee-tab"} onClick={() => {doTabClick("second", productStripeSku, that.state, that)}}>Second</div>
+                        </label>
+                        <input type={"checkbox"} id={"tabs-top-third"} checked={state.tabActive && state.tabActive[productStripeSku] && state.tabActive[productStripeSku] === "third"}/>
+                        <label for={"tabs-top-third"}>
+                            <div className={"tabs-top-third banshee-tab"} onClick={() => {doTabClick("third", productStripeSku, that.state, that)}}>Third</div>
+                        </label>
+                    </div>
+                    <div className={"tabs-content"}>
+                        {getTabsContent(productStripeSku, baths, state, that)}
+                    </div>
+                </div>
+
+
+            );
+        }
+
         function displayProductInfoModal(productStripeSku, baths, images, state, that){
-            let bathDetailImages = getBathDetailImages(productStripeSku, baths)
-            let bath = getBathById(productStripeSku, baths)
+            let bathDetailImages = getBathDetailImages(productStripeSku, baths, that)
+            let bath = that.getBathById(productStripeSku, baths)
             if(that.getModalOpen(productStripeSku, state)){
                 return (<Modal
                     isOpen={that.getModalOpen(productStripeSku, state)}
@@ -232,9 +327,10 @@ class Category extends Component {
                         </div>
                         <div className={"modal-product-long-description"}>
                             <span
-                                className={"modal-product-name"}>{getBathName(productStripeSku, baths)}</span>
+                                className={"modal-product-name"}>{that.getBathName(productStripeSku, baths, that)}</span>
                             <span className={"modal-product-price"}>{formatPrice(getPriceForStripeSku(productStripeSku, products), getCurrencyForStripeSku(productStripeSku, products))}</span>
-                            <span className={"modal-product-description"}>{bath ? getBathLongDescription(productStripeSku, baths) : ""}</span>
+                            <span className={"modal-product-description"}>{bath ? that.getBathLongDescription(productStripeSku, baths, that) : "" }</span>
+                            {bath ? getBathTabsDisplay(productStripeSku, baths, bath, state, that): "" }
                         </div>
                     </div>
                 </Modal>)
@@ -242,9 +338,14 @@ class Category extends Component {
         }
 
         function handleClick(cart, productStripeSku, that, products, baths){
+            cart.addToCart(productStripeSku, 1, getPriceForStripeSku(productStripeSku, products), getCurrencyForStripeSku(productStripeSku, products), that.getBathName(productStripeSku, baths, that))
             that.notify();
-            cart.addToCart(productStripeSku, 1, getPriceForStripeSku(productStripeSku, products), getCurrencyForStripeSku(productStripeSku, products), getBathName(productStripeSku, baths))
         }
+
+        const category = this.props.category
+        const baths = this.props.baths
+        const images = this.props.images
+        const products = this.props.products
 
         return (
             <CartContext.Consumer>
@@ -257,23 +358,19 @@ class Category extends Component {
                                     <React.Fragment key={category.id + "-" + productStripeSku}>
                                         <li>
                                             <div className="category-header">
-                                                <a onClick={() => {this.openModal(productStripeSku, this.state)}} className={"product-image-subtitle-link"}
-                                                   id={category.id + "-" + productStripeSku + "-link"}>
-                                                    <div className={"product-image-bg"}>
-                                                        {displayImageForImageName(getImage(productStripeSku, baths), images, "category-product-img")}
+                                                    <div className={"product-image-bg"} onClick={() => {this.openModal(productStripeSku, this.state)}}>
+                                                        {displayImageForImageName(this.getImage(productStripeSku, baths, this), images, "category-product-img")}
                                                     </div>
                                                     <div className={"product-subtitle"}>
                                                         <span
-                                                        className={"category-product-name"}>{getBathName(productStripeSku, baths)}</span>
+                                                        className={"category-product-name"} onClick={() => {this.openModal(productStripeSku, this.state)}}>{this.getBathName(productStripeSku, baths, this)}</span>
                                                         <span className={"category-price"}>{formatPrice(getPriceForStripeSku(productStripeSku, products), getCurrencyForStripeSku(productStripeSku, products))}</span>
+                                                        <button key={"add-to-cart"} className={"add-to-cart"}
+                                                                onClick={() => {handleClick(cart, productStripeSku, this, products, baths)}}>
+                                                            Add To Cart
+                                                        </button>
                                                     </div>
-                                                </a>
-                                                {/*<button className={"add-to-cart"}>Add To Cart</button>*/}
-                                                <button key={"add-to-cart"} className={"add-to-cart"}
-                                                        onClick={() => {handleClick(cart, productStripeSku, this, products, baths)}}>
-                                                    Add To Cart
-                                                </button>
-                                                <a className={"view-details"} onClick={() => {this.openModal(productStripeSku, this.state)}}>More Info</a>
+
                                             </div>
                                             {displayProductInfoModal(productStripeSku, baths, images, this.state, this)}
                                         </li>

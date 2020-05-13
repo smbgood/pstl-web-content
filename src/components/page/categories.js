@@ -44,6 +44,9 @@ class Categories extends Component {
                             short_description
                             detail_images
                             stripeId
+                            firstTab
+                            secondTab
+                            thirdTab
                         }
                     },
                     images: allImageSharp{

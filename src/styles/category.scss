@@ -2,7 +2,6 @@
 .category-root{
   margin: 0 auto;
   @media screen and (min-width:$bp-small) {
-    border-style: solid;
     padding: 1rem 1rem 2rem 2rem;
     margin: 2rem;
   }
@@ -44,8 +43,6 @@
 }
 
 .category-header{
-  border-style:solid;
-  border-width:medium;
   padding:1rem;
   @media screen and(max-width:$bp-small){
     margin: 1rem;
@@ -92,6 +89,10 @@
   width:100%;
   height:100%;
   display:flex;
+  @media screen and(max-width:$bp-small) {
+    display: block;
+    overflow-y:scroll;
+  }
 }
 
 .modal-product-img{
@@ -115,6 +116,9 @@
 .modal-product-images{
   flex:35%;
   margin-top:3%;
+  @media screen and(max-width:$bp-small) {
+    display: block;
+  }
 }
 
 .bath-description{
@@ -125,6 +129,7 @@
   padding-top:.2rem;
   padding-left:1rem;
   padding-right:1rem;
+  text-align:center;
 }
 .product-image-subtitle-link{
   cursor:pointer;
@@ -132,25 +137,33 @@
 .modal-product-name{
   font-size:1.4rem;
   font-weight:600;
-  display:block;
-  margin-top:1rem;
+  display:inline;
 }
 .modal-product-price{
-  display:block;
-  margin-top:3.5rem;
+  display:inline;
+  margin-left:1rem;
+  position:relative;
+  bottom:.3rem;
 }
 .modal-product-description{
   display:block;
   margin-top:1rem;
+  margin-bottom:1rem;
 }
 .modal-product-long-description{
   margin-left: 1rem;
   flex:58%;
   white-space:normal;
+  @media screen and(max-width:$bp-small){
+    display:block;
+    width:95%;
+  }
+
 }
 .category-product-name{
   display:inline;
-  font-size:1.4rem;
+  //cursor:pointer;
+  font-size:2.4rem;
   font-weight:600;
   font-family: "Bad Script", cursive
 }
@@ -158,13 +171,36 @@
   display:inline;
   float:right;
 }
-.view-details, .view-product-page{
-  display:inline!important;
-  cursor:pointer;
-  font-size:1.1rem;
-  &:hover{
-    color:red;
-  }
+
+.tabs-container{
+  padding-top:1rem;
+}
+
+.tabs-content{
+  padding-top:1rem;
+  background-color:green;
+  min-width:300px;
+  max-width:350px;
+  min-height:300px;
+}
+
+.tabs-top-holder input[type=checkbox]{
+  display:none;
+}
+
+#tabs-top-first:checked + label .banshee-tab, #tabs-top-second:checked + label .banshee-tab, #tabs-top-third:checked + label .banshee-tab{
+  background-color:blue;
+}
+
+.tabs-top-holder{
+  margin-bottom:2rem;
+}
+
+.banshee-tab{
+  display:inline;
+  margin-left:1rem;
+  background-color: rgba(0,0,1,.5);
+  padding:1rem;
 }
 
 .ReactModal__Content--after-open{
