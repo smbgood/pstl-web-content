@@ -1,6 +1,5 @@
 {
-  "secondTab": "2",
-  "firstTab": "1",
+  "ingredients": "2",
   "detail_images": [
     "images/uploads/destress-product-image.png",
     "images/uploads/money-product-cropped.png",
@@ -9,7 +8,7 @@
   "stripeId": "sku_H4fw0BGNftgIKi",
   "name": "Free",
   "full_description": "I appear on the product page",
-  "thirdTab": "3",
+  "important": "* Do not use if pregnant.<br/>* All our baths are vegan, all natural, and cruelty free.<br/>* Please contact me for any questions or allergy concerns!",
   "title": "Free",
   "short_description": "Description",
   "image": "images/uploads/destress-product-image.png",

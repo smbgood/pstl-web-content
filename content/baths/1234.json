@@ -1,6 +1,5 @@
 {
-  "secondTab": "sec",
-  "firstTab": "hi",
+  "ingredients": "sec",
   "detail_images": [
     "images/uploads/green-leafed-plant-under-white-clouds-2528333.jpg",
     "images/uploads/53ccb84405f321be88b2383ba9e78bf3.png"
@@ -8,7 +7,7 @@
   "stripeId": "sku_Gs8qHKkVxMdXfv",
   "name": "Prosper",
   "full_description": "I appear on the product page",
-  "thirdTab": "third",
+  "important": "* Do not use if pregnant.<br/>* All our baths are vegan, all natural, and cruelty free.<br/>* Please contact me for any questions or allergy concerns!",
   "title": "Title",
   "short_description": "I appear on the categories page",
   "image": "images/uploads/money-product-cropped.png",

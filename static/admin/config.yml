@@ -58,9 +58,8 @@ collections:
         widget: "list"
         field: {label: Image, name: image, widget: image}
       - { name: stripeId, label: Stripe Id }
-      - { name: firstTab, label: First Tab }
-      - { name: secondTab, label: Second Tab }
-      - { name: thirdTab, label: Third Tab }
+      - { name: ingredients, label: Ingredients (Second Tab) }
+      - { name: important, label: Important (Third Tab) }
   - name: siteadmin
     label: Site Admin
     folder: "content/siteadmin"

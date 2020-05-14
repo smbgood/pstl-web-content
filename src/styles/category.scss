@@ -178,10 +178,11 @@
 
 .tabs-content{
   padding-top:1rem;
-  background-color:green;
+  @include bg-color-11();
   min-width:300px;
-  max-width:350px;
+  max-width:33rem;
   min-height:300px;
+  padding:2.5rem;
 }
 
 .tabs-top-holder input[type=checkbox]{
@@ -189,11 +190,12 @@
 }
 
 #tabs-top-first:checked + label .banshee-tab, #tabs-top-second:checked + label .banshee-tab, #tabs-top-third:checked + label .banshee-tab{
-  background-color:blue;
+  @include bg-color-13();
 }
 
 .tabs-top-holder{
   margin-bottom:2rem;
+  margin-top:1rem;
 }
 
 .banshee-tab{

@@ -24,8 +24,19 @@
   @include color-13();
 }
 
-.about-section-first{
+.about-section-first, .about-section-second, .about-warning-section{
+  @include bg-color-3();
+  max-width:69rem;
+  text-align:center;
+  margin:0 auto;
+  margin-bottom:4rem;
+  padding-top:1rem;
+  padding-bottom:4rem;
+  padding-left:2rem;
+  padding-right:2rem;
+}
 
+.about-section-first{
 }
 
 .about-section-first-text,.about-section-second-text,.about-warning-section{
@@ -33,9 +44,7 @@
 }
 
 .about-section-second{
-
 }
 
 .about-warning-section{
-
 }

@@ -48,20 +48,20 @@ class Category extends Component {
             let bath = this.getBathById(productStripeSku, baths)
             let newFirst,newSecond,newThird
             let tabsActive = []
-            if(bath.firstTab){
+            if(bath.full_description){
                 //add new value
                 newFirst = this.state.firstTab
-                newFirst[productStripeSku] = bath.firstTab
+                newFirst[productStripeSku] = bath.full_description
             }
-            if(bath.secondTab){
+            if(bath.ingredients){
                 //add new value
                 newSecond = this.state.secondTab
-                newSecond[productStripeSku] = bath.secondTab
+                newSecond[productStripeSku] = bath.ingredients
             }
-            if(bath.thirdTab){
+            if(bath.important){
                 //add new value
                 newThird = this.state.thirdTab
-                newThird[productStripeSku] = bath.thirdTab
+                newThird[productStripeSku] = bath.important
             }
             if(this.state && this.state.tabActive){
                 tabsActive = this.state.tabActive
@@ -261,19 +261,18 @@ class Category extends Component {
                     <div className={"tabs-top-holder"}>
                         <input type={"checkbox"} id={"tabs-top-first"} checked={state.tabActive && state.tabActive[productStripeSku] && state.tabActive[productStripeSku] === "first"}/>
                         <label for={"tabs-top-first"}>
-                            <div className={"tabs-top-first banshee-tab"} onClick={() => {doTabClick("first", productStripeSku, that.state, that)}}>First</div>
+                            <div className={"tabs-top-first banshee-tab"} onClick={() => {doTabClick("first", productStripeSku, that.state, that)}}>Description</div>
                         </label>
                         <input type={"checkbox"} id={"tabs-top-second"} checked={state.tabActive && state.tabActive[productStripeSku] && state.tabActive[productStripeSku] === "second"}/>
                         <label for={"tabs-top-second"}>
-                            <div className={"tabs-top-second banshee-tab"} onClick={() => {doTabClick("second", productStripeSku, that.state, that)}}>Second</div>
+                            <div className={"tabs-top-second banshee-tab"} onClick={() => {doTabClick("second", productStripeSku, that.state, that)}}>Ingredients</div>
                         </label>
                         <input type={"checkbox"} id={"tabs-top-third"} checked={state.tabActive && state.tabActive[productStripeSku] && state.tabActive[productStripeSku] === "third"}/>
                         <label for={"tabs-top-third"}>
-                            <div className={"tabs-top-third banshee-tab"} onClick={() => {doTabClick("third", productStripeSku, that.state, that)}}>Third</div>
+                            <div className={"tabs-top-third banshee-tab"} onClick={() => {doTabClick("third", productStripeSku, that.state, that)}}>Important</div>
                         </label>
                     </div>
-                    <div className={"tabs-content"}>
-                        {getTabsContent(productStripeSku, baths, state, that)}
+                    <div className={"tabs-content"} dangerouslySetInnerHTML={{__html: getTabsContent(productStripeSku, baths, state, that)}}>
                     </div>
                 </div>
 
@@ -329,7 +328,6 @@ class Category extends Component {
                             <span
                                 className={"modal-product-name"}>{that.getBathName(productStripeSku, baths, that)}</span>
                             <span className={"modal-product-price"}>{formatPrice(getPriceForStripeSku(productStripeSku, products), getCurrencyForStripeSku(productStripeSku, products))}</span>
-                            <span className={"modal-product-description"}>{bath ? that.getBathLongDescription(productStripeSku, baths, that) : "" }</span>
                             {bath ? getBathTabsDisplay(productStripeSku, baths, bath, state, that): "" }
                         </div>
                     </div>
@@ -352,7 +350,7 @@ class Category extends Component {
                 {cart => (
                     cart !== null && cart.cart != null ?
                         <div className="category-root" id={category.id + "-key"}>
-                            <h4 className="category-title" id={category.id + "-title"}>{category.name}</h4>
+                            {/*<h4 className="category-title" id={category.id + "-title"}>{category.name}</h4>*/}
                             <ul className="category-holder">
                                 {category.products.map((productStripeSku) => (
                                     <React.Fragment key={category.id + "-" + productStripeSku}>
