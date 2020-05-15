@@ -60,10 +60,6 @@
 @mixin color-12(){
     color: #8f15d2;
 }
-//about section CW h5
-@mixin color-13(){
-    color: #ABCDEF;
-}
 
 //default background color -- not used rn
 @mixin bg-color-1() {
@@ -115,6 +111,12 @@
 }
 @mixin bg-color-13(){
     background: rgb(236, 101, 162);
+}
+@mixin bg-color-14() {
+    background: linear-gradient(45deg, #fe02fe, #fe02fe);
+}
+@mixin bg-color-13-gradient(){
+    background: linear-gradient(45deg, #b1f5ff, #6ff580)
 }
 //shadow color for cart widget at top of every page
 @mixin shadow-color-1(){

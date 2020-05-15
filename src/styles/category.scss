@@ -2,8 +2,10 @@
 .category-root{
   margin: 0 auto;
   @media screen and (min-width:$bp-small) {
-    padding: 1rem 1rem 2rem 2rem;
-    margin: 2rem;
+    padding-top:1rem;
+    padding-bottom:2rem;
+    margin-top:2rem;
+    margin-bottom:2rem;
   }
 }
 .category-holder{
@@ -11,7 +13,6 @@
   li{
     margin-bottom:2rem;
     display:inline-block;
-    margin-right:1.5%;
     width:30%;
     @media screen and (max-width:$bp-small) {
       display:inline;
@@ -42,12 +43,34 @@
   }
 }
 
+button.add-to-cart{
+  font-size: 1.6rem;
+  font-weight: 800;
+  background: none;
+  border-style: double;
+  border-width: 0.3rem;
+  font-family: Arima Madurai, monospace;
+  @include color-13();
+  @include bg-color-13-gradient();
+  border-color:black;
+  cursor:pointer;
+}
+
+.category-add-to-cart{
+  button.add-to-cart{
+    flex:43;
+    margin-top:2.7rem;
+    margin-right: 0.4rem;
+    margin-bottom: 0.4rem;
+  }
+}
+
 .category-header{
   padding:1rem;
   @media screen and(max-width:$bp-small){
     margin: 1rem;
   }
-  .add-to-cart{
+  /*.add-to-cart{
     cursor:pointer;
     display:block;
     margin:0 auto;
@@ -61,10 +84,12 @@
     border:none;
     border-radius:5px;
     @include color-9();
-  }
+  }*/
+
 }
 .product-image-bg{
-  background-color:rgba(0,0,0,.3);
+  cursor:pointer;
+  background-color:white;
   padding-top:1rem;
   padding-bottom:1rem;
 }
@@ -83,6 +108,10 @@
   padding-top:1rem;
   padding-bottom:1rem;
   margin-bottom:.6rem;
+}
+
+.category-product-name-text{
+  cursor:pointer;
 }
 
 .modal-product-contents{
@@ -127,23 +156,23 @@
 .product-subtitle{
   background-color:rgba(255,255,255,.6);
   padding-top:.2rem;
-  padding-left:1rem;
-  padding-right:1rem;
-  text-align:center;
+  display:flex;
+
 }
 .product-image-subtitle-link{
   cursor:pointer;
 }
 .modal-product-name{
-  font-size:1.4rem;
+  font-size:3.8rem;
   font-weight:600;
   display:inline;
 }
 .modal-product-price{
-  display:inline;
-  margin-left:1rem;
-  position:relative;
-  bottom:.3rem;
+  display: inline;
+  margin-left: 3rem;
+  position: relative;
+  bottom: .3rem;
+  font-size: 1.5rem;
 }
 .modal-product-description{
   display:block;
@@ -161,15 +190,19 @@
 
 }
 .category-product-name{
-  display:inline;
-  //cursor:pointer;
   font-size:2.4rem;
   font-weight:600;
-  font-family: "Bad Script", cursive
+  flex:21;
+  margin-top: .2rem;
+  margin-left: 0.5rem;
 }
 .category-price{
-  display:inline;
-  float:right;
+  flex:11;
+  margin-top: 1.2rem;
+}
+
+.modal-carousel-nav{
+  margin-top:2rem;
 }
 
 .tabs-container{
@@ -190,8 +223,12 @@
 }
 
 #tabs-top-first:checked + label .banshee-tab, #tabs-top-second:checked + label .banshee-tab, #tabs-top-third:checked + label .banshee-tab{
-  @include bg-color-13();
+  @include bg-color-14();
 }
+
+/*#tabs-top-first:active + label .banshee-tab, #tabs-top-second:active + label .banshee-tab, #tabs-top-third:active + label .banshee-tab{
+  @include bg-color-12-1();
+}*/
 
 .tabs-top-holder{
   margin-bottom:2rem;
@@ -201,8 +238,34 @@
 .banshee-tab{
   display:inline;
   margin-left:1rem;
-  background-color: rgba(0,0,1,.5);
+  @include bg-color-12();
+  color:black;
   padding:1rem;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.tabs-content{
+  color:black;
+}
+
+#tabs-top-first:checked + label .banshee-tab .banshee-tab-info, #tabs-top-second:checked + label .banshee-tab .banshee-tab-info, #tabs-top-third:checked + label .banshee-tab .banshee-tab-info{
+  @include color-9();
+}
+
+.modal-description-left, .modal-description-right{
+  display:inline;
+}
+
+.modal-description-right{
+  float:right;
+  button.add-to-cart{
+    padding-left:1rem;
+    padding-right:1rem;
+    padding-top:.5rem;
+    padding-bottom:.5rem;
+    margin-right: 7.4rem;
+  }
 }
 
 .ReactModal__Content--after-open{

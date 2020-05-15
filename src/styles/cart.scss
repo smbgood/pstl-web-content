@@ -343,11 +343,18 @@ form[name='bborder']{
   }
 }
 
-.shipping-modal-close-button{
+.shipping-modal-close-button, .product-modal-close-button{
   background:none;
   border:none;
   position:relative;
   left:98%;
+}
+
+.product-modal-close-button{
+  svg{
+    width:2rem;
+    height:2rem;
+  }
 }
 
 .ReactModal__Content--after-open{
