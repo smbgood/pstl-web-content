@@ -221,8 +221,12 @@ nav, .footer-root{
     @include bg-color-3;
 }
 
-.nav-root, .footer-root{
+.nav-root{
     display:flex;
+}
+
+.footer-root{
+    display:block;
 }
 
 .page-root{
@@ -238,7 +242,13 @@ nav, .footer-root{
 
 .footer-copyright{
     @include ultimate-center();
-    padding:3rem;
+    padding-top:2.2rem;
+    @include color-3();
+}
+
+.footer-disclaimer{
+    @include ultimate-center();
+    padding-bottom:2.2rem;
     @include color-3();
 }
 
@@ -275,6 +285,7 @@ nav, .footer-root{
 
 .nav-mobile-btn{
     display:none;
+    z-index:2;
     @media screen and (max-width:$bp-med){
         display:block;
         position:absolute;
@@ -290,6 +301,7 @@ nav, .footer-root{
 
 .nav-mobile-menu{
     display:none;
+    z-index:3;
 }
 .nav-mobile-menu-item{
     display:block;
@@ -309,7 +321,7 @@ nav, .footer-root{
 }
 .opened{
     @media screen and (max-width:$bp-med){
-        z-index: 2;
+        z-index: 1;
         position: absolute;
         display: block;
         top: 1.4rem;
