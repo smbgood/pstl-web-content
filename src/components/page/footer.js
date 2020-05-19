@@ -12,6 +12,7 @@ class Footer extends React.Component{
                     node {
                       sitewide {
                         copyright
+                        disclaimer
                       }
                     }
                   }
@@ -20,7 +21,9 @@ class Footer extends React.Component{
             `}
             render={({ siteInfo }) => (
               <div className="footer-root">
-                  <span className="footer-copyright">{siteInfo.edges[0].node.sitewide.copyright}</span>
+                  <div className="footer-copyright">{siteInfo.edges[0].node.sitewide.copyright}</div>
+                  <div className="footer-disclaimer">{siteInfo.edges[0].node.sitewide.disclaimer}</div>
+
               </div>
             )}
           />

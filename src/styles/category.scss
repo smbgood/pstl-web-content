@@ -186,6 +186,7 @@ button.add-to-cart{
   @media screen and(max-width:$bp-small){
     display:block;
     width:95%;
+    margin-top:1rem;
   }
 
 }
@@ -201,8 +202,20 @@ button.add-to-cart{
   margin-top: 1.2rem;
 }
 
+.modal-carousel{
+  @media screen and(min-width:$bp-small) {
+    button {
+      display:none;
+
+    }
+  }
+}
+
 .modal-carousel-nav{
   margin-top:2rem;
+  @media screen and(max-width:$bp-small){
+    display:none;
+  }
 }
 
 .tabs-container{
@@ -210,12 +223,13 @@ button.add-to-cart{
 }
 
 .tabs-content{
-  padding-top:1rem;
   @include bg-color-11();
   min-width:300px;
   max-width:33rem;
   min-height:300px;
   padding:2.5rem;
+  color:black;
+  margin-bottom:5rem;
 }
 
 .tabs-top-holder input[type=checkbox]{
@@ -245,9 +259,6 @@ button.add-to-cart{
   font-weight:600;
 }
 
-.tabs-content{
-  color:black;
-}
 
 #tabs-top-first:checked + label .banshee-tab .banshee-tab-info, #tabs-top-second:checked + label .banshee-tab .banshee-tab-info, #tabs-top-third:checked + label .banshee-tab .banshee-tab-info{
   @include color-9();
@@ -265,10 +276,19 @@ button.add-to-cart{
     padding-top:.5rem;
     padding-bottom:.5rem;
     margin-right: 7.4rem;
+    @media screen and(max-width:$bp-small){
+      margin-top:.5rem;
+      margin-bottom:2rem;
+    }
   }
 }
 
+.ReactModal__Overlay--after-open{
+  z-index:3;
+}
+
 .ReactModal__Content--after-open{
+  z-index:3;
   @media screen and(max-width:$bp-small){
     width: 27.5rem!important;
     height: 83%!important;

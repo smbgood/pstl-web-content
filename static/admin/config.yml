@@ -95,3 +95,4 @@ collections:
         widget: object
         fields:
           - {label: Copyright, name: copyright, widget: string, required: false}
+          - {label: Disclaimer, name: disclaimer, widget: string, required: false}

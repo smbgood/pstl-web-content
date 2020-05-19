@@ -315,7 +315,7 @@ class Category extends Component {
                             <Flickity className={'modal-carousel'} // default ''
                                       elementType={'div'}
                                       flickityRef={c=> that.setBigCarousel(c, productStripeSku)}
-                                      options={{contain:true, freeScroll: true, prevNextButtons:false, pageDots:false}}>
+                                      options={{contain:true, freeScroll: true, prevNextButtons:true, pageDots:false}}>
                             {bathDetailImages ? bathDetailImages.map((image) => (
                                 displayImageForImageName(image, images, "modal-product-img")
                             )) : ""}

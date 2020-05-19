@@ -355,6 +355,10 @@ form[name='bborder']{
     width:2rem;
     height:2rem;
   }
+  @media screen and (max-width:$bp-small){
+    position:relative;
+    left:94.7%;
+  }
 }
 
 .ReactModal__Content--after-open{
