@@ -23,7 +23,7 @@ class Layout extends React.Component{
                 `}
                 render={ siteInfo  => (
                     <>
-                        <Nav navImage={this.props.navImage} item={this.props.item ? this.props.item : ""} />
+                        <Nav navImage={this.props.navImage} item={this.props.item ? this.props.item : ""} location={this.props.location}/>
                         <div className="page-root" >
                         {this.props.children}
                         </div>

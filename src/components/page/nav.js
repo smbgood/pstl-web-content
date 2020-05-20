@@ -15,6 +15,45 @@ class Nav extends Component {
         this.doTimeout();
     }
 
+    /*componentDidMount() {
+        //if we entered the cart page from a toast, need to update
+        if(this.props && this.props.location){
+            if(this.props.location.pathname && this.props.location.pathname === "/shope/cart"){
+                this.setState({itemSelected: "cart"})
+            }
+        }
+    }*/
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        //set the correct nav link if they clicked on the header
+        if(this.props && this.props.location){
+            if(this.props.location.pathname){
+                switch(this.props.location.pathname){
+                    case "/shope/categories":
+                        if(this.state.itemSelected !== "categories")
+                            this.setState({itemSelected: "categories"})
+                        break;
+                    case "/shope/contact":
+                        if(this.state.itemSelected !== "contact")
+                            this.setState({itemSelected: "contact"})
+                        break;
+                    case "/shope/about":
+                        if(this.state.itemSelected !== "about")
+                            this.setState({itemSelected: "about"})
+                        break;
+                    case "/shope/cart":
+                        if(this.state.itemSelected !== "cart")
+                            this.setState({itemSelected: "cart"})
+                        break;
+                    case "/shope":
+                        if(this.state.itemSelected !== "blog")
+                            this.setState({itemSelected: "blog"})
+                        break;
+                }
+            }
+        }
+    }
+
     doTimeout(){
       setTimeout(
         function(){
@@ -45,17 +84,23 @@ class Nav extends Component {
             <div className="nav-outer">
           <div className="nav-root">
             <div className="nav-container nav-left">
-              {` `}
-              <Link sx={{
+                {` `}
+                <Link sx={{
                 fontFamily: "heading",
-              }} className="nav-link" to="/shope/about">About</Link>
-              {` `}
-              <FaCrow sx={{color: "text"}} className="nav-separator"/>
-              {` `}
-              <Link sx={{
+                }} className="nav-link" to="/shope/about">About</Link>
+                {` `}
+                <FaCrow sx={{color: "text"}} className="nav-separator"/>
+                {` `}
+                <Link sx={{
                 fontFamily: "heading",
-              }} className="nav-link" to="/shope">Blog</Link>
-              {` `}
+                }} className="nav-link" to="/shope">Blog</Link>
+                {` `}
+                <FaCrow sx={{color: "text"}} className="nav-separator"/>
+                {` `}
+                <Link sx={{
+                    fontFamily: "heading",
+                }} className="nav-link" to="/shope/cart">Cart</Link>
+                {` `}
             </div>
             <div className={("nav-icon " + (this.state.animationEnd ? "wavy-start" : "wavy-finish"))}>
               <Link to="/shope" onClick={() => {this.handleClick("", this.fakeOpen, this, this.setCurrentNavItem)}}><Img fluid={this.props.navImage.fluid}/></Link>
@@ -91,6 +136,12 @@ class Nav extends Component {
                         <FaStoreAlt/><a sx={{
                             fontFamily: "heading",
                         }} className="nav-link" onClick={(e) => {this.handleClick("categories", this.openCloseMenu, this, this.setCurrentNavItem)}}>Boutique</a>
+                    </div>
+                    {` `}
+                    <div className={("nav-mobile-menu-item " + (this.state.itemSelected === "cart" ? "active" : ""))}>
+                        <FaStoreAlt/><a sx={{
+                        fontFamily: "heading",
+                    }} className="nav-link" onClick={(e) => {this.handleClick("cart", this.openCloseMenu, this, this.setCurrentNavItem)}}>Cart</a>
                     </div>
                     {` `}
                     <div className={("nav-mobile-menu-item " + (this.state.itemSelected === "about" ? "active" : ""))}>

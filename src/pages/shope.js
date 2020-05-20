@@ -12,7 +12,7 @@ import { graphql } from "gatsby"
 import Categories from "../components/page/categories";
 
 const Shope = ({data, location}) => (
-    <Layout navImage={data.logoImage.edges[0].node}>
+    <Layout navImage={data.logoImage.edges[0].node} location={location}>
         <SEO title={"Banshee Babe Boutique | Trinkets, Odds & Ends"} history={location}/>
         <Router>
             <Shop path="/shope/shop" />

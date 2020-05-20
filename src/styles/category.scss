@@ -70,22 +70,6 @@ button.add-to-cart{
   @media screen and(max-width:$bp-small){
     margin: 1rem;
   }
-  /*.add-to-cart{
-    cursor:pointer;
-    display:block;
-    margin:0 auto;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    font-family: "Courgette", monospace;
-    font-size:1.75rem;
-    padding-left:1.5rem;
-    padding-right:1.5rem;
-    @include bg-color-10();
-    border:none;
-    border-radius:5px;
-    @include color-9();
-  }*/
-
 }
 .product-image-bg{
   cursor:pointer;
@@ -182,6 +166,7 @@ button.add-to-cart{
     display:block;
     width:95%;
     margin-top:1rem;
+    margin-left:.5rem;
   }
 
 }
@@ -225,6 +210,9 @@ button.add-to-cart{
   padding:2.5rem;
   color:black;
   margin-bottom:5rem;
+  @media screen and(max-width:$bp-small){
+    margin-bottom:2rem;
+  }
 }
 
 .tabs-top-holder input[type=checkbox]{
@@ -255,21 +243,44 @@ button.add-to-cart{
   @include color-9();
 }
 
+.toast-view-cart{
+  font-size: 1.6rem;
+  background-color: black;
+  border-radius: 1rem;
+  margin-left: 1.7rem;
+  padding: .1rem .3rem .05rem;
+}
+
 .modal-description-left, .modal-description-right{
   display:inline;
+  @media screen and(max-width:$bp-small){
+    display:block;
+  }
+}
+
+.modal-cart-buttons{
+  @media screen and(min-width:$bp-small){
+    display:inline;
+    margin-left:4rem;
+  }
 }
 
 .modal-description-right{
-  float:right;
+  @media screen and(max-width:$bp-small){
+    text-align:center;
+  }
   button.add-to-cart{
     padding-left:1rem;
     padding-right:1rem;
     padding-top:.5rem;
     padding-bottom:.5rem;
-    margin-right: 7.4rem;
+    margin-left:1.5rem;
+    margin-right:1.5rem;
     @media screen and(max-width:$bp-small){
-      margin-top:.5rem;
-      margin-bottom:2rem;
+      margin-top:1.5rem;
+      margin-bottom:.5rem;
+      margin-right:1.5rem;
+      margin-left:1.5rem;
     }
   }
 }

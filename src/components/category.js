@@ -1,19 +1,28 @@
 import React, {Component} from "react"
 import Img from "gatsby-image"
+import {Link} from "gatsby"
 import CartContext from "./widget/cart-context";
 import {IconContext} from "react-icons";
-import {FaRegWindowClose} from "react-icons/fa";
+import {FaArrowDown, FaArrowUp, FaRegWindowClose} from "react-icons/fa";
 import Modal from "react-modal";
 import Flickity from "react-flickity-component";
 import "../../node_modules/flickity/css/flickity.css"
-import { ToastContainer, toast } from 'react-toastify';
+import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {formatPrice, getCurrencyForStripeSku, getPriceForStripeSku} from "../utils/shared";
 
+const Msg = ({ closeToast }) => (
+    <div>
+        Item(s) Added to Cart!
+        <Link to={"/shope/cart"} className={"toast-view-cart"} state={{itemSelected:"cart"}}>View Cart</Link>
+    </div>
+)
+
 class Category extends Component {
 
+
     //TODO add full cart display
-    notify = () => toast("Added to Cart!")
+    notify = () => toast(<Msg/> , {closeOnClick:false})
 
     state = {
         modalsOpen : [],
@@ -23,10 +32,11 @@ class Category extends Component {
         secondTab: {},
         thirdTab: {},
         tabActive: {},
+        amountsToAdd: {},
     }
 
     componentDidMount() {
-        this.setState({modalsOpen: [], bigModalRefs: {}, smallModalRefs: {}, firstTab:{}, secondTab:{}, thirdTab: {}})
+        this.setState({modalsOpen: [], bigModalRefs: {}, smallModalRefs: {}, firstTab:{}, secondTab:{}, thirdTab: {}, amountsToAdd: {}})
         /*this.flkty.on('settle', () => {
             console.log(`current index is ${this.flkty.selectedIndex}`)
         })*/
@@ -39,6 +49,8 @@ class Category extends Component {
         this.setBigCarousel = this.setBigCarousel.bind(this)
         this.setLittleCarousel = this.setLittleCarousel.bind(this)
         this.setTabs = this.setTabs.bind(this)
+        this.increaseInputQuantity = this.increaseInputQuantity.bind(this)
+        this.decreaseInputQuantity = this.decreaseInputQuantity.bind(this)
     }
 
     setTabs(productStripeSku, baths){
@@ -48,6 +60,7 @@ class Category extends Component {
             let bath = this.getBathById(productStripeSku, baths)
             let newFirst,newSecond,newThird
             let tabsActive = []
+            let amountsToAdd = {}
             if(bath.full_description){
                 //add new value
                 newFirst = this.state.firstTab
@@ -66,12 +79,49 @@ class Category extends Component {
             if(this.state && this.state.tabActive){
                 tabsActive = this.state.tabActive
             }
-            if(this.state && this.state.tabActive && this.state.tabActive.length > 0 && this.state.tabActive[productStripeSku]){
+            if(this.state.tabActive.length > 0 && this.state.tabActive[productStripeSku]){
                 //do not overwrite
             }else{
                 tabsActive[productStripeSku] = "first"
             }
-            this.setState({tabActive: tabsActive, firstTab:newFirst,secondTab:newSecond, thirdTab:newThird})
+            if(this.state && this.state.amountsToAdd){
+                amountsToAdd = this.state.amountsToAdd
+            }
+
+            /*if(this.state.amountsToAdd.length > 0 && this.state.amountsToAdd[productStripeSku] > -1){
+
+            }else{*/
+                amountsToAdd[productStripeSku] = 1
+            //}
+
+            this.setState({tabActive: tabsActive, firstTab:newFirst,secondTab:newSecond, thirdTab:newThird, amountsToAdd: amountsToAdd})
+        }
+    }
+
+    increaseInputQuantity(productStripeSku){
+        if(this.state && this.state.amountsToAdd){
+            let newVals = this.state.amountsToAdd
+            let amountsToAddElement = this.state.amountsToAdd[productStripeSku];
+            newVals[productStripeSku] = amountsToAddElement + 1
+            this.setState({amountsToAdd:newVals})
+        }else{
+            //do nothing
+        }
+    }
+
+    decreaseInputQuantity(productStripeSku){
+        if(this.state && this.state.amountsToAdd){
+            if(this.state.amountsToAdd.length > 0 && this.state.amountsToAdd[productStripeSku] > -1){
+                let newVals = this.state.amountsToAdd
+                let amountsToAddElement = this.state.amountsToAdd[productStripeSku];
+                if(amountsToAddElement === 0){
+                    return
+                }
+                newVals[productStripeSku] = amountsToAddElement - 1
+                this.setState({amountToAdds:newVals})
+            }
+        }else{
+            //do nothing
         }
     }
 
@@ -336,10 +386,22 @@ class Category extends Component {
                                 <div className={"modal-product-price"}>{formatPrice(getPriceForStripeSku(productStripeSku, products), getCurrencyForStripeSku(productStripeSku, products))}</div>
                             </div>
                             <div className={"modal-description-right"}>
+                                <div className={"modal-cart-buttons"}>
+                                <IconContext.Provider value={{size:"2em"}}>
+                                    <button key={"add-to-cart-up"} className={"add-to-cart-down"} onClick={() => {that.decreaseInputQuantity(productStripeSku)}}>
+                                    <FaArrowDown/>
+                                    </button>
+                                </IconContext.Provider>
                                 <button key={"add-to-cart"} className={"add-to-cart"}
-                                        onClick={() => {handleClick(cart, productStripeSku, that, products, baths)}}>
-                                    Add To Cart
+                                        onClick={() => {handleClick(cart, that.state.amountsToAdd[productStripeSku], productStripeSku, that, products, baths)}}>
+                                    Add {that.state.amountsToAdd[productStripeSku]} To Cart
                                 </button>
+                                <IconContext.Provider value={{size:"2em"}}>
+                                    <button key={"add-to-cart-up"} className={"add-to-cart-up"} onClick={() => {handleInputIncrease(productStripeSku, that)}}>
+                                    <FaArrowUp/>
+                                    </button>
+                                </IconContext.Provider>
+                                </div>
                             </div>
                             {bath ? getBathTabsDisplay(productStripeSku, baths, bath, state, that): "" }
                         </div>
@@ -348,9 +410,13 @@ class Category extends Component {
             }
         }
 
-        function handleClick(cart, productStripeSku, that, products, baths){
-            cart.addToCart(productStripeSku, 1, getPriceForStripeSku(productStripeSku, products), getCurrencyForStripeSku(productStripeSku, products), that.getBathName(productStripeSku, baths, that))
+        function handleClick(cart, qty, productStripeSku, that, products, baths){
+            cart.addToCart(productStripeSku, qty, getPriceForStripeSku(productStripeSku, products), getCurrencyForStripeSku(productStripeSku, products), that.getBathName(productStripeSku, baths, that))
             that.notify();
+        }
+
+        function handleInputIncrease(productStripeSku, that){
+            that.increaseInputQuantity(productStripeSku)
         }
 
         const category = this.props.category
@@ -380,7 +446,7 @@ class Category extends Component {
                                                         <div className={"category-price"}>{formatPrice(getPriceForStripeSku(productStripeSku, products), getCurrencyForStripeSku(productStripeSku, products))}</div>
                                                         <div className={"category-add-to-cart"}>
                                                             <button key={"add-to-cart"} className={"add-to-cart"}
-                                                                    onClick={() => {handleClick(cart, productStripeSku, this, products, baths)}}>
+                                                                    onClick={() => {handleClick(cart, 1, productStripeSku, this, products, baths)}}>
                                                                 Add To Cart
                                                             </button>
                                                         </div>
