@@ -7,6 +7,7 @@ import {FaTrash} from "react-icons/fa"
 import qs from "querystring";
 import axios from "axios";
 import { navigate } from "@reach/router"
+import {Link} from "gatsby"
 import {ErrorMessage, Field, Form, Formik} from "formik";
 
 class Cart extends Component {
@@ -274,7 +275,7 @@ class Cart extends Component {
                         </div> :
                         <div className={"cart-page-root"}>
                             <h4 className={"cart-items-empty"}>No items currently in cart.</h4>
-                            <a href={"/shope/categories"}>Visit Shop</a>
+                            <Link to={"/shope/categories"}>Visit Shop</Link>
                         </div>
                 )}
             </CartContext.Consumer>

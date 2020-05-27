@@ -90,6 +90,16 @@ collections:
             fields:
               - {label: Title, name: barTitle, widget: string, required: false}
               - {label: Body, name: barBody, widget: string, required: false}
+      - label: Welcome Page
+        name: welcomepage
+        widget: object
+        fields:
+          - label: Welcome Image
+            name: welcomeimagesection
+            widget: object
+            fields:
+              - {label: Title, name: welcomeTitle, widget: string, required: false}
+              - {label: Body, name: welcomeImage, widget: image, required: false}
       - label: Site Wide
         name: sitewide
         widget: object

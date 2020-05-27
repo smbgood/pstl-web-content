@@ -8,14 +8,14 @@ const path = require("path")
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
     const { createPage } = actions
-    const { createRedirect } = actions
+    /*const { createRedirect } = actions
 
     createRedirect({
         fromPath: `/`,
         toPath: `/shope`,
         redirectInBrowser: true,
         isPermanent: true,
-    })
+    })*/
 
     const blogResult = await graphql(`
         query MyBlogMDXQuery {

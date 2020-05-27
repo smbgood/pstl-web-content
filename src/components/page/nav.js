@@ -103,7 +103,7 @@ class Nav extends Component {
                 {` `}
             </div>
             <div className={("nav-icon " + (this.state.animationEnd ? "wavy-start" : "wavy-finish"))}>
-              <Link to="/shope" onClick={() => {this.handleClick("", this.fakeOpen, this, this.setCurrentNavItem)}}><Img fluid={this.props.navImage.fluid}/></Link>
+              <Link to="/" onClick={() => {this.handleClick("", this.fakeOpen, this, this.setCurrentNavItem)}}><Img fluid={this.props.navImage.fluid}/></Link>
             </div>
             <div className="nav-container nav-right">          
               {` `}

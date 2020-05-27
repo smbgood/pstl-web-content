@@ -2,7 +2,6 @@ import React from "react"
 import { Router } from "@reach/router"
 import Layout from "../components/page/layout"
 import SEO from "../components/page/seo";
-import Shop from "../components/page/shop";
 import Blog from "../components/page/blog"
 import About from "../components/page/about"
 import Contact from "../components/page/contact"
@@ -15,7 +14,6 @@ const Shope = ({data, location}) => (
     <Layout navImage={data.logoImage.edges[0].node} location={location}>
         <SEO title={"Banshee Babe Boutique | Trinkets, Odds & Ends"} history={location}/>
         <Router>
-            <Shop path="/shope/shop" />
             <Blog path="/shope" blogs={data}/>
             <About path="/shope/about"/>
             <Contact path="/shope/contact"/>

@@ -214,8 +214,6 @@ class Checkout extends Component {
         )
     }
 
-
-
     showShippingOptions(item, field, state, openModal, closeModal) {
         if(item != null && item.provider) {
             let customStyles = {
