@@ -1,4 +1,6 @@
 import React from "react";
+import Img from "gatsby-image"
+import "../../styles/welcome.scss"
 
 class Welcome extends React.Component {
     constructor(props) {
@@ -7,14 +9,23 @@ class Welcome extends React.Component {
 
     render() {
         return (
-            <div className={"welcome-root"}>
-            <div className={"welcome-section"}>
-                <h1>Welcome !</h1>
-                <div className={"welcome-image"}>
 
+                <div className={"welcome-root"}>
+                    <div className={"welcome-section"}>
+                        <div className={"welcome-image"}>
+                            <Img fluid={this.props.welcomeInfo.image.fluid} alt={"Welcome Image"}>
+                            </Img>
+                            <div className={"welcome-overlay"}>
+                                <div className={"welcome-top"}>
+                                    Top
+                                </div>
+                                <div className={"welcome-bottom"}>
+                                    Bottom
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            </div>
         )
     }
 }

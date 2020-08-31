@@ -246,12 +246,26 @@ button.add-to-cart{
   @include color-9();
 }
 
+.banshee-tab-info{
+  display:inline-block;
+  @media screen and (max-width:$bp-vsmall){
+    width:2.9rem;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+}
+
 .toast-view-cart{
-  font-size: 1.6rem;
-  background-color: black;
-  border-radius: 1rem;
+  display:inline;
+  font-family: "Imprima", monospaced;
+  font-size:1.3rem;
+  border: 2px black;
+  @include bg-color-12();
+  color:black;
+  padding:1rem;
+  cursor:pointer;
+  font-weight:600;
   margin-left: 1.7rem;
-  padding: .1rem .3rem .05rem;
 }
 
 .modal-description-left, .modal-description-right{
@@ -301,6 +315,17 @@ button.add-to-cart{
   }
 }
 
+.Toastify__toast-container{
+  @media screen and(min-width:$bp-med) {
+    width: 420px !important;
+  }
+  @media screen and(min-width:$bp-vsmall) {
+    width: 420px !important;
+    left: 3rem;
+    right:initial!important;
+  }
+}
+
 .ReactModal__Overlay--after-open{
   z-index:4;
 }
@@ -308,11 +333,19 @@ button.add-to-cart{
 .ReactModal__Content--after-open{
   z-index:4;
   padding:0;
-  @media screen and(max-width:$bp-vsmall){
+  @media screen and(max-width:$bp-tiny){
     width: 20rem!important;
     height: 92%!important;
   }
-  @media screen and (min-width:$bp-vsmall) and (max-width:$bp-small){
+  @media screen and (min-width:$bp-tiny) and (max-width:$bp-vsmall){
+    width: 22rem!important;
+    height: 92%!important;
+  }
+  @media screen and (min-width:$bp-vsmall) and (max-width:$bp-msmall){
+    width: 23.5rem!important;
+    height: 92%!important;
+  }
+  @media screen and (min-width:$bp-msmall) and (max-width:$bp-small){
     width: 27.5rem!important;
     height: 92%!important;
   }

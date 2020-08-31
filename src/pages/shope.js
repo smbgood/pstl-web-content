@@ -59,7 +59,17 @@ export const query = graphql`
                     }
                 }
             }
-        }
+        },
+        welcomeInfo: allSiteadminJson {
+            nodes {
+              welcomepage {
+                welcomeimagesection {
+                  welcomeImage
+                  welcomeTitle
+                  }
+                }
+              }
+            }       
     }
 `
 export default Shope

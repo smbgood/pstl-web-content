@@ -233,10 +233,14 @@ nav, .footer-root{
     @media screen and (min-width:$bp-large){
         margin-left:5%;
         margin-right:5%;
+        margin-bottom:2%;
+        margin-top:1%;
     }
     @media screen and (min-width:$bp-mega){
         margin-left:10%;
         margin-right:10%;
+        margin-bottom:4%;
+        margin-top:2%;
     }
 }
 

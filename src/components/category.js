@@ -22,7 +22,7 @@ class Category extends Component {
 
 
     //TODO add full cart display
-    notify = () => toast(<Msg/> , {closeOnClick:false})
+    notify = () => toast(<Msg/> , {closeOnClick:false, pauseOnHover:true})
 
     state = {
         modalsOpen : [],
@@ -305,18 +305,18 @@ class Category extends Component {
                     <input type={"checkbox"} id={"tabs-top-first"} checked={this.state.tabActive && this.state.tabActive[productStripeSku] && this.state.tabActive[productStripeSku] === "first"} readOnly={true}/>
                     <label htmlFor={"tabs-top-first"}>
                         <div className={"tabs-top-first banshee-tab"} onClick={() => this.doTabClick("first", productStripeSku)}>
-                            <span className={"banshee-tab-info"}>Description</span></div>
+                            <div className={"banshee-tab-info"}>Description</div></div>
                     </label>
                     <input type={"checkbox"} id={"tabs-top-second"} checked={this.state.tabActive && this.state.tabActive[productStripeSku] && this.state.tabActive[productStripeSku] === "second"} readOnly={true}/>
                     <label htmlFor={"tabs-top-second"}>
                         <div className={"tabs-top-second banshee-tab"} onClick={() => this.doTabClick("second", productStripeSku)}>
-                            <span className={"banshee-tab-info"}>Ingredients</span>
+                            <div className={"banshee-tab-info"}>Ingredients</div>
                         </div>
                     </label>
                     <input type={"checkbox"} id={"tabs-top-third"} checked={this.state.tabActive && this.state.tabActive[productStripeSku] && this.state.tabActive[productStripeSku] === "third"} readOnly={true}/>
                     <label htmlFor={"tabs-top-third"}>
                         <div className={"tabs-top-third banshee-tab"} onClick={() => this.doTabClick("third", productStripeSku)}>
-                            <span className={"banshee-tab-info"}>Important</span>
+                            <div className={"banshee-tab-info"}>Important</div>
                         </div>
                     </label>
                 </div>
