@@ -12,5 +12,7 @@
   "title": "Free",
   "short_description": "Description",
   "image": "images/uploads/destress-product-image.png",
-  "sku": "Free"
+  "sku": "free",
+  "price" : 700,
+  "currency": "usd"
 }

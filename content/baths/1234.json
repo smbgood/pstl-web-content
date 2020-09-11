@@ -11,5 +11,7 @@
   "title": "Title",
   "short_description": "I appear on the categories page",
   "image": "images/uploads/money-product-cropped.png",
-  "sku": "prosper"
+  "sku": "prosper",
+  "price" : 700,
+  "currency": "usd"
 }

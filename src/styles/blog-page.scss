@@ -53,12 +53,6 @@
 
 .blog-attrib-open{
   text-align: right;
-  width: 89%;
-  @media screen and (max-width:$bp-med){
-    width:71%;
-  }
-  position: absolute;
-  z-index: 2;
 }
 
 .blog-image-attribution{

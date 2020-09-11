@@ -13,5 +13,7 @@
   "title": "Title",
   "short_description": "Description",
   "image": "images/uploads/love-bath-cropped.png",
-  "sku": "Heal"
+  "sku": "heal",
+  "price" : 700,
+  "currency": "usd"
 }

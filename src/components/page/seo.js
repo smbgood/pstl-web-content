@@ -43,6 +43,8 @@ function SEO({ description, lang, meta, title, history }) {
       case "/shope/categories":
         title = "Shope | Banshee Babe Boutique"
         break
+      case "/shope/cart":
+        title = "Cart | Banshee Babe Boutique"
     }
   }
 

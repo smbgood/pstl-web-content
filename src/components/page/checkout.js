@@ -7,6 +7,8 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import Modal from 'react-modal';
 import { FaInfo, FaRegWindowClose } from "react-icons/fa";
 import { IconContext } from "react-icons"
+import qs from "querystring";
+import axios from "axios";
 
 String.prototype.removeCharAt = function (i) {
     let tmp = this.split(''); // convert to an array
@@ -17,14 +19,11 @@ String.prototype.removeCharAt = function (i) {
 class Checkout extends Component {
 
     state = {
-        stripe: null,
         shipping: null,
         modalsOpen: []
     }
     componentDidMount() {
-        /*const stripe = window.Stripe("pk_live_OGxNOUzWvpoUJS3yscyZ6Ccw00ukIopzD4")*/
-        const stripe = window.Stripe("pk_test_4xqQzlAyU2e9MJ2h9P1SapFe00K4jXy6Rk")
-        this.setState({ stripe: stripe, shipping: {}, modalsOpen:[] })
+        this.setState({ shipping: {}, modalsOpen:[] })
     }
 
     openModal(state, id){
@@ -49,8 +48,10 @@ class Checkout extends Component {
         }
     }
 
-    async doCheckout(cart, orderId, shipping, stripe){
-        let outItems = []
+    async doCheckout(values, shipping){
+
+        
+        /*let outItems = []
         for(let cartItem of cart){
             let sku = cartItem.sku
             let qty = cartItem.qty
@@ -81,7 +82,8 @@ class Checkout extends Component {
         if (error) {
             console.warn("Error:", error)
             //TODO error handling if stripe payment request fails
-        }
+        }*/
+        alert("you checked out!")
     }
 
     render() {
@@ -96,7 +98,6 @@ class Checkout extends Component {
                                     if(!values.shippingoption){
                                         errors.shippingoption = "Please select a shipping method"
                                     }else{
-                                        console.log(values.shippingoption)
                                         let rate = values.shippingoption.substring(0,values.shippingoption.indexOf("___"))
                                         let rateId = values.shippingoption.substring(values.shippingoption.indexOf("___")+3, values.shippingoption.length)
                                         this.setState({shipping: {rate: rate, id:rateId}});
@@ -119,21 +120,41 @@ class Checkout extends Component {
                                         shipping: this.props.location.state.rates,
                                         orderId: this.props.location.state.orderId,
                                         formatPrice: formatPrice,
-                                        shippingoption: '',
-                                        checkout: this.doCheckout,
+                                        shippingoption: ''
                                     }
                                 }
                                 onSubmit={(values, { setSubmitting }) => {
+                                    setSubmitting(true);
                                     if(values && values.cart != null && values.shippingoption){
+                                        values["form-name"] = "bbcheckout"
+                                        values = qs.stringify(values)
+                                        axios.post("http://localhost:9090/banshee/order", values, {headers: {'Content-Type':'application/x-www-form-urlencoded'}})
+                                            .then(response => {
+                                                //used to parse out stuff to use on the spot
+                                                /*const {
+                                                    data: {
+                                                        userId: id
+                                                    }
+                                                } = profile*/
+                                                console.log(response)
+                                                if (typeof window !== `undefined`) window.location.replace(`/order-success`)
+                                            }).catch(error => {
+                                                console.log(error)
+                                                setSubmitting(false);
+                                            })
+
                                         //TODO post message off to our own server if user added one so we can take action
+
+                                        //clear out cart after order submit
                                         //need to post to our OMS so we can start fulfillment, then redirectToCheckout
-                                        this.doCheckout(values.cart, values.orderId, this.state.shipping, this.state.stripe)
+                                        //this.doCheckout(values.cart, values.orderId, this.state.shipping, this.state.stripe)
+                                       // this.doCheckout(values, this.state.shipping);
                                     }
 
                                 }}
                             >
                                 {({ values, touched, isSubmitting}) => (
-                                    <Form name="bbcheckout" action="/" >
+                                    <Form name="bbcheckout" data-netlify="true" netlify-honeypot="bot-field" method="post" action="/order-success">
                                         <div className={"checkout-top"}>
                                         <div className={"checkout-shipping-to-heading"}>
                                             <h5>Ship to:</h5>
@@ -162,7 +183,7 @@ class Checkout extends Component {
                                             <Field name="shippingoption" render={({field}) => (
                                                 <>
                                                     {values.shipping != null ? values.shipping.map( item =>{
-                                                        return item != null ? this.showShippingOptions(item, field, this, this.openModal, this.closeModal, this.state.modalOpen) : ""
+                                                        return item != null ? this.showShippingOptions(item, field, this, this.openModal, this.closeModal) : ""
                                                     }) : ""}
                                                 </>
                                             )}/>
@@ -202,9 +223,12 @@ class Checkout extends Component {
 
                                         </div>
 
-                                        <button className="order-form-submit" type="submit" disabled={isSubmitting && values.shippingoption !== ''}>
-                                            Pay Now
-                                        </button>
+                                        {isSubmitting ? <div className="lds-heart">
+                                            <div></div>
+                                        </div> : <button className="order-form-submit" type="submit" disabled={isSubmitting && values.shippingoption !== ''}>
+                                            Submit Order
+                                        </button>}
+
                                     </Form>
                                 )}
                             </Formik>

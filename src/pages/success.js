@@ -7,9 +7,11 @@ import SEO from "../components/page/seo"
 const SuccessPage = ({data}) => (
   <Layout navImage={data.navImage.edges[0].node}>
     <SEO title="Contact Submit Success" />
-    <h1>Thank you for your contact request!</h1>
-    <p>We will get back to you as soon as (unearthly) possible!</p>
-    <Link to="/shope">Go back to the homepage</Link>
+    <div className={"ultimate-center"}>
+        <h1>Thank you for your contact request!</h1>
+        <p className={"back-to-you-text"}>We will get back to you as soon as (unearthly) possible!</p>
+        <Link to="/shope">Go back to the homepage</Link>
+    </div>
   </Layout>
 )
 export const query=graphql`

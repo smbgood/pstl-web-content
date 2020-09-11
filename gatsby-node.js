@@ -46,7 +46,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         }
     `)
     if(blogResult.errors){
-        reporter.panicOnBuild("AAAAAAAAA")
+        reporter.panicOnBuild("Errors trying to get blogResult")
         return
     }
 
