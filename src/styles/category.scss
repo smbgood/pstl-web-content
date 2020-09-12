@@ -47,29 +47,40 @@ button.add-to-cart{
   font-size: 1.6rem;
   font-weight: 800;
   background: none;
-  border-style: double;
-  border-width: 0.3rem;
+  border:none;
   font-family: Arima Madurai, monospace;
   @include color-13();
   @include bg-color-13-gradient();
-  border-color:black;
+  box-shadow: 1px 3px 4px 1px black;
   cursor:pointer;
+  &:focus{
+    outline:none;
+    color:white;
+  }
 }
 
 .category-add-to-cart{
   button.add-to-cart{
-    flex:43;
-    margin-top:2.7rem;
-    margin-right: 0.4rem;
-    margin-bottom: 0.4rem;
+    text-align: center;
+    display: block;
+    margin: 1.4rem auto 0;
+    padding: 0.6rem 1rem;
+    font-weight: 600;
   }
 }
 
-.category-header{
+.category-holder li{
   padding:1rem;
+}
+
+.category-header{
   @media screen and(max-width:$bp-small){
     margin: 1rem;
   }
+  &:hover{
+    box-shadow: 5px 8px 16px 3px grey;
+  }
+  cursor:pointer;
 }
 .product-image-bg{
   cursor:pointer;
@@ -100,6 +111,7 @@ button.add-to-cart{
   width:100%;
   height:100%;
   display:flex;
+  margin-top:2rem;
   @media screen and(max-width:$bp-med) {
     display: block;
     overflow-y:scroll;
@@ -132,10 +144,29 @@ button.add-to-cart{
 }
 .product-subtitle{
   background-color:rgba(255,255,255,.6);
-  padding-top:.2rem;
-  display:flex;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.category-product-name{
+  display:inline;
+  font-size:2.4rem;
+  font-weight:500;
+  margin-top: .2rem;
+  margin-left: 11%;
+  @media screen and(max-width:$bp-small){
+    margin-top:.4rem;
+  }
 
 }
+.category-price{
+  margin-top: 1.2rem;
+  display:inline;
+  float: right;
+  margin-right: 6%;
+}
+
+
 .product-image-subtitle-link{
   cursor:pointer;
 }
@@ -167,22 +198,6 @@ button.add-to-cart{
     margin-left:.5rem;
   }
 
-}
-.category-product-name{
-  font-size:2.4rem;
-  font-weight:600;
-  flex:21;
-  margin-top: .2rem;
-  margin-left: 0.5rem;
-  @media screen and(max-width:$bp-small){
-    flex:10;
-    margin-top:.4rem;
-  }
-
-}
-.category-price{
-  flex:11;
-  margin-top: 1.2rem;
 }
 
 .modal-carousel{
@@ -246,12 +261,24 @@ button.add-to-cart{
   @include color-9();
 }
 
+.banshee-tab-info{
+  display:inline-block;
+  @media screen and (max-width:$bp-vsmall){
+    width:2.9rem;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+}
+
 .toast-view-cart{
-  font-size: 1.6rem;
-  background-color: black;
-  border-radius: 1rem;
-  margin-left: 1.7rem;
-  padding: .1rem .3rem .05rem;
+  display: inline-block;
+  font-family: "Imprima", monospaced;
+  font-size: 1.7rem;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 1.2rem 1rem;
+  text-align: center;
+  margin: 1.5rem auto 1.8rem;
 }
 
 .modal-description-left, .modal-description-right{
@@ -301,6 +328,17 @@ button.add-to-cart{
   }
 }
 
+.Toastify__toast-container{
+    width: 14rem !important;
+    left: 3rem;
+    right:initial!important;
+}
+
+.Toastify__toast-body{
+  margin-top: 2rem!important;
+  margin-left: 1.5rem!important;
+}
+
 .ReactModal__Overlay--after-open{
   z-index:4;
 }
@@ -308,16 +346,24 @@ button.add-to-cart{
 .ReactModal__Content--after-open{
   z-index:4;
   padding:0;
-  @media screen and(max-width:$bp-vsmall){
+  @media screen and(max-width:$bp-tiny){
     width: 20rem!important;
     height: 92%!important;
   }
-  @media screen and (min-width:$bp-vsmall) and (max-width:$bp-small){
+  @media screen and (min-width:$bp-tiny) and (max-width:$bp-vsmall){
+    width: 22rem!important;
+    height: 92%!important;
+  }
+  @media screen and (min-width:$bp-vsmall) and (max-width:$bp-msmall){
+    width: 23.5rem!important;
+    height: 92%!important;
+  }
+  @media screen and (min-width:$bp-msmall) and (max-width:$bp-small){
     width: 27.5rem!important;
     height: 92%!important;
   }
   @media screen and (min-width:$bp-small) and (max-width:$bp-med){
-    width: 38rem!important;
+    width: 58.1rem!important;
     height: 92%!important;
   }
   @media screen and (min-width:$bp-med) and (max-width:$bp-large){
@@ -327,6 +373,10 @@ button.add-to-cart{
   @media screen and (min-width:$bp-large) and (max-width:$bp-mega) {
     width: 75rem!important;
     height: 36rem;
+  }
+  @media screen and (min-width:$bp-mega){
+    width: 75rem!important;
+    height: 42rem;
   }
   /* Copy-pasted webkit scrollbar styles */
   ::-webkit-scrollbar {

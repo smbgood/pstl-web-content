@@ -9,7 +9,13 @@ import Flickity from "react-flickity-component";
 import "../../node_modules/flickity/css/flickity.css"
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {formatPrice, getCurrencyForStripeSku, getPriceForStripeSku} from "../utils/shared";
+import {
+    formatPrice,
+    getProductCurrency,
+    getProductPrice,
+    getProductImage,
+    getProductName, getProductById, getProductDetailImages
+} from "../utils/shared";
 
 const Msg = ({ closeToast }) => (
     <div>
@@ -22,7 +28,7 @@ class Category extends Component {
 
 
     //TODO add full cart display
-    notify = () => toast(<Msg/> , {closeOnClick:false})
+    notify = () => toast(<Msg/> , {closeOnClick:false, pauseOnHover:true})
 
     state = {
         modalsOpen : [],
@@ -39,8 +45,8 @@ class Category extends Component {
         this.setState({modalsOpen: [], bigModalRefs: {}, smallModalRefs: {}, firstTab:{}, secondTab:{}, thirdTab: {}, amountsToAdd: {}})
         let baths = this.props.baths;
         if(this.props.category && this.props.category.products) {
-            this.props.category.products.map((productStripeSku) => {
-                this.setTabs(productStripeSku, baths);
+            this.props.category.products.map((productId) => {
+                this.setTabs(productId, baths);
             })
         }
         /*this.flkty.on('settle', () => {
@@ -58,11 +64,7 @@ class Category extends Component {
         this.increaseInputQuantity = this.increaseInputQuantity.bind(this)
         this.decreaseInputQuantity = this.decreaseInputQuantity.bind(this)
         this.handleInputIncrease = this.handleInputIncrease.bind(this)
-        this.getBathName = this.getBathName.bind(this)
-        this.getBathImage = this.getBathImage.bind(this)
-        this.getBathById = this.getBathById.bind(this)
         this.displayImageForImageName = this.displayImageForImageName.bind(this)
-        this.getBathDetailImages = this.getBathDetailImages.bind(this)
         this.doTabClick = this.doTabClick.bind(this)
         this.getTabsContent = this.getTabsContent.bind(this)
         this.getBathTabsDisplay = this.getBathTabsDisplay.bind(this)
@@ -72,67 +74,66 @@ class Category extends Component {
         this.handleInputDecrease = this.handleInputDecrease.bind(this)
     }
 
-    setTabs(productStripeSku, baths){
+    setTabs(productId, baths){
 
-        let bath = this.getBathById(productStripeSku, baths)
+        let bath = getProductById(productId, baths)
         let newFirst,newSecond,newThird
         let tabsActive = {}
         let amountsToAdd = {}
         if(bath.full_description){
             //add new value
             newFirst = this.state.firstTab
-            newFirst[productStripeSku] = bath.full_description
+            newFirst[productId] = bath.full_description
         }
         if(bath.ingredients){
             //add new value
             newSecond = this.state.secondTab
-            newSecond[productStripeSku] = bath.ingredients
+            newSecond[productId] = bath.ingredients
         }
         if(bath.important){
             //add new value
             newThird = this.state.thirdTab
-            newThird[productStripeSku] = bath.important
+            newThird[productId] = bath.important
         }
         if(this.state && this.state.tabActive){
             tabsActive = this.state.tabActive
         }
 
-        tabsActive[productStripeSku] = "first"
+        tabsActive[productId] = "first"
 
         if(this.state && this.state.amountsToAdd){
             amountsToAdd = this.state.amountsToAdd
         }
 
-        /*if(this.state.amountsToAdd.length > 0 && this.state.amountsToAdd[productStripeSku] > -1){
-
-        }else{*/
-            amountsToAdd[productStripeSku] = 1
-        //}
+        //initialize each tab to 1 product to add to cart by default
+        amountsToAdd[productId] = 1
 
         this.setState({tabActive: tabsActive, firstTab:newFirst,secondTab:newSecond, thirdTab:newThird, amountsToAdd: amountsToAdd})
-
     }
 
-    increaseInputQuantity(productStripeSku){
+    increaseInputQuantity(productId){
         if(this.state && this.state.amountsToAdd){
             let newVals = this.state.amountsToAdd
-            let amountsToAddElement = this.state.amountsToAdd[productStripeSku];
-            newVals[productStripeSku] = amountsToAddElement + 1
+            let amountsToAddElement = this.state.amountsToAdd[productId];
+            newVals[productId] = amountsToAddElement + 1
             this.setState({amountsToAdd:newVals})
         }else{
             //do nothing
         }
     }
 
-    decreaseInputQuantity(productStripeSku){
+    decreaseInputQuantity(productId){
         if(this.state && this.state.amountsToAdd){
             let newVals = this.state.amountsToAdd
-            let amountsToAddElement = this.state.amountsToAdd[productStripeSku];
+            let amountsToAddElement = this.state.amountsToAdd[productId];
             if(amountsToAddElement === 0){
                 return
             }
             amountsToAddElement = amountsToAddElement - 1;
-            newVals[productStripeSku] = amountsToAddElement
+            if(amountsToAddElement === 0){
+                return
+            }
+            newVals[productId] = amountsToAddElement
             this.setState({amountsToAdd:newVals})
 
         }else{
@@ -140,30 +141,30 @@ class Category extends Component {
         }
     }
 
-    openModal(productStripeSku){
+    openModal(productId){
         if(this.state && this.state.modalsOpen){
-            if(this.state.modalsOpen.indexOf(productStripeSku) === -1) {
+            if(this.state.modalsOpen.indexOf(productId) === -1) {
                 let newArray = this.state.modalsOpen
-                newArray.push(productStripeSku)
+                newArray.push(productId)
                 this.setState({modalsOpen: newArray})
             }
         }
     }
 
-    getModalOpen(productStripeSku){
+    getModalOpen(productId){
         if(this.state && this.state.modalsOpen && this.state.modalsOpen.length > 0){
-            if(this.state.modalsOpen.indexOf(productStripeSku) > -1){
+            if(this.state.modalsOpen.indexOf(productId) > -1){
                 return true
             }
         }
         return false
     }
 
-    closeModal(productStripeSku){
+    closeModal(productId){
         if(this.state.modalsOpen) {
-            if (this.state.modalsOpen.indexOf(productStripeSku) > -1) {
+            if (this.state.modalsOpen.indexOf(productId) > -1) {
                 let newVals = this.state.modalsOpen;
-                newVals.splice(newVals.indexOf(productStripeSku))
+                newVals.splice(newVals.indexOf(productId))
                 this.setState({modalsOpen: newVals})
             }
         }
@@ -209,39 +210,6 @@ class Category extends Component {
         }
     }
 
-    getBathName(id, baths) {
-        if(id && baths){
-            let bath = this.getBathById(id, baths)
-            if(bath && bath.name){
-                return bath.name
-            }
-        }
-        return ""
-    }
-
-    getBathImage(id, baths){
-        if(id && baths){
-            let bath = this.getBathById(id, baths)
-            if(bath && bath.image){
-                return bath.image
-            }
-        }
-        return ""
-    }
-
-    getBathById(id, baths) {
-        if (baths && baths.nodes) {
-            for (const bath of baths.nodes) {
-                if (bath && bath.stripeId) {
-                    if (bath.stripeId === id) {
-                        return bath
-                    }
-                }
-            }
-        }
-        return null
-    }
-
     displayImageForImageName(imageName, images, imageClass){
         if(imageName && imageName.indexOf("/") > -1){
             imageName = imageName.substring(imageName.lastIndexOf("/") + 1, imageName.length )
@@ -256,39 +224,30 @@ class Category extends Component {
         return ""
     }
 
-    getBathDetailImages(id, baths){
-        if(baths && id){
-            let bath = this.getBathById(id, baths)
-            if(bath && bath.detail_images){
-                return bath.detail_images
-            }
-        }
-    }
-
-    doTabClick(tab, productStripeSku) {
+    doTabClick(tab, productId) {
         let tabsActive = {}
         if(this.state && this.state.tabActive){
             tabsActive = this.state.tabActive
         }
-        tabsActive[productStripeSku] = tab
+        tabsActive[productId] = tab
         this.setState({tabActive: tabsActive})
     }
 
-    getTabsContent(productStripeSku) {
-        if(this.state && this.state.tabActive && this.state.tabActive[productStripeSku]){
-            let activeTab = this.state.tabActive[productStripeSku]
+    getTabsContent(productId) {
+        if(this.state && this.state.tabActive && this.state.tabActive[productId]){
+            let activeTab = this.state.tabActive[productId]
             switch(activeTab){
                 case "first":
-                    if(this.state.firstTab && this.state.firstTab[productStripeSku])
-                        return this.state.firstTab[productStripeSku]
+                    if(this.state.firstTab && this.state.firstTab[productId])
+                        return this.state.firstTab[productId]
                     break
                 case "second":
-                    if(this.state.secondTab && this.state.secondTab[productStripeSku])
-                        return this.state.secondTab[productStripeSku]
+                    if(this.state.secondTab && this.state.secondTab[productId])
+                        return this.state.secondTab[productId]
                     break
                 case "third":
-                    if(this.state.thirdTab && this.state.thirdTab[productStripeSku])
-                        return this.state.thirdTab[productStripeSku]
+                    if(this.state.thirdTab && this.state.thirdTab[productId])
+                        return this.state.thirdTab[productId]
                     break
             }
         }else{
@@ -298,29 +257,29 @@ class Category extends Component {
         return ""
     }
 
-    getBathTabsDisplay(productStripeSku, baths) {
+    getBathTabsDisplay(productId, baths) {
         return (
             <div className={"tabs-container"}>
                 <div className={"tabs-top-holder"}>
-                    <input type={"checkbox"} id={"tabs-top-first"} checked={this.state.tabActive && this.state.tabActive[productStripeSku] && this.state.tabActive[productStripeSku] === "first"} readOnly={true}/>
+                    <input type={"checkbox"} id={"tabs-top-first"} checked={this.state.tabActive && this.state.tabActive[productId] && this.state.tabActive[productId] === "first"} readOnly={true}/>
                     <label htmlFor={"tabs-top-first"}>
-                        <div className={"tabs-top-first banshee-tab"} onClick={() => this.doTabClick("first", productStripeSku)}>
-                            <span className={"banshee-tab-info"}>Description</span></div>
+                        <div className={"tabs-top-first banshee-tab"} onClick={() => this.doTabClick("first", productId)}>
+                            <div className={"banshee-tab-info"}>Description</div></div>
                     </label>
-                    <input type={"checkbox"} id={"tabs-top-second"} checked={this.state.tabActive && this.state.tabActive[productStripeSku] && this.state.tabActive[productStripeSku] === "second"} readOnly={true}/>
+                    <input type={"checkbox"} id={"tabs-top-second"} checked={this.state.tabActive && this.state.tabActive[productId] && this.state.tabActive[productId] === "second"} readOnly={true}/>
                     <label htmlFor={"tabs-top-second"}>
-                        <div className={"tabs-top-second banshee-tab"} onClick={() => this.doTabClick("second", productStripeSku)}>
-                            <span className={"banshee-tab-info"}>Ingredients</span>
+                        <div className={"tabs-top-second banshee-tab"} onClick={() => this.doTabClick("second", productId)}>
+                            <div className={"banshee-tab-info"}>Ingredients</div>
                         </div>
                     </label>
-                    <input type={"checkbox"} id={"tabs-top-third"} checked={this.state.tabActive && this.state.tabActive[productStripeSku] && this.state.tabActive[productStripeSku] === "third"} readOnly={true}/>
+                    <input type={"checkbox"} id={"tabs-top-third"} checked={this.state.tabActive && this.state.tabActive[productId] && this.state.tabActive[productId] === "third"} readOnly={true}/>
                     <label htmlFor={"tabs-top-third"}>
-                        <div className={"tabs-top-third banshee-tab"} onClick={() => this.doTabClick("third", productStripeSku)}>
-                            <span className={"banshee-tab-info"}>Important</span>
+                        <div className={"tabs-top-third banshee-tab"} onClick={() => this.doTabClick("third", productId)}>
+                            <div className={"banshee-tab-info"}>Important</div>
                         </div>
                     </label>
                 </div>
-                <div className={"tabs-content"} dangerouslySetInnerHTML={{__html: this.getTabsContent(productStripeSku, baths)}}>
+                <div className={"tabs-content"} dangerouslySetInnerHTML={{__html: this.getTabsContent(productId, baths)}}>
                 </div>
             </div>
 
@@ -328,13 +287,13 @@ class Category extends Component {
         );
     }
 
-    displayProductInfoModal(productStripeSku, baths, images, products, cart){
-        let bathDetailImages = this.getBathDetailImages(productStripeSku, baths)
-        let bath = this.getBathById(productStripeSku, baths)
-        if(this.getModalOpen(productStripeSku)){
+    displayProductInfoModal(productId, baths, images, cart){
+        let bathDetailImages = getProductDetailImages(productId, baths)
+        let bath = getProductById(productId, baths)
+        if(this.getModalOpen(productId)){
             return (<Modal
-                isOpen={this.getModalOpen(productStripeSku)}
-                onRequestClose={() => this.closeModal(productStripeSku)}
+                isOpen={this.getModalOpen(productId)}
+                onRequestClose={() => this.closeModal(productId)}
                 appElement={document.querySelector("#___gatsby")}
                 style={{
                     content : {
@@ -349,7 +308,7 @@ class Category extends Component {
                 }}
             >
                 <IconContext.Provider value={{size: "1.25em"}}>
-                    <button onClick={() => this.closeModal(productStripeSku)} className={"product-modal-close-button"}>
+                    <button onClick={() => this.closeModal(productId)} className={"product-modal-close-button"}>
                         <FaRegWindowClose/>
                     </button>
                 </IconContext.Provider>
@@ -357,7 +316,7 @@ class Category extends Component {
                     <div className={"modal-product-images"}>
                         <Flickity className={'modal-carousel'} // default ''
                                   elementType={'div'}
-                                  flickityRef={c=> this.setBigCarousel(c, productStripeSku)}
+                                  flickityRef={c=> this.setBigCarousel(c, productId)}
                                   options={{contain:true, freeScroll: true, prevNextButtons:true, pageDots:false}}>
                             {bathDetailImages ? bathDetailImages.map((image) => (
                                 this.displayImageForImageName(image, images, "modal-product-img")
@@ -365,7 +324,7 @@ class Category extends Component {
                         </Flickity>
                         <Flickity className={"modal-carousel-nav"}
                                   elementType={"div"}
-                                  flickityRef={c=> this.setLittleCarousel(c, productStripeSku)}
+                                  flickityRef={c=> this.setLittleCarousel(c, productId)}
                                   options={{contain:false, freeScroll:true, pageDots:false}}>
                             {bathDetailImages ? bathDetailImages.map((image) => (
                                 this.displayImageForImageName(image, images, "modal-small-nav-img")
@@ -375,45 +334,45 @@ class Category extends Component {
                     <div className={"modal-product-long-description"}>
                         <div className={"modal-description-left"}>
                             <div
-                                className={"modal-product-name"}>{this.getBathName(productStripeSku, baths)}</div>
-                            <div className={"modal-product-price"}>{formatPrice(getPriceForStripeSku(productStripeSku, products), getCurrencyForStripeSku(productStripeSku, products))}</div>
+                                className={"modal-product-name"}>{getProductName(productId, baths)}</div>
+                            <div className={"modal-product-price"}>{formatPrice(getProductPrice(productId, baths), getProductCurrency(productId, baths))}</div>
                         </div>
                         <div className={"modal-description-right"}>
                             <div className={"modal-cart-buttons"}>
                                 <IconContext.Provider value={{size:"2em"}}>
-                                    <button key={"add-to-cart-down"} className={"add-to-cart-down"} onClick={() => this.handleInputDecrease(productStripeSku)}>
+                                    <button key={"add-to-cart-down"} className={"add-to-cart-down"} onClick={() => this.handleInputDecrease(productId)}>
                                         <FaArrowDown/>
                                     </button>
                                 </IconContext.Provider>
                                 <button key={"add-to-cart"} className={"add-to-cart"}
-                                        onClick={() => this.handleClick(cart, this.state.amountsToAdd[productStripeSku], productStripeSku, products, baths)}>
-                                    Add {this.state.amountsToAdd[productStripeSku]} to Cart
+                                        onClick={() => this.handleClick(cart, this.state.amountsToAdd[productId], productId, baths)}>
+                                    Add {this.state.amountsToAdd[productId]} to Cart
                                 </button>
                                 <IconContext.Provider value={{size:"2em"}}>
-                                    <button key={"add-to-cart-up"} className={"add-to-cart-up"} onClick={() => this.handleInputIncrease(productStripeSku)}>
+                                    <button key={"add-to-cart-up"} className={"add-to-cart-up"} onClick={() => this.handleInputIncrease(productId)}>
                                         <FaArrowUp/>
                                     </button>
                                 </IconContext.Provider>
                             </div>
                         </div>
-                        {bath ? this.getBathTabsDisplay(productStripeSku, baths, bath): "" }
+                        {bath ? this.getBathTabsDisplay(productId, baths, bath): "" }
                     </div>
                 </div>
             </Modal>)
         }
     }
 
-    handleClick(cart, qty, productStripeSku, products, baths){
-        cart.addToCart(productStripeSku, qty, getPriceForStripeSku(productStripeSku, products), getCurrencyForStripeSku(productStripeSku, products), this.getBathName(productStripeSku, baths))
+    handleClick(cart, qty, productId, baths){
+        cart.addToCart(productId, qty, getProductPrice(productId, baths), getProductCurrency(productId, baths), getProductName(productId, baths))
         this.notify();
     }
 
-    handleInputIncrease(productStripeSku){
-        this.increaseInputQuantity(productStripeSku)
+    handleInputIncrease(productId){
+        this.increaseInputQuantity(productId)
     }
 
-    handleInputDecrease(productStripeSku){
-        this.decreaseInputQuantity(productStripeSku)
+    handleInputDecrease(productId){
+        this.decreaseInputQuantity(productId)
     }
 
     render() {
@@ -421,7 +380,6 @@ class Category extends Component {
         const category = this.props.category
         const baths = this.props.baths
         const images = this.props.images
-        const products = this.props.products
 
         return (
             <CartContext.Consumer>
@@ -429,29 +387,31 @@ class Category extends Component {
                     cart !== null && cart.cart != null ?
                         <div className="category-root" id={category.id + "-key"}>
                             <ul className="category-holder">
-                                {category.products.map((productStripeSku) => (
-                                    <React.Fragment key={category.id + "-" + productStripeSku}>
+                                {category.products.map((productId) => (
+                                    <React.Fragment key={category.id + "-" + productId}>
                                         <li>
-                                            <div className="category-header">
-                                                    <div className={"product-image-bg"} onClick={() => this.openModal(productStripeSku)}>
-                                                        {this.displayImageForImageName(this.getBathImage(productStripeSku, baths), images, "category-product-img")}
+                                            <div className="category-header" onClick={() => this.openModal(productId)}>
+                                                    <div className={"product-image-bg"} onClick={() => this.openModal(productId)}>
+                                                        {this.displayImageForImageName(getProductImage(productId, baths), images, "category-product-img")}
                                                     </div>
                                                     <div className={"product-subtitle"}>
                                                         <div
-                                                        className={"category-product-name"} onClick={() => this.openModal(productStripeSku)}>
-                                                            <span className={"category-product-name-text"}>{this.getBathName(productStripeSku, baths)}</span>
+                                                        className={"category-product-name"} onClick={() => this.openModal(productId)}>
+                                                            <span className={"category-product-name-text"}>{getProductName(productId, baths)}</span>
                                                         </div>
-                                                        <div className={"category-price"}>{formatPrice(getPriceForStripeSku(productStripeSku, products), getCurrencyForStripeSku(productStripeSku, products))}</div>
-                                                        <div className={"category-add-to-cart"}>
-                                                            <button key={"add-to-cart"} className={"add-to-cart"}
-                                                                    onClick={() => this.handleClick(cart, 1, productStripeSku, products, baths)}>
-                                                                Add to Cart
-                                                            </button>
-                                                        </div>
+                                                        <div className={"category-price"}>{formatPrice(getProductPrice(productId, baths), getProductCurrency(productId, baths))}</div>
                                                     </div>
 
                                             </div>
-                                            {this.displayProductInfoModal(productStripeSku, baths, images, products, cart)}
+                                            <div className="category-add-cart-parent">
+                                                <div className={"category-add-to-cart"}>
+                                                    <button key={"add-to-cart"} className={"add-to-cart"}
+                                                            onClick={() => this.handleClick(cart, 1, productId, baths)}>
+                                                        Add to Cart
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            {this.displayProductInfoModal(productId, baths, images, cart)}
                                         </li>
                                     </React.Fragment>
                                 ))}

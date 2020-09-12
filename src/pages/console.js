@@ -1,24 +1,24 @@
 import React from "react"
 import { Router } from "@reach/router"
-import Layout from "../components/page/layout"
 import SEO from "../components/page/seo";
 import { graphql } from "gatsby"
 import Welcome from "../components/page/welcome"
+import Console from "../components/page/console";
 
 function transformData(obj, image){
     return { title: obj.welcomeimagesection.welcomeTitle, image: image}
 }
 
-const Index = ({data, location}) => (
-    <Layout navImage={data.logoImage.edges[0].node} location={location}>
+const ConsolePage = ({data, location}) => (
+    <Console navImage={data.logoImage.edges[0].node} location={location}>
         <SEO title={"Banshee Babe Boutique | Trinkets, Odds & Ends"} history={location}/>
         <Router>
             <Welcome path="/" welcomeInfo={transformData(data.welcomeInfo.nodes[0].welcomepage, data.plompous.edges[0].node)}/>
         </Router>
-    </Layout>
+    </Console>
 )
 export const query = graphql`
-    query IndexeQuery {
+    query ConsoleQuery {
         logoImage: allImageSharp(filter: {fluid: {originalName: {eq: "banshee-logo-full.png"}}}) {
             edges {
                 node {
@@ -51,4 +51,4 @@ export const query = graphql`
         }          
     }
 `
-export default Index
+export default ConsolePage

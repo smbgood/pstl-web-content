@@ -18,3 +18,4 @@ npm i --save @fortawesome/react-native-fontawesome
 npm i --save @fortawesome/free-brands-svg-icons
 npm i --save @fortawesome/free-regular-svg-icons
 npm install formik --save
+npm install --save gatsby-source-rest-api

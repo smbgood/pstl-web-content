@@ -14,13 +14,13 @@ class Cart extends Component {
 
     doOutput(item, cart){
         return (
-            <div className={"cart-row-item"}>
-                <div key={"cart-left-"+item.sku} className={"cart-left"}>{item.name}</div>
-                <div key={"cart-mid-"+item.sku} className={"cart-mid"}>{item.qty}</div>
-                <div key={"cart-right-"+item.sku} className={"cart-right"}>{formatPrice(item.price, item.currency)}</div>
-                <div key={"cart-last-"+item.sku} className={"cart-last"}>{formatPrice((item.price*item.qty), item.currency)}</div>
-                <div key={"cart-delete-"+item.sku} className={"cart-delete-item"}><button className={"cart-delete-btn"} onClick={() => {cart.removeFromCart(item.sku, item.qty)}}><FaTrash/></button></div>
-            </div>
+            <tr>
+                <td scope={"row"} key={"cart-name-"+item.sku} >{item.name}</td>
+                <td key={"cart-mid-"+item.sku} >{item.qty}</td>
+                <td key={"cart-right-"+item.sku} >{formatPrice(item.price, item.currency)}</td>
+                <td key={"cart-last-"+item.sku} >{formatPrice((item.price*item.qty), item.currency)}</td>
+                <td key={"cart-delete-"+item.sku} ><button  onClick={() => {cart.removeFromCart(item.sku, item.qty)}}><FaTrash/></button></td>
+            </tr>
         )
     }
 
@@ -48,16 +48,21 @@ class Cart extends Component {
                     cart != null && cart.cart != null && cart.cart.length > 0 ?
                         <div className={"cart-page-parent"}>
                             <div className={"cart-page-root"} >
-                                <div className={"cart-row-item cart-header-item"}>
-                                    <div className={"cart-left header"}>Item</div>
-                                    <div className={"cart-mid header"}>Amount</div>
-                                    <div className={"cart-right header"}>Price ($)</div>
-                                    <div className={"cart-last header"}>Total</div>
-                                </div>
+                                <h2 className={"cart-table-heading"}>Items in Cart</h2>
+                                <table className={"cart-items-table"}>
+                                    <tr>
+                                        <th scope={"col"} className={"cart-item"}>Item</th>
+                                        <th scope={"col"} className={"cart-amt"}>Amount</th>
+                                        <th scope={"col"} className={"cart-price"}>Price ($)</th>
+                                        <th scope={"col"} className={"cart-total"}>Total</th>
+                                    </tr>
+                                    <tr><td><hr className={"cart-heading-sep"}/></td></tr>
 
-                                {cart.cart.map( item => (
-                                    item != null && item.qty > 0 ? this.doOutput(item, cart) : ""
-                                ))}
+                                    {cart.cart.map( item => (
+                                        item != null && item.qty > 0 ? this.doOutput(item, cart) : ""
+                                    ))}
+
+                                </table>
 
                                 {this.doTotal(cart.cart)}
 
@@ -122,7 +127,7 @@ class Cart extends Component {
                                             addressValues["validate"] = true
                                             let responseData = null
                                             let orderId = ""
-                                            let url = "http://localhost:9090/banshee/addr?" + qs.stringify(addressValues)
+                                            let url = "http://richornot.com/banshee/addr?" + qs.stringify(addressValues)
                                             await axios.get(url).then(response => {
                                                 //if valid, show them how much to ship,
                                                 if (response && response.data) {
@@ -134,7 +139,7 @@ class Cart extends Component {
                                                         orderId = response.data.orderId;
                                                     }
                                                 }
-                                                //if not valid, pop up an error next to address and do not allow form submit
+                                                //TODO if not valid, pop up an error next to address and do not allow form submit
                                             }).catch((error) => {
                                                 if(error.response){
                                                     console.log(error.response);
@@ -168,7 +173,6 @@ class Cart extends Component {
                                         <Form name="bborder" data-netlify="true" netlify-honeypot="bot-field" method="post" action="/" >
                                             <input type="hidden" name="bot-field"/>
                                             <input type="hidden" name="form-name" value="bborder"/>
-                                            <input type="hidden" name="stripe-order-id" value={values.orderId}/>
                                             <h3 className={"form-heading-shipping"}>Shipping Address</h3>
                                             <h4 className={"form-subheading-shipping"}>(US and Canada only, please)</h4>
                                             <div className={"form-field-holder"}>

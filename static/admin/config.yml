@@ -49,6 +49,7 @@ collections:
     fields:
       - { name: name, label: Name }
       - { name: sku, label: Id }
+      - { name: price, label: Price}
       - { name: image, label: Image, widget: image }
       - { name: title, label: Title }
       - { name: short_description, label: Description, widget: text}
@@ -57,9 +58,9 @@ collections:
         name: "detail_images"
         widget: "list"
         field: {label: Image, name: image, widget: image}
-      - { name: stripeId, label: Stripe Id }
       - { name: ingredients, label: Ingredients (Second Tab) }
       - { name: important, label: Important (Third Tab) }
+      - { name: currency, label: Currency Format}
   - name: siteadmin
     label: Site Admin
     folder: "content/siteadmin"

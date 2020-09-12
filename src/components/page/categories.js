@@ -19,22 +19,7 @@ class Categories extends Component {
                             name
                             products
                         }
-                    },
-                    products: allStripeSku {
-                        nodes {
-                          id
-                          price
-                          currency
-                          product {                                        
-                            id
-                            metadata {
-                              img_category
-                            }
-                            description
-                            name
-                          }
-                        }
-                      },
+                    },                    
                     baths: allBathsJson{
                         nodes{
                             sku
@@ -46,6 +31,8 @@ class Categories extends Component {
                             stripeId                            
                             ingredients
                             important
+                            price
+                            currency
                         }
                     },
                     images: allImageSharp{
@@ -58,10 +45,10 @@ class Categories extends Component {
                     }                    
                   }
                 `}
-                render={({ categories, products, baths, images }) => (
+                render={({ categories, baths, images }) => (
                     <div style={containerStyles}>
                         {categories.nodes.map( node => (
-                            <Category key={node.id} category={node} products={products} baths={baths} images={images}/>
+                            <Category key={node.id} category={node} baths={baths} images={images}/>
                         ))}
                     </div>
                 )}
