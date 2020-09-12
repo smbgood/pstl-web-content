@@ -31,6 +31,11 @@
 
 .cart-items-table{
   margin:0 auto;
+  position: relative;
+  left: 2.5rem;
+  @media screen and (max-width:$bp-small){
+    left:0.6rem;
+  }
   & th{
     padding-right:3rem;
   }
