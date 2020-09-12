@@ -3,7 +3,6 @@ import { jsx } from "theme-ui"
 import React from "react"
 import Nav from "./nav"
 import Footer from "./footer"
-import CartPreview from "../widget/cart-preview"
 import { graphql, StaticQuery } from "gatsby"
 
 class Layout extends React.Component{
@@ -24,8 +23,7 @@ class Layout extends React.Component{
                 `}
                 render={ siteInfo  => (
                     <>
-                        <CartPreview/>
-                        <Nav navImage={this.props.navImage} item={this.props.item ? this.props.item : ""} />
+                        <Nav navImage={this.props.navImage} item={this.props.item ? this.props.item : ""} location={this.props.location}/>
                         <div className="page-root" >
                         {this.props.children}
                         </div>

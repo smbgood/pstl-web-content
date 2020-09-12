@@ -19,41 +19,43 @@ class CartProvider extends React.Component {
         itemSet: [],
     }
     addToCart = (item, qty, price, currency, name) => {
-        let contents = localStorage.getItem("b-b-cart")
-        if(contents != null && contents !== ""){
-            let input = JSON.parse(contents)
-            if(input) {
-                let incremented = false
-                let outArray = []
-                for (let cartItem of input) {
-                    if (cartItem.sku === item) {
-                        cartItem.qty = parseInt(cartItem.qty) + parseInt(qty)
-                        incremented = true
+        if(qty > 0) {
+            let contents = localStorage.getItem("b-b-cart")
+            if (contents != null && contents !== "") {
+                let input = JSON.parse(contents)
+                if (input) {
+                    let incremented = false
+                    let outArray = []
+                    for (let cartItem of input) {
+                        if (cartItem.sku === item) {
+                            cartItem.qty = parseInt(cartItem.qty) + parseInt(qty)
+                            incremented = true
+                        }
+                        outArray.push(cartItem)
                     }
-                    outArray.push(cartItem)
+                    if (!incremented) {
+                        outArray.push({
+                            sku: item,
+                            qty: qty,
+                            price: price,
+                            currency: currency,
+                            name: name,
+                        })
+                    }
+                    localStorage.setItem("b-b-cart", JSON.stringify(outArray))
+                    this.setState({itemSet: outArray, hasItems: outArray.length > 0})
                 }
-                if (!incremented) {
-                    outArray.push({
-                        sku: item,
-                        qty: qty,
-                        price: price,
-                        currency: currency,
-                        name: name,
-                    })
-                }
-                localStorage.setItem("b-b-cart", JSON.stringify(outArray))
-                this.setState({itemSet: outArray, hasItems: outArray.length > 0})
+            } else {
+                let init_cart = [{
+                    sku: item,
+                    qty: qty,
+                    price: price,
+                    currency: currency,
+                    name: name
+                }]
+                localStorage.setItem("b-b-cart", JSON.stringify(init_cart))
+                this.setState({itemSet: init_cart, hasItems: true})
             }
-        }else{
-            let init_cart = [{
-                sku: item,
-                qty: qty,
-                price:price,
-                currency:currency,
-                name:name
-            }]
-            localStorage.setItem("b-b-cart", JSON.stringify(init_cart))
-            this.setState({itemSet:init_cart, hasItems:true})
         }
     }
 

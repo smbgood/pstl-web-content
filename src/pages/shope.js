@@ -2,20 +2,18 @@ import React from "react"
 import { Router } from "@reach/router"
 import Layout from "../components/page/layout"
 import SEO from "../components/page/seo";
-import Shop from "../components/page/shop";
 import Blog from "../components/page/blog"
 import About from "../components/page/about"
 import Contact from "../components/page/contact"
 import Cart from "../components/page/cart"
 import Checkout from "../components/page/checkout"
 import { graphql } from "gatsby"
-import Categories from "../components/old/categories";
+import Categories from "../components/page/categories";
 
 const Shope = ({data, location}) => (
-    <Layout navImage={data.logoImage.edges[0].node}>
+    <Layout navImage={data.logoImage.edges[0].node} location={location}>
         <SEO title={"Banshee Babe Boutique | Trinkets, Odds & Ends"} history={location}/>
         <Router>
-            <Shop path="/shope/shop" />
             <Blog path="/shope" blogs={data}/>
             <About path="/shope/about"/>
             <Contact path="/shope/contact"/>
@@ -46,7 +44,7 @@ export const query = graphql`
             edges {
                 node {
                     fluid(maxWidth: 500, quality: 100) {
-                        ...GatsbyImageSharpFluid
+                        ...GatsbyImageSharpFluid_noBase64
                         originalName
                     }
                 }
@@ -61,7 +59,17 @@ export const query = graphql`
                     }
                 }
             }
-        }
+        },
+        welcomeInfo: allSiteadminJson {
+            nodes {
+              welcomepage {
+                welcomeimagesection {
+                  welcomeImage
+                  welcomeTitle
+                  }
+                }
+              }
+            }       
     }
 `
 export default Shope

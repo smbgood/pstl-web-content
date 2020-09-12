@@ -12,10 +12,13 @@
   margin-top:1rem;
   padding-bottom:1.2rem;
   @media screen and(max-width:$bp-med){
-    max-width:88%;
+    max-width: 59%;
   }
   @media screen and(max-width:$bp-small){
     max-width:95%;
+  }
+  .lds-heart{
+    left:initial;
   }
 }
 
@@ -24,6 +27,28 @@
   display:block;
   text-align:center;
   margin-top:2rem;
+}
+
+.cart-items-table{
+  margin:0 auto;
+  & th{
+    padding-right:3rem;
+  }
+  & tr td:not(:last-child){
+    padding-right:3rem;
+  }
+  & tr:nth-child(3) td{
+    padding-top:1.3rem;
+  }
+}
+
+.cart-table-heading{
+  padding-top:1rem;
+}
+
+.cart-heading-sep{
+  position: absolute;
+  width: 23rem;
 }
 
 .cart-delete-item{
@@ -107,6 +132,11 @@
   }
 }
 
+.cart-items-empty{
+  margin-top:1rem;
+  padding-top:2rem;
+}
+
 .cart-widget-total-count{
   @include color-10();
 }
@@ -173,13 +203,6 @@ form[name='bborder']{
       display:inline;
       height:0;
     }
-    /*@media only screen and(min-width:$bp-med){
-
-    }
-    margin-bottom:.9rem;
-    @media only screen and(min-width:$bp-small) {
-      margin-bottom: .5rem;
-    }*/
   }
 
   .form-error-msg {
@@ -188,7 +211,7 @@ form[name='bborder']{
     background-color: purple;
     top: 0.4rem;
     border-radius: 1rem;
-    padding: .2rem;
+    padding: .2rem .8rem;
     @media only screen and (max-width: $bp-small) {
       display:none;
     }
@@ -272,11 +295,19 @@ form[name='bborder']{
     font-size:1.1rem;
     text-align:center;
     @media only screen and (max-width: $bp-small) {
-      width: 109.3%;
+      width: 99.3%;
       height: 3.6rem;
-      font-size: 2.1rem;
+      font-size: 1.8rem;
     }
   }
+}
+
+input[name='addresslineone']{
+  margin-top:.3rem!important;
+}
+
+select:disabled{
+  color:black;
 }
 
 .lds-heart {
@@ -338,11 +369,22 @@ form[name='bborder']{
   }
 }
 
-.shipping-modal-close-button{
+.shipping-modal-close-button, .product-modal-close-button{
   background:none;
   border:none;
   position:relative;
   left:98%;
+}
+
+.product-modal-close-button{
+  svg{
+    width:2rem;
+    height:2rem;
+  }
+  @media screen and (max-width:$bp-small){
+    position:relative;
+    left:94.7%;
+  }
 }
 
 .ReactModal__Content--after-open{

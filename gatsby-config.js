@@ -1,15 +1,3 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.org/docs/gatsby-config/
- */
-
-if(!process.env.STRIPE_SECRET_KEY) {
-    require('dotenv').config({
-        path: `.env.${process.env.NODE_ENV}`,
-    })
-}
-
 module.exports = {
     siteMetadata: {
         title: `Banshee Babe Boutique`,
@@ -77,15 +65,6 @@ module.exports = {
                 name: "categories"
             },
         },
-        "gatsby-plugin-stripe",
-        {
-            resolve: `gatsby-source-stripe`,
-            options: {
-                objects: ["Sku"],
-                secretKey: process.env.STRIPE_SECRET_KEY,
-                downloadFiles: true,
-            },
-        },
         `gatsby-transformer-json`,
         {
             resolve: `gatsby-source-filesystem`,
@@ -93,6 +72,14 @@ module.exports = {
                 path: `./content/siteadmin/`,
                 name: "cms"
             },
+        },
+        `gatsby-transformer-json`,
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                path: './content/baths/',
+                name: "baths"
+            }
         },
         {
             resolve: `gatsby-plugin-netlify-cms`,
@@ -102,6 +89,12 @@ module.exports = {
                  * `src/cms` directory.
                  */
                 modulePath: `${__dirname}/src/components/cms.js`,
+            },
+        },
+        {
+            resolve: `gatsby-plugin-google-analytics`,
+            options: {
+                trackingId: "UA-177640999-1",
             },
         },
     ],

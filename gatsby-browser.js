@@ -14,6 +14,9 @@ require('typeface-arima-madurai')
 require('typeface-imprima')
 require('typeface-courgette')
 
+
+
 export const wrapRootElement = ({ element }) => (
-    <CartProvider>{element}</CartProvider>
+    <CartProvider>
+        {element}</CartProvider>
 )

@@ -4,8 +4,8 @@ backend:
 #publish_mode:editorial_workflow
 media_folder: "static/images/uploads"
 public_folder: "images/uploads"
-site_url: https://www.richornot.com
-display_url: https://richornot.com
+site_url: https://www.bansheebabe.com
+display_url: https://www.bansheebabe.com
 collections:
   - name: blog
     label: Blog
@@ -40,6 +40,27 @@ collections:
       - { name: id, label: Category ID }
       - { name: products, label: Products, widget: list }
       - { name: image, label: Image, widget: image}
+  - name: baths
+    label: Baths
+    folder: "content/baths"
+    create: true
+    extension: json
+    identifier_field: sku
+    fields:
+      - { name: name, label: Name }
+      - { name: sku, label: Id }
+      - { name: price, label: Price}
+      - { name: image, label: Image, widget: image }
+      - { name: title, label: Title }
+      - { name: short_description, label: Description, widget: text}
+      - { name: full_description, label: Full Description, widget: markdown}
+      - label: "Product Detail Images"
+        name: "detail_images"
+        widget: "list"
+        field: {label: Image, name: image, widget: image}
+      - { name: ingredients, label: Ingredients (Second Tab) }
+      - { name: important, label: Important (Third Tab) }
+      - { name: currency, label: Currency Format}
   - name: siteadmin
     label: Site Admin
     folder: "content/siteadmin"
@@ -70,8 +91,19 @@ collections:
             fields:
               - {label: Title, name: barTitle, widget: string, required: false}
               - {label: Body, name: barBody, widget: string, required: false}
+      - label: Welcome Page
+        name: welcomepage
+        widget: object
+        fields:
+          - label: Welcome Image
+            name: welcomeimagesection
+            widget: object
+            fields:
+              - {label: Title, name: welcomeTitle, widget: string, required: false}
+              - {label: Body, name: welcomeImage, widget: image, required: false}
       - label: Site Wide
         name: sitewide
         widget: object
         fields:
           - {label: Copyright, name: copyright, widget: string, required: false}
+          - {label: Disclaimer, name: disclaimer, widget: string, required: false}

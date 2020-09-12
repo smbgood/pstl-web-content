@@ -60,10 +60,6 @@
 @mixin color-12(){
     color: #8f15d2;
 }
-//about section CW h5
-@mixin color-13(){
-    color: #ABCDEF;
-}
 
 //default background color -- not used rn
 @mixin bg-color-1() {
@@ -116,6 +112,12 @@
 @mixin bg-color-13(){
     background: rgb(236, 101, 162);
 }
+@mixin bg-color-14() {
+    background: linear-gradient(45deg, #fe02fe, #fe02fe);
+}
+@mixin bg-color-13-gradient(){
+    background: linear-gradient(45deg, #b1f5ff, #6ff580)
+}
 //shadow color for cart widget at top of every page
 @mixin shadow-color-1(){
     box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);
@@ -162,6 +164,10 @@
 @mixin ultimate-center(){
     margin:0 auto;
     text-align:center;
+}
+
+.ultimate-center{
+    @include ultimate-center();
 }
 
 @mixin light-bg-color-1() {
@@ -219,24 +225,38 @@ nav, .footer-root{
     @include bg-color-3;
 }
 
-.nav-root, .footer-root{
+.nav-root{
     display:flex;
+}
+
+.footer-root{
+    display:block;
 }
 
 .page-root{
     @media screen and (min-width:$bp-large){
         margin-left:5%;
         margin-right:5%;
+        margin-bottom:2%;
+        margin-top:1%;
     }
     @media screen and (min-width:$bp-mega){
         margin-left:10%;
         margin-right:10%;
+        margin-bottom:4%;
+        margin-top:2%;
     }
 }
 
 .footer-copyright{
     @include ultimate-center();
-    padding:3rem;
+    padding-top:2.2rem;
+    @include color-3();
+}
+
+.footer-disclaimer{
+    @include ultimate-center();
+    padding-bottom:2.2rem;
     @include color-3();
 }
 
@@ -273,12 +293,13 @@ nav, .footer-root{
 
 .nav-mobile-btn{
     display:none;
+    z-index:2;
     @media screen and (max-width:$bp-med){
         display:block;
         position:absolute;
         top:6rem;
         right:2rem;
-        z-index:3;
+        z-index:2;
         a, svg{
             width:2rem;
             height:2rem;
@@ -288,6 +309,7 @@ nav, .footer-root{
 
 .nav-mobile-menu{
     display:none;
+    z-index:3;
 }
 .nav-mobile-menu-item{
     display:block;
@@ -307,7 +329,7 @@ nav, .footer-root{
 }
 .opened{
     @media screen and (max-width:$bp-med){
-        z-index: 2;
+        z-index: 1;
         position: absolute;
         display: block;
         top: 1.4rem;
@@ -372,4 +394,8 @@ nav, .footer-root{
     text-shadow: 2px 2px white;
     @include ultimate-center();
     padding:4rem;
+}
+
+.back-to-you-text{
+    margin-bottom:3rem;
 }

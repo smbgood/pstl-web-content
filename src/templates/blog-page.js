@@ -60,7 +60,6 @@ class BlogPageTemplate extends React.Component {
           <div className="blog-page-body">
             <MDXRenderer>{this.props.pageContext.blog.node.body}</MDXRenderer>
           </div>
-            {this.doLinkOutput(this.props.pageContext.blog.node.frontmatter.product )}
           <div className="blog-page-footer">
             <Link to={"/shope"}>Go back</Link>
           </div>
