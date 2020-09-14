@@ -98,37 +98,6 @@ module.exports = {
                 trackingId: "UA-177640999-1",
             },
         },
-        /*{
-            resolve: `gatsby-plugin-sitemap`,
-            options: {
-                output: `/my-sitemap`,
-                query: `{
-                    site {
-                      siteMetadata {
-                        siteUrl
-                      }
-                    }
-                    
-                    allSitePage{
-                        edges{
-                            node{
-                                path
-                            }
-                        }
-                    }
-                }`,
-                serialize: ({ site, allSitePage }) =>
-                    allSitePage.nodes.map(node => {
-                        return {
-                            url: `${site.siteMetadata.siteUrl}${node.path}`,
-                            changefreq: `daily`,
-                            priority: 0.7,
-                        }
-                    })
-
-
-            }
-        }*/
         {
             resolve: `gatsby-plugin-sitemap`,
             options: {
