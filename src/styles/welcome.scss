@@ -4,6 +4,8 @@
   top: 52%;
   width: 54%;
   height: 35rem;
+  color:white;
+  text-shadow: 1px 1px 2px #fe02fe;
 }
 
 .welcome-image{
@@ -13,4 +15,9 @@
 
 .welcome-section{
   text-align:center;
+}
+
+.welcome-link{
+  font-family: Imprima, sans-serif;
+  color: antiquewhite;
 }

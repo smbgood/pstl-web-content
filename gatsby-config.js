@@ -3,6 +3,7 @@ module.exports = {
         title: `Banshee Babe Boutique`,
         description: `Welcome to the online gift shop of Banshee Babe Boutique`,
         author: `@colourmeoutrageous`,
+        siteUrl: "https://bansheebabe.com",
     },
     plugins: [
         "gatsby-plugin-theme-ui",
@@ -97,5 +98,51 @@ module.exports = {
                 trackingId: "UA-177640999-1",
             },
         },
+        {
+            resolve: `gatsby-plugin-sitemap`,
+            options: {
+                output: `/sitemap.xml`,
+                // Exclude specific pages or groups of pages using glob parameters
+                // See: https://github.com/isaacs/minimatch
+                // The example below will exclude the single `path/to/page` and all routes beginning with `category`
+                exclude: [`/category/*`, `/path/to/page`],
+                query: `
+                {
+                  siteInfo: site {
+                        siteMetadata {
+                            siteUrl
+                        }
+                  }
+        
+                  allSitePage {
+                    nodes {
+                      path
+                    }
+                  }
+                }`,
+                resolveSiteUrl: ({siteInfo, allSitePage}) => {
+                    //Alternatively, you may also pass in an environment variable (or any location) at the beginning of your `gatsby-config.js`.
+                    return siteInfo.siteMetadata.siteUrl
+                },
+                serialize: ({ siteInfo, allSitePage }) => {
+                    let outArray = [];
+                    allSitePage.nodes.forEach(function(value, index){
+                        let path = value.path;
+                        if(path.indexOf("shope") > -1){
+                            let pageNameArray = ['about', 'contact', 'cart', 'categories', 'checkout']
+                            pageNameArray.forEach(function(value, index){
+                                outArray.push({ url: `${siteInfo.siteMetadata.siteUrl}${path}${pageNameArray[index]}`, changefreq: `daily`, priority: 1});
+                            });
+                        }
+                        outArray.push({
+                            url: `${siteInfo.siteMetadata.siteUrl}${path}`,
+                            changefreq: `daily`,
+                            priority: 0.7,
+                        });
+                    })
+                    return outArray;
+                }
+            }
+        }
     ],
 }
