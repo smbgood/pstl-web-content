@@ -1,13 +1,13 @@
 // src/templates/Page.js
 import React from "react"
-import Layout from "../components/page/layout"
+import Layout from "../components/layout/layout"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import Img from "gatsby-image"
 import findImageForSetBlogImage from "../services/utils"
 import { graphql, Link } from "gatsby"
 import "../styles/blog-page.scss"
 import {FaInfoCircle} from "react-icons/fa"
-import SEO from "../components/page/seo";
+import SEO from "../components/layout/seo";
 
 class BlogPageTemplate extends React.Component {
 

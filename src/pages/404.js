@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-import Layout from "../components/page/layout"
+import Layout from "../components/layout/layout"
 
 export default ({data}) => (
   <Layout navImage={data.navImage.edges[0].node}>

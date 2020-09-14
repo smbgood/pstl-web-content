@@ -1,8 +1,8 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 
-import Layout from "../components/page/layout"
-import SEO from "../components/page/seo"
+import Layout from "../components/layout/layout"
+import SEO from "../components/layout/seo"
 
 const SuccessPage = ({data}) => (
   <Layout navImage={data.navImage.edges[0].node}>

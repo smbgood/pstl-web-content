@@ -1,6 +1,7 @@
 import React from "react";
 import Img from "gatsby-image"
 import "../../styles/welcome.scss"
+import { Link } from "gatsby"
 
 class Welcome extends React.Component {
     constructor(props) {
@@ -17,10 +18,10 @@ class Welcome extends React.Component {
                             </Img>
                             <div className={"welcome-overlay"}>
                                 <div className={"welcome-top"}>
-                                    Top
+                                    Welcome to Banshee Babe! While our site is currently still under construction,
                                 </div>
                                 <div className={"welcome-bottom"}>
-                                    Bottom
+                                    you can still <Link className={"welcome-link"} to={"/shope/categories"}>place orders</Link> and <Link className={"welcome-link"} to={"/shope/contact"}>get in contact with us</Link> while we are building!
                                 </div>
                             </div>
                         </div>
