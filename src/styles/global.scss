@@ -14,7 +14,7 @@
 }
 //MAIN BODY TEXT COLOR
 @mixin color-4() {
-    color:#fe02fe;
+    color:#6c6a74;
 }
 //blog 'go to blog' link color
 @mixin color-5() {
@@ -63,19 +63,19 @@
 
 //default background color -- not used rn
 @mixin bg-color-1() {
-    background-color: #b1f5ff;
+    background-color: #e4e5e0;
 }
 //not used
 @mixin bg-color-2() {
-    background-color:rgba(139, 249, 124, 1) !important;
+    background-color:#9a9a9a !important;
 }
 //copyright footer area background color
 @mixin bg-color-3() {
-    background-color:#24fb9d !important;
+    background-color:#323b59 !important;
 }
 //not used
 @mixin bg-color-4() {
-    background-color:#95ecff !important;
+    background-color:#e4e5e0 !important;
 }
 //default btn background color
 @mixin bg-color-5() {
@@ -83,40 +83,41 @@
 }
 //not used
 @mixin bg-color-6(){
-    background-color:#43a057;
+    background-color:#9a9a9a;
 }
 //bottom blog item -- 'go to blog' link background color
 @mixin bg-color-7(){
-    background-color: rgba(170, 29, 245, 0.76) !important;
+    background-color: #9a9a9a !important;
 }
 // on cart page, background color for the header row
 @mixin bg-color-8(){
-    background-color: rgba(242, 248, 64, 0.75);
+    background-color: #9a9a9a;
 }
 // on cart page, background color for cart table section
 @mixin bg-color-9(){
-    background-color: rgba(229, 137, 197, 0.47) !important;
+    background-color: #76736c !important;
 }
 //background for cart page 'checkout' page
 @mixin bg-color-10(){
-    background-color: rgba(236, 101, 162, 0.63);
+    background-color: #76736c;
+    opacity: .63;
 }
 //background color for the cart widget at the top of every page (when you have an item)
 @mixin bg-color-11(){
-    background-color: rgb(111, 245, 128);
+    background-color: #76736c;
 }
 //mobile menu background color
 @mixin bg-color-12(){
     background: linear-gradient(45deg, #e0bdf9,#ffc8ef);
 }
 @mixin bg-color-13(){
-    background: rgb(236, 101, 162);
+    background: #9a9a9a;
 }
 @mixin bg-color-14() {
-    background: linear-gradient(45deg, #fe02fe, #fe02fe);
+    background: #9a9a9a;
 }
 @mixin bg-color-13-gradient(){
-    background: linear-gradient(45deg, #b1f5ff, #6ff580)
+    background: #9a9a9a;
 }
 //shadow color for cart widget at top of every page
 @mixin shadow-color-1(){
@@ -124,12 +125,12 @@
 }
 //blog item container background color
 @mixin light-bg-color-2() {
-    background-color: rgba(244, 173, 224, 0.98);
+    background-color: #9a9a9a;
 }
 
 //Color from which the logo transition starts on
 @mixin wavy-color-finish() {
-    background-color: #520457;
+    background-color: #323b59;
 }
 
 @mixin wavy-color-start() {

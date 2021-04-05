@@ -1,7 +1,7 @@
 {
-  "name": "banshee-babe-web-content",
+  "name": "pstl-web-content",
   "private": true,
-  "description": "Front-end web content for Banshee Babe Boutique",
+  "description": "Front-end web content for Dave's Truck Barrels",
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
@@ -80,7 +80,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/smbgood/banshee"
+    "url": "https://github.com/smbgood/pstl-web-content"
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"

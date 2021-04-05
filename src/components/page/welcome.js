@@ -18,7 +18,7 @@ class Welcome extends React.Component {
                             </Img>
                             <div className={"welcome-overlay"}>
                                 <div className={"welcome-top"}>
-                                    Welcome to Banshee Babe! While our site is currently still under construction,
+                                    Welcome to Dave's Truck Barrels! While our site is currently still under construction,
                                 </div>
                                 <div className={"welcome-bottom"}>
                                     you can still <Link className={"welcome-link"} to={"/shope/categories"}>place orders</Link> and <Link className={"welcome-link"} to={"/shope/contact"}>get in contact with us</Link> while we are building!

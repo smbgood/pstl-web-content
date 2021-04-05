@@ -11,7 +11,7 @@ function transformData(obj, image){
 
 const Index = ({data, location}) => (
     <Layout navImage={data.logoImage.edges[0].node} location={location}>
-        <SEO title={"Banshee Babe Boutique | Trinkets, Odds & Ends"} history={location}/>
+        <SEO title={"Dave's Truck Barrels"} history={location}/>
         <Router>
             <Welcome path="/" welcomeInfo={transformData(data.welcomeInfo.nodes[0].welcomepage, data.plompous.edges[0].node)}/>
         </Router>

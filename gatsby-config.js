@@ -1,9 +1,9 @@
 module.exports = {
     siteMetadata: {
-        title: `Banshee Babe Boutique`,
-        description: `Welcome to the online gift shop of Banshee Babe Boutique`,
-        author: `@colourmeoutrageous`,
-        siteUrl: "https://bansheebabe.com",
+        title: ` Home of the World Famous Whiskey Barrel Truck Cover`,
+        description: `Welcome to the online store to buy our unique crafts`,
+        author: `@davestruckbarrels`,
+        siteUrl: "https://davesbarrels.com",
     },
     plugins: [
         "gatsby-plugin-theme-ui",
@@ -16,11 +16,11 @@ module.exports = {
         {
             resolve: `gatsby-plugin-manifest`,
             options: {
-                name: `Banshee Babe Boutique`,
-                short_name: `Banshee Babe`,
+                name: `Dave's Truck Barrels`,
+                short_name: `Dave's Barrels`,
                 start_url: `/`,
-                background_color: `#6b37bf`,
-                theme_color: `#6b37bf`,
+                background_color: `#323b59`,
+                theme_color: `#323b59`,
                 // Enables "Add to Homescreen" prompt and disables browser UI (including back button)
                 // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
                 display: `standalone`,

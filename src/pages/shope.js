@@ -12,7 +12,7 @@ import Categories from "../components/page/categories";
 
 const Shope = ({data, location}) => (
     <Layout navImage={data.logoImage.edges[0].node} location={location}>
-        <SEO title={"Banshee Babe Boutique | Trinkets, Odds & Ends"} history={location}/>
+        <SEO title={"Dav"} history={location}/>
         <Router>
             <Blog path="/shope" blogs={data}/>
             <About path="/shope/about"/>

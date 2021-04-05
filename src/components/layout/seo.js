@@ -32,19 +32,22 @@ function SEO({ description, lang, meta, title, history }) {
   if(history && history.pathname){
     switch(history.pathname){
       case "/shope/contact":
-        title = "Contact Us | Banshee Babe Boutique"
+        title = "Contact Us"
         break
       case "/shope/about":
-        title = "About | Banshee Babe Boutique"
+        title = "About"
         break
       case "/shope":
-        title = "Blog | Banshee Babe Boutique"
+        title = "Blog"
         break
       case "/shope/categories":
-        title = "Shope | Banshee Babe Boutique"
+        title = "Shop"
         break
       case "/shope/cart":
-        title = "Cart | Banshee Babe Boutique"
+        title = "Cart"
+        break
+      default:
+        title = "Home"
     }
   }
 

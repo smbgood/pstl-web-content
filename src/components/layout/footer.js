@@ -7,7 +7,7 @@ class Footer extends React.Component{
           <StaticQuery
             query={graphql`
               query CopyrightQuery {
-                siteInfo: allSiteadminJson(filter: {path: {eq: "banshee"}}) {
+                siteInfo: allSiteadminJson(filter: {path: {eq: "pstl"}}) {
                   edges {
                     node {
                       sitewide {

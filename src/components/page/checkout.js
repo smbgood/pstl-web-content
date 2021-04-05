@@ -128,7 +128,7 @@ class Checkout extends Component {
                                     if(values && values.cart != null && values.shippingoption){
                                         values["form-name"] = "bbcheckout"
                                         values = qs.stringify(values)
-                                        axios.post("https://richornot.com/banshee/order", values, {headers: {'Content-Type':'application/x-www-form-urlencoded'}})
+                                        axios.post("https://richornot.com/pstl/order", values, {headers: {'Content-Type':'application/x-www-form-urlencoded'}})
                                             .then(response => {
                                                 //used to parse out stuff to use on the spot
                                                 /*const {
