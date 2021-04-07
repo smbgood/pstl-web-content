@@ -19,7 +19,7 @@ const Index = ({data, location}) => (
 )
 export const query = graphql`
     query IndexeQuery {
-        logoImage: allImageSharp(filter: {fluid: {originalName: {eq: "pstl-logo.svg"}}}) {
+        logoImage: allImageSharp(filter: {fluid: {originalName: {eq: "pstl-logo.png"}}}) {
             edges {
                 node {
                     fluid(maxWidth: 500, quality: 100) {
