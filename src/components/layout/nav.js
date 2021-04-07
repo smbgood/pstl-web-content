@@ -82,48 +82,48 @@ class Nav extends Component {
     render() {
         return (
             <div className="nav-outer">
-          <div className="nav-root">
-            <div className="nav-container nav-left">
-                {` `}
-                <Link sx={{
-                fontFamily: "heading",
-                }} className="nav-link" to="/shope/about">About</Link>
-                {` `}
-                <FaCrow sx={{color: "text"}} className="nav-separator"/>
-                {` `}
-                <Link sx={{
-                fontFamily: "heading",
-                }} className="nav-link" to="/shope">Blog</Link>
-                {` `}
-                <FaCrow sx={{color: "text"}} className="nav-separator"/>
-                {` `}
-                <Link sx={{
-                    fontFamily: "heading",
-                }} className="nav-link" to="/shope/cart">Cart</Link>
-                {` `}
-            </div>
-            <div className={("nav-icon " + (this.state.animationEnd ? "wavy-start" : "wavy-finish"))}>
-              <Link to="/" onClick={() => {this.handleClick("", this.fakeOpen, this, this.setCurrentNavItem)}}><Img fluid={this.props.navImage.fluid}/></Link>
-            </div>
-            <div className="nav-container nav-right">          
-              {` `}
-              <Link sx={{
-                fontFamily: "heading",
-              }} className="nav-link" to="/shope/contact">Contact Us</Link>
-              {` `}              
-              <FaCrow sx={{color: "text"}} className="nav-separator"/>
-              {` `}              
-              <Link sx={{
-                fontFamily: "heading",
-              }} className="nav-link" to="/shope/categories">Boutique</Link>
-              {` `}
-            </div>
-            <div className="nav-mobile-btn">
-              <a href="#" onClick={() => {this.openCloseMenu(this)}}>
-                <FaAlignJustify/>
-              </a>
-            </div>
-          </div>
+                <div className="nav-root">
+                  <div className="nav-container nav-left">
+                      {` `}
+                      <Link sx={{
+                      fontFamily: "heading",
+                      }} className="nav-link" to="/shope/about">About</Link>
+                      {` `}
+                      <FaCrow sx={{color: "text"}} className="nav-separator"/>
+                      {` `}
+                      <Link sx={{
+                      fontFamily: "heading",
+                      }} className="nav-link" to="/shope">Blog</Link>
+                      {` `}
+                      <FaCrow sx={{color: "text"}} className="nav-separator"/>
+                      {` `}
+                      <Link sx={{
+                          fontFamily: "heading",
+                      }} className="nav-link" to="/shope/cart">Cart</Link>
+                      {` `}
+                  </div>
+                  <div className={("nav-icon " + (this.state.animationEnd ? "wavy-start" : "wavy-finish"))}>
+                    <Link to="/" onClick={() => {this.handleClick("", this.fakeOpen, this, this.setCurrentNavItem)}}><Img fluid={this.props.navImage.fluid}/></Link>
+                  </div>
+                  <div className="nav-container nav-right">
+                    {` `}
+                    <Link sx={{
+                      fontFamily: "heading",
+                    }} className="nav-link" to="/shope/contact">Contact Us</Link>
+                    {` `}
+                    <FaCrow sx={{color: "text"}} className="nav-separator"/>
+                    {` `}
+                    <Link sx={{
+                      fontFamily: "heading",
+                    }} className="nav-link" to="/shope/categories">Boutique</Link>
+                    {` `}
+                  </div>
+                  <div className="nav-mobile-btn">
+                    <a href="#" onClick={() => {this.openCloseMenu(this)}}>
+                      <FaAlignJustify/>
+                    </a>
+                  </div>
+                </div>
                 <div className={("nav-mobile-menu " + (this.state.isMobileMenuOpen ? "opened" : "closed"))} >
                     {` `}
                     <div className={("nav-mobile-menu-item " + (this.state.itemSelected === "contact" ? "active" : ""))}>
