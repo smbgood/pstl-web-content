@@ -42,7 +42,7 @@ class BlogPageTemplate extends React.Component {
 
     }else{
       styles = {
-        color: "rgba(112, 205, 255, 1)"
+        color: "rgb(3,76,119)"
       }
     }
     return(
@@ -87,7 +87,7 @@ export const query=graphql`
               }
           }
       },
-      navImage: allImageSharp(filter: {fluid: {originalName: {eq: "banshee-logo-full.png"}}}) {
+      navImage: allImageSharp(filter: {fluid: {originalName: {eq: "pstl-logo.png"}}}) {
           edges {
               node {
                   id

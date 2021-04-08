@@ -50,7 +50,7 @@ export const query = graphql`
                 }
             }
         },
-        logoImage: allImageSharp(filter: {fluid: {originalName: {eq: "banshee-logo-full.png"}}}) {
+        logoImage: allImageSharp(filter: {fluid: {originalName: {eq: "pstl-logo.png"}}}) {
             edges {
                 node {
                     fluid(maxWidth: 500, quality: 100) {

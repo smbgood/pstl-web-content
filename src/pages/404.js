@@ -13,7 +13,7 @@ export default ({data}) => (
 )
 export const query=graphql`
     query OurNavQuery{
-        navImage: allImageSharp(filter: {fluid: {originalName: {eq: "banshee-logo-full.png"}}}) {
+        navImage: allImageSharp(filter: {fluid: {originalName: {eq: "pstl-logo.png"}}}) {
             edges {
                 node {
                     id

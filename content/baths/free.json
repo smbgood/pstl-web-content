@@ -6,13 +6,13 @@
     "images/uploads/love-bath-cropped.png"
   ],
   "stripeId": "sku_H4fw0BGNftgIKi",
-  "name": "Free",
+  "name": "Barrel",
   "full_description": "I appear on the product page",
   "important": "* Do not use if pregnant.<br/>* All our baths are vegan, all natural, and cruelty free.<br/>* Please contact me for any questions or allergy concerns!",
   "title": "Free",
   "short_description": "Description",
   "image": "images/uploads/destress-product-image.png",
-  "sku": "free",
+  "sku": "barrel",
   "price" : 700,
   "currency": "usd"
 }

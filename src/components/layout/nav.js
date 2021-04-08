@@ -115,7 +115,7 @@ class Nav extends Component {
                     {` `}
                     <Link sx={{
                       fontFamily: "heading",
-                    }} className="nav-link" to="/shope/categories">Boutique</Link>
+                    }} className="nav-link" to="/shope/categories">Store</Link>
                     {` `}
                   </div>
                   <div className="nav-mobile-btn">
@@ -135,7 +135,7 @@ class Nav extends Component {
                     <div className={("nav-mobile-menu-item " + (this.state.itemSelected === "categories" ? "active" : ""))}>
                         <FaStoreAlt/><a sx={{
                             fontFamily: "heading",
-                        }} className="nav-link" onClick={(e) => {this.handleClick("categories", this.openCloseMenu, this, this.setCurrentNavItem)}}>Boutique</a>
+                        }} className="nav-link" onClick={(e) => {this.handleClick("categories", this.openCloseMenu, this, this.setCurrentNavItem)}}>Store</a>
                     </div>
                     {` `}
                     <div className={("nav-mobile-menu-item " + (this.state.itemSelected === "cart" ? "active" : ""))}>

@@ -1,8 +1,8 @@
 {
-  "name": "Necessities!",
+  "name": "Products",
   "id": "main",
   "products": [
-    "prosper", "free", "heal"
+    "barrel-bed", "barrel", "other"
   ],
   "image":  "content/assets/blue-and-red-plants-2505693.jpg"
 }

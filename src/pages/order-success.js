@@ -28,7 +28,7 @@ class OrderSuccessPage extends React.Component{
 }
 export const query=graphql`
     query OrderSuccessQuery{
-        navImage: allImageSharp(filter: {fluid: {originalName: {eq: "banshee-logo-full.png"}}}) {
+        navImage: allImageSharp(filter: {fluid: {originalName: {eq: "pstl-logo.png"}}}) {
             edges {
                 node {
                     id
