@@ -40,7 +40,7 @@ export const query = graphql`
               }
             
         },
-        plompous: allImageSharp(filter: {fluid: {originalName: {eq: "photo-of-constellation-2832084.jpg"}}}) {
+        plompous: allImageSharp(filter: {fluid: {originalName: {eq: "coming-soon.gif"}}}) {
             edges {
               node {
                 fluid(maxWidth: 2500, quality: 100) {
