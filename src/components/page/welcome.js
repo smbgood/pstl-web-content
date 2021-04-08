@@ -14,8 +14,8 @@ class Welcome extends React.Component {
                 <div className={"welcome-root"}>
                     <div className={"welcome-section"}>
                         <div className={"welcome-image"}>
-                            {/*<Img fluid={this.props.welcomeInfo.image.fluid} alt={"Welcome Image"}>
-                            </Img>*/}
+                            <Img fluid={this.props.welcomeInfo.image.fluid} alt={"Welcome Image"}>
+                            </Img>
                             <div className={"welcome-overlay"}>
                                 <div className={"welcome-top"}>
                                     Welcome to davesbarrels.com! Please mind the mess as we are undergoing construction,
