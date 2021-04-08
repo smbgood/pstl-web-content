@@ -4,8 +4,6 @@
   font-size:2rem;
   margin-left:25%;
   margin-right: 25%;
-  padding-top: 5rem;
-  padding-bottom: 7rem;
   line-height: 3rem;
 }
 
@@ -16,4 +14,10 @@
 .welcome-link{
   font-family: Imprima, sans-serif;
   color: #ffa353;
+}
+
+.welcome-image{
+  position: relative;
+  top: -15rem;
+  z-index: 0;
 }

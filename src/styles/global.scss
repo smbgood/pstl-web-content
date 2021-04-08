@@ -8,9 +8,12 @@
 @mixin color-2() {
     color:rgba(139, 249, 124, 1);
 }
-//footer copyright and nav link item text color
+//nav link item text color
 @mixin color-3() {
     color: #242428;
+}
+@mixin color-copyright() {
+    color: #ffffff;
 }
 //MAIN BODY TEXT COLOR
 @mixin color-4() {
@@ -252,13 +255,13 @@ nav, .footer-root{
 .footer-copyright{
     @include ultimate-center();
     padding-top:2.2rem;
-    @include color-3();
+    @include color-copyright();
 }
 
 .footer-disclaimer{
     @include ultimate-center();
     padding-bottom:2.2rem;
-    @include color-3();
+    @include color-copyright();
 }
 
 .nav-link{
@@ -361,6 +364,7 @@ nav, .footer-root{
     @media screen and (max-width:$bp-med){
         padding-top:1rem;
     }
+    z-index:1;
 }
 
 .nav-separator{

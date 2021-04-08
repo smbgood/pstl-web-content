@@ -9,7 +9,7 @@ export default {
         secondary: "#1c638ae6",
         primary: "#7f160038",
         background: "rgba(10, 14, 124, 1)",
-        text: "rgba(100, 255, 255, 1)",
+        text: "rgb(252,251,251)",
     },
     fonts: {
         body: '"Arima Madurai" system-ui, sans-serif',

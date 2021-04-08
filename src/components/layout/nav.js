@@ -2,7 +2,7 @@
 import { jsx } from "theme-ui"
 import React, { Component } from "react"
 import { Link, navigate} from "gatsby"
-import {FaCrow, FaAlignJustify, FaPencilAlt, FaSpa, FaStoreAlt, FaTelegram} from "react-icons/fa"
+import {FaTruckPickup, FaAlignJustify, FaPencilAlt, FaSpa, FaStoreAlt, FaTelegram} from "react-icons/fa"
 import Img from "gatsby-image"
 
 class Nav extends Component {
@@ -89,13 +89,13 @@ class Nav extends Component {
                       fontFamily: "heading",
                       }} className="nav-link" to="/shope/about">About</Link>
                       {` `}
-                      <FaCrow sx={{color: "text"}} className="nav-separator"/>
+                      <FaTruckPickup sx={{color: "text"}} className="nav-separator"/>
                       {` `}
                       <Link sx={{
                       fontFamily: "heading",
                       }} className="nav-link" to="/shope">Blog</Link>
                       {` `}
-                      <FaCrow sx={{color: "text"}} className="nav-separator"/>
+                      <FaTruckPickup sx={{color: "text"}} className="nav-separator"/>
                       {` `}
                       <Link sx={{
                           fontFamily: "heading",
@@ -111,7 +111,7 @@ class Nav extends Component {
                       fontFamily: "heading",
                     }} className="nav-link" to="/shope/contact">Contact Us</Link>
                     {` `}
-                    <FaCrow sx={{color: "text"}} className="nav-separator"/>
+                    <FaTruckPickup sx={{color: "text"}} className="nav-separator"/>
                     {` `}
                     <Link sx={{
                       fontFamily: "heading",
