@@ -9,7 +9,7 @@
   }
 }
 .category-holder{
-  display:inline;
+  display:flex;
   li{
     margin-bottom:2rem;
     display:inline-block;
@@ -294,10 +294,15 @@ button.add-to-cart{
 .modal-cart-buttons{
   @media screen and(min-width:$bp-med){
     display:inline;
-    margin-left:4rem;
+    float: right;
+    margin-top: 0.9rem;
+    margin-right: 14%;
   }
   @media screen and (min-width:$bp-small) and (max-width:$bp-med){
     display:inline;
+    float: right;
+    margin-top: -4rem;
+    margin-right: 6rem;
   }
 }
 
@@ -310,8 +315,6 @@ button.add-to-cart{
     padding-right:1rem;
     padding-top:.5rem;
     padding-bottom:.5rem;
-    margin-left:1.5rem;
-    margin-right:1.5rem;
     box-shadow: 0.25rem 0.2rem;
     @media screen and(max-width:$bp-small){
       margin-top:1.5rem;

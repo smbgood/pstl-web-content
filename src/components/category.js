@@ -269,13 +269,13 @@ class Category extends Component {
                     <input type={"checkbox"} id={"tabs-top-second"} checked={this.state.tabActive && this.state.tabActive[productId] && this.state.tabActive[productId] === "second"} readOnly={true}/>
                     <label htmlFor={"tabs-top-second"}>
                         <div className={"tabs-top-second banshee-tab"} onClick={() => this.doTabClick("second", productId)}>
-                            <div className={"banshee-tab-info"}>Ingredients</div>
+                            <div className={"banshee-tab-info"}>Materials</div>
                         </div>
                     </label>
                     <input type={"checkbox"} id={"tabs-top-third"} checked={this.state.tabActive && this.state.tabActive[productId] && this.state.tabActive[productId] === "third"} readOnly={true}/>
                     <label htmlFor={"tabs-top-third"}>
                         <div className={"tabs-top-third banshee-tab"} onClick={() => this.doTabClick("third", productId)}>
-                            <div className={"banshee-tab-info"}>Important</div>
+                            <div className={"banshee-tab-info"}>Additional Info</div>
                         </div>
                     </label>
                 </div>
@@ -339,20 +339,20 @@ class Category extends Component {
                         </div>
                         <div className={"modal-description-right"}>
                             <div className={"modal-cart-buttons"}>
-                                <IconContext.Provider value={{size:"2em"}}>
+                                {/*<IconContext.Provider value={{size:"2em"}}>
                                     <button key={"add-to-cart-down"} className={"add-to-cart-down"} onClick={() => this.handleInputDecrease(productId)}>
                                         <FaArrowDown/>
                                     </button>
-                                </IconContext.Provider>
+                                </IconContext.Provider>*/}
                                 <button key={"add-to-cart"} className={"add-to-cart"}
                                         onClick={() => this.handleClick(cart, this.state.amountsToAdd[productId], productId, baths)}>
-                                    Add {this.state.amountsToAdd[productId]} to Cart
+                                    Add {/*{this.state.amountsToAdd[productId]}*/} to Cart
                                 </button>
-                                <IconContext.Provider value={{size:"2em"}}>
+                                {/*<IconContext.Provider value={{size:"2em"}}>
                                     <button key={"add-to-cart-up"} className={"add-to-cart-up"} onClick={() => this.handleInputIncrease(productId)}>
                                         <FaArrowUp/>
                                     </button>
-                                </IconContext.Provider>
+                                </IconContext.Provider>*/}
                             </div>
                         </div>
                         {bath ? this.getBathTabsDisplay(productId, baths, bath): "" }

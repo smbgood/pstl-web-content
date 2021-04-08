@@ -14,14 +14,14 @@ class Welcome extends React.Component {
                 <div className={"welcome-root"}>
                     <div className={"welcome-section"}>
                         <div className={"welcome-image"}>
-                            <Img fluid={this.props.welcomeInfo.image.fluid} alt={"Welcome Image"}>
-                            </Img>
+                            {/*<Img fluid={this.props.welcomeInfo.image.fluid} alt={"Welcome Image"}>
+                            </Img>*/}
                             <div className={"welcome-overlay"}>
                                 <div className={"welcome-top"}>
-                                    Welcome to Dave's Truck Barrels! While our site is currently still under construction,
+                                    Welcome to davesbarrels.com! Please mind the mess as we are undergoing construction,
                                 </div>
                                 <div className={"welcome-bottom"}>
-                                    you can still <Link className={"welcome-link"} to={"/shope/categories"}>place orders</Link> and <Link className={"welcome-link"} to={"/shope/contact"}>get in contact with us</Link> while we are building!
+                                    however, you can still <Link className={"welcome-link"} to={"/shope/categories"}>preorder in the shop</Link> or <Link className={"welcome-link"} to={"/shope/contact"}>get in contact with us</Link> while we are building!
                                 </div>
                             </div>
                         </div>

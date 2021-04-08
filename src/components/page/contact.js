@@ -18,7 +18,7 @@ class Contact extends Component {
                         }else if (
                             !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
                         ) {
-                            errors.email = 'Invalid email address';
+                            errors.email = 'Please enter a valid email address';
                         }
 
                         if(!values.firstname){
@@ -55,10 +55,10 @@ class Contact extends Component {
                             <Field name="firstname" placeholder="What's your name?"/>
                             <ErrorMessage name="firstname" component="div"/>
                             <br/>
-                            <Field type="email" name="email" placeholder="Enter a good contact email" />
+                            <Field type="email" name="email" placeholder="A good contact email?" />
                             <ErrorMessage name="email" component="div" />
                             <br/>
-                            <Field name="message" component="textarea" placeholder="Here is where you leave me your glowing messages or ask any questions!" />
+                            <Field name="message" component="textarea" placeholder="Leave any messages or product inquiries here and we will respond within 24 hours. Thank you!" />
                             <ErrorMessage name="message" component="div" />
                             <br/>
                             <button className={"contact-us-submit"} type="submit" disabled={isSubmitting}>
