@@ -10,7 +10,7 @@ const SuccessPage = ({data}) => (
     <div className={"ultimate-center"}>
         <h1>Thank you for your contact request!</h1>
         <p className={"back-to-you-text"}>We will get back to you as soon as (unearthly) possible!</p>
-        <Link to="/shope">Go back to the homepage</Link>
+        <Link to="/">Go back to the homepage</Link>
     </div>
   </Layout>
 )
