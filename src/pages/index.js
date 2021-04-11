@@ -13,6 +13,19 @@ function transformData(obj, image){
     return { title: obj.welcomeimagesection.welcomeTitle, image: image}
 }
 
+function param(object) {
+  var encodedString = '';
+  for (var prop in object) {
+    if (object.hasOwnProperty(prop)) {
+      if (encodedString.length > 0) {
+        encodedString += '&';
+      }
+      encodedString += encodeURI(prop + '=' + object[prop]);
+    }
+  }
+  return encodedString;
+}
+
 const Index = ({data, location}) => (
     <Layout navImage={data.logoImage.edges[0].node} location={location}>
         <SEO title={"Dave's Truck Barrels"} history={location}/>
@@ -50,16 +63,33 @@ const Index = ({data, location}) => (
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-              values["form-name"] = "pstl-contact"
+              values["form-name"] = "pstl"
               values = qs.stringify(values)
-              var url = "/pstl-contact";
+              /*var url = "/pstl-contact";
               const options = {
                 method: 'POST',
-                headers: { 'content-type': 'application/x-www-form-urlencoded' },
-                data: qs.stringify(values),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                data: param(values),
                 url,
               };
               axios(options)
+                .then(response => {
+                  //used to parse out stuff to use on the spot
+                  /!*const {
+                      data: {
+                          userId: id
+                      }
+                  } = profile*!/
+
+                  console.log(response)
+                  if (typeof window !== `undefined`) window.location.replace(`/success`)
+                  setSubmitting(false);
+                }).catch(error => {
+                console.log(error)
+                setSubmitting(false);
+              })*/
+              values = qs.stringify(values)
+              axios.post("/contact", values, {headers: {'Content-Type':'application/x-www-form-urlencoded'}})
                 .then(response => {
                   //used to parse out stuff to use on the spot
                   /*const {
@@ -70,16 +100,16 @@ const Index = ({data, location}) => (
 
                   console.log(response)
                   if (typeof window !== `undefined`) window.location.replace(`/success`)
-                  setSubmitting(false);
                 }).catch(error => {
                 console.log(error)
-                setSubmitting(false);
               })
+              setSubmitting(false);
             }}
           >
             {({ isSubmitting }) => (
-              <Form name={"pstl-contact"} method={"post"} data-netlify={true} action={"/pstl-contact"}>
-                <input type="hidden" name="form-name" value="pstl-contact"/>
+              <Form name="pstl" data-netlify="true" netlify-honeypot="bot-field" method="post" action="/success" >
+                <input type="hidden" name="bot-field"/>
+                <input type="hidden" name="form-name" value="pstl"/>
                 <br/>
                 <br/>
                 <Field name="firstname" placeholder="What's your name?"/>
