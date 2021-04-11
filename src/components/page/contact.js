@@ -30,7 +30,7 @@ class Contact extends Component {
                         values["form-name"] = "pstlcontact"
                         values = qs.stringify(values)
 
-                        axios.post("/contact", values, {headers: {'Content-Type':'application/x-www-form-urlencoded'}})
+                        axios.post("/pstlcontact", values, {headers: {'Content-Type':'application/x-www-form-urlencoded'}})
                             .then(response => {
                                 //used to parse out stuff to use on the spot
                                 /*const {
@@ -47,9 +47,7 @@ class Contact extends Component {
                     }}
                 >
                     {({ isSubmitting }) => (
-                        <Form name="pstlcontact" data-netlify netlify-honeypot="bot-field" method="POST" action="/pstlcontact">
-                            <input type="hidden" name="bot-field"/>
-                            <input type="hidden" name="form-name" value="pstlcontact"/>
+                        <Form>
                             <br/>
                             <br/>
                             <Field name="firstname" placeholder="What's your name?"/>
@@ -70,8 +68,6 @@ class Contact extends Component {
             </div>
         )
     }
-
-
 }
 
 export default Contact
