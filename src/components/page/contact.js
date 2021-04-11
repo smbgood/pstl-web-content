@@ -47,7 +47,7 @@ class Contact extends Component {
                     }}
                 >
                     {({ isSubmitting }) => (
-                        <Form name="pstlcontact" netlify action="/pstlcontact">
+                        <Form name="pstlcontact" data-netlify action="/pstlcontact">
                             <br/>
                             <br/>
                             <Field name="firstname" placeholder="What's your name?"/>
