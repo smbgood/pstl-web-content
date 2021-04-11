@@ -52,7 +52,7 @@ const Index = ({data, location}) => (
             onSubmit={(values, { setSubmitting }) => {
               values["form-name"] = "pstlcontact"
               values = qs.stringify(values)
-              var url = "/?no-cache=1";
+              var url = "/pstlcontact";
               const options = {
                 method: 'POST',
                 headers: { 'content-type': 'application/x-www-form-urlencoded' },
@@ -95,7 +95,7 @@ const Index = ({data, location}) => (
               </Form>
             )}
           </Formik>
-          <form name="pstlcontact" method="post" data-netlify={true} data-netlify-honeypot="bot-field" action="/" hidden>
+          <form name="pstlcontact" method="post" data-netlify={true} data-netlify-honeypot="bot-field" action="/pstlcontact" hidden>
             <input type="hidden" name="bot-field"/>
             <input type="hidden" name="form-name" value="pstlcontact"/>
             <input type="text" name="firstname" />
