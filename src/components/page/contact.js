@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import "../../styles/contact.scss"
-import axios from "axios";
 import qs from "querystring"
 
 class Contact extends Component {
@@ -29,25 +28,40 @@ class Contact extends Component {
                     onSubmit={(values, { setSubmitting }) => {
                         values["form-name"] = "bbcontact"
                         values = qs.stringify(values)
-                        axios.post("/", values, {headers: {'Content-Type':'application/x-www-form-urlencoded'}})
+                        fetch("/", {
+                          method: "POST",
+                          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                          body: values
+                        })
+                          .then(() => {
+                            alert('Success');
+                          })
+                          .catch(() => {
+                            alert('Error');
+                          })
+                          .finally(() => setSubmitting(false))
+
+
+
+                        /*axios.post("/", values, {headers: {'Content-Type':'application/x-www-form-urlencoded'}})
                             .then(response => {
                                 //used to parse out stuff to use on the spot
-                                /*const {
+                                /!*const {
                                     data: {
                                         userId: id
                                     }
-                                } = profile*/
+                                } = profile*!/
 
                                 console.log(response)
                                 if (typeof window !== `undefined`) window.location.replace(`/success`)
                             }).catch(error => {
                             console.log(error)
-                        })
-                        setSubmitting(false);
+                        })*/
+
                     }}
                 >
                     {({ isSubmitting }) => (
-                        <Form name="bbcontact" data-netlify="true" netlify-honeypot="bot-field" method="post">
+                        <Form name="bbcontact" data-netlify={true}>
                             <input type="hidden" name="bot-field"/>
                             <input type="hidden" name="form-name" value="bbcontact"/>
                             <br/>
