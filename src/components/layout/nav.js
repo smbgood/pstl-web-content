@@ -83,7 +83,7 @@ class Nav extends Component {
         return (
             <div className="nav-outer">
                 <div className="nav-root">
-                  <div className="nav-container nav-left">
+                  {/*<div className="nav-container nav-left">
                       {` `}
                       <Link sx={{
                       fontFamily: "heading",
@@ -101,11 +101,11 @@ class Nav extends Component {
                           fontFamily: "heading",
                       }} className="nav-link" to="/shope/cart">Cart</Link>
                       {` `}
-                  </div>
+                  </div>*/}
                   <div className={("nav-icon " + (this.state.animationEnd ? "wavy-start" : "wavy-finish"))}>
                     <Link to="/" onClick={() => {this.handleClick("", this.fakeOpen, this, this.setCurrentNavItem)}}><Img fluid={this.props.navImage.fluid}/></Link>
                   </div>
-                  <div className="nav-container nav-right">
+                  {/*<div className="nav-container nav-right">
                     {` `}
                     <Link sx={{
                       fontFamily: "heading",
@@ -122,7 +122,7 @@ class Nav extends Component {
                     <a href="#" onClick={() => {this.openCloseMenu(this)}}>
                       <FaAlignJustify/>
                     </a>
-                  </div>
+                  </div>*/}
                 </div>
                 <div className={("nav-mobile-menu " + (this.state.isMobileMenuOpen ? "opened" : "closed"))} >
                     {` `}

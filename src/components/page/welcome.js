@@ -18,10 +18,10 @@ class Welcome extends React.Component {
                             </Img>
                             <div className={"welcome-overlay"}>
                                 <div className={"welcome-top"}>
-                                    Welcome to davesbarrels.com! Please mind the mess as we are undergoing construction,
+                                    Welcome to davesbarrels.com! Please mind the mess as we are undergoing construction.
                                 </div>
                                 <div className={"welcome-bottom"}>
-                                    however, you can still <Link className={"welcome-link"} to={"/shope/categories"}>preorder in the shop</Link> or <Link className={"welcome-link"} to={"/shope/contact"}>get in contact with us</Link> while we are building!
+                                    however, you can still {/*<Link className={"welcome-link"} to={"/shope/categories"}>preorder in the shop</Link> or*/} <Link className={"welcome-link"} to={"/shope/contact"}>get in contact with us</Link> while we are building!
                                 </div>
                             </div>
                         </div>

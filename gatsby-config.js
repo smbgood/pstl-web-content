@@ -30,8 +30,9 @@ module.exports = {
         `gatsby-plugin-offline`,
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-sass`,
-        'gatsby-transformer-sharp',
-        'gatsby-plugin-sharp',
+        `gatsby-plugin-image`,
+        `gatsby-transformer-sharp`,
+        `gatsby-plugin-sharp`,
         `gatsby-transformer-json`,
         {
             resolve: `gatsby-source-filesystem`,
@@ -78,7 +79,7 @@ module.exports = {
         {
             resolve: `gatsby-source-filesystem`,
             options: {
-                path: './content/baths/',
+                path: `./content/baths/`,
                 name: "baths"
             }
         },
