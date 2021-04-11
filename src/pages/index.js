@@ -50,9 +50,9 @@ const Index = ({data, location}) => (
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-              values["form-name"] = "pstlcontact"
+              values["form-name"] = "pstl-contact"
               values = qs.stringify(values)
-              var url = "/pstlcontact";
+              var url = "/pstl-contact";
               const options = {
                 method: 'POST',
                 headers: { 'content-type': 'application/x-www-form-urlencoded' },
@@ -70,14 +70,16 @@ const Index = ({data, location}) => (
 
                   console.log(response)
                   if (typeof window !== `undefined`) window.location.replace(`/success`)
+                  setSubmitting(false);
                 }).catch(error => {
                 console.log(error)
+                setSubmitting(false);
               })
-              setSubmitting(false);
             }}
           >
             {({ isSubmitting }) => (
-              <Form>
+              <Form name={"pstl-contact"} method={"post"} data-netlify={true} action={"/pstl-contact"}>
+                <input type="hidden" name="form-name" value="pstl-contact"/>
                 <br/>
                 <br/>
                 <Field name="firstname" placeholder="What's your name?"/>
@@ -95,13 +97,6 @@ const Index = ({data, location}) => (
               </Form>
             )}
           </Formik>
-          <form name="pstlcontact" method="post" data-netlify={true} data-netlify-honeypot="bot-field" action="/pstlcontact" hidden>
-            <input type="hidden" name="bot-field"/>
-            <input type="hidden" name="form-name" value="pstlcontact"/>
-            <input type="text" name="firstname" />
-            <input type="text" name="email" />
-            <input type="text" name="message" />
-          </form>
         </div>
       </div>
     </Layout>
