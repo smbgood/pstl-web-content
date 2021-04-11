@@ -92,12 +92,12 @@ module.exports = {
                 modulePath: `${__dirname}/src/components/cms.js`,
             },
         },
-        {
+/*        {
             resolve: `gatsby-plugin-google-analytics`,
             options: {
                 trackingId: "UA-177640999-1",
             },
-        },
+        },*/
         {
             resolve: `gatsby-plugin-sitemap`,
             options: {
@@ -128,12 +128,12 @@ module.exports = {
                     let outArray = [];
                     allSitePage.nodes.forEach(function(value, index){
                         let path = value.path;
-                        if(path.indexOf("shope") > -1){
+                        /*if(path.indexOf("shope") > -1){
                             let pageNameArray = ['about', 'contact', 'cart', 'categories', 'checkout']
                             pageNameArray.forEach(function(value, index){
                                 outArray.push({ url: `${siteInfo.siteMetadata.siteUrl}${path}${pageNameArray[index]}`, changefreq: `daily`, priority: 1});
                             });
-                        }
+                        }*/
                         outArray.push({
                             url: `${siteInfo.siteMetadata.siteUrl}${path}`,
                             changefreq: `daily`,
