@@ -77,8 +77,7 @@ class Welcome extends React.Component {
                           }}
                         >
                             {({ isSubmitting }) => (
-                              <Form data-netlify>
-                                <input type="hidden" name="form-name" value="pstlcontact"/>
+                              <Form>
                                   <br/>
                                   <br/>
                                   <Field name="firstname" placeholder="What's your name?"/>
@@ -96,6 +95,13 @@ class Welcome extends React.Component {
                               </Form>
                             )}
                         </Formik>
+                      <form name="pstlcontact" data-netlify={true} data-netlify-honeypot="bot-field" hidden>
+                        <input type="hidden" name="bot-field"/>
+                        <input type="hidden" name="form-name" value="pstlcontact"/>
+                        <input type="text" name="firstname" />
+                        <input type="text" name="email" />
+                        <input type="text" name="message" />
+                      </form>
                     </div>
                 </div>
         )
