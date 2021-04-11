@@ -30,7 +30,7 @@ class Contact extends Component {
                         values["form-name"] = "pstlcontact"
                         values = qs.stringify(values)
 
-                        axios.post("/", values, {headers: {'Content-Type':'application/x-www-form-urlencoded'}})
+                        axios.post("/pstlcontact", values, {headers: {'Content-Type':'application/x-www-form-urlencoded'}})
                             .then(response => {
                                 //used to parse out stuff to use on the spot
                                 /*const {
@@ -47,7 +47,7 @@ class Contact extends Component {
                     }}
                 >
                     {({ isSubmitting }) => (
-                        <Form name="pstlcontact" netlify>
+                        <Form name="pstlcontact" netlify action="/pstlcontact">
                             <br/>
                             <br/>
                             <Field name="firstname" placeholder="What's your name?"/>
