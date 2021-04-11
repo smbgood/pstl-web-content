@@ -89,7 +89,7 @@ const Index = ({data, location}) => (
                 setSubmitting(false);
               })*/
               values = qs.stringify(values)
-              axios.post("/contact", values, {headers: {'Content-Type':'application/x-www-form-urlencoded'}})
+              axios.post("/", values, {headers: {'Content-Type':'application/x-www-form-urlencoded'}})
                 .then(response => {
                   //used to parse out stuff to use on the spot
                   /*const {
@@ -100,10 +100,11 @@ const Index = ({data, location}) => (
 
                   console.log(response)
                   if (typeof window !== `undefined`) window.location.replace(`/success`)
+                  setSubmitting(false);
                 }).catch(error => {
                 console.log(error)
+                setSubmitting(false);
               })
-              setSubmitting(false);
             }}
           >
             {({ isSubmitting }) => (

@@ -9,7 +9,7 @@ const SuccessPage = ({data}) => (
     <SEO title="Contact Submit Success" />
     <div className={"ultimate-center"}>
         <h1>Thank you for your contact request!</h1>
-        <p className={"back-to-you-text"}>We will get back to you as soon as (unearthly) possible!</p>
+        <p className={"back-to-you-text"}>We will get back to you as soon as possible!</p>
         <Link to="/">Go back to the homepage</Link>
     </div>
   </Layout>
