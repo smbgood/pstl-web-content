@@ -38,7 +38,7 @@ const Index = ({data, location}) => (
                 Welcome to davesbarrels.com! Please mind the mess as we are undergoing construction.
               </div>
               <div className={"welcome-bottom"}>
-                however, you can still {/*<Link className={"welcome-link"} to={"/shope/categories"}>preorder in the shop</Link> or*/} <Link className={"welcome-link"} to={"/shope/contact"}>get in contact with us</Link> while we are building!
+                however, you can still get in contact with us below while we are building!
               </div>
             </div>
           </div>
