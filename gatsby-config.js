@@ -1,12 +1,11 @@
 module.exports = {
     siteMetadata: {
         title: ` Home of the World Famous Whiskey Barrel Truck Cover`,
-        description: `Welcome to the online store to buy our unique crafts`,
+        description: `Welcome to the online store to buy our unique handcrafted truck beds`,
         author: `@davestruckbarrels`,
         siteUrl: "https://davesbarrels.com",
     },
     plugins: [
-        "gatsby-plugin-theme-ui",
         {
             resolve: "gatsby-plugin-mdx",
             options: {

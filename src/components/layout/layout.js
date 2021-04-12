@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui"
 import React from "react"
 import Footer from "./footer"
 import { graphql, StaticQuery } from "gatsby"
@@ -21,12 +19,12 @@ class Layout extends React.Component{
                   }
                 `}
                 render={ siteInfo  => (
-                    <>
+                    <div className="container-root-outer">
                         <div className="page-root" >
                         {this.props.children}
                         </div>
                         <Footer />
-                    </>
+                    </div>
                 )}
             />
         )
