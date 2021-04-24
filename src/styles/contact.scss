@@ -8,6 +8,15 @@
     text-align: center;
     width: 27rem;
     height: 4.7rem;
+    @media screen and (max-width:$bp-small){
+      width:90%;
+    }
+  }
+
+  ::placeholder{
+    @media screen and (max-width:$bp-small){
+      font-size:.3rem;
+    }
   }
 
   textarea{
@@ -26,18 +35,18 @@
     }
   }
 
-.contact-us-submit{
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  font-family: "Courgette", monospace;
-  font-size:1.75rem;
-  padding-left:1.5rem;
-  padding-right:1.5rem;
-  @include bg-color-10();
-  border:none;
-  border-radius:5px;
-  @include color-9();
-}
+  .contact-us-submit{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-family: "Courgette", monospace;
+    font-size:1.75rem;
+    padding-left:1.5rem;
+    padding-right:1.5rem;
+    @include bg-color-10();
+    border:none;
+    border-radius:5px;
+    @include color-9();
+  }
 
   input, textarea{
 
@@ -57,7 +66,7 @@
   form{
     padding-top: 1rem;
     padding-bottom: 6rem;
-    
+
     div{
       @include color-6();
       font-size:1.9rem;

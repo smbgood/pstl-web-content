@@ -1,3 +1,5 @@
+@import 'global.scss';
+
 .welcome-overlay{
   color: #6a5151;
   text-shadow: 1px 1px 2px #6a5151;
@@ -6,6 +8,10 @@
   margin-right: 25%;
   line-height: 3rem;
   margin-top:-5rem;
+
+  @media screen and(max-width:$bp-small){
+    margin-top:-3rem;
+  }
 }
 
 .welcome-section{
