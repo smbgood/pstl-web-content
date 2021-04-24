@@ -1,10 +1,11 @@
 .welcome-overlay{
-  color:white;
-  text-shadow: 1px 1px 2px #0c1723;
+  color: #6a5151;
+  text-shadow: 1px 1px 2px #6a5151;
   font-size:2rem;
   margin-left:25%;
   margin-right: 25%;
   line-height: 3rem;
+  margin-top:-5rem;
 }
 
 .welcome-section{
@@ -18,6 +19,13 @@
 
 .welcome-image{
   position: relative;
-  top: -15rem;
   z-index: 0;
+}
+
+.coming-soon-section{
+  text-align:center;
+}
+
+.welcome-bottom{
+  margin-bottom:3.5rem;
 }
