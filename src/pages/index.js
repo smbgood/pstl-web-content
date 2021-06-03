@@ -68,11 +68,11 @@ const Index = ({data, location}) =>
         </div>
         <div className={"welcome-overlay"} data-hide={state.scrolled}>
           <div className={"welcome-links"}>
-            <a href={"/other"}>Other</a>
-            <a href={"/other"}>Other</a>
-            <a href={"/other"}>Other</a>
-            <a href={"/other"}>Other</a>
-            <a href={"/other"}>Other</a>
+            <a href={"/other"}>Home</a>
+            <a href={"/other"}>About Us</a>
+            <a href={"/other"}>Order</a>
+            <a href={"/other"}>Contact</a>
+            <a href={"/other"}>Gallery</a>
           </div>
         </div>
       </div>
@@ -81,14 +81,12 @@ const Index = ({data, location}) =>
         <div className={"gallery-root"}>
           <Flickity className={'modal-carousel'} // default ''
                     elementType={'div'}
-                    options={{contain:false, freeScroll: true, prevNextButtons:false, initialIndex:3, wrapAround:true, pageDots:false, autoPlay:2222, pauseAutoPlayOnHover:false, selectedAttraction: 0.01,
-                      friction: 0.15, fullscreen: true}}>
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg" alt="orange tree" />
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/submerged.jpg" alt="submerged" />
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/look-out.jpg" alt="look-out" />
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/one-world-trade.jpg" alt="One World Trade" />
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/drizzle.jpg" alt="drizzle" />
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/cat-nose.jpg" alt="cat nose" />
+                    options={{contain:true, freeScroll: true, prevNextButtons:false, wrapAround: true,
+                      initialIndex:3, pageDots:false, autoPlay:2222, pauseAutoPlayOnHover:true, selectedAttraction: 0.01,
+                      friction: 0.15}}>
+            {data.carouselImages.edges.map(({ node }, i) => (
+              <GatsbyImage image={node.childImageSharp.gatsbyImageData} alt={"Carousel " + i} key={i}/>
+            ))}
           </Flickity>
         </div>
         <div className="contact-root">
@@ -148,7 +146,6 @@ const Index = ({data, location}) =>
               </Form>
             )}
           </Formik>
-          <button className={"merples"} onClick={() => alert(state.isVisible(state))}>hi</button>
         </div>
       </div>
     </Layout>
@@ -165,6 +162,20 @@ export const query = graphql`
                  formats: [AUTO,WEBP,AVIF]
               )
             }
+        }
+        carouselImages: allFile(filter: {relativePath: {glob: "caro-*"}}) {
+          edges {
+            node {
+              childImageSharp{
+                gatsbyImageData(
+                  layout:FIXED
+                  height:700
+                  placeholder:BLURRED
+                  formats: [AUTO,WEBP,AVIF]
+                )
+              }
+            }
+          }
         }             
     }
 `

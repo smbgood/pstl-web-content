@@ -1,17 +1,25 @@
 @import 'global.scss';
 
+.flickity-enabled:focus {
+  outline: none;
+}
+
 .welcome-overlay{
   color: #6a5151;
   text-shadow: 1px 1px 2px #6a5151;
   font-size:2rem;
-  margin-left:25%;
-  margin-right: 25%;
+  margin-left:11%;
   line-height: 3rem;
 }
 
-.welcome-link{
+.welcome-links{
   font-family: Imprima, sans-serif;
   color: #ffa353;
+  margin-top:9%;
+  width:100%;
+  a{
+    margin-left:1.5rem;
+  }
 }
 
 @keyframes fadeOut {
