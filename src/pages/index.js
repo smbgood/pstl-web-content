@@ -89,6 +89,21 @@ const Index = ({data, location}) =>
             ))}
           </Flickity>
         </div>
+        <div className={"call-to-action-root"}>
+          <h1>Hey there! Welcome to Dave's Barrels.com !</h1>
+          <h2>Have you ever wondered what it would be like to drive around your town, looking to everyone passing by like you have a TUN of whiskey, or more, fitted into your truck bed?</h2>
+          <h2>Well we've got just the thing for you!! A custom-fitted truck bed cover, built with our patented design and machined exactly to fit the dimensions of your truck bed. </h2>
+          <h2>Our truck bed covers are great for:</h2>
+          <ul>
+            <li>Promoting a new brewery or distillery</li>
+            <li>Standing out at a tailgate, race or sporting event</li>
+            <li>Protecting precious cargo on long roadtrips</li>
+            <li>Generally being an excellent conversation starter and set piece</li>
+            <li>Anything else you can imagine!</li>
+          </ul>
+          <h2>Our past customers love the look and the naturally weather resistant properties of cedar, and we are confident you will too.</h2>
+          <h3>Give us a shout via our contact form and we can get you started on your (amazing) new custom truck bed cover today!</h3>
+        </div>
         <div className="contact-root">
           <Formik
             initialValues={{ firstname: '', email: '', message: '' }}
@@ -169,8 +184,8 @@ export const query = graphql`
               childImageSharp{
                 gatsbyImageData(
                   layout:FIXED
-                  height:700
-                  placeholder:BLURRED
+                  height:600
+                  placeholder:DOMINANT_COLOR
                   formats: [AUTO,WEBP,AVIF]
                 )
               }

@@ -2,37 +2,26 @@ import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../components/layout/layout"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 export default ({data}) => (
-  <Layout navImage={data.navImage.edges[0].node}>
+  <Layout>
     <div className="page-not-found-image">
-      <Img fluid={data.monsterImage.edges[0].node.fluid}/>
+      <GatsbyImage image={data.monsterImage.childImageSharp.gatsbyImageData}  alt={"Page not found"}/>
     </div>
     <h1 className="center-splash">😢 We're Sorry -- Monsters Ate Your Page 😢</h1>
   </Layout>
 )
 export const query=graphql`
-    query OurNavQuery{
-        navImage: allImageSharp(filter: {fluid: {originalName: {eq: "pstl-logo.png"}}}) {
-            edges {
-                node {
-                    id
-                    fluid(maxWidth: 500, quality: 100) {
-                        ...GatsbyImageSharpFluid
-                        originalName
-                    }
-                }
-            }
-        },
-        monsterImage: allImageSharp(filter: {fluid: {originalName: {eq: "404.png"}}}) {
-            edges {
-                node {
-                    id
-                    fluid(maxWidth: 2800, quality: 100) {
-                        ...GatsbyImageSharpFluid
-                        originalName
-                    }
-                }
+    query OurNavQuery{       
+        monsterImage: file(relativePath: { eq :"404.png"}) {
+            childImageSharp {
+              gatsbyImageData(
+                 layout:CONSTRAINED
+                 width:2800
+                 placeholder:TRACED_SVG
+                 formats: [AUTO,WEBP,AVIF]
+              )
             }
         }
     }
