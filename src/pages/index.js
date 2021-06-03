@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from "react"
 import Layout from "../components/layout/layout"
 import SEO from "../components/layout/seo";
-import { graphql } from "gatsby"
-import "../styles/welcome.scss"
-import "../styles/contact.scss"
+import { navigate, graphql } from "gatsby"
+
 import {GatsbyImage} from "gatsby-plugin-image";
 import Flickity from "react-flickity-component"
 import { ErrorMessage, Field, Form, Formik } from "formik"
@@ -16,66 +15,9 @@ function encode(data) {
 
 const Index = ({data, location}) =>
 {
-  const [state, setState] = useState({
-    scrolled: false,
-    visible: false,
-    element: {},
-    isVisible: (state) => {
-        const { top, bottom } = state.element.getBoundingClientRect();
-        const vHeight = (window.innerHeight || document.documentElement.clientHeight);
-
-        return (
-          (top > 0 || bottom > 0) &&
-          top < vHeight
-        );
-    }
-  });
-
-  // change state on scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 10;
-      if (isScrolled !== state.scrolled) {
-        setState({
-          ...state,
-          scrolled: !state.scrolled,
-        });
-      }
-    };
-
-    setState({...state, element: document.querySelector(".welcome-image-top")})
-
-    document.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      // clean up the event handler when the component unmounts
-      document.removeEventListener('scroll', handleScroll);
-    };
-  }, [state.scrolled]);
-
-  const toggleVisibility = () => {
-    setState({
-      ...state,
-      visible: !state.visible,
-    });
-  };
-
   return (
-    <Layout location={location}>
+    <Layout>
       <SEO title={"Dave's Truck Barrels"} history={location}/>
-      <div className={"nav-section"} data-hide={state.scrolled}>
-        <div className={"welcome-image-top"}>
-          <GatsbyImage image={data.newLogo.childImageSharp.gatsbyImageData}  alt={"Coming Soon"}/>
-        </div>
-        <div className={"welcome-overlay"} data-hide={state.scrolled}>
-          <div className={"welcome-links"}>
-            <a href={"/other"}>Home</a>
-            <a href={"/other"}>About Us</a>
-            <a href={"/other"}>Order</a>
-            <a href={"/other"}>Contact</a>
-            <a href={"/other"}>Gallery</a>
-          </div>
-        </div>
-      </div>
       <div className={"welcome-root"}>
 
         <div className={"gallery-root"}>
@@ -92,7 +34,7 @@ const Index = ({data, location}) =>
         <div className={"call-to-action-root"}>
           <h1>Hey there! Welcome to Dave's Barrels.com !</h1>
           <h2>Have you ever wondered what it would be like to drive around your town, looking to everyone passing by like you have a TUN of whiskey, or more, fitted into your truck bed?</h2>
-          <h2>Well we've got just the thing for you!! A custom-fitted truck bed cover, built with our patented design and machined exactly to fit the dimensions of your truck bed. </h2>
+          <h2>Well we've got just the thing for you!! A custom-fitted truck bed cover, built with our patented design and machined exactly to match the dimensions of your truck bed. </h2>
           <h2>Our truck bed covers are great for:</h2>
           <ul>
             <li>Promoting a new brewery or distillery</li>
@@ -102,7 +44,7 @@ const Index = ({data, location}) =>
             <li>Anything else you can imagine!</li>
           </ul>
           <h2>Our past customers love the look and the naturally weather resistant properties of cedar, and we are confident you will too.</h2>
-          <h3>Give us a shout via our contact form and we can get you started on your (amazing) new custom truck bed cover today!</h3>
+          <h3>Give us a shout via our contact form below and we can get you started on your (amazing) new custom truck bed cover today!</h3>
         </div>
         <div className="contact-root">
           <Formik
@@ -131,8 +73,8 @@ const Index = ({data, location}) =>
                   ...values,
                 }),
               })
-                .then(() => alert("success"))
-                .catch((error) => alert(error))
+                .then(() => navigate("/success"))
+                .catch((error) => alert("We're sorry, something went wrong with your request. Please try again later."))
             }}
           >
             {({ isSubmitting }) => (
@@ -168,16 +110,6 @@ const Index = ({data, location}) =>
 }
 export const query = graphql`
     query IndexeQuery {
-        newLogo: file(relativePath: { eq :"pstl-logo.png"}) {
-            childImageSharp {
-              gatsbyImageData(
-                 layout:CONSTRAINED
-                 width:189
-                 placeholder:TRACED_SVG
-                 formats: [AUTO,WEBP,AVIF]
-              )
-            }
-        }
         carouselImages: allFile(filter: {relativePath: {glob: "caro-*"}}) {
           edges {
             node {

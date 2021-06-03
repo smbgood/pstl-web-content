@@ -4,29 +4,16 @@ import { graphql, Link } from "gatsby"
 import Layout from "../components/layout/layout"
 import SEO from "../components/layout/seo"
 
-const SuccessPage = ({data}) => (
-  <Layout navImage={data.navImage.edges[0].node}>
-    <SEO title="Contact Submit Success" />
-    <div className={"ultimate-center"}>
+
+export default function Success() {
+  return (
+    <Layout >
+      <SEO title="Contact Submit Success" />
+      <div className={"ultimate-center contact-success"}>
         <h1>Thank you for your contact request!</h1>
         <p className={"back-to-you-text"}>We will get back to you as soon as possible!</p>
         <Link to="/">Go back to the homepage</Link>
-    </div>
-  </Layout>
-)
-export const query=graphql`
-    query OurSuccessQuery{
-        navImage: allImageSharp(filter: {fluid: {originalName: {eq: "pstl-logo.png"}}}) {
-            edges {
-                node {
-                    id
-                    fluid(maxWidth: 500, quality: 100) {
-                        ...GatsbyImageSharpFluid
-                        originalName
-                    }
-                }
-            }
-        }
-    }
-`
-export default SuccessPage
+      </div>
+    </Layout>
+  )
+}
