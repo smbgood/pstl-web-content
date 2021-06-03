@@ -1,11 +1,12 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
 import Layout from "../components/layout/layout"
 import { GatsbyImage } from "gatsby-plugin-image"
+import SEO from "../components/layout/seo"
 
-export default ({data}) => (
+export default ({data, location}) => (
   <Layout>
+    <SEO title={"Dave's Truck Barrels"} history={location}/>
     <div className="page-not-found-image">
       <GatsbyImage image={data.monsterImage.childImageSharp.gatsbyImageData}  alt={"Page not found"}/>
     </div>
@@ -17,7 +18,7 @@ export const query=graphql`
         monsterImage: file(relativePath: { eq :"404.png"}) {
             childImageSharp {
               gatsbyImageData(
-                 layout:CONSTRAINED
+                 layout:FULL_WIDTH
                  width:2800
                  placeholder:TRACED_SVG
                  formats: [AUTO,WEBP,AVIF]

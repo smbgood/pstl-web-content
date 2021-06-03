@@ -87,11 +87,23 @@
     &[data-hide='false'] {
       animation: menuFadeIn ease-in-out 1s;
     }
+    @media screen and(min-width:$bp-med){
+      display:block;
+    }
+    @media screen and(max-width:$bp-med){
+      display:none;
+    }
   }
 }
 
 .gallery-root{
   margin-top:10.5%;
+
+  @media screen and (max-width:$bp-med){
+    height:500px;
+    overflow-x:hidden;
+    overflow-y:hidden;
+  }
 }
 
 .coming-soon-section{
@@ -100,4 +112,10 @@
 
 .welcome-bottom{
   margin-bottom:3.5rem;
+}
+
+.call-to-action-root{
+  @media screen and (max-width:$bp-med) {
+    padding: 1rem;
+  }
 }

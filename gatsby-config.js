@@ -1,6 +1,6 @@
 module.exports = {
     siteMetadata: {
-        title: ` Home of the World Famous Whiskey Barrel Truck Cover`,
+        title: ` Dave's Famous Whiskey Barrel Truck Bed Covers `,
         description: `Welcome to the online store to buy our unique handcrafted truck beds`,
         author: `@davestruckbarrels`,
         siteUrl: "https://davesbarrels.com",
