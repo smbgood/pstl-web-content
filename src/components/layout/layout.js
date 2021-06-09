@@ -70,15 +70,12 @@ const Layout = ({children}) => {
           <div className="page-root" >
             <div className={"nav-section"} data-hide={state.scrolled}>
               <div className={"welcome-image-top"}>
-                <GatsbyImage image={data.newLogo.childImageSharp.gatsbyImageData}  alt={"Coming Soon"}/>
+                <GatsbyImage image={data.newLogo.childImageSharp.gatsbyImageData}  alt={"Dave's Patented Whiskey Barrel Shaped Pickup Truck Bed Caps"}/>
               </div>
               <div className={"welcome-overlay"} data-hide={state.scrolled}>
                 <div className={"welcome-links"}>
                   <a href={"/"}>Home</a>
-                  <a href={"/other"}>About Us</a>
-                  <a href={"/other"}>Order</a>
-                  <a href={"/other"}>Contact</a>
-                  <a href={"/other"}>Gallery</a>
+                  <a href={"/gallery"}>Gallery</a>
                 </div>
               </div>
             </div>

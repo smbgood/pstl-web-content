@@ -55,6 +55,7 @@
     "react-helmet": "^6.1.0",
     "react-icons": "^3.11.0",
     "react-image-zoom": "^1.1.0",
+    "react-masonry-component": "^6.2.1",
     "react-modal": "^3.12.1",
     "react-native-svg": "^11.0.1",
     "react-router-dom": "^5.2.0",

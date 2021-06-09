@@ -118,4 +118,38 @@
   @media screen and (max-width:$bp-med) {
     padding: 1rem;
   }
+
+  h1{
+    @include ultimate-center();
+  }
+
+  li{
+    font-size:1.5rem;
+  }
+
+  h3{
+    color: #ffa353;
+    font-size:1.7rem;
+    @include ultimate-center();
+  }
+
+  margin-bottom:1rem;
+}
+
+.about-root{
+  margin-top:5%;
+  margin-left:2%;
+  ul{
+    padding:0;
+    max-width:100%;
+    margin:.2rem auto;
+  }
+  li{
+    list-style:none;
+    float:left;
+    padding:7px;
+    width:30%;
+    display:flex;
+    justify-content: center;
+  }
 }
