@@ -33,9 +33,9 @@ const Index = ({data, location}) =>
         </div>
         <div className={"call-to-action-root"}>
           <h1>Hey there! Welcome to Dave's Barrels.com !</h1>
-          <h2>Have you ever wondered what it would be like to drive around your town, looking to everyone passing by like you have a TUN of whiskey, or more, fitted into your truck bed?</h2>
-          <h2>Well we've got just the thing for you!! A custom-fitted truck bed cover, built with our patented design and machined exactly to match the dimensions of your truck bed. </h2>
-          <h2>Our truck bed covers are great for:</h2>
+          <h2>Have you ever wondered what it might be like to drive around your town, looking to everyone passing by like you have a TUN of whiskey, or more, fitted into the back of your truck?</h2>
+          <h2>Well we've got just the thing for you!! Our recently PATENTED WHISKEY BARREL SHAPED PICKUP TRUCK CAP — built with exacting craftsmanship to perfectly fit the dimensions of your truck bed. </h2>
+          <h2>Our truck caps are great for:</h2>
           <ul>
             <li>Promoting a new brewery or distillery</li>
             <li>Standing out at a tailgate, race or sporting event</li>
@@ -44,7 +44,7 @@ const Index = ({data, location}) =>
             <li>Anything else you can imagine!</li>
           </ul>
           <h2>Our past customers love the look and the naturally weather resistant properties of cedar, and we are confident you will too.</h2>
-          <h3>Give us a shout via our contact form below and we can get you started on your (amazing) new custom truck bed cover today!</h3>
+          <h3>Give us a shout below and we can get started on your new custom truck cap today!</h3>
         </div>
         <div className="contact-root">
           <Formik
