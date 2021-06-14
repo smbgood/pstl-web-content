@@ -31,6 +31,7 @@ module.exports = {
         `gatsby-plugin-image`,
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
+        `gatsby-plugin-styled-components`,
         `gatsby-transformer-json`,
 /*        {
             resolve: `gatsby-source-filesystem`,

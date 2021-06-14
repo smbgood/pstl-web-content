@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react"
 import Footer from "./footer"
 import { graphql, StaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import "../../styles/welcome.scss"
-import "../../styles/contact.scss"
 
 const Layout = ({children}) => {
   const [state, setState] = useState({
@@ -24,7 +22,7 @@ const Layout = ({children}) => {
 // change state on scroll
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 10;
+      const isScrolled = window.scrollY > 20;
       if (isScrolled !== state.scrolled) {
         setState({
           ...state,
