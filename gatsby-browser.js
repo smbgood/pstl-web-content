@@ -5,6 +5,8 @@
  */
 
 import "./src/styles/global.scss"
+import "./src/styles/welcome.scss"
+import "./src/styles/contact.scss"
 import React from "react"
 
 require('typeface-bad-script')
