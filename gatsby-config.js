@@ -12,20 +12,6 @@ module.exports = {
                 extensions: [".mdx", ".md"],
             }
         },
-        {
-            resolve: `gatsby-plugin-manifest`,
-            options: {
-                name: `Dave's Truck Barrels`,
-                short_name: `Dave's Barrels`,
-                start_url: `/`,
-                background_color: `#323b59`,
-                theme_color: `#323b59`,
-                // Enables "Add to Homescreen" prompt and disables browser UI (including back button)
-                // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
-                display: `standalone`,
-                icon: `src/utils/icon.png`, // This path is relative to the root of the site.
-            }
-        },
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-sass`,
         `gatsby-plugin-image`,
@@ -33,37 +19,10 @@ module.exports = {
         `gatsby-plugin-sharp`,
         `gatsby-plugin-styled-components`,
         `gatsby-transformer-json`,
-/*        {
-            resolve: `gatsby-source-filesystem`,
-            options: {
-                path: `${__dirname}/src/images`,
-            },
-        },*/
-        {
-            resolve: `gatsby-source-filesystem`,
-            options: {
-                path: `${__dirname}/content/blog`,
-                name: `blog`,
-            },
-        },
         {
             resolve: `gatsby-source-filesystem`,
             options: {
                 path: `${__dirname}/static/images/uploads`,
-            },
-        },
-        /*{
-            resolve: "gatsby-plugin-typography",
-            options: {
-                pathToConfigModule: "src/utils/typography.js"
-            }
-        },*/
-        `gatsby-transformer-json`,
-        {
-            resolve: `gatsby-source-filesystem`,
-            options: {
-                path: `./content/categories/`,
-                name: "categories"
             },
         },
         `gatsby-transformer-json`,
@@ -73,14 +32,6 @@ module.exports = {
                 path: `./content/siteadmin/`,
                 name: "cms"
             },
-        },
-        `gatsby-transformer-json`,
-        {
-            resolve: `gatsby-source-filesystem`,
-            options: {
-                path: `./content/baths/`,
-                name: "baths"
-            }
         },
         {
             resolve: `gatsby-plugin-netlify-cms`,
